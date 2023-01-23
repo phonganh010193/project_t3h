@@ -1,0 +1,79 @@
+.sidebar {
+  width: 280px;
+}
+.active {
+  background-color: #2d8356;
+  color: black;
+}
+
+.sidebar-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  background-color: #2d8356;
+
+}
+
+.sidebar-title h5 {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.bi-list {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.sidebar-content {
+  width: 280px;
+  height: 395px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+/* Style the links inside the navigation bar */
+.sidebar-content a {
+  float: left;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.sidebar-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+
+
+/* width */
+.sidebar-content::-webkit-scrollbar {
+  width: 10px;
+}
+  
+  /* Track */
+.sidebar-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  background-color: gray;
+}
+   
+  /* Handle */
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #2d8356; 
+  border-radius: 10px;
+}
+  
+  /* Handle on hover */
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: rgb(84, 82, 82); 
+}

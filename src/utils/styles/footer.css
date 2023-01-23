@@ -1,0 +1,105 @@
+.footer-content {
+    background-color: #252525;
+}
+
+.footer-logo {
+    width: 250px ;
+}
+
+.footer-logo img {
+    width: 200px;
+    margin-bottom: 30px;
+}
+
+.footer-item {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 50px 0px 0px;
+}
+
+.icon-logo-footer {
+    width: 30px;
+    height: 30px;
+    background-color: #252525;
+    border-radius: 25px;
+    border: 3px solid #fff1a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo ul li:first-child p {
+    width: 175px;
+}
+
+.footer-logo ul li p {
+    color: white;
+    padding-left: 15px;
+    font-size: 13px;
+    margin: 0;
+
+}
+
+.footer-logo ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.policy > ul {
+    list-style-type: square;
+}
+
+.policy h5 {
+    color: #2d8356;
+    margin-bottom: 30px;
+
+}
+
+.policy > ul > li > a {
+    color: white;
+}
+
+.policy > ul > li > a:hover {
+    color: #2d8356;
+    text-decoration: none;
+}
+.policy ul li {
+    height: 40px;
+}
+
+.footer-map h5 {
+    color: #2d8356;
+    margin-bottom: 30px;
+}
+
+.footer-map a img {
+    width: 280px;
+}
+
+.fanpage h5 {
+    color: #2d8356;
+    margin-bottom: 30px;
+}
+
+.fanpage a img {
+    width: 210px;
+}
+
+.footer-end {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.footer-end p {
+    color: white;
+    font-size: 12px;
+    margin-top: 15px;
+    text-align: center;
+}

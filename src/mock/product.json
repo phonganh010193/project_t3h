@@ -1,0 +1,632 @@
+[
+    {
+        "numberOfSell": 11,
+        "categoryName": "Nước hoa nam",
+        "gender": 1,
+        "id": "1",
+        "productName": "PENHALIGON'S ARTHUR (unisex)",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/8727377c-b4b9-4255-9c30-7d6f9c8098c2.webp?v=1670495875373",
+        "price":"5.900.000 VND",
+        "sale_price":"8.000.000 VND",
+        "categoryId": "1",
+        "capacity":"80ml",
+        "detail_product": {
+            "title_1":"PENHALIGON'S ARTHUR (unisex) mang đến bạn một mùi hương unisex với hương thơm chủ đạo là Vanilla và hổ phách mang lại một sự ngọt ngào, ấm áp. Hương thơm có một phần dịu dàng khi kết hợp mượt mà cùng hoa trắng. Sau cùng lại trầm ấm và sang trọng và mạnh mẽ cùng hương khói, kết hợp cùng tiêu và xạ hương.",
+            "image_detail_1": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/files/b2ecf106-a4df-4560-b3a0-74e805905e53-jpeg.jpg?v=1670496362443",
+            "title_2":"Không phải tự nhiên Penhaligon’s Arthur được gắn trên mình đầu rồng. Không chỉ là một hương nước hoa Penhaligon’s Arthur còn là một nghệ thuật.",
+            "title_3":"Rồng vốn chỉ tồn tại trong truyền thuyết nhưng lại là hiện diện cho sự tôn quý và sức mạnh. Đây cũng là linh vật được nhà Penhaligon mang đến tượng trưng cho sự vĩ đại của vị vua.",
+            "title_4":"Phong cách: Ngọt ngào, Ấm áp, Sang trọng",
+            "title_5":"Hương đầu: Vani, Hương và Quả bưởi.",
+            "title_6":"Hương giữa: Ambrette (Xạ hương) và Clary Sage.",
+            "title_7":"Hương cuối: Hương và Đậu Tonka",
+            "image_detail_2":"https://bizweb.dktcdn.net/100/110/910/products/8727377c-b4b9-4255-9c30-7d6f9c8098c2.webp?v=1670495875373",
+            "title_8":"Mùi hương mới nhất trong nhà Thú PENHALIGON'S. ARTHUR được hãng mệnh danh là LUCKY DRAGON rồng may mắn vừa được ra mắt cuối năm 2021 để đón chào năm mới.",
+            "title_9":"ARTHUR mang đên bạn một mùi hương unisex với hương thơm chủ đạo là Vanilla và hổ phách mang lại một sự ngọt ngào, ấm áp. Hương thơm có một phần dịu dàng khi kết hợp mượt mà cùng hoa trắng. Sau cùng lại trầm ấm và sang trọng và mạnh mẽ cùng hương khói, kết hợp cùng tiêu và xạ hương."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "2",
+        "capacity":"80ml",
+        "productName": "Ferrari Scuderia Black",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/346ea2d1-ec70-49b9-aa55-449d186a3366.webp?v=1670325966140",
+        "price":"590.000 VND",
+        "sale_price":"1.000.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Hương chính : Táo xanh, Quế, Vanilla",
+            "title_2":"Hương đầu : Chi cam chanh, Chanh, Cam Bergamot, Táo xanh, Mận",
+            "title_3":"Hương giữa : Bạch đậu khấu, Quế, Hoa hồng, Hoa nhài",
+            "title_4":"Hương cuối : Gỗ tuyết tùng, Hổ phách, Xạ hương, Vanilla",
+            "title_5":"Ra mắt từ năm 2013, Ferrari Scuderia Black là một phiên bản nâng cấp từ người anh tiền nhiệm Ferrari Scuderia Red của mình. Khác với phiên bản trước, Scuderia Black mang trong mình dòng hương Aromatic Fougere vô cùng đặc biệt trong tất cả những dòng hương khác.",
+            "title_6":"Đón đầu sự lột xác ngoạn mục ngay từ tầng hương đầu tiên, những nốt hương trái cây mở ra tạo nên sự tươi mát, sảng khoái phù hợp với những quý ông năng động theo đuổi phong cách tự do, thoải mái. Dựa vào tinh chất Bạch đậu khấu, Quế, Hoa hồng và Hoa nhài, sự ấm áp, dịu dàng từ bên trong dần xuất hiện rõ hơn rồi trở thành một cái chất vừa phong trần, lại vừa quyến rũ. Khi đã lắng dịu xuống sau một khoảng thời gian dài, những nốt hương Gỗ tuyết tùng, Hổ phách, Xạ hương và Vanilla để lại những lời gọi mời cuốn hút cùng một ấn tượng đặc biệt ghì sâu trong tâm trí của những cô nàng xung quanh."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "3",
+        "capacity":"80ml",
+        "productName": "DSQUARED² Green Wood for men 30ml",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d7f24b7b-1161-4f21-bd98-42958f83ae50.webp?v=1670039502670",
+        "price":"690.000 VND",
+        "sale_price":"1.390.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Phong cách: Cuốn hút, Mạnh mẽ, Nam tính.",
+            "title_2":"Hương đầu: Chanh vàng, Hoa Santolina, Tiêu Bourbon",
+            "title_3":"Hương cuối: Dầu Cypriol, Hương Ambroxan, Xạ hương",
+            "title_4":"DSQUARED² Green Wood Pour Homme được tạo ra như cặp bài trùng cuốn hút giới mộ điệu nước hoa từ năm 2019 vừa qua. Được xếp vào dòng hương Woody Aromatic, thật không quá khó hiểu khi những nốt hương chủ đạo luôn đem lại sự ấm áp, lãng mạn khiến cho chị em phụ nữ mê mệt.",
+            "title_5":"Gây ấn tượng ngay từ lần đầu tiên, từng làn hương tươi mát từ Chanh vàng, Hoa Santolina lan tỏa dưới sự kích thích mạnh mẽ của Tiêu Bourbon tạo ra một nguồn năng lượng đủ cho cả ngày làm việc của các quý ông. Sức mạnh của Green Wood Pour Homme mới thực sự bùng nổ khi những nốt hương Gỗ tuyết tùng, Cỏ hương bài xuất hiện mang theo sự ấm áp, tinh tế hòa vào cùng những hợp chất Ambroxan, Dầu Cypriol và Xạ hương.",
+            "title_6":"Nhờ sự kết hợp giữa những nốt hương hiếm, DSQUARED² Green Wood Pour Homme tạo ra cả một bức tranh hoàn thiện về người đàn ông mà bất kì cô nàng nào cũng phải thèm muốn đoạt được."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "4",
+        "capacity":"80ml",
+        "productName": "NOYA OUD IS GREAT EAU DE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/6be9fd66-2ea0-42f6-bdc0-f6acaf41e695-jpeg.jpg?v=1669690962170",
+        "price":"990.000 VND",
+        "sale_price":"1.390.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"NOYA OUD IS GREAT EAU DE PARFUM",
+            "title_2":" MÙI HƯƠNG SANG CHẢNH, ĐỘC LẠ TỪ DUBAI! ",
+            "title_3":"Chỉ nghe đến Trầm Hương, Hoa Nghệ Tây là đã thấy được sự xa xỉ của 𝐍𝐨𝐲𝐚 𝐎𝐮𝐝 𝐢𝐬 𝐆𝐫𝐞𝐚𝐭. Tiến sâu vào mùi hương, 𝐍𝐨𝐲𝐚 𝐎𝐮𝐝 𝐢𝐬 𝐆𝐫𝐞𝐚𝐭 ta càng thấy thêm sức hút và sự sang trọng.",
+            "title_4":"Đậm chất mùi hương phương Đông, 𝐍𝐨𝐲𝐚 𝐎𝐮𝐝 𝐢𝐬 𝐆𝐫𝐞𝐚𝐭 bắt đầu với sự ngọt dịu của Oải Hương, Nghệ Tây, nhẹ nhàng nhưng đủ đánh thức mọi giác quan. Phong vị gỗ Trầm Hương ấm áp bao phủ lấy sự mềm mại, để lại cuối cùng Hoắc Hương và Xạ Hương quấn quýt làm người ta thổn thức mãi không thôi!"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "5",
+        "capacity":"80ml",
+        "productName": "AFNAN VENTANA",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/ab9261df-6aea-467a-a8e2-721c468492c9-jpeg.jpg",
+        "price":"990.000 VND",
+        "sale_price":"1.390.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Afnan – một thương hiệu nước hoa đến từ Tiểu Vương Quốc Ả Rập, thương hiệu nổi tiếng với những chai nước hoa có hương thơm đặc biệt giống với một số chai nước hoa nổi tiếng trên thế giới nhưng với giá thành rẻ hơn mà chất lượng vẫn rất đảm bảo. Ventana Pour Homme khi vừa ra mắt đã được công chúng đón nhận nồng nhiệt với công thức phong cách tương đồng với Dior Sauvage đình đám.",
+            "title_2":"Hương đầu: Quả bưởi, Quả chanh, Quả quýt",
+            "title_3":"Hương giữa: Hoa oải hương, Hoa phong lữ, Cỏ hương bài, Hoắc hương",
+            "title_4":"Hương cuối: Tuyết tùng, Hổ phách, Gỗ quý",
+            "title_5":"Đây chắc chắn là một lựa chọn an toàn nếu bạn đã từng ngửi và thưởng thức qua nhiều mùi hương nước hoa trước đó. Tôi nghĩ rằng Armaf Ventana Pour Homme sẽ chinh phục được bất kỳ khách hàng khó tính nào trở nên thích thú và hài lòng với mùi hương này.",
+            "title_6":"Nốt hương đầu tiên là tổ hợp hương thơm nịnh mũi từ Quả bưởi, cùng với sự tươi mát của Quả chanh và Quả quýt tạo nên sự khởi đầu khá dễ chịu và lôi kéo người dùng. Sang nốt hương giữa cùng với loạt thành phần từ Hoa oải hương, Hoa phong lữ, Cỏ hương bài và Hoắc hương đã tạo ra những sắc thái đối lập nhau, vừa cá tính lại vừa quyến rũ. Cuối cùng là sự lắng đọng tại nốt hương đẹp đẽ và hoàn hảo cùng Tuyết tùng, Hổ phách và Gỗ quý.",
+            "title_7":"Armaf Ventana Pour Homme là chai nước hoa với tông mùi nam tính, sảng khoái, sạch sẽ, cùng với sự năng động, phóng khoáng thì tôi đã không quá lời khi nói bất kỳ vị khách hàng khó tính nào cũng sẽ bị chinh phục bởi mùi hương này mang lại."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "6",
+        "capacity":"80ml",
+        "productName": "Afnan Supremacy Silver",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cb7c9be7-b272-4665-900e-cf771d046278-jpeg.jpg?v=1669616902083",
+        "price":"990.000 VND",
+        "sale_price":"1.399.000 VND",
+        "categoryId": "1",
+        "detail-product":{
+            "title_1":"Nước hoa nam Afnan Supremacy Silver EDP của thương hiệu Afnan được ra mắt năm 2013 mang đến nguồn sinh lực cho nam giới và gợi lên cảm giác của một chuyến phiêu lưu qua những nền văn hóa của Ấn Độ. ",
+            "image_detail_1":"https://bizweb.dktcdn.net/100/110/910/files/2ed6ad1c-f9da-4766-ae1a-f469e4634aff-jpeg.jpg?v=1669616234981",
+            "title_2":"Supremacy Silver được chế tạo từ nhưng nguyên liệu tự nhiên tốt nhất của Pháp dưới bàn tay của những nhà sáng chế nước hoa. Những người hiểu rõ cách cân băng mùi hương mạnh mẽ và kết hợp truyền thống nước hoa phương Tây cùng hương thơm kỳ lạ của Trung Đông. Nhờ vào đó, Afnan Supremacy Silver đã đạt được thành công lớn trên toàn cầu.",
+            "title_3":"Nước hoa Afnan Supremacy Silver EDP thể hiện rõ khả năng thu hút của mình qua tầng hương đầu đầy mạnh mẽ đến từ quả lý chua đen và cam Bergamot, kết hợp với hương vị ngọt của quả táo xanh và hương dứa tạo nên cảm giác bình an, nhẹ nhàng, tươi mát. ",
+            "title_4":"Ở tầng hương giữa, những nốt hương chủ đạo nhẹ nhàng vô cùng đặc trưng của hoa hồng gắn với mùi thơm từ gỗ Bu-lô, khẽ khàng chạm nhẹ vào hương thơm ngọt ngào, dễ chịu trong hoa nhài và hoắc hương giúp giảm bớt căng thẳng, tạo cảm giác quyến rũ, cuốn hút. ",
+            "title_5":"Hương cuối ấm áp và cũng là chìa khóa để mùi hương này mang dấu ấn đậm trên cơ thể của người đàn ông manh mẽ. Đó là những note hương rêu sồi giao thoa song song với sắc hương trắng từ vani và long diên hương, tạo ra bước ngoặt mới mẻ dành cho người đàn ông muốn mang mùi hương trên mình cả ngày mà không cảm thấy quá sức.",
+            "title_6":"Nước hoa Afnan được đánh giá là mùi hương giống với ông hoàng Creed Aventus nhất. Vì là người anh em sinh đôi của Creed Aventus thế nên Supremacy Silver mang đến hương dứa nướng và khói đặc trưng làm nên tên tuổi của người anh đi trước."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "7",
+        "capacity":"80ml",
+        "productName": "JEAN PAUL GAULTIER ULTRA MALE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/267fca3e-bd32-4a2e-9f24-d9a62ff27383-jpeg.jpg?v=1668669400123",
+        "price":"300.000 VND",
+        "sale_price":"699.999 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"ean Paul Gaultier ra mắt nước hoa mới Ultra Male vào mùa hè năm 2015. Nước hoa này là phiên bản tái hiện hoặc phiên bản nâng cao của Le Male từ năm 1995. Ultra Male , được biết đến là nam tính, mãnh liệt, quyến rũ và đồng thời tinh tế. Ultra Male chẳng khác gì một mùi hương mê hoặc người đối diện, và tôi nhấn nhá chữ người đối diện bởi có lẽ với giới tính nào, gã này cũng hút được hết sảy. Nam, nữ hay là giới tính thứ 3, tất cả đều phải ngoái đầu lại, ném ánh mắt chằm chằm khi Ultra Male đi ngang qua, và cũng chỉ cần 1 đến 2 cú xịt thôi, nó đủ đốn gục mọi thứ xung quanh bạn rồi.",
+            "title_2":"Mùi hương đặc trưng:",
+            "title_3":"Hương Đầu: Cam Bergamot, Quả lê, Cây bạc hà, Hoa Oải Hương, Quả chanh vàng",
+            "title_4":"Hương giữa: Quế, Cây đơn sâm, Thì là Ba Tư",
+            "title_5":"Hương cuối: Hương Va ni, Hổ phách, Gỗ tuyết tùng, Cây hoắc hương.",
+            "title_6":"Mùi hoa Lavender thoang thoảng quyện chặt cùng Hương Vani mềm mượt, pha lẫn chút thanh mát của trái Lê và Bạc hà, Ultra Male trần trụi và khơi gợi đến mức điên dại với mùi cay nồng của quế và sự thân mật của Thì là Ba Tư. Để bắt đầu những làn hương tỏa bay khiêu khích đối phương, Hổ phách và Gỗ tuyết tùng đã quá dư thừa khả năng trong việc nắm trọn người tình chỉ trong vài nốt nhạc. Nếu muốn hấp dẫn gái, trai hay thậm chí bất cứ giới tính nào đi nữa, Ultra Male sẽ không bao giờ khiến bạn thất vọng dù chỉ một lần, thậm chí bạn sẽ phải giận dỗi với chính bản thân của mình vì đã không làm quen với gã này từ lâu. Một mùi hương dành cho bất kỳ giới tính nào… Ultra Male Jean Paul Gautier."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "8",
+        "capacity":"80ml",
+        "productName": "TESTER DG THE ONE EDT FOR MEN",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/4a8a1844-787a-4afb-9866-568b3ec7fd9a.webp?v=1667473805527",
+        "price":"1.290.000 VND",
+        "sale_price":"1.990.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"HÀNG TESTER LÀ HÀNG MẪU CỦA HÃNG CHO KHÁCH DÙNG THỬ TRƯỚC KHI MUA HÀNG, HÀNG MỚI 100% CHÍNH HÃNG PHÁP, KHÁCH HÀNG CÓ THỂ KIỂM TRA THỦ MUÌ  TRƯỚC KHI MUA, BẢO HÀNH SẢN PHẨM"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "9",
+        "capacity":"80ml",
+        "productName": "Tester DOLCE LIGHT BLUE FOREVER POUR HOMME",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/2ad8110e-f87a-4644-a1d4-69580764fb8c-jpeg.jpg?v=1667469076797",
+        "price":" 1.590.000 VND",
+        "sale_price":"2.790.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Tông hương chủ đạo cho Light Blue Forever là Citrus, mùi hương tươi mát làm chủ điểm mạnh mẽ của 6 tháng đầu của năm, khi thời tiết có nhiệt độ cao nhất trong năm, thì nước hoa tông Citrus  là lựa chọn hàng đầu.",
+            "title_2":"Lớp hương đầu mở ra của hỗn hợp Quả Bưởi và Cam Bergamot, mùi hương chân thật đến bất ngờ. Mùi hương tươi mát pha chút vị chua ngọt là đặc trưng không thể thiếu của 2 loại trái cây mùa hè này . Một khởi đầu đầy năng lượng và tươi tắn.",
+            "title_3":"Không để khứu giác phải chờ lâu, mùi hương lắng xuống chỉ sau 15-20 phút, mùi hương tiếp tục mở ra cùng Ozonic, mùi hương có phần như làn gió ở cửa biển, mùi hương mặn mặn, hăng hăng. Nhưng bạn đừng lo lắng vì sự xuất hiện của Lá Violet này đã khiến mùi hương được cân bằng bằng cách đan xen ở giữa khứu giác như thể một ly cocktail mượt mà đang tọa lạc giữa vùng biển nhiệt đới.",
+            "title_4":"Cuối cùng, mùi hương đặc sắc của Hoắc Hương hòa quyện cùng sự ngọt dịu của Xạ Hương Trắng như một tấm ghi chú đang điểm vào tiềm thức của chúng ta, mùi hương lắng xuống như tấm dải lụa hoàng hôn đang trải khắp vùng biển giữa sự êm ả, yên bình.",
+            "title_5":"Hương Đầu: Quả Bưởi, Cam Bergamot;",
+            "title_6":"Hương Gữa: Hương Ozonic, Lá Violet;",
+            "title_7":"Hương Cuối: Dầu Vetiver, Xạ Hương Trắng, Cây Hoắc Hương."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "10",
+        "capacity":"80ml",
+        "productName": "NAUTICA VOYAGE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/c85bcc62-7dba-43c6-9d33-c476bfb54157-jpeg.jpg?v=1665457439300",
+        "price":"250.000VND",
+        "sale_price":"599.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Là làn gió biển trong lành và mặn mòi, mang theo hương thơm lãng mạn của cỏ cây ven biển và đánh thức bản năng đo sức mạnh của người đàn ông với thiên nhiên hoang dã. Đây là hương thơm dành cho một người đàn ông năng động và lãng mạn, sống theo quy tắc của riêng mình. Thành phần mở ra với hương xanh, lạnh của lá và táo. Dần dần một làn sương dịu dàng trong tầng hương giữa từ những cánh hoa sen đẫm toả ra, cùng với đó là hương hoa Mimosa, tất cả tạo thành một tổ hợp mùi hương lãng mạn và quyến rũ. Nautica Voyage được tinh chế để tạo nên hình tượng người đàn ông phóng khoáng, mạnh mẽ, và đó là lý do để mùi hương đầy sức hút của hỗn hợp Oakmoss, Gỗ tuyết tùng, Hổ phách, Xạ hương tìm về trong tầng hương cuối.",
+            "title_2":"Hương đầu: Hương lá xanh, Quả táo ",
+            "title_3":"Hương giữa: Hoa Mimosa, Hoa sen ",
+            "title_4":"Hương cuối: Oakmoss, Gỗ tuyết tùng, Hổ phách, Xạ hương"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "11",
+        "capacity":"80ml",
+        "productName": "ARMAF CLUB DE NUIT LIMITED EDITION 105ml",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d341473b-3362-47fc-9deb-17ef69c915bd-jpeg.jpg?v=1663223428427",
+        "price":"1.850.000 VND",
+        "sale_price":"2.399.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Vẫn là 𝗖𝗹𝘂𝗯 𝗱𝗲 𝗻𝘂𝗶𝘁 nhưng đây là PHIÊN BẢN 𝗟𝗜𝗠𝗜𝗧𝗘𝗗 𝗘𝗗𝗜𝗧𝗜𝗢𝗡 𝗣𝗔𝗥𝗙𝗨𝗠 - mượt mà & hoàn hảo hơn bội phần. ",
+            "title_2":"Ở Armaf Club de Nuit Intense Man, bạn có thể cảm nhận đâu đó một nét đẹp phi giới tính được chuyển biến qua từng tầng lớp mùi hương. Ban đầu là sự sôi nổi và tràn trề năng lượng của chanh, dứa, bergamot, táo và nho đen. Những hương vị trái cây tươi mát như đưa tôi vào một khúc ca với sự dẫn dắt của một cô nàng lúc nào cũng vui vẻ và tích cực.",
+            "title_3":"Hương đầu: chanh, dứa, bergamot, táo, nho đen",
+            "title_4":"Hương giữa: hoa nhài, hoa hồng, gỗ cây phong",
+            "title_5":"Hương cuối: xạ hương, hoắc hương, vani, long diên hương",
+            "title_6":"Phong cách : Hiện đại, nam tính, mạnh mẽ"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "12",
+        "capacity":"80ml",
+        "productName": "JEAN PAUL LE BEAU LE PARFUM INTENSE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/a9a6c9bd-29c1-4169-8878-2709b321d97e-jpeg.jpg?v=1663043458380",
+        "price":"2.490.000 VND",
+        "sale_price":"2.599.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Le Beau Le Parfum là một người đàn ông mang trong mình sức cám dỗ, mọi tội lỗi đều được phép phơi bày. Không cần phải ẩn mình sau thảm thực vật xanh tươi trong bao bì mang tính biểu tượng của nó. Lực hút của nó được bùng nổ với hổ phách và gỗ Đàn Hương cực kỳ gây nghiện, khiến các giác quan không nghe lời mà chỉ muốn cuốn mình vào hương vị của trái cấm. Đây chính là sự hư hỏng nhưng vô cùng quyến rũ và mạnh bạo – một tuýp đàn ông mà nhiều cô nàng phải đắm đuối, muốn sở hữu. Đây là một hương thơm với độ lưu hương lâu và độ tỏa hương vừa phải, nó phù hợp cho các bạn nam trong những buổi hẹn hò hoặc những buổi đi chơi … Ở mọi thời điểm nó sẽ giúp bạn trở thành tâm điểm của mọi ánh nhìn. ",
+            "title_2":"Hương đầu: Quả dứa, Hoa diên vĩ, Cây bách, Gừng",
+            "title_3":"Hương giữa: Dừa, Hương gỗ",
+            "title_4":"Hương cuối: Đậu tonka, Gỗ đàn hương, Hổ phách, Long diên hương"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "13",
+        "capacity":"80ml",
+        "productName": "THOMAS KOSMALA NO 4 Après l’Amour",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/b3dedb3c-85ec-4841-8f6a-6e52c1ec7086-jpeg.jpg?v=1659500019663",
+        "price":"2.790.000 VND",
+        "sale_price":"3.500.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Mùi hương Apres l’Amour No.4 được ví von như phiên bản hoàn hảo nhất của MFK Baccarat Rouge 540 Edp và pha trộn một chút hơi hướng từ Le Labo Another 13 trứ danh. Xuyên suốt sự bám của No.4 trên da, luôn có sự tồn tại của long diên hương (ambergris), hơi ngọt và cay nhẹ bởi tiêu hồng nhưng vị ngọt sẽ dần dần dịu xuống và cân bằng hơn bởi cái chạm nhẹ của lá chanh quyện với vỏ chanh nghiền nát. Mùi hương ngọt nhưng tươi sáng lấp lánh khiến những ai không chịu nổi MFK Baccarat Rouge 540 Edp sẽ cảm thấy bị mê hoặc ngay và luôn.",
+            "title_2":"Mùi hương đặc trưng:",
+            "title_3":"Hương giữa : Gia vị cay",
+            "title_4":"Hương cuối : Xạ hương, hổ phách, hương gỗ"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "14",
+        "capacity":"80ml",
+        "productName": "ROJA DOVE AMBER AOUD",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/b71ca628-a298-4e9d-8daa-3ecc2b0bbd05-jpeg.jpg?v=1653119478837",
+        "price":"16.900.000 VND",
+        "sale_price":"20.000.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"ROJA DOVE AMBER AOUD - Mang trong mình sự pha trộn đặc biệt bởi những nguyên liệu đắt tiền nhất trong tất cả các nguyên liệu làm nước hoa, Amber Aoud được Roja mô tả là “Sự gợi cảm xa hoa của giới quý tộc..” .Mùi hương đại diện cho sự xa xỉ, giàu có, đỉnh cao hương thơm quý tộc, hoàng gia. Không ngoa khi nói Amber Aoud là chất lỏng gây nghiện và đắt đỏ nhất hiện nay mà ai cũng muốn một lần sở hữu và ướp trên da mùi thơm này.",
+            "title_2":"Hương Đầu : Cam Bergamot, Quả chanh vàng, Quả chanh xanh",
+            "title_3":"Hương giữa : Hoa nhài, Hoa hồng, Hoa ngọc lan tây, Quả sung",
+            "title_4":"Hương cuối : Gỗ trầm hương, Gỗ Bu-lô, Quế, Rêu sồi, Cây hoắc hương, Nghệ tây, Gỗ đàn hương, Long diên hương, Hương cầy, Xạ hương, Rễ cây diên vĩ. "
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "15",
+        "capacity":"80ml",
+        "productName": "JEAN PAUL GAULTIER SDANDAL POUR HOMME",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/jean-paul-gualtier-scandal-pour-homme-eau-de-toilette-100ml.jpg",
+        "price":"2.590.000 VND",
+        "sale_price":"3.500.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Scandal Pour Homme lấy cảm hứng từ những trận đấu quyền Anh nặng sức, võ sĩ bất bại trên sàn đấu được xem như một vị vua với chiếc vương miện được mô phỏng về quyền lực và sự tự do qua hình ảnh chiếc nắp của Scandal Pour Homme.",
+            "title_2":"Hương Đầu: Cây Xô Thơm, Cam Mandarin",
+            "title_3":"Hương Giữa: Caramel, Đậu Tonka",
+            "title_4":"Hương Cuối: Cỏ Hương Bài"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "16",
+        "capacity":"80ml",
+        "productName": "GUCCI GUILTY POUR HOMME EDP",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/2ca84f39-1b0e-4529-b47c-46a7b37144e1-jpeg.jpg?v=1635403515683",
+        "price":"2.190.000 VND",
+        "sale_price":"3.599.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Phiên bản mới của dòng nước hoa Gucci Guilty được cải tiến nhằm mang đế phiên bản mãnh liệt dựa trên hương thơm nam tính của Gucci Guilty Pour Homme. Tôn vinh sự tự do mà thương hiệu theo đuổi thông qua câu chuyện ForeverGuilty, Gucci Guilty Pour Homme Eau de Parfum tái hiện của mùi hương ban đầu với sự kết hợp của ớt cay và hoa hồng tươi nhẹ nhàng. ",
+            "image_detail_1":"https://bizweb.dktcdn.net/100/110/910/files/5bfa9efa-3a63-45c5-b604-16e2fd3c28f6-jpeg.jpg?v=1635403346609",
+            "title_2":"Làm nổi bật những nguyên tắc truyền thống trong vẻ đẹp nam tính, với sự bí ẩn và độc đáo, mùi hương mới được tạo ra cho những người chiết trung và táo bạo.",
+            "title_3":"Thành phần có hương gỗ, aromatic và gia vị, mang đến sự khiêu khích và hiện đại cũng như gợi nhớ về hương thơm của thập niên 70. Lớp hương đầu của bản gốc bao gồm chanh và tiêu hồng đã được thay thế bằng hoa hồng và ớt. Các loại gia vị ấm tương phản với vị tươi thơm đắng, với một cảm giác bất ngờ của muối và giấm. Những bông hoa màu trắng và sự phong phú và mãnh liệt của các loại cây gỗ đã hoàn thành 3 tầng hương một cách hoàn hảo nhất."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "17",
+        "capacity":"80ml",
+        "productName": "MAISON FRANCIS KURKDJIAN PARIS OUD SATIN MOOD EDP",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/3700559602607-1-600x600.jpg?v=1623135166313",
+        "price":"4.990.000 VND",
+        "sale_price":"6.900.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Oud Satin Mood như một cách giải thích về gỗ OUD, một chất liệu quý và hiếm. Hương thơm này phản ánh mong muốn của người sáng chế là mang đến mùi hương gỗ Phương Đông lung linh trong cuộc sống. Đây là sự kết hợp khéo léo từ gỗ oud Lào với tinh chất của hoa hồng Bulgaria và hoa hồng từ Thổ Nhĩ Kỳ sau đó hòa quyện với hương hổ phách vani đậm đà.",
+            "title_2":"Sức mạnh và sự phức tạp của mùi hương xạ hương, gỗ, da thuộc, khói và mật ong cùng với sự bí ẩn của sự sáng tạo của OUD từ Lào, đây là một trong những nguyên liệu đắt tiền nhất. Cho nên người sáng chế đã kết hợp các note hương ấy với các loại hoa mãnh liệt và các loại gỗ khác nhau để tạo nên một mùi hương đầy mê hoặc.",
+            "title_3":"Thành phần hương tiếp theo từ hoa hồng Damascena, một loại hoa được trồng nhiều ở Thổ Nhĩ Kì, Bulgari và Iran. Nó mang một mùi hương phóng khoáng và được sử dụng chủ yếu ở lớp hương giữa và hương cuối.",
+            "title_4":"Bên cạnh đó là mùi hương Hổ phách, sự kết hợp của những note hương ấm áp đã tạo thành hỗn hợp hổ phách, thường được làm nổi bật bởi đậu Tonka, Coumarin và các loại nhựa như benzoin,.. Mùi hương của Benzoin có nhiều loại: vani ngọt ngào, một chút hiệu ứng caramel, mật ong, vị siro, ...tất cả đều nằm ở hương cuối."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Nước hoa nam",
+        "id": "18",
+        "capacity":"80ml",
+        "productName": "Giorgio Armani Acqua di Giò Profondo",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/pro.jpg",
+        "price":"2.390.000VND",
+        "sale_price":"2.690.000 VND",
+        "categoryId": "1",
+        "detail_product":{
+            "title_1":"Acqua di Giò Profondo của Giorgio Armani là một hương thơm mới dành cho nam giới được ra mắt vào năm 2020. Hơn cả một hương thơm, Aqua di Giò Profondo là sự quyến rũ đi sâu vào sự sâu thẳm của tâm hồn, nắm lấy các giá trị của sự tự do, gợi cảm và nam tính hiện đại, bộc lộ một chiều hướng sâu sắc hơn bao giờ hết.",
+            "title_2":"Hương đầu là Sea Notes, Aquozone, Bergamot và Green Mandarin",
+            "title_3":"Hương giữa là Hương thảo, Cây bách, Hoa Oải hương và Cây Mastic hoặc Cỏ hương bài",
+            "title_4":"Hương cuối là Khoáng chất, Xạ hương, Cây hoắc hương và Hổ phách."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "19",
+        "capacity":"80ml",
+        "productName": "DIOR JADORE PARFUME D'EAU",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/504c1e9e-5a4e-4878-bde4-90869abaecf0-jpeg.jpg?v=1667812790217",
+        "price":"3.390.000 VND",
+        "sale_price":"3.990.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Nước hoa Dior không chứa cồn đầu tiên, Dior J’adore Parfum d’eau tái hiện lại bó hoa mang tính biểu tượng của J’adore trong một những hương thơm tự nhiên. Hương thơm mang lại cho bạn một cách hào phóng các nốt hương của hoa nhài sambac, hoa cam và hoa mộc lan trên da.",
+            "title_2":"Cho chai nước hoa không cồn đầu tay, Dior sử dụng những mùi hương yêu thích của nước Pháp – gồm hoa cam, hoa nhài Sambac, hoa hồng Damask, và mộc lan. Thoa J’Adore Parfum d’Eau lên da, bạn sẽ có cảm giác như đang bước đi giữa vườn hoa mùa hè của xứ sở này.",
+            "title_3":"Hương thơm Dior J’adore Parfum d’Eau mang lại cho bạn như một bó hoa J’adore được sáng tạo lại với thành phần tự nhiên mạnh mẽ hơn. Neroli từ Vallauris đưa sự tươi mát trọn vẹn của nó vào J’adore Parfum d’eau, trong khi hương thơm của hoa nhài sambac kết hợp với hương mượt mà của hoa mộc lan Trung Quốc.",
+            "title_4":"Mùi hương chính: Neroli, hoa nhài sambac, hoa mộc lan trung quốc, hoa cam",
+            "title_5":"Độ lưu hương: lâu 6 tiếng – 8 tiếng",
+            "title_6":"Phong cách:  Nhẹ nhàng, sang trọng, quyến rủ"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "20",
+        "capacity":"80ml",
+        "productName": "KILIAN Good girl gone bad",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/m18511028-p3272008-2-zoom.jpg?v=1528341239073",
+        "price":"5.290.000 VND",
+        "sale_price":"7.000.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Kilian good girl gone bad ",
+            "title_2":"Em đã đổi thay? Sự thay đổi từ một cô gái trong trắng đến một người phụ nữ hấp dẫn ? Mùi hương nữ tính mạnh mẽ và gợi cảm nhất mà bạn sẽ cảm nhận được từ mẫu nước hoa này.",
+            "title_3":"Mùi hương mở ra cho ta thấy một cô gái trẻ trung, xinh xắn trong bộ váy trắng tinh khiết, nhưng càng đi sâu thì cô gái đó càng bộc lộ sự nổi loạn bên trong bản thân mình. Khoảng cách tỏa hương và thời gian lưu hương tuyệt vời cùng kiểu chai sang trọng, bắt mắt cũng là ưu điểm cho sản phẩm này",
+            "title_4":"Good girl gone Bad ấn tượng và dữ dội như một cơn lốc hoa. Mở đầu với mùi hương tươi mới của những cánh hoa nhài Sambac và trái mơ ngọt lịm vùng Osmanthus, nhưng vẻ nữ tính trong trắng này không đánh lừa được khứu giác. Hoa hồng tháng Năm với mùi hương dao động giữa hai thái cực nhẹ và mạnh mẽ, với một lớp mật ong mỏng, nối tiếp với hương vị kem đặc trưng của hoa huệ Ấn Độ, và liều thuốc mê tự nhiên của thuỷ tiên Ai Cập, đem tới một tổng thể mùi hương khó kiểm soát và ám ảnh dai dẳng."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "21",
+        "capacity":"80ml",
+        "productName": "Carolina Herrera Good Girl EDP Gold Fantasy",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/f4049535-df50-40e0-ab3f-7c92d8c3573b-jpeg.jpg?v=1667457730500",
+        "price":"2.890.000 VND",
+        "sale_price":"3.900.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Carolina Herrera Good Girl EDP Gold Fantasy là phiên bản giới hạn mới đến từ thương hiệu Carolina Herrera. Tiếp nối sự thành công của phiên bản Good Girl trước đó, Gold Fantasy mang đến một mùi hương xuất sắc xuất hiện trong dáng hình gót nhọn nhũ vàng lấp lánh. Với hương thơm ngọt ngào và lôi cuốn của hoa nhài, Good Girl Gold Fantasy sở hữu một vẻ đẹp nữ tính rực rỡ. Cùng Thế giới nước hoa khám phá ngay điều gì làm nên vẻ đẹp nữ tính ấy nhé.",
+            "title_2":"Mùi hương thể hiện nhiều khía cạnh về “good girl” dưới cái nhìn độc đáo của Carolina Herrera - ngọt ngào, thông minh, không sợ hãi và vui vẻ và đôi lần trở thành “bad girl”. Cô nàng “Good Girl” không ngại khẳng định bản thân, bất chấp sự kỳ vọng của mọi người mà cô gặp.",
+            "title_3":"Carolina Herrera Good Girl EDP Gold Fantasy là hương thơm dành cho phái đẹp với sự quyến rũ, mạnh mẽ, thích hợp cho nàng cả ngày và đêm. Mùi hương và cả thiết kế đều toát lên vẻ sang trọng và đẹp khó cưỡng của người phụ nữ."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "22",
+        "capacity":"80ml",
+        "productName": "MONT BLANC SIGNATURE EAU DE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cc172442-b701-4f8f-bcc4-6c11e7cc64ce-jpeg.jpg",
+        "price":"1.790.000 VND",
+        "sale_price":"1.990.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Montblanc Signature kết lại với tổ hợp Vanilla, Xạ Hương Trắng và nhựa cây Benzoin, đem lại hương vị có chút béo béo tựa như những lớp kem sánh mịn mà không hề tạo nên cảm giác quá ngấy và khó chịu. Đây sẽ là một mùi hương phù hợp cho các cô nàng từ độ tuổi 22 trở lên, đang tìm kiếm một hương thơm nhẹ nhàng, nữ tính và nịnh mũi dành cho các môi trường văn phòng công sở hoặc thoải mái hơn, xúng xính diện đồ đi chơi cùng hội bạn mỗi dịp cuối tuần",
+            "title_2":"Hương đầu: Quýt",
+            "title_3":"Hương giữa: Ylang-Ylang, Hoa Mộc Lan, Hoa Mẫu Đơn",
+            "title_4":"Hương cuối: Vanilla, Xạ Hương Trắng, Benzoin"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "23",
+        "capacity":"80ml",
+        "productName": "Burberry Brit Sheer",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/266843.jpg?v=1611393069350",
+        "price":"1.490.000 VND",
+        "sale_price":"1.890.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Mùi hương đặc trưng:",
+            "title_2":"Cam Yuzu, Lá dứa, Quả vải, Quýt, Nho, Mẫu đơn hồng, Hoa đào, Nashi, Xạ hương trắng, Gỗ hoàng đàn.",
+            "title_3":"Phong cách: Thanh nhã, tươi vui"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "24",
+        "capacity":"80ml",
+        "productName": "LANCOME La Vie Est Belle",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/nuoc-hoa-lancome-la-viest-bella.jpg",
+        "price":"2.890.000 VND",
+        "sale_price":"3.190.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"LANCOME LAVIE EST BELL EDP",
+            "title_2":"Nắm giữ những tầng hương đơn giản nhưng lại vô cùng đồng điệu, cảm xúc mà La Vie Est Belle mang lại là thứ mà bất kì cô gái cũng phải mềm lòng. Chỉ với làn hương đầu tiên, hương thơm mà Quả lý chua đen, Quả lê đem lại là sự nhẹ nhàng, trẻ trung của những quý cô thời hiện đại.",
+            "title_3":"Bằng cách phối hợp những nốt hương Hoa diên vĩ, Hoa nhài, Hoa cam đan xen cùng nền hương Xạ và Kẹo Praline, Lancome La Vie Est Belle phảng phất liên tục sự ngọt ngào, hấp dẫn từ cơ thể người phụ nữ khiến cho phái mạnh đều phải thầm thương, trộm nhớ về dáng vẻ và mùi hương này mang lại mỗi khi nó lướt qua.",
+            "title_4":"Hương Đầu: Quả lý chua đen, Quả lê",
+            "title_5":"Hương giữa: Hoa diên vĩ, Hoa nhài, Hoa cam",
+            "title_6":"Hương cuối: Hoắc hương, Đậu Tonka, Vanilla, Kẹo Praline"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "25",
+        "capacity":"80ml",
+        "productName": "JEAN PAUL GAULTIER SCANDAL LE PARRFUM INTENSE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/662312c8-f385-419d-b760-2c9bdd46c31e-jpeg.jpg?v=1664269474250",
+        "price":"2.990.000 VND",
+        "sale_price":"3.500.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"EAN PAUL GAULTIER SCANDAL LE PARRFUM INTENSE ",
+            "title_2":"𝐒𝐜𝐚𝐧𝐝𝐚𝐥 𝐋𝐞 𝐏𝐚𝐫𝐟𝐮𝐦 Vẫn đôi chân thon dài quyến rũ cùng mùi hương ngọt ngào, dường như không ai có thể trốn chạy khỏi sự cám dỗ mượt mà từ So Scandal mang lại. ",
+            "title_3":"𝐒𝐜𝐚𝐧𝐝𝐚𝐥 𝐋𝐞 𝐏𝐚𝐫𝐟𝐮𝐦 với tone mùi hương mãnh liệt tuyệt đẹp với hổ phách tượng trưng cho sự gợi cảm nữ tính, mềm mại để nũng nịu như gợi tình. Hương thơm mãnh liệt này được khoác lên mình một lớp kem mịn màu đỏ Hương vani đen bao bọc của hoa nhài,caramen muối. Nồng nàn quyến rũ hơn và bám toả ,độ lưu hương cao hơn bản edp nữa mọi người. "
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "26",
+        "capacity":"80ml",
+        "productName": "LANVIN JEANNE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/167178.jpg?v=1623224256907",
+        "price":"1.390.000  VND",
+        "sale_price":"1.990.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Jeanne Lanvin là một hương thơm mới giành cho nữ, được giới thiệu trong năm 2008, được kết hợp từ tinh chất của các hương hoa, trái cây,và gỗ.",
+            "title_2":"Hương đầu: Mâm xôi, Cam quýt, lê.",
+            "title_3":"Hương giữa: Mẫu đơn, Lan Nam phi",
+            "title_4":"Hương cuối: Đàn hương, hổ phách, xạ hương"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "27",
+        "capacity":"80ml",
+        "productName": "SALVATORE SIGNORINA EAU DE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/imgw.jpg",
+        "price":"1.590.000 VND",
+        "sale_price":"1.890.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Signorina trong tiếng Ý mang nghĩa là người phụ nữ trẻ. Nước hoa Signorina là sự tôn vinh những cô nàng cá tính với mùi hương tươi mát, sành điệu và phảng phất nét táo bạo.",
+            "title_2":"Phong cách: Tươi tắn, táo bạo, tràn đầy sức sống.",
+            "title_3":"Hương đầu: Hồng tiêu, Quả lý chua đỏ",
+            "title_4":"Hương giữa: Hoa nhài, Hoa hồng, Hoa mẫu đơn",
+            "title_5":"Hương cuối: Xạ hương, Cây hoắc hương, Bánh Panacotta"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "28",
+        "capacity":"80ml",
+        "productName": "KILIAN ANGEL’s SHARE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/eb24785f-4f01-447a-a6b1-2a4dd68d3af2-jpeg.jpg",
+        "price":"3.690.000 VND",
+        "sale_price":"5.000.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Tựa như một cái hôn phớt giữa quán bar, Angel Share của nhà Kilian là tổng hợp những gì tội lỗi nhất, lãng mạn nhất và đương nhiên cũng ngọt ngào không kém.",
+            "title_2":"Không phải tự dưng tôi phải lấy bối cảnh của một quán bar, mà chính Cognac ngay trong tầng hương đầu đầy mời gọi và đôi chút cám dỗ đã vẽ nên khung cảnh vồn vã, nhộn nhịp đó. Cảm giác khi say rượu thế nào thì cảm giác khi bạn say Angel Share sau vài lần thử mùi cũng là điều dễ hiểu, vì không chỉ có Cognac, kẻ “đội lốt” này còn chưng cất những nồng cay đậm vị của Quế cùng Gỗ sồi, để rồi từ một cái chạm môi nhanh chóng câu chuyện được đẩy lên cao trào đến những mân mê da thịt đầy táo bạo.",
+            "title_3":"Nhưng cảm xúc thường không có đúng sai, và suy cho cùng thì Angel Share cũng không hẳn là một gã tồi bởi đến cuối ngày, những dư vị ngọt ngào, đằm thắm vẫn xuất hiện qua mùi hương của Kẹo hạnh nhân và Vanilla. Như thể tất cả những mùi mẫn và béo ngậy ấy đã có thể khiến người ta nhanh chóng quên đi những tội lỗi đêm hôm trước."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "29",
+        "capacity":"80ml",
+        "productName": "VERSACE BRIGHT CRYSTAL",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/nuoc-hoa-versace-bright-crystal-1517060749.jpg",
+        "price":"1.690.000 VND",
+        "sale_price":"1.990.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"VERSACE  Bright Crystal Lấy cảm hứng từ sự kết hợp giữa các sản phẩm nước hoa độc đáo nhất của Donatella Versace, Bright Crystal ra đời, mang trong mình hương thơm mát dịu của lựu, yuzu cùng mùi hương đầy lãng mạn và gợi tình của mẫu đơn, mộc lan, sen, hoà quyện cùng hương thơm ấm áp của xạ hương và hổ phách.",
+            "title_2":"Mùi hương đặc trưng: Cam Yuzu, Lựu, Mẫu đơn, Hoa mộc lan, Sen, Xạ hương, Hổ phách. Phong cách: Quyến rũ, nổi bật."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "30",
+        "capacity":"80ml",
+        "productName": "CHANEL Chanel Chance Eau Tendre",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/chanel-chance-eau-tendre-edt-50ml-perfume-for-women-jpeg.jpg",
+        "price":"2.290.000 VND",
+        "sale_price":"2.790.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Chanel đã cho ra đời 1 loại sản phẩm mới vào mùa xuân 2010. Sản phẩm được mang tên là  Chance Eau Tendre là dòng sản phẩm thế hệ thứ 3 của Chance, một sản phẩm rất được ưa chuộng trong thời gian qua! Sản phẩm được sáng tạo bởi chuyên gia Jacques Polge và người đại diện là một người mẫu nổi tiếng người Pháp Sigrid Agren.",
+            "title_2":"Chanel Chance Eau Tendre bỗng dưng hiện lên trong đó, chất lỏng màu hồng phấn chứa đựng thứ tình dược nguy hiểm dụ dỗ cánh đàn ông. Trẻ trung, năng động giống một làn gió mát của mùa hè, thơm hương Bưởi và trái Mộc qua , đơn giản nhưng đồng thời cũng thật lạ kỳ , chỉ làm bản thân muốn được đắm chìm trong chính dự mềm mại đó. “ Cơ hội “ , một sự an bài của số phận , là khi hai tâm hồn hoà làm một , để bị mê hoặc bởi sự lãng mạn đầy thú vị này. Hoa nhài và Dạ lan hương trộn lẫn vào nhau, hài hoà , đẹp đẽ như có thể khiến các chàng trai chìm ngập bởi thứ tình yêu ngọt ngào đó. Đẳng cấp và sang trọng nhưng vẫn không kém phần trẻ trung, khiêu khích trí tò mò của người khác để rồi khi yêu luôn tựa như phút ban đầu. Hơi ấm của Xạ hương và Hổ phách kết hợp lại tạo nên một sự nồng nhiệt vô bờ bến, cùng hương hoa Iris đặt lên đỉnh , dũng cảm và đầy khí chất. Sự tình cờ và nhẹ nhàng trong tình yêu. “ You deserve all the tenderness on the earth “.",
+            "title_3":"Mùi hương đặc trưng: Bưởi, hương hoa lài, hổ phách, iris, gỗ tuyết tùng và xạ hương trắng",
+            "title_4":"Phong cách: Ngọt ngào , tươi trẻ"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "31",
+        "capacity":"80ml",
+        "productName": "CAROLINA HERRERA GOOD GIRL",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/good-girl.jpg",
+        "price":"2.690.000 VND",
+        "sale_price":"2.990.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Nước hoa nữ Good Girl là dòng nước hoa Carolina Herrera thuộc nhóm Oriental Floral (Hương hoa cỏ phương đông) hướng đến độ tuổi trên 25 tuổi. Louise Turner chính là nhà pha chế ra loại nước hoa này.",
+            "title_2":"Good Girl có độ lưu hương lâu và độ tỏa hương thuộc dạng xa – toả hương trong vòng bán kính 2 mét.  Good Girl phù hợp để sử dụng trong cả ngày lẫn đêm vào mùa thu, đông. Bên cạnh đó, Đậu Tonka và Hoa huệ trắng là hai hương bạn có thể dễ dàng cảm nhận được nhất khi sử dụng nước hoa này"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "32",
+        "capacity":"80ml",
+        "productName": "Lancome Tresor Midnight Rose",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/lancome-tresor-midnight-rose.jpg",
+        "price":"2.590.000 VND",
+        "sale_price":"3.500.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Tresor Midnight Rose ra mắt lần đầu tiên vào tháng 9 năm 2011. Hương thơm Tresor Midnight Rose tựa như một liều thuốc lãng mạn khơi gợi lên hương vị tình yêu giàu có của hoa hồng và quả mâm xôi làm say mê cả Paris hoa lệ.",
+            "title_2":"Tình yêu ngay từ cái nhìn đầu tiên của những cánh hồng nhẹ nhàng và quả mâm xôi ngọt ngào càng bay bổng, mãnh liệt bởi sự khích lệ của hương nhài và mẫu đơn thanh lịch và tinh tế vô cùng. Hương giữa là sự hòa quyện không tưởng của vị hồ tiêu hồng cay nồng và một chút nhẹ nhàng  đằm thắm của hạt nho. Hương cuối lôi cuốn khứu giác bởi vị vani ấm áp đi cùng mùi thơm gỗ tuyết tùng và hổ phách gợi cảm truyền cảm hứng an tĩnh, dễ chịu tuyệt vời.",
+            "title_3":"Tresor Midnight Rose mở ra bằng cuộc bùng nổ năng lượng tuyệt vời của hỗn hợp hương liệu hoa hồng và quả mâm xôi đan xen sắc vị mạnh mẽ của hồ tiêu và gỗ tuyết tùng. Sự khởi đầu này dường như không đem lại cảm giác dễ chịu ở những giây đầu tiên nhưng chỉ một giờ sau, hương thơm dần lắng đọng, thẩm thấu và hòa quyện khơi dậy một giai điệu hài hòa mạch lạc. Chất vị gỗ tuyết tùng hòa hợp với nồng độ dịu nhẹ hơn. Sự hòa quyện của hương hoa nhài nồng nàn và xạ hương êm ái thắp lên tâm hồn nữ tính, bí ẩn mà hấp dẫn, cuồng nhiệt. Quả mâm xôi và phúc bồn tử lan tỏa hương thơm không quá ồn ã và ngọt ngào. Hương hoa hồng khéo léo vừa đủ đi cùng mùi vị hồ tiêu hài hòa vẽ nên một vết cắn tinh tế làm giàu độ phức tạp cho các cung bậc hương thơm"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "33",
+        "capacity":"80ml",
+        "productName": "VALENTINO VALENTINA EAU DE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/valentino-valentina-women-eau-de-parfum-spray-edp-spray-2-7-best-price-fragrance-parfume-fragranceoutlet-com-details-large.jpg?v=1521976969090",
+        "price":"2.090.000 VND",
+        "sale_price":"2.800.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Hương thơm của Valentina đến từ sự kết hợp tươi mát giữa hương hoa – trái cây – và các mùi hương đến từ phương Đông, đầy sự tương phản, đồng thời cũng vô cùng tinh tế với sự mạnh mẽ, thanh lịch, gợi cảm, nổi loạn và vui nhộn.",
+            "title_2":"Khởi đầu bằng hương cam bergamot đến từ vùng Calabria và nấm cục trắng từ Alba. Hoa cam Amalfi, hoa nhài ngọt ngào, huệ trắng và dâu dại cùng hòa quyện tạo nên hương giữa nồng nàn quyến rũ. Đọng lại ở lớp nền là hương vani, hổ phách và gỗ tuyết tùng",
+            "title_3":"Mẫu chai thiết kế của Valentino đậm chất nữ tính với thân chai hình tròn được trang trí bằng những bông hoa hồng nở rộ làm điểm nhấn nổi bật. Nắp chai bằng kim loại thiết kế khá hiện đại và bắt mắt."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "34",
+        "capacity":"80ml",
+        "productName": "DIOR MISS DIOR EAU DE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/80f3a914-19d7-498d-a986-9bdf66e4d386.webp?v=1672120684083",
+        "price":"3.390.000 VND",
+        "sale_price":"3.690.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Nhà thiết kế thời trang Christian Dior sinh ra ở Pháp và có danh tiếng đình đám trên thế giới trong lĩnh vực thời trang với việc tạo ra “New Look” thông qua việc nhấn mạnh vào đường cong quyến rũ của người phụ nữ. Chirstian Dior là hãng nước hoa lâu đời và danh tiếng. ",
+            "title_2":"Được tiết lộ như một bông hoa nữ tính đầy gợi cảm, vẻ đẹp bên ngoài kết hợp với hương vị độc đáo được tạo thành bên trong khiến cho Miss Dior trở nên hoàn hảo và toàn diện. Không dừng ở đó với khuôn mặt đại diện Natalie Portman, đem lại cho nó trở nên rất có tiếng nói trong giới nước hoa thời điểm 2017, và cho đến sau này sản phẩm này vẫn tạo được rất nhiều ấn tượng đối với người yêu thích hương vị ngọt ngào của nước hoa.",
+            "title_3":"Tất cả hương vị được gói gọn để hướng đến một phong thái quý phái, tao nhã đầy sang trọng khiến cho bất kỳ người phụ nữ nào cũng đều muốn sở hữu được hương vị này. Có thể nói đây là hương vị phù hợp với bất kỳ ai, nhưng có vẻ hơi nghiêng về những người phụ nữ trẻ trung, hiện đại mong muốn thể hiện mình Cùng Miss Dior tạo vẻ đẹp rạng ngời và viên mãn!"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "35",
+        "capacity":"80ml",
+        "productName": "CHLOE LOVE STORY",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/5502071love-story.jpg?v=1469854089527",
+        "price":"1.800.000 VND",
+        "sale_price":"2.490.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"Chẳng cứ nghĩ đến nước hoa, mọi người lại nghĩ ngay tới Pháp, và một mùi hương xuất thân Pháp, làm mùi kiểu Pháp luôn gây những sự lưu luyến thương nhớ trong lòng người thưởng thức. Chloé Love Story cũng không nằm ngoài điều đó.",
+            "title_2":"Hương đầu là Hoa cam, Quả lê, Cam Bergamot, Quả bưởi và Quả chanh;",
+            "title_3":"Hương giữa là Hoa cam, Cỏ hương bài, Hoa hồng, Quả đào và Quả lý chua đen;",
+            "title_4":"Hương cuối là Xạ hương, Tuyết tùng, Gỗ Cashmirwood và Cây hoắc hương."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Nước hoa nữ",
+        "id": "36",
+        "capacity":"80ml",
+        "productName": "CAROLINA HERRERA 212 SEXY FOR WOMEN",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/carolina-herrera-212-sexy-eau-de-parfum-100-ml.jpg?v=1667186699843",
+        "price":"2.150.000 VND",
+        "sale_price":"2.600.000 VND",
+        "categoryId": "2",
+        "detail_product":{
+            "title_1":"212 Sexy là sản phẩm của Carolina Herrera kết hợp giữa sự tự tin và quyến rũ. Mùi hương tao nhã và dễ chịu phù hợp với lối sống tự tin của người hiện đại, thành công. Đây là loại nước hoa mang đậm tính cách và cá tính riêng.",
+            "title_2":"Hương đặc trưng:",
+            "title_3":"Mùi hương đầu là hương thơm của cam, rau thơm begamot và hoa hồng.",
+            "title_4":"Mùi hương giữa là hương thơm từ thảo mộc đầy nữ tính",
+            "title_5":"Mùi hương cuối mang đậm tính cách phương Đông được chiết xuất từ hương thơm của xạ hương trắng và hương vani."
+        }
+    }
+
+]

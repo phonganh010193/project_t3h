@@ -1,0 +1,374 @@
+.m-billing-info {
+  width: 60%;
+  margin-top: 16px;
+  margin-bottom: 50px;
+}
+
+.m-billing-info h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 33px;
+  color: #151515;
+}
+
+.forms-payment {
+  margin-top: 16px;
+  width: 40%;
+}
+.forms-payment h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 33px;
+  color: #151515;
+}
+
+.pay-delivery {
+  width: 80%;
+  height: 60px;
+  border: 1px solid gray;
+  margin-top: 75px;
+  border-radius: 5px;
+}
+
+.pay-delivery div {
+  height: 50px;
+  line-height: 50px;
+}
+
+.pay-delivery input {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.m-billing-info-step {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  /* C1/C */
+
+  color: #a9a9a9;
+}
+
+.price-payment div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  margin-left: 5px;
+}
+
+.price-payment button {
+  width: 200px;
+  height: 50px;
+  background-color: #6a983c;
+  color: white;
+  border: none;
+  outline: none;
+  margin-left: 170px;
+  margin-top: 40px;
+}
+
+.price-payment button:hover {
+  background-color: #46760a;
+}
+
+.cofirm-payment {
+  width: 35%;
+  height: 600px;
+  border: 1px solid gray;
+}
+
+.cofirm-payment h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 33px;
+  color: #46760a;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
+.product-cofirm-payment {
+  text-align: center;
+  border-bottom: 1px solid gray;
+}
+
+.product-cofirm-payment img {
+  width: 150px;
+}
+
+.payment-info {
+  margin-top: 30px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.payment-info div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  margin-left: 5px;
+}
+
+.product-cofirm-payment p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.m-billing-field {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.m__small-billing-field {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.m__small-billing-field h3 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  /* identical to box height */
+
+  /* C1/A */
+
+  color: #151515;
+}
+
+.abate-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.abate-info-left {
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+}
+
+.m__small-billing-field input {
+  background: #f9f9f9;
+  /* C1/D */
+
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  width: 100%;
+  height: 42px;
+  padding: 0 21px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.m__small-billing-field textarea {
+  background: #f9f9f9;
+  /* C1/D */
+
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  width: 100%;
+  height: 100px;
+  padding: 0 21px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.m__billing-checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 32px;
+  width: 243px;
+
+  /* C1/H */
+
+  background: #f9f9f9;
+  /* C1/D */
+
+  border: 1px solid #d1d1d1;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.m__billing-checkbox img {
+  cursor: pointer;
+  width: 20px;
+}
+
+.m__billing-checkbox P {
+  margin: 0;
+}
+
+.m-billing-infor-container {
+  margin-top: 64px;
+}
+
+.m-billing-infor-container > p {
+  margin-top: 45px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  /* identical to box height */
+
+  /* C1/A */
+
+  color: #151515;
+}
+
+.m-billing-infor-container textarea {
+  background: #f9f9f9;
+  /* C1/D */
+
+  border: 1px solid #d1d1d1;
+  border-radius: 12px;
+  width: 100%;
+  height: 112px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height */
+
+  /* C1/C */
+
+  color: #a9a9a9;
+  padding: 11px 16px;
+  outline: none;
+}
+
+.m-billing-nospam {
+  margin-top: 32px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 579px;
+  height: 50px;
+
+  /* C1/H */
+
+  background: #f9f9f9;
+  /* C1/D */
+
+  border: 1px solid #d1d1d1;
+  border-radius: 12px;
+}
+
+.m-billing-nospam img {
+  cursor: pointer;
+  width: 20px;
+}
+
+.m-billing-nospam p {
+  margin: 0;
+}
+
+.m-billing-agreeterm {
+  margin-top: 32px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 433px;
+  height: 50px;
+
+  /* C1/H */
+
+  background: #f9f9f9;
+  /* C1/D */
+
+  border: 1px solid #d1d1d1;
+  border-radius: 12px;
+}
+
+.m-billing-agreeterm img {
+  cursor: pointer;
+  width: 20px;
+}
+
+.m-billing-agreeterm p {
+  margin: 0;
+}
+
+.btn-complete {
+  width: 218px;
+  height: 56px;
+
+  /* C2/A */
+
+  background: #6a983c;
+  /* C2/B */
+
+  border: 2px solid #46760a;
+  border-radius: 12px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  /* identical to box height */
+
+  text-align: center;
+
+  /* C1/J */
+
+  color: #ffffff;
+  margin-top: 32px;
+  outline: none;
+  cursor: pointer;
+}
+
+.m-billing-safe {
+  margin-top: 34px;
+}
+
+.m-billing-safe h4 {
+  margin-top: 4px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+
+  /* C1/A */
+
+  color: #151515;
+}
+
+.m-billing-safe p {
+  width: 213px;
+  height: 48px;
+  margin-top: 8px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  /* C1/C */
+
+  color: #a9a9a9;
+}

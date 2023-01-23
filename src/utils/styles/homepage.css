@@ -1,0 +1,14 @@
+
+.homepage-container {
+    width: 100%;
+}
+.slide-item img {
+    width: 800px;
+}
+
+.slide-content {
+    width: 800px;
+    margin: 0 auto;
+    margin-left: 30px;
+}
+

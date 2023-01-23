@@ -1,0 +1,133 @@
+.seling-home-women {
+    width: 800px;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+.seling-home-women h4 {
+    height: 40px;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn-children {
+    position: absolute;
+    top: 35px;
+    bottom: 10%;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.women-detail img {
+    width: 220px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.women-detail {
+    position: relative;
+}
+
+.women-detail:hover .home-women-image {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.5
+}
+  
+.women-detail:hover .btn-children {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.home-women-item img {
+    width: 90px;
+    margin-right: 20px;
+}
+
+.home-women-price p {
+    margin: 0;
+    color: #2d8356;
+    font-weight: 700;
+}
+
+.home-women-price p:last-child {
+    text-decoration: line-through;
+    color: gray !important;
+    font-weight: normal !important;
+}
+
+.home-women-info > p {
+    margin: 0;
+}
+
+.home-women-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.home-women-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #2d8356;
+}
+
+.btn-prev-next button {
+    width: 20px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.btn-prev-next button > i:hover {
+    color: #2d8356;
+    opacity: 1;
+}
+
+.btn-prev-next {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-prev-next button > i {
+    font-size: 25px;
+    color: gray;
+    opacity: 0.5;
+}
+
+.home-women-content {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn-see-all > button {
+    width: 100px;
+    height: 40px;
+    margin-left: 40px;
+    margin-top: 50px;
+    border-radius: 10px;
+    border: 1px solid #2d8356;
+    color: #2d8356;
+}
+
+.btn-see-all {
+    margin: 0 auto;
+    width: 150px;
+}

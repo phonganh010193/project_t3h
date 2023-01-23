@@ -1,0 +1,13 @@
+
+.image-home {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    margin-left: 40px;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.image-home img {
+    width: 350px;
+}

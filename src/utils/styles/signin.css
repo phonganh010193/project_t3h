@@ -1,0 +1,23 @@
+.login-form {
+    width: 400px;
+    height: 300px;
+    padding: 30px;
+}
+
+.image-login img {
+    width: 300px;
+    height: 300px;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 10px;
+    width: 710px;
+    position: absolute;
+    top: 200px;
+    right: 400px;
+    background-color: beige;
+}
+
