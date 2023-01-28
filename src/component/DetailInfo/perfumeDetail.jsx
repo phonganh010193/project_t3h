@@ -1,20 +1,76 @@
 import { Tabs } from "antd";
-import { useEffect } from "react";
+import { push, ref, update } from "firebase/database";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../container/useContext";
+import { database } from "../../firebase";
 import "../../utils/styles/perfume.detail.css";
+import { fetchOrderProduct } from "../CartInfo/orderSlice";
 import PerfumeDetailInfo from "./perfumeDetailInfo";
 import { fetchProductDetail } from "./perfumeDetailSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PerfumeDetail = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
+    const { user } = useContext(UserContext);
+    const listCart = useSelector(({order}) => order.orderProduct);
+
     const detailList = useSelector(({detail}) => detail.productListDetail);
-    console.log('detail', detailList);
+    const [number, setNumber] = useState(1);
+
 
     useEffect(() => {
         dispatch(fetchProductDetail(productId));
+        dispatch(fetchOrderProduct());
     }, [dispatch, productId]);
+
+    useEffect(() => {
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, []);
+
+    const addOrderItem = (item) => {
+        const findItem = listCart.find(el => item.id === el.productId)
+        if(findItem) {
+            listCart.forEach(el => {
+                if(el.productId === item.id) {
+                    update(ref(database, "Cart/" + el.key), {
+                        orderNumber:parseFloat(el.orderNumber) + parseFloat(number),
+                        productId:el.productId,
+                        user:el.user,
+                        isCheckBox: false,
+                    })
+                    .then(() => {
+                        dispatch(fetchOrderProduct());
+                        toast.success('Add to Cart success!')
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        toast.error('Add to Cart fail!')
+                    })
+                }
+            });
+        } else {
+            const ob = {
+                user: user.email,
+                productId: item.id,
+                orderNumber: number,
+                isCheckBox: false,
+            }
+            console.log('ob', ob);
+            push(ref(database, 'Cart'), ob)
+            .then(() => {
+                toast.success('Add to Cart success!')
+                dispatch(fetchOrderProduct());
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error('Add to Cart fail!')
+            });
+        }
+    }
 
     const onChange = (key) => {
     console.log(key);
@@ -54,14 +110,12 @@ const PerfumeDetail = () => {
                         <div className="amount">
                             <h6>Số Lượng</h6>
                             <div className="amount-form">
-                                <div>
-                                    <input />
-                                </div>
-                                <div className="amount-form-btn">
-                                    <button>+</button>
-                                    <button>-</button>
-                                </div>
-                                <button className="cart-shop">Thêm vào giỏ hàng</button>
+                                <input type="number" value={number} className="text-center" min="1" max="1000" onChange={(event) => {
+                                    setNumber(event.target.value);
+                                }} />
+                                <button className="cart-shop" onClick={() => {
+                                    addOrderItem(detailList);
+                                }}>Thêm vào giỏ hàng</button>
                             </div>
                             
                         </div>

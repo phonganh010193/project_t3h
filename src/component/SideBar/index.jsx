@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../utils/styles/sidebar.css";
 import SidebarContent from "./sidebar-content";
@@ -6,12 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategory } from "./sibarSlice";
 
 function Sidebar() {
-    const [visible, setViSible] = useState(false);
     const {categoryId} = useParams();
-    console.log('categoryId from sidebar', categoryId);
     const dispatch = useDispatch();
     const categoryData = useSelector(({category}) => category.categoryList)
-    console.log('category from sidebar', categoryData);
 
     useEffect(() => {
         dispatch(fetchCategory());

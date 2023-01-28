@@ -1,19 +1,18 @@
 
-import useSelection from "antd/es/table/hooks/useSelection";
-import { push, ref, set } from "firebase/database";
-import { addDoc } from "firebase/firestore";
+import { push, ref, update } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import IMAGE from "../../../contact";
 import { UserContext } from "../../../container/useContext";
 import { database } from "../../../firebase";
 import { usePrevious } from "../../../utils/hooks";
 import "../../../utils/styles/perfume.css";
 import { fetchCategory } from "../../SideBar/sibarSlice";
 import { fetchProduct } from "./perfumeInfoSlice";
-import OrderData from "../../../mock/order.json";
 import { fetchOrderProduct } from "../../CartInfo/orderSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const take = 9;
 
 function PerfumeInfo() {
@@ -25,10 +24,12 @@ function PerfumeInfo() {
     const productLoading = useSelector(({product}) => product.isLoading);
     const preProductLoading = usePrevious(productLoading);
     const categories = useSelector(({category}) => category.categoryList);
+    const listCart = useSelector(({order}) => order.orderProduct);
     const [productData, setProductData] = useState([]);
     
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
+    const [orderNumber, setOrderNumber] = useState(1);
 
     useEffect(() => {
         dispatch(fetchProduct());
@@ -61,6 +62,7 @@ function PerfumeInfo() {
         if (productData) {
             setListDataProduct(productData.slice(page * take, page * take + take));
         }
+        window.scrollTo({top: 100, left: 0, behavior: 'smooth'});
     }, [page]);
 
     const _renderPaginate = () => {
@@ -75,21 +77,43 @@ function PerfumeInfo() {
         return data;
     }
 
-    const addOrderItem = (item) => {
-        const ob = {
-            user: user.email,
-            productId: item.id,
-            orderNumber: 1
+    const addOrderItem = async(item) => {
+        const findItem = listCart.find(el => item.id === el.productId)
+        if(findItem) {
+            listCart.forEach(el => {
+                if(el.productId === item.id) {
+                    update(ref(database, "Cart/" + el.key), {
+                        orderNumber:parseFloat(el.orderNumber) + 1,
+                        productId:el.productId,
+                        user:el.user,
+                        isCheckBox: false,
+                    })
+                    .then(() => {
+                        dispatch(fetchOrderProduct());
+                        toast.success('Add to Cart success!')
+                    })
+                    .catch(() => {
+                        toast.error('Add to Cart fail!')            
+                    })
+                }
+            });
+        } else {
+            const ob = {
+                user: user.email,
+                productId: item.id,
+                orderNumber: parseFloat(orderNumber),
+                isCheckBox: false,
+            }
+            console.log('ob', ob);
+            await push(ref(database, 'Cart'), ob)
+            .then(() => {
+                dispatch(fetchOrderProduct());
+                toast.success('Add to Cart success!')
+            })
+            .catch((error) => {
+                toast.error('Add to Cart fail!')            
+            });
         }
-        console.log('ob', ob);
-        push(ref(database, 'Cart'), ob)
-        .then(() => {
-            console.log('add success')
-            dispatch(fetchOrderProduct());
-        })
-        .catch((error) => {
-            console.log('add fail')            
-        });
     }
     
     return (
@@ -130,8 +154,8 @@ function PerfumeInfo() {
                                 </div>
                                 <p>{item.productName}</p>
                                 <div className="price">
-                                    <p>{item.price}</p>
-                                    <p>{item.sale_price}</p>
+                                    <p>{item.price} VND</p>
+                                    <p>{item.sale_price} VND</p>
                                 </div>
                             </div>
                         )
@@ -145,12 +169,6 @@ function PerfumeInfo() {
                     }
                 }}>Trước</Link></li>
                 {_renderPaginate()}
-                {/* <li className="page-item"><Link className={`page-link ${page === 0 ? 'active' : ''}`} to="#" onClick={() => {
-                    setPage(0);
-                }}>1</Link></li>
-                <li className="page-item"><Link className={`page-link ${page === 1 ? 'active' : ''}`} to="#" onClick={() => {
-                    setPage(1);
-                }}>2</Link></li> */}
                 <li className="page-item"><Link className="page-link" to="#" onClick={() => {
                     if (page < (numberOfPage - 1)) {
                         setPage(page + 1);

@@ -2,11 +2,9 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import IMAGE from "../../../contact";
 import { UserContext } from "../../../container/useContext";
-import RunMockData from "../../../mock/runMockData";
 
 const HeaderRegister = () => {
     const { user, fetchSignOut } = useContext(UserContext);
-    console.log('user from header register', user);
     const [show, setShow] = useState(false);
     return (
         <div className="header-register">

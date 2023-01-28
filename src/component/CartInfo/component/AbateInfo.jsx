@@ -1,6 +1,29 @@
+import { ref, remove } from "firebase/database";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { database } from "../../../firebase";
 import "../../../utils/styles/userinfo.css";
+import { fetchListAbate } from "../orderSlice";
 
-const AbateInfo = () => {
+const AbateInfo = (props) => {
+  const dispatch = useDispatch();
+  const abateList = useSelector(({order}) => order.abateList);
+  console.log('abateList', abateList);
+  
+
+  useEffect(() => {
+    dispatch(fetchListAbate());
+  }, [dispatch])
+  useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }, []);
+
+  const sumPrice = abateList?.reduce(
+    (accumulator, currentValue) => accumulator + Number(currentValue.price*currentValue.orderNumber),
+    0
+  );
+
   return (
     <div className="abate-info">
       <div className="abate-info-left">
@@ -76,13 +99,23 @@ const AbateInfo = () => {
       <div className="cofirm-payment">
         <h2>Đơn hàng</h2>
         <div className="product-cofirm-payment">
-          <img src="https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/8727377c-b4b9-4255-9c30-7d6f9c8098c2.webp?v=1670495875373" alt="" />
-          <p>PENHALIGON'S ARTHUR (unisex)</p>
+          {abateList && abateList.map((item, index) => {
+            return (
+              <div className="info-product-abate">
+                <img src={item.image} alt="" />
+                <div style={{textAlign: "left"}}>
+                  <p>{item.productName}</p>
+                  <p>Số lượng: {item.orderNumber}</p>
+                </div>
+              </div>
+            )
+          })}
+          
         </div>
         <div className="payment-info">
           <div>
             <p>Tạm tính thanh toán</p>
-            <p>5.900.000 đ</p>
+            <p>{sumPrice}</p>
           </div>
           <div>
             <p>Chi phí vận chuyển</p>
@@ -95,6 +128,18 @@ const AbateInfo = () => {
             <p>5.900.000 đ</p>
           </div>
           <button>Xác nhận ĐẶT HÀNG</button>
+        </div>
+        <div style={{marginLeft: "5px"}}>
+          <Link to='/cart' onClick={() => {
+            remove(ref(database, "Abate"))
+            .then(() => {
+              dispatch(fetchListAbate());
+              console.log('remove ListAbate success')
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+          }}>Quay về Giỏ hàng</Link>
         </div>
       </div>
     </div>

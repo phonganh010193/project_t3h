@@ -3,20 +3,24 @@ import "../../../../utils/styles/homeperfume.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UserContext } from "../../../../container/useContext";
-import { push, ref } from "firebase/database";
+import { push, ref, update } from "firebase/database";
 import { database } from "../../../../firebase";
 import { fetchOrderProduct } from "../../../CartInfo/orderSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function HomePerfumeWomen(props) {
     const { product } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    console.log('productlist1', product);
+    const listCart = useSelector(({order}) => order.orderProduct);
+    const [orderNumber, setOrderNumber] = useState(1);
+
     const product1 = product.slice(0,3);
     const product2 = product.slice(3,6);
     const product3 = product.slice(6,9);
@@ -32,6 +36,10 @@ function HomePerfumeWomen(props) {
         arrows: true
     });
 
+    useEffect(() => {
+        dispatch(fetchOrderProduct());
+    }, [dispatch])
+
     const goPrev = () => {
         slideRef?.current?.slickPrev();
     };
@@ -41,20 +49,41 @@ function HomePerfumeWomen(props) {
     };
 
     const addOrderItem = (item) => {
-        const ob = {
-            user: user.email,
-            productId: item.id,
-            orderNumber: 1
+        const findItem = listCart.find(el => item.id === el.productId)
+        if(findItem) {
+            listCart.forEach(el => {
+                if(el.productId === item.id) {
+                    update(ref(database, "Cart/" + el.key), {
+                        orderNumber:parseFloat(el.orderNumber) + 1,
+                        productId:el.productId,
+                        user:el.user,
+                        isCheckBox: false,
+                    })
+                    .then(() => {
+                        dispatch(fetchOrderProduct());
+                        toast.success('Add to Cart success!')
+                    })
+                    .catch(() => {
+                        toast.error('Add to Cart fail!')            
+                    })
+                }
+            });
+        } else {
+            const ob = {
+                user: user.email,
+                productId: item.id,
+                orderNumber: parseFloat(orderNumber),
+                isCheckBox: false,
+            }
+            push(ref(database, 'Cart'), ob)
+            .then(() => {
+                dispatch(fetchOrderProduct());
+                toast.success('Add to Cart success!')
+            })
+            .catch((error) => {
+                toast.error('Add to Cart fail!')            
+            });
         }
-        console.log('ob', ob);
-        push(ref(database, 'Cart'), ob)
-        .then(() => {
-            console.log('add success')
-            dispatch(fetchOrderProduct());
-        })
-        .catch((error) => {
-            console.log('add fail')            
-        });
     }
     return (
         <div style={{marginBottom: "30px"}}>

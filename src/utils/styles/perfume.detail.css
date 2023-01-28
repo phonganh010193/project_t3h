@@ -23,6 +23,7 @@
     width: 100%;
 }
 
+
 .buy-info h2{
     margin-bottom: 20px;
     border-bottom: 1px solid #2d8356;
@@ -53,7 +54,7 @@
 }
 
 .amount-form input {
-    height: 50px;
+    width: 100px;
 }
 
 .amount-form-btn {

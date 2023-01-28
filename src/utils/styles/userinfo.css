@@ -26,6 +26,23 @@
   color: #151515;
 }
 
+
+
+.info-product-abate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+}
+.info-product-abate > img {
+  width: 80px;
+  margin-right: 20px;
+}
+
+.info-product-abate > p {
+  margin: 0;
+}
+
 .pay-delivery {
   width: 80%;
   height: 60px;
@@ -101,11 +118,13 @@
 .product-cofirm-payment {
   text-align: center;
   border-bottom: 1px solid gray;
+  overflow: auto;
+  height: 230px;
 }
 
-.product-cofirm-payment img {
+/* .product-cofirm-payment img {
   width: 150px;
-}
+} */
 
 .payment-info {
   margin-top: 30px;

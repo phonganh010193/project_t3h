@@ -1,5 +1,4 @@
 import { push, ref, remove, set } from "firebase/database";
-import { doc, deleteDoc } from "firebase/firestore";
 import { database } from "../firebase";
 import CategoryData from './category.json';
 import ProductMenData from './product.json';

@@ -5,6 +5,7 @@ import UserContextProvider from './container/useContext';
 import routerName from './Route';
 import { Provider } from 'react-redux'
 import { store } from './appRedux/store';
+import { ToastContainer } from 'react-toastify';
 
 // import "./index.css";
 
@@ -14,6 +15,18 @@ root.render(
     <Provider store={store}>
       <UserContextProvider>
         <RouterProvider router={routerName} />
+        <ToastContainer
+          position="top-right"
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </UserContextProvider>
     </Provider>
   </React.StrictMode>

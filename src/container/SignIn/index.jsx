@@ -12,7 +12,10 @@ const SignIn = () => {
   const { user, fetchUser} = useContext(UserContext);
   
   const onFinish = async(values) => {
-    fetchUser(values);
+    await RunMockData.runMockCategory();
+    await RunMockData.runMockProduct();
+    await RunMockData.runMockCart();
+    await fetchUser(values);
   };
 
   useEffect(() => {
@@ -66,15 +69,7 @@ const SignIn = () => {
             </Button>
             Or <a href="/signup">register now!</a>
           </Form.Item>
-          <Button type="primary" htmlType="button" className="login-form-button"
-            onClick={async() => {
-              await RunMockData.runMockCategory();
-              await RunMockData.runMockProduct();
-              await RunMockData.runMockCart();
-            }}
-          >
-            Mock
-          </Button>
+          
         </Form>
       </div>
     </div>

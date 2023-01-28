@@ -1,44 +1,79 @@
-import { useEffect, useState } from "react";
+import { async } from "@firebase/util";
+import { push, ref, remove, update } from "firebase/database";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import IMAGE from "../../contact";
+import { useNavigate } from "react-router-dom";
+import { database } from "../../firebase";
 import "../../utils/styles/cart.container.css";
-import { fetchProduct } from "../MainInfo/PerfumeInfo/perfumeInfoSlice";
-import { fetchOrderProduct } from "./orderSlice";
+import TRtable from "./component/TRtable";
+import { fetchListAbate, fetchOrderProduct, updateListCart } from "./orderSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartInfo = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [number, setNumber] = useState(null)
-    const orderList = useSelector(({order}) => order.orderProduct);
-    const product = useSelector(({product}) => product.productList);
-    console.log('product from cart', product);
-    console.log('order list', orderList);
-    const listCart = [];
-    if(product && orderList) {
-        product.forEach(el => {
-            orderList.forEach(item => {
-                if(el.id === item.productId) {
-
-                    listCart.push(
-                        {
-                            ...el,
-                            numberOrder: item.orderNumber
-                        }
-                    );
-                }
-            })
-        })
-    }
-    console.log('list', listCart);
-    
-    
-
+    const listCart = useSelector(({order}) => order.orderProduct);
 
     useEffect(() => {
         dispatch(fetchOrderProduct());
-        dispatch(fetchProduct());
     }, [dispatch]);
+
+    useEffect(() => {
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, [])
+    
+    const updateOrder = (value) => {
+        dispatch(updateListCart(value));
+    }
+
+    const deleteListCart = () => {
+        remove(ref(database, 'Cart'))
+        .then(() => {
+            dispatch(fetchOrderProduct());
+            toast.success('Delete Cart success!')
+        })
+        .catch((error) => {
+            toast.success('Delete Cart fail!')
+        })
+    }
+
+
+    const ConfirmListAbate = () => {
+        toast.warning('Xin hãy chọn sản phẩm trước khi thanh toán')
+        return;
+    }
+
+    const BuyListAbate = () => {
+        listCart.filter(el => {
+            const object = {
+                ...el,
+                info: {
+                    name:'',
+                    address:'',
+                    phoneNumber:'',
+                    district:''
+                }
+            }
+            if(el.isCheckBox) {
+                push(ref(database, 'Abate'), object)
+                    .then(() => {
+                        dispatch(fetchOrderProduct());
+                        dispatch(fetchListAbate());
+                    })
+                    .catch((error) => {
+                        console.log(error)      
+                    });
+                }
+            }
+        );
+        
+        navigate(`/abate`)
+    }
+
+    
+
+    
     return (
         <div className="cart-container">
             <div className="header-cart">
@@ -61,26 +96,58 @@ const CartInfo = () => {
                     <tbody>
                         {listCart && listCart.map((item, index) => {
                             return (
-                                <TRtable key={item.id} item={item} />
+                                <TRtable key={item.id} item={item} updateOrder={updateOrder} listCart={listCart} />
                             )
                         })}
                     </tbody>
                 </table>
                 <div className="btn-all-info">
                     <button onClick={() => {
-                        navigate(-1);
+                        navigate("/");
                     }}>Tiếp tục mua sắm</button>
                     <div className="btn-left">
-                        <button>Cập nhật giỏ hàng</button>
-                        <button>Xóa giỏ hàng</button>
+                        <button onClick={() => {
+                            const updates = listCart.filter(el => el.isChanged);
+                            console.log('updates', updates);
+                            listCart.forEach(el => {
+                                updates.forEach(item => {
+                                    if(el.id === item.id) {
+                                        update(ref(database, "Cart/" + el.key), {
+                                            orderNumber:item.orderNumber,
+                                            productId:item.productId,
+                                            user:item.user
+                                        })
+                                        .then(() => {
+                                            toast.success('Cập nhật thành công giỏ hàng!')
+                                        })
+                                        .catch(() => {
+                                            toast.error('Cập nhật fail!') 
+                                        })
+                                    }
+                                })
+                            });
+                            dispatch(fetchOrderProduct());
+                        }}>Cập nhật giỏ hàng</button>
+                        <button onClick={() => {
+                            deleteListCart();
+                        }}>Xóa giỏ hàng</button>
                     </div>
                 </div>
                 <div className="all-price">
                     <table className="table table-bordered" style={{width: "30%", marginTop: "10px"}}>
                         <td>Tổng tiền thành toán</td>
-                        <td>5.900.000đ</td>
+                        <td>{listCart.filter(el => el.isCheckBox).reduce(
+                        (accumulator, currentValue) => accumulator + Number(currentValue.price*currentValue.orderNumber),
+                        0
+                    )}</td>
                     </table>
-                    <button><Link to="/abate">Thanh toán</Link></button>
+                    <button onClick={() =>{
+                        if(listCart.filter(el => el.isCheckBox).length === 0) {
+                            ConfirmListAbate();
+                        } else {
+                            BuyListAbate();
+                        }
+                    }}>Thanh toán</button>
                 </div>
                 
 
@@ -91,30 +158,4 @@ const CartInfo = () => {
 
 export default CartInfo;
 
-const TRtable = ({item}) => {
-    // console.log('item.orderNumber', item, item.numberOrder);
-    const [number, setNumber] = useState(item.numberOrder);
 
-    // useEffect(() => {
-    //     co
-    //     setNumber(item.orderNumber);
-    // }, [item]);
-
-    return (
-        <tr key={item.id}>
-            <td><input type="checkbox" /></td>
-            <td>
-                <img className="image-cart" src={item.image} alt="" />
-            </td>
-            <td>{item.productName}</td>
-            <td>{item.price}</td>
-            <td>
-                <input type="number" value={number} className="text-center" min="1" max="5" onChange={(text) => {
-                    setNumber(text.target.value);
-                }}/>
-            </td>
-            <td>Thành tiền</td>
-            <td><img className="image-delete" src={IMAGE.delete} alt="" /></td>
-        </tr>
-    );
-}
