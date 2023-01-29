@@ -146,6 +146,10 @@
     align-items: center;
 }
 
+.info-cart p:first-child:hover {
+    color: #88ae9b;
+}
+
 .info-cart p {
     margin: 0 15px;
 }

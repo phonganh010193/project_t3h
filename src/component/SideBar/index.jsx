@@ -4,14 +4,16 @@ import "../../utils/styles/sidebar.css";
 import SidebarContent from "./sidebar-content";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategory } from "./sibarSlice";
+import { fetchProduct } from "../MainInfo/PerfumeInfo/perfumeInfoSlice";
 
 function Sidebar() {
     const {categoryId} = useParams();
     const dispatch = useDispatch();
     const categoryData = useSelector(({category}) => category.categoryList)
-
+    const product = useSelector(({product}) => product.productList);
     useEffect(() => {
         dispatch(fetchCategory());
+        dispatch(fetchProduct());
     }, [dispatch]);
     return (
         <div>
@@ -35,8 +37,9 @@ function Sidebar() {
                 </div>
                 
             </div>
-            <SidebarContent />
-            <SidebarContent />
+            <div className="sidebar-content-item">
+                <SidebarContent product = {product} />
+            </div>
         </div>
 
     );

@@ -1,14 +1,19 @@
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import IMAGE from "../../../contact";
+import { UserContext } from "../../../container/useContext";
 import { fetchOrderProduct } from "../../CartInfo/orderSlice";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const HeaderLogo = () => {
     const dispatch = useDispatch();
     const orderList = useSelector(({order}) => order.orderProduct);
-    console.log('order list', orderList);
-
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
     useEffect(() => {
         dispatch(fetchOrderProduct());
     }, [dispatch]);
@@ -34,7 +39,14 @@ const HeaderLogo = () => {
                         </svg>
                     </div>
                     <div className="info-cart">
-                        <a href="/cart">Giỏ hàng</a>
+                        <p style={{color: "#2d8356"}} onClick={() => {
+                            if(user) {
+                                navigate('/cart');
+                            } else {
+                                toast.warning('Xin hãy đăng nhập !');
+                                return;
+                            }
+                        }}>Giỏ hàng</p>
                         <p>({numberCart}) sản phẩm</p>
                     </div>
                 </div>

@@ -46,17 +46,8 @@ const CartInfo = () => {
 
     const BuyListAbate = () => {
         listCart.filter(el => {
-            const object = {
-                ...el,
-                info: {
-                    name:'',
-                    address:'',
-                    phoneNumber:'',
-                    district:''
-                }
-            }
             if(el.isCheckBox) {
-                push(ref(database, 'Abate'), object)
+                push(ref(database, 'Abate'), el)
                     .then(() => {
                         dispatch(fetchOrderProduct());
                         dispatch(fetchListAbate());

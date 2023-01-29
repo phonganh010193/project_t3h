@@ -6,7 +6,14 @@ import Slider from "react-slick";
 import { useRef, useState } from "react";
 import React from "react";
 
-function SidebarContent() {
+function SidebarContent(props) {
+    const { product } = props;
+    const listBestSell = product.filter(el => el.bestsellers >= 5);
+    const listBestSell_1 = listBestSell.slice(0,4);
+    const listBestSell_2 = listBestSell.slice(4,8);
+    const listBestSell_3 = listBestSell.slice(8,12);
+    console.log('list1111111111', listBestSell_1, listBestSell_2, listBestSell_3);
+
     const slideRef = useRef();
     const [sliderSettings, setSliderSeting] = useState({
         dots: false,
@@ -42,130 +49,52 @@ function SidebarContent() {
             </div>
             <Slider {...sliderSettings} ref={slideRef}>
                 <div className="product-content">
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
+                    {listBestSell_1 && listBestSell_1.map((item, index) => {
+                        return (
+                            <div className="product-item" key={item.id}>
+                                <img src={item.image} alt="" />
+                                <div className="product-info">
+                                    <p>{item.productName}</p>
+                                    <div className="produc-price">
+                                        <p>{item.price}</p>
+                                        <p>{item.sale_price}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
                 <div className="product-content">
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
+                {listBestSell_2 && listBestSell_2.map((item, index) => {
+                        return (
+                            <div className="product-item" key={item.id}>
+                                <img src={item.image} alt="" />
+                                <div className="product-info">
+                                    <p>{item.productName}</p>
+                                    <div className="produc-price">
+                                        <p>{item.price}</p>
+                                        <p>{item.sale_price}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
                 <div className="product-content">
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
+                {listBestSell_3 && listBestSell_3.map((item, index) => {
+                        return (
+                            <div className="product-item" key={item.id}>
+                                <img src={item.image} alt="" />
+                                <div className="product-info">
+                                    <p>{item.productName}</p>
+                                    <div className="produc-price">
+                                        <p>{item.price}</p>
+                                        <p>{item.sale_price}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product-item">
-                        <img src={IMAGE.logo} alt="" />
-                        <div className="product-info">
-                            <p>CHANEl BLEU DE CHANEL EAU DE TOILETTE</p>
-                            <div className="produc-price">
-                                <p>5.800.000 đ</p>
-                                <p>8.900.000 đ</p>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
             </Slider>
         </div>
