@@ -3,11 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { fetchOrderProduct } from "../../component/CartInfo/orderSlice";
 import LayoutCart from "../../component/LayoutCart";
 import { UserContext } from "../../container/useContext";
 import { database } from "../../firebase";
 import "../../utils/styles/search.css";
+import { fetchOrderProduct } from "../Cart/orderSlice";
 import { fetchSearchProduct } from "./searchSlice";
 const SearchList = () => {
     const values = window.location.href.slice(29)
@@ -69,9 +69,11 @@ const SearchList = () => {
         <LayoutCart>
             <div className="search-container">
                 <div className="input-search">
-                    <input value={searchName} type="text" placeholder="search ...." onChange={(event) => {
-                        setSearchName(event.target.value)
-                    }} />
+                    <div className="input-item">
+                        <input value={searchName} type="text" placeholder="search ...." onChange={(event) => {
+                            setSearchName(event.target.value)
+                        }} />
+                    </div>
                     <button onClick={() => {
                         searchProduct(searchName)
                     }}><Link to={`/search/${searchName}`}>Search</Link></button>

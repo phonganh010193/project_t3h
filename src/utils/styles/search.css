@@ -4,15 +4,26 @@
     border-bottom: 1px solid gray;
     margin-bottom: 20px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.input-item {
+    width: 300px;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    line-height: 40px;
+    overflow: hidden;
+    margin-right: 10px;
 }
 
 .input-search input {
-    width: 25%;
-    height: 40px;
+    width: 90%;
     margin-right: 20px;
-    border: 1px solid gray;
-    border-radius: 5px;
     outline: none;
+    border: none;
+    margin-left: 10px;
 }
 
 .input-search button {

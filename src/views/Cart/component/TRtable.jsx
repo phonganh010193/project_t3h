@@ -1,11 +1,11 @@
-import { onValue, ref, remove, update } from "firebase/database";
-import { useEffect, useState } from "react";
+import { ref, remove, update } from "firebase/database";
+import {  useState } from "react";
 import IMAGE from "../../../contact";
 import { database } from "../../../firebase";
 import { useDispatch } from "react-redux";
-import { fetchOrderProduct } from "../orderSlice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { fetchOrderProduct } from "../orderSlice";
 
 const TRtable = ({ item, updateOrder, listCart }) => {
     const dispatch = useDispatch();

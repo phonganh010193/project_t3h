@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-// import { collection, getDoc } from 'firebase/firestore'
-// import { database } from '../../../firebase'
-import { child, get, getDatabase, ref } from "firebase/database";
-import { connectFirestoreEmulator } from 'firebase/firestore';
+import { get, ref } from 'firebase/database';
 import { database } from '../../firebase';
+
 
 
 export const fetchOrderProduct = createAsyncThunk(
@@ -65,25 +63,9 @@ export const fetchOrderProduct = createAsyncThunk(
   }
 );
 
-export const fetchListAbate = createAsyncThunk(
-  'order/fetchListAbate',
-  async (productId, thunkAPI) => {
-    return get(ref(database, "Abate")).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-)
 const initialState = {
   isLoading: false,
   orderProduct: [],
-  abateList: []
 }
 
 export const orderProductSlice = createSlice({
@@ -108,16 +90,6 @@ export const orderProductSlice = createSlice({
       state.isLoading = false;
     })
     builder.addCase(fetchOrderProduct.rejected, (state, action) => {
-      state.isLoading = false;
-    })
-    builder.addCase(fetchListAbate.pending, (state, action) => {
-      state.isLoading = true;
-    })
-    builder.addCase(fetchListAbate.fulfilled, (state, action) => {
-      state.abateList = action.payload;
-      state.isLoading = false;
-    })
-    builder.addCase(fetchListAbate.rejected, (state, action) => {
       state.isLoading = false;
     })
   },

@@ -1,27 +1,26 @@
-import "../../../../utils/styles/homeperfume.css";
+import "../../../utils/styles/homeperfume.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useContext, useRef, useState } from "react";
-import React from "react";
-import { Link } from "react-router-dom";
-import { push, ref, update } from "firebase/database";
-import { database } from "../../../../firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOrderProduct } from "../../../CartInfo/orderSlice";
-import { UserContext } from "../../../../container/useContext";
-import { useEffect } from "react";
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from "react-redux";
+import { useContext, useEffect, useRef, useState } from "react";
+import { UserContext } from "../../../container/useContext";
+import { fetchOrderProduct } from "../../Cart/orderSlice";
+import { push, ref, update } from "firebase/database";
+import { database } from "../../../firebase";
+import { Link } from "react-router-dom";
 
-function HomePerfumeMen(props) {
+
+function HomePerfumeWomen(props) {
+    const { product } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    const [orderNumber, setOrderNumber] = useState(1);
     const listCart = useSelector(({ order }) => order.orderProduct);
+    const [orderNumber, setOrderNumber] = useState(1);
 
-
-    const { product } = props;
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
@@ -86,12 +85,11 @@ function HomePerfumeMen(props) {
                 });
         }
     }
-
     return (
-        <div>
+        <div style={{ marginBottom: "30px" }}>
             <div className="seling-home-women">
                 <div className="home-women-title">
-                    <h4>NƯỚC HOA NAM</h4>
+                    <h4>NƯỚC HOA NỮ</h4>
                     <div className="btn-prev-next">
                         <button onClick={() => goPrev()}>
                             <i className="fa fa-angle-left"></i>
@@ -174,14 +172,15 @@ function HomePerfumeMen(props) {
                             )
                         })}
                     </div>
+
                 </Slider>
             </div>
             <div className="btn-see-all">
-                <button className="btn-see-all"><Link to={`perfume/1`}>Xem Tất Cả</Link></button>
+                <button className="btn-see-all"><Link to={`perfume/2`}>Xem Tất Cả</Link></button>
             </div>
         </div>
 
     );
 }
 
-export default HomePerfumeMen;
+export default HomePerfumeWomen;

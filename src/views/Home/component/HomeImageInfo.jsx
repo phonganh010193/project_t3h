@@ -1,4 +1,4 @@
-import "../../../../utils/styles/home.image.info.css";
+import "../../../utils/styles/home.image.info.css";
 
 const HomeImageInfo = () => {
     return (

@@ -4,7 +4,7 @@ import "../../utils/styles/sidebar.css";
 import SidebarContent from "./sidebar-content";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategory } from "./sibarSlice";
-import { fetchProduct } from "../MainInfo/PerfumeInfo/perfumeInfoSlice";
+import { fetchProduct } from "../../views/Perfume/perfumeInfoSlice";
 
 function Sidebar() {
     const { categoryId } = useParams();

@@ -1,15 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import category from "../component/SideBar/sibarSlice";
-import product from "../component/MainInfo/PerfumeInfo/perfumeInfoSlice";
-import detail from "../component/DetailInfo/perfumeDetailSlice";
-import order from "../component/CartInfo/orderSlice";
+import product from "../views/Perfume/perfumeInfoSlice";
+import detail from "../views/Detail/perfumeDetailSlice";
+import order from "../views/Cart/orderSlice";
 import search from "../views/SearchList/searchSlice";
+import abate from "../views/Abate/abateSlice";
+
 export const store = configureStore({
   reducer: {
     category,
     product,
     detail,
     order,
-    search
+    search,
+    abate
   },
 })

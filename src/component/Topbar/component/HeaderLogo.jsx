@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import IMAGE from "../../../contact";
 import { UserContext } from "../../../container/useContext";
-import { fetchOrderProduct } from "../../CartInfo/orderSlice";
 import 'react-toastify/dist/ReactToastify.css';
+import { fetchOrderProduct } from "../../../views/Cart/orderSlice";
 
 
 const HeaderLogo = () => {
