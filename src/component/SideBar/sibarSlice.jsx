@@ -5,23 +5,24 @@ import { child, get, ref } from "firebase/database";
 
 const dataCategoryRef = ref(database, "Category")
 export const fetchCategory = createAsyncThunk(
-    'category/fetchCategory',
-    async (userId, thunkAPI) => {
-      return get(dataCategoryRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(typeof snapshot.val());
+  'category/fetchCategory',
+  async (userId, thunkAPI) => {
+    return get(dataCategoryRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(typeof snapshot.val());
         //   return snapshot.val();
-          return Object.values(snapshot.val());
-        } else {
-          console.log("No data available");
-        }
-      }).catch((error) => {
-        console.error(error);
-      });
-    }
+        return Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
 )
 const initialState = {
   categoryList: [],
+  isLoading: false
 }
 
 export const categorySlice = createSlice({
@@ -30,16 +31,19 @@ export const categorySlice = createSlice({
   reducers: {
   },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(fetchCategory.pending, (state, action) => {
+      state.isLoading = true
+    })
     builder.addCase(fetchCategory.fulfilled, (state, action) => {
-        console.log('action', action);
-      // Add user to the state array
       state.categoryList = action.payload
+      state.isLoading = false
+    })
+    builder.addCase(fetchCategory.rejected, (state, action) => {
+      state.isLoading = false
     })
   },
 })
 
-// Action creators are generated for each case reducer function
-export const {} = categorySlice.actions
+export const { } = categorySlice.actions
 
 export default categorySlice.reducer;

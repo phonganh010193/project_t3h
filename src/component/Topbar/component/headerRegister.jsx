@@ -9,26 +9,27 @@ const HeaderRegister = () => {
     return (
         <div className="header-register">
             <div className="container header-user-cont">
-                <div className={user? "header-users" : "header-register"}>
+                <div className={user ? "header-users" : "header-register"}>
                     {user ?
-                    <>
-                        <div className="user-name" onClick={() => {
-                            setShow(true)
-                        }}>
-                            <img src={IMAGE.user} alt="" />
-                            <span>Phong Anh</span>
-                        </div>
-                        {show === true &&
-                            <div className="logout">
-                                <Link to="/signin" onClick={() => {
-                                    fetchSignOut();
-                                }}>Logout</Link>
+                        <>
+                            <div className="user-name" onClick={() => {
+                                setShow(!show)
+                            }}>
+                                <img src={IMAGE.user} alt="" />
+                                <span>Phong Anh</span>
                             </div>
-                        }
-                    </>
-                        
-                        
-                    :
+                            {show === true &&
+                                <div className="logout">
+                                    <div>
+                                        <Link to="/signin" onClick={() => {
+                                            fetchSignOut();
+                                        }}>Logout</Link>
+                                    </div>
+                                    <div><Link to="/signin">Lịch sử mua hàng</Link></div>
+                                </div>
+                            }
+                        </>
+                        :
                         <ul>
                             <li>
                                 <a href="/signin">Đăng Nhập</a>
@@ -41,7 +42,7 @@ const HeaderRegister = () => {
                 </div>
             </div>
         </div>
-        
+
     )
 }
 

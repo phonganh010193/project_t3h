@@ -10,6 +10,10 @@
     font-weight: 500;
 }
 
+.product-item:hover {
+    background-color: rgb(212, 212, 211);
+}
+
 .product-item img {
     width: 90px;
     margin-right: 20px;

@@ -20,13 +20,13 @@ function PerfumeInfo() {
     const { user } = useContext(UserContext);
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
-    const product = useSelector(({product}) => product.productList);
-    const productLoading = useSelector(({product}) => product.isLoading);
+    const product = useSelector(({ product }) => product.productList);
+    const productLoading = useSelector(({ product }) => product.isLoading);
     const preProductLoading = usePrevious(productLoading);
-    const categories = useSelector(({category}) => category.categoryList);
-    const listCart = useSelector(({order}) => order.orderProduct);
+    const categories = useSelector(({ category }) => category.categoryList);
+    const listCart = useSelector(({ order }) => order.orderProduct);
     const [productData, setProductData] = useState([]);
-    
+
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
     const [orderNumber, setOrderNumber] = useState(1);
@@ -62,7 +62,7 @@ function PerfumeInfo() {
         if (productData) {
             setListDataProduct(productData.slice(page * take, page * take + take));
         }
-        window.scrollTo({top: 100, left: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 100, left: 0, behavior: 'smooth' });
     }, [page]);
 
     const _renderPaginate = () => {
@@ -77,24 +77,24 @@ function PerfumeInfo() {
         return data;
     }
 
-    const addOrderItem = async(item) => {
+    const addOrderItem = async (item) => {
         const findItem = listCart.find(el => item.id === el.productId)
-        if(findItem) {
+        if (findItem) {
             listCart.forEach(el => {
-                if(el.productId === item.id) {
+                if (el.productId === item.id) {
                     update(ref(database, "Cart/" + el.key), {
-                        orderNumber:parseFloat(el.orderNumber) + 1,
-                        productId:el.productId,
-                        user:el.user,
+                        orderNumber: parseFloat(el.orderNumber) + 1,
+                        productId: el.productId,
+                        user: el.user,
                         isCheckBox: false,
                     })
-                    .then(() => {
-                        dispatch(fetchOrderProduct());
-                        toast.success('Add to Cart success!')
-                    })
-                    .catch(() => {
-                        toast.error('Add to Cart fail!')            
-                    })
+                        .then(() => {
+                            dispatch(fetchOrderProduct());
+                            toast.success('Add to Cart success!')
+                        })
+                        .catch(() => {
+                            toast.error('Add to Cart fail!')
+                        })
                 }
             });
         } else {
@@ -106,24 +106,24 @@ function PerfumeInfo() {
             }
             console.log('ob', ob);
             await push(ref(database, 'Cart'), ob)
-            .then(() => {
-                dispatch(fetchOrderProduct());
-                toast.success('Add to Cart success!')
-            })
-            .catch((error) => {
-                toast.error('Add to Cart fail!')            
-            });
+                .then(() => {
+                    dispatch(fetchOrderProduct());
+                    toast.success('Add to Cart success!')
+                })
+                .catch((error) => {
+                    toast.error('Add to Cart fail!')
+                });
         }
     }
-    
+
     return (
         <div className="men-container">
-            {categories && 
+            {categories &&
                 categories.map((item, index) => {
                     return (
                         <div
                             key={item.id}
-                        >  
+                        >
                             {categoryId === item.id ?
                                 <>
                                     <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
@@ -135,7 +135,7 @@ function PerfumeInfo() {
                     )
                 })
             }
-            
+
             <div className="men-list">
                 {listDataProduct &&
                     listDataProduct.map((item, index) => {
@@ -154,8 +154,8 @@ function PerfumeInfo() {
                                 </div>
                                 <p>{item.productName}</p>
                                 <div className="price">
-                                    <p>{item.price} VND</p>
-                                    <p>{item.sale_price} VND</p>
+                                    <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                    <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                 </div>
                             </div>
                         )
@@ -165,7 +165,7 @@ function PerfumeInfo() {
             <ul className="pagination">
                 <li className="page-item"><Link className="page-link" to="#" onClick={() => {
                     if (page > 0) {
-                        setPage(page -1);
+                        setPage(page - 1);
                     }
                 }}>Trước</Link></li>
                 {_renderPaginate()}

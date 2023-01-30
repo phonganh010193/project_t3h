@@ -7,6 +7,7 @@ import Cart from "../views/Cart";
 import Detail from "../views/Detail";
 import HomePage from "../views/Home";
 import Perfume from "../views/Perfume";
+import SearchList from "../views/SearchList";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -16,6 +17,7 @@ const routerName = createBrowserRouter([
   { path: "/signup", element: <SignUp />, errorElement: <ErrorPage /> },
   { path: "/cart", element: <Cart />, errorElement: <ErrorPage /> },
   { path: "/abate", element: <Abate />, errorElement: <ErrorPage /> },
+  { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

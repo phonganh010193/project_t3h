@@ -7,10 +7,12 @@ import { fetchCategory } from "./sibarSlice";
 import { fetchProduct } from "../MainInfo/PerfumeInfo/perfumeInfoSlice";
 
 function Sidebar() {
-    const {categoryId} = useParams();
+    const { categoryId } = useParams();
     const dispatch = useDispatch();
-    const categoryData = useSelector(({category}) => category.categoryList)
-    const product = useSelector(({product}) => product.productList);
+    const categoryData = useSelector(({ category }) => category.categoryList)
+    const product = useSelector(({ product }) => product.productList);
+    const listBestSell = product.filter(el => el.bestsellers >= 5);
+    const listNewAdd = product.filter(el => el.dateAdd === 1);
     useEffect(() => {
         dispatch(fetchCategory());
         dispatch(fetchProduct());
@@ -25,20 +27,29 @@ function Sidebar() {
                     <h5>Danh Mục Sản Phẩm</h5>
                 </div>
                 <div className="sidebar-content">
-                {categoryData &&
-                    categoryData.map((item, index) => {
-                        return (
-                            <Link key={item.id} to={`/perfume/${item.id}`} className={categoryId === item.id ? "active" : ""}>
-                                {item.categoryName}
-                            </Link>
-                        )
-                    })
-                }
+                    {categoryData &&
+                        categoryData.map((item, index) => {
+                            return (
+                                <Link key={item.id} to={`/perfume/${item.id}`} className={categoryId === item.id ? "active" : ""}>
+                                    {item.categoryName}
+                                </Link>
+                            )
+                        })
+                    }
                 </div>
-                
+
             </div>
             <div className="sidebar-content-item">
-                <SidebarContent product = {product} />
+                <SidebarContent
+                    listShowProduct={listBestSell}
+                    checkShow={1}
+                />
+            </div>
+            <div className="sidebar-content-item">
+                <SidebarContent
+                    listShowProduct={listNewAdd}
+                    checkShow={2}
+                />
             </div>
         </div>
 

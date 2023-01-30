@@ -4,30 +4,29 @@ import { auth } from '../../firebase';
 
 export const UserContext = createContext();
 
-const UserContextProvider = ({children}) => {
-    
-    const[user, setUser] = useState(null);
+const UserContextProvider = ({ children }) => {
+
+    const [user, setUser] = useState(null);
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
     });
 
-    const fetchUser = async(values) => {
+    const fetchUser = async (values) => {
         try {
-        const user = await signInWithEmailAndPassword(auth, values.username, values.password);
-        console.log('user', user.user);
-        setUser(user.user);
+            const user = await signInWithEmailAndPassword(auth, values.username, values.password);
+            setUser(user.user);
         } catch (error) {
-        console.log(error.message);
+            console.log(error.message);
         }
     }
-    const fetchSignOut = async() => {
+    const fetchSignOut = async () => {
         signOut(auth).then(() => {
             // Sign-out successful.
             console.log('logout success')
         }).catch((error) => {
-        // An error happened.
-        console.log(error)
+            // An error happened.
+            console.log(error)
         });
     }
     const value = {

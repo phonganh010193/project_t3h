@@ -14,9 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const AbateInfo = (props) => {
   const dispatch = useDispatch();
   const { user } = useContext(UserContext);
-  const abateList = useSelector(({order}) => order.abateList);
-  console.log('abateList', abateList);
-  
+  const abateList = useSelector(({ order }) => order.abateList);
+
   const layout = {
     labelCol: {
       span: 5,
@@ -42,11 +41,11 @@ const AbateInfo = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
 
   const sumPrice = abateList?.reduce(
-    (accumulator, currentValue) => accumulator + Number(currentValue.price*currentValue.orderNumber),
+    (accumulator, currentValue) => accumulator + Number(currentValue.price * currentValue.orderNumber),
     0
   );
 
@@ -58,15 +57,15 @@ const AbateInfo = (props) => {
     };
     console.log('infoOrder', infoOrder);
     push(ref(database, "CompleteOrder", infoOrder))
-    .then(() => {
-      toast.success('Order thành công')
-    })
-    .catch((error) => {
-      console.log(error)
-      toast.error('Order không thành công');
-    })
+      .then(() => {
+        toast.success('Order thành công')
+      })
+      .catch((error) => {
+        console.log(error)
+        toast.error('Order không thành công');
+      })
   };
-  
+
   return (
     <Form
       {...layout}
@@ -79,7 +78,7 @@ const AbateInfo = (props) => {
         <div className="m-billing-info">
           <h2>Thông tin thanh toán</h2>
           <div className="m-billing-info-step">
-              <p>Xin hãy nhập thông tin thanh toán</p>
+            <p>Xin hãy nhập thông tin thanh toán</p>
           </div>
           <Form.Item
             name={['user', 'name']}
@@ -115,9 +114,9 @@ const AbateInfo = (props) => {
           >
             <Input />
           </Form.Item>
-          
-          <Form.Item 
-            name={['user', 'phone']} 
+
+          <Form.Item
+            name={['user', 'phone']}
             label="Phone number"
             rules={[
               {
@@ -130,27 +129,27 @@ const AbateInfo = (props) => {
           <Form.Item name={['user', 'note']} label="Ghi chú">
             <Input.TextArea />
           </Form.Item>
-          
+
         </div>
         <div className="forms-payment">
           <h2>Hình thức thanh toán</h2>
           <div className="pay-delivery">
-            <Form.Item 
-            name={['user', 'pay_dilivery']} 
-            valuePropName="checked" 
-            noStyle
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            <Form.Item
+              name={['user', 'pay_dilivery']}
+              valuePropName="checked"
+              noStyle
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
             >
               <Checkbox>Thanh toán khi nhận hàng</Checkbox>
             </Form.Item>
           </div>
         </div>
       </div>
-      
+
       <div className="cofirm-payment">
         <h2>Đơn hàng</h2>
         <div className="product-cofirm-payment">
@@ -158,19 +157,22 @@ const AbateInfo = (props) => {
             return (
               <div className="info-product-abate" key={item.id}>
                 <img src={item.image} alt="" />
-                <div style={{textAlign: "left"}}>
+                <div style={{ textAlign: "left" }}>
                   <p>{item.productName}</p>
                   <p>Số lượng: {item.orderNumber}</p>
                 </div>
               </div>
             )
           })}
-          
+
         </div>
         <div className="payment-info">
           <div>
             <p>Tạm tính thanh toán</p>
-            <p>{sumPrice}</p>
+            <p>{abateList.reduce(
+              (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
+              0
+            ).toLocaleString()} VND</p>
           </div>
           <div>
             <p>Chi phí vận chuyển</p>
@@ -180,7 +182,10 @@ const AbateInfo = (props) => {
         <div className="price-payment">
           <div>
             <p>Tổng thanh toán</p>
-            <p>5.900.000 đ</p>
+            <p>{abateList.reduce(
+              (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
+              0
+            ).toLocaleString()} VND</p>
           </div>
           <Form.Item
             wrapperCol={{
@@ -193,16 +198,16 @@ const AbateInfo = (props) => {
             </Button>
           </Form.Item>
         </div>
-        <div style={{marginLeft: "5px"}}>
+        <div style={{ marginLeft: "5px" }}>
           <Link to='/cart' onClick={() => {
             remove(ref(database, "Abate"))
-            .then(() => {
-              dispatch(fetchListAbate());
-              console.log('remove ListAbate success')
-            })
-            .catch((error) => {
-              console.log(error)
-            })
+              .then(() => {
+                dispatch(fetchListAbate());
+                console.log('remove ListAbate success')
+              })
+              .catch((error) => {
+                console.log(error)
+              })
           }}>Quay về Giỏ hàng</Link>
         </div>
       </div>

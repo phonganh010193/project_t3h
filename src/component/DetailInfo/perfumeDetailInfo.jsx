@@ -4,7 +4,7 @@ const PerfumeDetailInfo = (props) => {
     return (
         <div className="perfume-detail-info">
             <p>
-               {detailList?.detail_product?.title_1}
+                {detailList?.detail_product?.title_1}
             </p>
             <img src={detailList?.detail_product?.image_detail_1} alt="" />
             <p>

@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeaderNav = () => {
+    const navigate = useNavigate();
+    const [values, setValues] = useState('')
     return (
         <div className="header-nav">
             <div className="container header-nav-content">
@@ -15,8 +18,12 @@ const HeaderNav = () => {
                 </div>
                 <div className="search-content">
                     <form className="form-search">
-                        <input type="text" placeholder="perfume..." />
-                        <button type="submit">
+                        <input value={values} type="text" placeholder="perfume..." onChange={(event) => {
+                            setValues(event.target.value);
+                        }} />
+                        <button type="submit" onClick={() => {
+                            navigate(`/search/${values.toLowerCase().split(" ").join('')}`)
+                        }}>
                             Search
                         </button>
                     </form>

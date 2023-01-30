@@ -18,12 +18,12 @@ function HomePerfumeWomen(props) {
     const { product } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    const listCart = useSelector(({order}) => order.orderProduct);
+    const listCart = useSelector(({ order }) => order.orderProduct);
     const [orderNumber, setOrderNumber] = useState(1);
 
-    const product1 = product.slice(0,3);
-    const product2 = product.slice(3,6);
-    const product3 = product.slice(6,9);
+    const product1 = product.slice(0, 3);
+    const product2 = product.slice(3, 6);
+    const product3 = product.slice(6, 9);
     const slideRef = useRef();
     const [sliderSettings, setSliderSeting] = useState({
         dots: false,
@@ -50,22 +50,22 @@ function HomePerfumeWomen(props) {
 
     const addOrderItem = (item) => {
         const findItem = listCart.find(el => item.id === el.productId)
-        if(findItem) {
+        if (findItem) {
             listCart.forEach(el => {
-                if(el.productId === item.id) {
+                if (el.productId === item.id) {
                     update(ref(database, "Cart/" + el.key), {
-                        orderNumber:parseFloat(el.orderNumber) + 1,
-                        productId:el.productId,
-                        user:el.user,
+                        orderNumber: parseFloat(el.orderNumber) + 1,
+                        productId: el.productId,
+                        user: el.user,
                         isCheckBox: false,
                     })
-                    .then(() => {
-                        dispatch(fetchOrderProduct());
-                        toast.success('Add to Cart success!')
-                    })
-                    .catch(() => {
-                        toast.error('Add to Cart fail!')            
-                    })
+                        .then(() => {
+                            dispatch(fetchOrderProduct());
+                            toast.success('Add to Cart success!')
+                        })
+                        .catch(() => {
+                            toast.error('Add to Cart fail!')
+                        })
                 }
             });
         } else {
@@ -76,17 +76,17 @@ function HomePerfumeWomen(props) {
                 isCheckBox: false,
             }
             push(ref(database, 'Cart'), ob)
-            .then(() => {
-                dispatch(fetchOrderProduct());
-                toast.success('Add to Cart success!')
-            })
-            .catch((error) => {
-                toast.error('Add to Cart fail!')            
-            });
+                .then(() => {
+                    dispatch(fetchOrderProduct());
+                    toast.success('Add to Cart success!')
+                })
+                .catch((error) => {
+                    toast.error('Add to Cart fail!')
+                });
         }
     }
     return (
-        <div style={{marginBottom: "30px"}}>
+        <div style={{ marginBottom: "30px" }}>
             <div className="seling-home-women">
                 <div className="home-women-title">
                     <h4>NƯỚC HOA NỮ</h4>
@@ -115,10 +115,10 @@ function HomePerfumeWomen(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{textAlign: "center", width: "200px"}}>{el.productName}</p>
+                                    <p style={{ textAlign: "center", width: "200px" }}>{el.productName}</p>
                                     <div className="price">
-                                        <p>{el.price}</p>
-                                        <p>{el.sale_price}</p>
+                                        <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             )
@@ -139,10 +139,10 @@ function HomePerfumeWomen(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{textAlign: "center", width: "200px"}}>{el.productName}</p>
+                                    <p style={{ textAlign: "center", width: "200px" }}>{el.productName}</p>
                                     <div className="price">
-                                        <p>{el.price}</p>
-                                        <p>{el.sale_price}</p>
+                                        <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             )
@@ -163,23 +163,23 @@ function HomePerfumeWomen(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{textAlign: "center", width: "200px"}}>{el.productName}</p>
+                                    <p style={{ textAlign: "center", width: "200px" }}>{el.productName}</p>
                                     <div className="price">
-                                        <p>{el.price}</p>
-                                        <p>{el.sale_price}</p>
+                                        <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             )
                         })}
                     </div>
-                    
+
                 </Slider>
             </div>
             <div className="btn-see-all">
                 <button className="btn-see-all"><Link to={`perfume/2`}>Xem Tất Cả</Link></button>
             </div>
         </div>
-        
+
     );
 }
 

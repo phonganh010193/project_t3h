@@ -1,25 +1,25 @@
 import { onValue, ref, remove, update } from "firebase/database";
 import { useEffect, useState } from "react";
 import IMAGE from "../../../contact";
-import {database} from "../../../firebase";
+import { database } from "../../../firebase";
 import { useDispatch } from "react-redux";
 import { fetchOrderProduct } from "../orderSlice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TRtable = ({item, updateOrder, listCart}) => {
+const TRtable = ({ item, updateOrder, listCart }) => {
     const dispatch = useDispatch();
     const [number, setNumber] = useState(item.orderNumber);
     const [isCheckBox, setISCheckBox] = useState(false);
     const deleItemOrder = (item) => {
         remove(ref(database, 'Cart/' + item.key))
-        .then(() => {
-            toast.success('Delete success!')
-            dispatch(fetchOrderProduct());
-        })
-        .catch((error) => {
-            toast.error('Delete Fail!')
-        })
+            .then(() => {
+                toast.success('Delete success!')
+                dispatch(fetchOrderProduct());
+            })
+            .catch((error) => {
+                toast.error('Delete Fail!')
+            })
     }
 
     return (
@@ -38,7 +38,7 @@ const TRtable = ({item, updateOrder, listCart}) => {
                 <img className="image-cart" src={item.image} alt="" />
             </td>
             <td>{item.productName}</td>
-            <td>{item.price}</td>
+            <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
             <td>
                 <input type="number" value={number} className="text-center" min="1" max="1000" onChange={(text) => {
                     setNumber(text.target.value);
@@ -51,9 +51,9 @@ const TRtable = ({item, updateOrder, listCart}) => {
                         },
                     };
                     updateOrder(value);
-                }}/>
+                }} />
             </td>
-            <td>{Number(item.price)*number}</td>
+            <td>{(Number(item.price.split(" ").join('')) * number).toLocaleString()} VND</td>
             <td><img className="image-delete" src={IMAGE.delete} alt="" onClick={() => {
                 deleItemOrder(item)
             }} /></td>

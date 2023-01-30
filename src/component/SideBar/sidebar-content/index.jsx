@@ -1,19 +1,17 @@
-import IMAGE from "../../../contact";
 import "../../../utils/styles/sidebar.content.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { useRef, useState } from "react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function SidebarContent(props) {
-    const { product } = props;
-    const listBestSell = product.filter(el => el.bestsellers >= 5);
-    const listBestSell_1 = listBestSell.slice(0,4);
-    const listBestSell_2 = listBestSell.slice(4,8);
-    const listBestSell_3 = listBestSell.slice(8,12);
-    console.log('list1111111111', listBestSell_1, listBestSell_2, listBestSell_3);
-
+    const { listShowProduct, checkShow } = props;
+    const navigate = useNavigate();
+    const listShowProduct_1 = listShowProduct.slice(0, 4);
+    const listShowProduct_2 = listShowProduct.slice(4, 8);
+    const listShowProduct_3 = listShowProduct.slice(8, 12);
     const slideRef = useRef();
     const [sliderSettings, setSliderSeting] = useState({
         dots: false,
@@ -37,7 +35,7 @@ function SidebarContent(props) {
     return (
         <div className="seling-product">
             <div className="product-title">
-                <h4>SẢN PHẨM BÁN CHẠY</h4>
+                <h4>{checkShow === 1 ? "SẢN PHẨM BÁN CHẠY" : "SẢN PHẨM MỚI VỀ"}</h4>
                 <div className="btn-prev-next">
                     <button onClick={() => goPrev()}>
                         <i className="fa fa-angle-left"></i>
@@ -49,15 +47,17 @@ function SidebarContent(props) {
             </div>
             <Slider {...sliderSettings} ref={slideRef}>
                 <div className="product-content">
-                    {listBestSell_1 && listBestSell_1.map((item, index) => {
+                    {listShowProduct_1 && listShowProduct_1.map((item, index) => {
                         return (
-                            <div className="product-item" key={item.id}>
+                            <div className="product-item" key={item.id} onClick={() => {
+                                navigate(`/perfume-detail/${item.id}`)
+                            }}>
                                 <img src={item.image} alt="" />
                                 <div className="product-info">
                                     <p>{item.productName}</p>
                                     <div className="produc-price">
-                                        <p>{item.price}</p>
-                                        <p>{item.sale_price}</p>
+                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             </div>
@@ -65,15 +65,17 @@ function SidebarContent(props) {
                     })}
                 </div>
                 <div className="product-content">
-                {listBestSell_2 && listBestSell_2.map((item, index) => {
+                    {listShowProduct_2 && listShowProduct_2.map((item, index) => {
                         return (
-                            <div className="product-item" key={item.id}>
+                            <div className="product-item" key={item.id} onClick={() => {
+                                navigate(`/perfume-detail/${item.id}`)
+                            }}>
                                 <img src={item.image} alt="" />
                                 <div className="product-info">
                                     <p>{item.productName}</p>
                                     <div className="produc-price">
-                                        <p>{item.price}</p>
-                                        <p>{item.sale_price}</p>
+                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             </div>
@@ -81,15 +83,17 @@ function SidebarContent(props) {
                     })}
                 </div>
                 <div className="product-content">
-                {listBestSell_3 && listBestSell_3.map((item, index) => {
+                    {listShowProduct_3 && listShowProduct_3.map((item, index) => {
                         return (
-                            <div className="product-item" key={item.id}>
+                            <div className="product-item" key={item.id} onClick={() => {
+                                navigate(`/perfume-detail/${item.id}`)
+                            }}>
                                 <img src={item.image} alt="" />
                                 <div className="product-info">
                                     <p>{item.productName}</p>
                                     <div className="produc-price">
-                                        <p>{item.price}</p>
-                                        <p>{item.sale_price}</p>
+                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             </div>

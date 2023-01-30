@@ -11,12 +11,9 @@ import HomePerfumeWomen from "./component/HomePerfumeWomen";
 
 function HomePageInfo() {
     const dispatch = useDispatch();
-    const product = useSelector(({product}) => product.productList)
-    console.log('product from home', product);
+    const product = useSelector(({ product }) => product.productList)
     const productMen = product.filter(el => el.gender === 1);
-    console.log('product men', productMen);
     const productWomen = product.filter(el => el.gender === 2);
-    console.log('product Women', productWomen);
     useEffect(() => {
         dispatch(fetchProduct());
     }, [dispatch])
@@ -47,9 +44,9 @@ function HomePageInfo() {
                     <img src="https://img.fragrancex.com/images/aboutus/aboutus-realfragrances.jpg" alt="" />
                 </div>
             </Slider>
-            <HomePerfumeMen product = {productMen} />
+            <HomePerfumeMen product={productMen} />
             <HomeImageInfo />
-            <HomePerfumeWomen product = {productWomen} />
+            <HomePerfumeWomen product={productWomen} />
         </div>
     )
 }

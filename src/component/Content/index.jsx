@@ -2,11 +2,9 @@ import Sidebar from "../SideBar";
 import TopBar from "../Topbar";
 import "../../utils/styles/content.css";
 import Footer from "../Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchOrderProduct } from "../CartInfo/orderSlice";
 
-const Content = ({children}) => {
+
+const Content = ({ children }) => {
     return (
         <div className="content">
             <TopBar />
@@ -19,4 +17,4 @@ const Content = ({children}) => {
     )
 }
 
-export default Content ;
+export default Content;

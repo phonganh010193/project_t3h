@@ -13,29 +13,29 @@ import 'react-toastify/dist/ReactToastify.css';
 const CartInfo = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const listCart = useSelector(({order}) => order.orderProduct);
+    const listCart = useSelector(({ order }) => order.orderProduct);
 
     useEffect(() => {
         dispatch(fetchOrderProduct());
     }, [dispatch]);
 
     useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, [])
-    
+
     const updateOrder = (value) => {
         dispatch(updateListCart(value));
     }
 
     const deleteListCart = () => {
         remove(ref(database, 'Cart'))
-        .then(() => {
-            dispatch(fetchOrderProduct());
-            toast.success('Delete Cart success!')
-        })
-        .catch((error) => {
-            toast.success('Delete Cart fail!')
-        })
+            .then(() => {
+                dispatch(fetchOrderProduct());
+                toast.success('Delete Cart success!')
+            })
+            .catch((error) => {
+                toast.success('Delete Cart fail!')
+            })
     }
 
 
@@ -46,25 +46,21 @@ const CartInfo = () => {
 
     const BuyListAbate = () => {
         listCart.filter(el => {
-            if(el.isCheckBox) {
+            if (el.isCheckBox) {
                 push(ref(database, 'Abate'), el)
                     .then(() => {
                         dispatch(fetchOrderProduct());
                         dispatch(fetchListAbate());
                     })
                     .catch((error) => {
-                        console.log(error)      
+                        console.log(error)
                     });
-                }
             }
+        }
         );
-        
+
         navigate(`/abate`)
     }
-
-    
-
-    
     return (
         <div className="cart-container">
             <div className="header-cart">
@@ -102,18 +98,18 @@ const CartInfo = () => {
                             console.log('updates', updates);
                             listCart.forEach(el => {
                                 updates.forEach(item => {
-                                    if(el.id === item.id) {
+                                    if (el.id === item.id) {
                                         update(ref(database, "Cart/" + el.key), {
-                                            orderNumber:item.orderNumber,
-                                            productId:item.productId,
-                                            user:item.user
+                                            orderNumber: item.orderNumber,
+                                            productId: item.productId,
+                                            user: item.user
                                         })
-                                        .then(() => {
-                                            toast.success('Cập nhật thành công giỏ hàng!')
-                                        })
-                                        .catch(() => {
-                                            toast.error('Cập nhật fail!') 
-                                        })
+                                            .then(() => {
+                                                toast.success('Cập nhật thành công giỏ hàng!')
+                                            })
+                                            .catch(() => {
+                                                toast.error('Cập nhật fail!')
+                                            })
                                     }
                                 })
                             });
@@ -125,22 +121,22 @@ const CartInfo = () => {
                     </div>
                 </div>
                 <div className="all-price">
-                    <table className="table table-bordered" style={{width: "30%", marginTop: "10px"}}>
+                    <table className="table table-bordered" style={{ width: "30%", marginTop: "10px" }}>
                         <td>Tổng tiền thành toán</td>
                         <td>{listCart.filter(el => el.isCheckBox).reduce(
-                        (accumulator, currentValue) => accumulator + Number(currentValue.price*currentValue.orderNumber),
-                        0
-                    )}</td>
+                            (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
+                            0
+                        ).toLocaleString()} VND</td>
                     </table>
-                    <button onClick={() =>{
-                        if(listCart.filter(el => el.isCheckBox).length === 0) {
+                    <button onClick={() => {
+                        if (listCart.filter(el => el.isCheckBox).length === 0) {
                             ConfirmListAbate();
                         } else {
                             BuyListAbate();
                         }
                     }}>Thanh toán</button>
                 </div>
-                
+
 
             </div>
         </div>
