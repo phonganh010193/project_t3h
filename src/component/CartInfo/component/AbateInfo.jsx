@@ -1,19 +1,18 @@
 import { push, ref, remove } from "firebase/database";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { database } from "../../../firebase";
 import "../../../utils/styles/userinfo.css";
 import { fetchListAbate } from "../orderSlice";
 import { Button, Checkbox, Form, Input, InputNumber } from 'antd';
-import { useContext } from "react";
-import { UserContext } from "../../../container/useContext";
+// import { useContext } from "react";
+// import { UserContext } from "../../../container/useContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AbateInfo = (props) => {
   const dispatch = useDispatch();
-  const { user } = useContext(UserContext);
   const abateList = useSelector(({ order }) => order.abateList);
 
   const layout = {
@@ -44,19 +43,15 @@ const AbateInfo = (props) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
 
-  const sumPrice = abateList?.reduce(
-    (accumulator, currentValue) => accumulator + Number(currentValue.price * currentValue.orderNumber),
-    0
-  );
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const infoOrder = {
       ...values,
       dateOrder: new Date(),
       orderList: abateList
     };
     console.log('infoOrder', infoOrder);
-    push(ref(database, "CompleteOrder", infoOrder))
+    await push(ref(database, "CompleteOrder", infoOrder))
       .then(() => {
         toast.success('Order thành công')
       })
@@ -169,10 +164,10 @@ const AbateInfo = (props) => {
         <div className="payment-info">
           <div>
             <p>Tạm tính thanh toán</p>
-            <p>{abateList.reduce(
+            <p>{abateList?.reduce(
               (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
               0
-            ).toLocaleString()} VND</p>
+            )?.toLocaleString()} VND</p>
           </div>
           <div>
             <p>Chi phí vận chuyển</p>
@@ -182,10 +177,10 @@ const AbateInfo = (props) => {
         <div className="price-payment">
           <div>
             <p>Tổng thanh toán</p>
-            <p>{abateList.reduce(
+            <p>{abateList?.reduce(
               (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
               0
-            ).toLocaleString()} VND</p>
+            )?.toLocaleString()} VND</p>
           </div>
           <Form.Item
             wrapperCol={{
@@ -203,7 +198,6 @@ const AbateInfo = (props) => {
             remove(ref(database, "Abate"))
               .then(() => {
                 dispatch(fetchListAbate());
-                console.log('remove ListAbate success')
               })
               .catch((error) => {
                 console.log(error)

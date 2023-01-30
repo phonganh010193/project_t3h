@@ -58,7 +58,6 @@ const CartInfo = () => {
             }
         }
         );
-
         navigate(`/abate`)
     }
     return (
