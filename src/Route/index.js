@@ -8,6 +8,9 @@ import Detail from "../views/Detail";
 import HomePage from "../views/Home";
 import Perfume from "../views/Perfume";
 import SearchList from "../views/SearchList";
+import Introduce from "../views/Introduce";
+import AllProduct from "../views/AllProduct";
+import Cosmetic from "../views/Cosmetic";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -17,6 +20,9 @@ const routerName = createBrowserRouter([
   { path: "/signup", element: <SignUp />, errorElement: <ErrorPage /> },
   { path: "/cart", element: <Cart />, errorElement: <ErrorPage /> },
   { path: "/abate", element: <Abate />, errorElement: <ErrorPage /> },
+  { path: "/introduce", element: <Introduce />, errorElement: <ErrorPage /> },
+  { path: "/all-product", element: <AllProduct />, errorElement: <ErrorPage /> },
+  { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
 ]);
 

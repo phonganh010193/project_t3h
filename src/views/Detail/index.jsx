@@ -97,7 +97,7 @@ const Detail = () => {
         <LayoutCart>
             <div className="container perfume-detail">
                 <div className="header-detail">
-                    <p>Nhom san pham/{detailList.productName}</p>
+                    <p>Nhóm sản phẩm/<span style={{ color: "#2d8356" }}>{detailList.productName}</span></p>
                 </div>
                 <div className="content-detail">
                     <img src={detailList?.image} alt="" />
@@ -107,7 +107,7 @@ const Detail = () => {
                             <h6>Dung Tích</h6>
                             <div className="capacity-info">
                                 <p>{detailList?.capacity}</p>
-                                <p>{Number(detailList?.price.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price.split(" ").join('')).toLocaleString()} VND</span></p>
+                                <p>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
                             </div>
                             <div className="amount">
                                 <h6>Số Lượng</h6>

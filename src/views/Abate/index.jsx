@@ -177,7 +177,9 @@ const Abate = () => {
                                     <img src={item.image} alt="" />
                                     <div style={{ textAlign: "left" }}>
                                         <p>{item.productName}</p>
+                                        <p>Gía: {Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>Số lượng: {item.orderNumber}</p>
+                                        <p>Thành tiền: {(Number(item.price.split(" ").join('')) * item.orderNumber).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             )

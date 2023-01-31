@@ -33,14 +33,16 @@
   align-items: center;
   margin: 20px;
 }
+
+.info-product-abate > div p {
+  margin: 0;
+}
+
 .info-product-abate > img {
   width: 80px;
   margin-right: 20px;
 }
 
-.info-product-abate > p {
-  margin: 0;
-}
 
 .pay-delivery {
   width: 250px;

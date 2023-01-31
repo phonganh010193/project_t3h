@@ -1,6 +1,8 @@
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 import { auth } from '../../firebase';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UserContext = createContext();
 
@@ -17,7 +19,7 @@ const UserContextProvider = ({ children }) => {
             const user = await signInWithEmailAndPassword(auth, values.username, values.password);
             setUser(user.user);
         } catch (error) {
-            console.log(error.message);
+            toast.error('Tên đăng nhập không đúng')
         }
     }
     const fetchSignOut = async () => {

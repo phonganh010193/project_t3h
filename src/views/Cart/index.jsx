@@ -77,10 +77,9 @@ const Cart = () => {
         <LayoutCart>
             <div className="cart-container">
                 <div className="header-cart">
-                    <p>Trang chu/ Gio hang</p>
+                    <p>Trang chủ/ Giỏ hàng</p>
                 </div>
                 <div className="cart-table-info">
-                    <p>Gio hang</p>
                     <table className="table table-bordered text-center">
                         <thead>
                             <tr>
@@ -108,7 +107,6 @@ const Cart = () => {
                         <div className="btn-left">
                             <button onClick={() => {
                                 const updates = listCart.filter(el => el.isChanged);
-                                console.log('updates', updates);
                                 listCart.forEach(el => {
                                     updates.forEach(item => {
                                         if (el.id === item.id) {
@@ -135,7 +133,7 @@ const Cart = () => {
                     </div>
                     <div className="all-price">
                         <table className="table table-bordered" style={{ width: "30%", marginTop: "10px" }}>
-                            <td>Tổng tiền thành toán</td>
+                            <td>Tổng tiền thanh toán</td>
                             <td>{listCart.filter(el => el.isCheckBox).reduce(
                                 (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
                                 0

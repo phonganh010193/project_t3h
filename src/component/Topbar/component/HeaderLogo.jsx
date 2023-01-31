@@ -19,7 +19,6 @@ const HeaderLogo = () => {
     }, [dispatch]);
 
     const numberCart = orderList?.length;
-    console.log('numbercart', numberCart);
     return (
         <div className="container header-logo-content">
             <img src={IMAGE.logo1} className="icon-logo" alt="" />

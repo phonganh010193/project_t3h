@@ -9,10 +9,9 @@ const HeaderNav = () => {
             <div className="container header-nav-content">
                 <div className="topnav">
                     <Link to="/">TRANG CHỦ</Link>
-                    <Link to="#news">TƯ VẤN</Link>
-                    <Link to="#contact">GIỚI THIỆU</Link>
-                    <Link to="#about">SẢN PHẨM</Link>
-                    <Link to="#about">MỸ PHẨM</Link>
+                    <Link to="/introduce">GIỚI THIỆU</Link>
+                    <Link to="/all-product">SẢN PHẨM</Link>
+                    <Link to="/cosmetic">MỸ PHẨM</Link>
                     <Link to="#about">LIÊN HỆ</Link>
                     <Link to="#about">DỊCH VỤ MỚI</Link>
                 </div>

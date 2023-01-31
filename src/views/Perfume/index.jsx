@@ -31,33 +31,33 @@ const Perfume = () => {
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchCategory());
-        // dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct());
     }, [dispatch]);
 
     useEffect(() => {
         if (product.length > 0) {
-            const tmpProductData = product.filter(el => el.categoryId === categoryId);
+            const tmpProductData = product?.filter(el => el.categoryId === categoryId);
             setPage(0);
             setProductData(tmpProductData);
             if (page === 0) {
-                setListDataProduct(tmpProductData.slice(0, take));
+                setListDataProduct(tmpProductData?.slice(0, take));
             }
-            setNumberOfPage(Math.ceil(productData.length / take));
+            setNumberOfPage(Math.ceil(productData?.length / take));
         }
     }, [categoryId]);
 
     useEffect(() => {
         if (!productLoading && preProductLoading) {
-            const tmpProductData = product.filter(el => el.categoryId === categoryId);
+            const tmpProductData = product?.filter(el => el.categoryId === categoryId);
             setProductData(tmpProductData);
-            setListDataProduct(tmpProductData.slice(0, take));
-            setNumberOfPage(Math.ceil(productData.length / take));
+            setListDataProduct(tmpProductData?.slice(0, take));
+            setNumberOfPage(Math.ceil(productData?.length / take));
         }
     }, [productLoading, preProductLoading]);
 
     useEffect(() => {
         if (productData) {
-            setListDataProduct(productData.slice(page * take, page * take + take));
+            setListDataProduct(productData?.slice(page * take, page * take + take));
         }
         window.scrollTo({ top: 100, left: 0, behavior: 'smooth' });
     }, [page]);
@@ -75,7 +75,7 @@ const Perfume = () => {
     }
 
     const addOrderItem = async (item) => {
-        const findItem = listCart.find(el => item.id === el.productId)
+        const findItem = listCart?.find(el => item.id === el.productId)
         if (findItem) {
             listCart.forEach(el => {
                 if (el.productId === item.id) {
@@ -115,7 +115,7 @@ const Perfume = () => {
         <Layout>
             <div className="men-container">
                 {categories &&
-                    categories.map((item, index) => {
+                    categories?.map((item, index) => {
                         return (
                             <div
                                 key={item.id}
@@ -134,7 +134,7 @@ const Perfume = () => {
 
                 <div className="men-list">
                     {listDataProduct &&
-                        listDataProduct.map((item, index) => {
+                        listDataProduct?.map((item, index) => {
                             return (
                                 <div key={item.id} className="men-item">
                                     <div className="men-detail">
@@ -148,7 +148,7 @@ const Perfume = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <p>{item.productName}</p>
+                                    <p>{item.productName.toLowerCase()}</p>
                                     <div className="price">
                                         <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
@@ -158,19 +158,22 @@ const Perfume = () => {
                         })
                     }
                 </div>
-                <ul className="pagination">
-                    <li className="page-item"><Link className="page-link" to="#" onClick={() => {
-                        if (page > 0) {
-                            setPage(page - 1);
-                        }
-                    }}>Trước</Link></li>
-                    {_renderPaginate()}
-                    <li className="page-item"><Link className="page-link" to="#" onClick={() => {
-                        if (page < (numberOfPage - 1)) {
-                            setPage(page + 1);
-                        }
-                    }}>Sau</Link></li>
-                </ul>
+                {listDataProduct?.length > 0 ?
+                    <ul className="pagination">
+                        <li className="page-item"><Link className="page-link" to="#" onClick={() => {
+                            if (page > 0) {
+                                setPage(page - 1);
+                            }
+                        }}>Trước</Link></li>
+                        {_renderPaginate()}
+                        <li className="page-item"><Link className="page-link" to="#" onClick={() => {
+                            if (page < (numberOfPage - 1)) {
+                                setPage(page + 1);
+                            }
+                        }}>Sau</Link></li>
+                    </ul>
+                    : null
+                }
             </div>
         </Layout>
     )
