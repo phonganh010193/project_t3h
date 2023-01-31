@@ -19,7 +19,6 @@ function HomePerfumeWomen(props) {
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const listCart = useSelector(({ order }) => order.orderProduct);
-    const [orderNumber, setOrderNumber] = useState(1);
 
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
@@ -72,7 +71,7 @@ function HomePerfumeWomen(props) {
             const ob = {
                 user: user.email,
                 productId: item.id,
-                orderNumber: parseFloat(orderNumber),
+                orderNumber: 1,
                 isCheckBox: false,
             }
             push(ref(database, 'Cart'), ob)

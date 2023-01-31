@@ -13,6 +13,8 @@
 
 .user-name {
     position: relative;
+    cursor: pointer;
+    text-align: center;
 }
 
 .logout{
@@ -29,7 +31,6 @@
 .user-name span {
     font-size: 20px;
     font-weight: 600;
-    text-decoration: underline;
 }
 
 .header-user-cont {
@@ -96,6 +97,8 @@
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
+    height: 130px;
+    overflow: hidden;
 }
 
 .header-logo-info {
@@ -148,7 +151,8 @@
 }
 
 .info-cart p:first-child:hover {
-    color: #88ae9b;
+    color: #7cb397;
+    cursor: pointer;
 }
 
 .info-cart p {

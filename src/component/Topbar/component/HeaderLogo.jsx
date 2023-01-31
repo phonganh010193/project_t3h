@@ -11,7 +11,7 @@ import { fetchOrderProduct } from "../../../views/Cart/orderSlice";
 
 const HeaderLogo = () => {
     const dispatch = useDispatch();
-    const orderList = useSelector(({order}) => order.orderProduct);
+    const orderList = useSelector(({ order }) => order.orderProduct);
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() => {
@@ -22,7 +22,7 @@ const HeaderLogo = () => {
     console.log('numbercart', numberCart);
     return (
         <div className="container header-logo-content">
-            <img src={IMAGE.logo} className="icon-logo" alt="" />
+            <img src={IMAGE.logo1} className="icon-logo" alt="" />
             <div className="header-logo-info">
                 <div className="transport">
                     <img src="//bizweb.dktcdn.net/thumb/thumb/100/110/910/themes/139252/assets/feature1-top.png?1670065088107" alt="" />
@@ -39,15 +39,15 @@ const HeaderLogo = () => {
                         </svg>
                     </div>
                     <div className="info-cart">
-                        <p style={{color: "#2d8356"}} onClick={() => {
-                            if(user) {
+                        <p style={{ color: "#2d8356" }} onClick={() => {
+                            if (user) {
                                 navigate('/cart');
                             } else {
                                 toast.warning('Xin hãy đăng nhập !');
                                 return;
                             }
                         }}>Giỏ hàng</p>
-                        <p>({numberCart}) sản phẩm</p>
+                        <p><span style={{ color: "red" }}>({numberCart})</span> sản phẩm</p>
                     </div>
                 </div>
             </div>

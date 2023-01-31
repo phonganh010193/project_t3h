@@ -1,5 +1,5 @@
 import { ref, remove, update } from "firebase/database";
-import {  useState } from "react";
+import { useState } from "react";
 import IMAGE from "../../../contact";
 import { database } from "../../../firebase";
 import { useDispatch } from "react-redux";
@@ -40,7 +40,7 @@ const TRtable = ({ item, updateOrder, listCart }) => {
             <td>{item.productName}</td>
             <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
             <td>
-                <input type="number" value={number} className="text-center" min="1" max="1000" onChange={(text) => {
+                <input style={{ width: "50px" }} type="number" value={number} className="text-center" min="1" max="1000" onChange={(text) => {
                     setNumber(text.target.value);
                     const value = {
                         item: {
@@ -53,7 +53,7 @@ const TRtable = ({ item, updateOrder, listCart }) => {
                     updateOrder(value);
                 }} />
             </td>
-            <td>{(Number(item.price.split(" ").join('')) * number).toLocaleString()} VND</td>
+            <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * number).toLocaleString()} VND</td>
             <td><img className="image-delete" src={IMAGE.delete} alt="" onClick={() => {
                 deleItemOrder(item)
             }} /></td>

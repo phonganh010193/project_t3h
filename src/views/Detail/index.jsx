@@ -17,9 +17,9 @@ const Detail = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
-    const listCart = useSelector(({order}) => order.orderProduct);
+    const listCart = useSelector(({ order }) => order.orderProduct);
 
-    const detailList = useSelector(({detail}) => detail.productListDetail);
+    const detailList = useSelector(({ detail }) => detail.productListDetail);
     const [number, setNumber] = useState(1);
 
 
@@ -29,28 +29,28 @@ const Detail = () => {
     }, [dispatch, productId]);
 
     useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
 
     const addOrderItem = (item) => {
         const findItem = listCart.find(el => item.id === el.productId)
-        if(findItem) {
+        if (findItem) {
             listCart.forEach(el => {
-                if(el.productId === item.id) {
+                if (el.productId === item.id) {
                     update(ref(database, "Cart/" + el.key), {
-                        orderNumber:parseFloat(el.orderNumber) + parseFloat(number),
-                        productId:el.productId,
-                        user:el.user,
+                        orderNumber: parseFloat(el.orderNumber) + parseFloat(number),
+                        productId: el.productId,
+                        user: el.user,
                         isCheckBox: false,
                     })
-                    .then(() => {
-                        dispatch(fetchOrderProduct());
-                        toast.success('Add to Cart success!')
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                        toast.error('Add to Cart fail!')
-                    })
+                        .then(() => {
+                            dispatch(fetchOrderProduct());
+                            toast.success('Add to Cart success!')
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                            toast.error('Add to Cart fail!')
+                        })
                 }
             });
         } else {
@@ -62,36 +62,36 @@ const Detail = () => {
             }
             console.log('ob', ob);
             push(ref(database, 'Cart'), ob)
-            .then(() => {
-                toast.success('Add to Cart success!')
-                dispatch(fetchOrderProduct());
-            })
-            .catch((error) => {
-                console.log(error);
-                toast.error('Add to Cart fail!')
-            });
+                .then(() => {
+                    toast.success('Add to Cart success!')
+                    dispatch(fetchOrderProduct());
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toast.error('Add to Cart fail!')
+                });
         }
     }
 
     const onChange = (key) => {
-    console.log(key);
+        console.log(key);
     };
     const items = [
-    {
-        key: '1',
-        label: `THÔNG TIN SẢN PHẨM`,
-        children: <PerfumeDetailInfo detailList = {detailList} />,
-    },
-    {
-        key: '2',
-        label: `HƯỚNG DẪN MUA HÀNG`,
-        children: `Content of Tab Pane 2`,
-    },
-    {
-        key: '3',
-        label: `ĐÁNH GIÁ CHI TIẾT`,
-        children: `Content of Tab Pane 3`,
-    },
+        {
+            key: '1',
+            label: `THÔNG TIN SẢN PHẨM`,
+            children: <PerfumeDetailInfo detailList={detailList} />,
+        },
+        {
+            key: '2',
+            label: `HƯỚNG DẪN MUA HÀNG`,
+            children: `Content of Tab Pane 2`,
+        },
+        {
+            key: '3',
+            label: `ĐÁNH GIÁ CHI TIẾT`,
+            children: `Content of Tab Pane 3`,
+        },
     ];
     return (
         <LayoutCart>
@@ -107,7 +107,7 @@ const Detail = () => {
                             <h6>Dung Tích</h6>
                             <div className="capacity-info">
                                 <p>{detailList?.capacity}</p>
-                                <p>{detailList?.price}{"  "}<span className="sale-disable">{detailList?.sale_price}</span></p>
+                                <p>{Number(detailList?.price.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price.split(" ").join('')).toLocaleString()} VND</span></p>
                             </div>
                             <div className="amount">
                                 <h6>Số Lượng</h6>
@@ -119,9 +119,9 @@ const Detail = () => {
                                         addOrderItem(detailList);
                                     }}>Thêm vào giỏ hàng</button>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

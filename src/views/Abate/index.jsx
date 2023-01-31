@@ -16,21 +16,21 @@ const Abate = () => {
     console.log('abatelist', abateList);
     const layout = {
         labelCol: {
-        span: 5,
+            span: 5,
         },
         wrapperCol: {
-        span: 14,
+            span: 14,
         },
     };
 
     const validateMessages = {
         required: '${label} is required!',
         types: {
-        email: '${label} is not a valid email!',
-        number: '${label} is not a valid number!',
+            email: '${label} is not a valid email!',
+            number: '${label} is not a valid number!',
         },
         number: {
-        range: '${label} must be between ${min} and ${max}',
+            range: '${label} must be between ${min} and ${max}',
         },
     };
 
@@ -44,30 +44,44 @@ const Abate = () => {
 
 
     const onFinish = (values) => {
-        console.log(values.user);
-        abateList?.map(async(el) => {
+        // const completeOrder = {
+        //     ...abateList,
+        //     user: values.user,
+        //     dateOrder: new Date()
+        // }
+        // console.log('oerder complete', completeOrder);
+        // push(ref(database, "Complete"), completeOrder)
+        //     .then(() => {
+        //         toast.success('Order thành công!')
+        //         remove(ref(database, "Abate"))
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //         toast.error('Order không thành công!')
+        //     })
+        abateList?.map(async (el) => {
             await remove(ref(database, "Abate/"))
-            .then(() => {
-                console.log('remove success')
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+                .then(() => {
+                    console.log('remove success')
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
             await update(ref(database, "Abate/" + el.key), {
                 ...el,
                 user: values.user,
                 dateOrder: new Date(),
             })
-            .then(() => {
-                dispatch(fetchListAbate());
-                toast.success('Order thành công')
-            })
-            .catch((error) => {
-                console.log(error)
-                toast.error('Order không thành công');
-            })
+                .then(() => {
+                    dispatch(fetchListAbate());
+                    toast.success('Order thành công')
+                })
+                .catch((error) => {
+                    console.log(error)
+                    toast.error('Order không thành công');
+                })
         });
-        
+
     };
     return (
         <LayoutCart>
@@ -80,138 +94,138 @@ const Abate = () => {
             >
                 <div className="abate-info-left">
                     <div className="m-billing-info">
-                    <h2>Thông tin thanh toán</h2>
-                    <div className="m-billing-info-step">
-                        <p>Xin hãy nhập thông tin thanh toán</p>
-                    </div>
-                    <Form.Item
-                        name={['user', 'name']}
-                        label="Họ tên"
-                        rules={[
-                        {
-                            required: true,
-                        },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        name={['user', 'email']}
-                        label="Email"
-                        rules={[
-                        {
-                            type: 'email',
-                            required: true,
-                        },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        name={['user', 'address']}
-                        label="Địa Chỉ"
-                        rules={[
-                        {
-                            required: true,
-                        },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
+                        <h2>Thông tin thanh toán</h2>
+                        <div className="m-billing-info-step">
+                            <p>Xin hãy nhập thông tin thanh toán</p>
+                        </div>
+                        <Form.Item
+                            name={['user', 'name']}
+                            label="Họ tên"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            name={['user', 'email']}
+                            label="Email"
+                            rules={[
+                                {
+                                    type: 'email',
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            name={['user', 'address']}
+                            label="Địa Chỉ"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
 
-                    <Form.Item
-                        name={['user', 'phone']}
-                        label="Phone number"
-                        rules={[
-                        {
-                            required: true,
-                        },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['user', 'note']} label="Ghi chú">
-                        <Input.TextArea />
-                    </Form.Item>
+                        <Form.Item
+                            name={['user', 'phone']}
+                            label="Phone number"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['user', 'note']} label="Ghi chú">
+                            <Input.TextArea />
+                        </Form.Item>
 
                     </div>
                     <div className="forms-payment">
-                    <h2>Hình thức thanh toán</h2>
-                    <div className="pay-delivery">
-                        <Form.Item
-                        name={['user', 'pay_dilivery']}
-                        valuePropName="checked"
-                        noStyle
-                        rules={[
-                            {
-                            required: true,
-                            },
-                        ]}
-                        >
-                        <Checkbox>Thanh toán khi nhận hàng</Checkbox>
-                        </Form.Item>
-                    </div>
+                        <h2>Hình thức thanh toán</h2>
+                        <div className="pay-delivery">
+                            <Form.Item
+                                name={['user', 'pay_dilivery']}
+                                valuePropName="checked"
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Checkbox>Thanh toán khi nhận hàng</Checkbox>
+                            </Form.Item>
+                        </div>
                     </div>
                 </div>
 
                 <div className="cofirm-payment">
                     <h2>Đơn hàng</h2>
                     <div className="product-cofirm-payment">
-                    {abateList && abateList?.map((item, index) => {
-                        return (
-                        <div className="info-product-abate" key={item.id}>
-                            <img src={item.image} alt="" />
-                            <div style={{ textAlign: "left" }}>
-                            <p>{item.productName}</p>
-                            <p>Số lượng: {item.orderNumber}</p>
-                            </div>
-                        </div>
-                        )
-                    })}
+                        {abateList && abateList?.map((item, index) => {
+                            return (
+                                <div className="info-product-abate" key={item.id}>
+                                    <img src={item.image} alt="" />
+                                    <div style={{ textAlign: "left" }}>
+                                        <p>{item.productName}</p>
+                                        <p>Số lượng: {item.orderNumber}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
 
                     </div>
                     <div className="payment-info">
-                    <div>
-                        <p>Tạm tính thanh toán</p>
-                        <p>{abateList?.reduce(
-                        (accumulator, currentValue) => accumulator + Number(Number(currentValue?.price?.split(" ").join('')) * Number(currentValue?.orderNumber)),
-                        0
-                        )?.toLocaleString()} VND</p>
-                    </div>
-                    <div>
-                        <p>Chi phí vận chuyển</p>
-                        <p>-</p>
-                    </div>
+                        <div>
+                            <p>Tạm tính thanh toán</p>
+                            <p>{abateList?.reduce(
+                                (accumulator, currentValue) => accumulator + Number(Number(currentValue?.price?.split(" ").join('')) * Number(currentValue?.orderNumber)),
+                                0
+                            )?.toLocaleString()} VND</p>
+                        </div>
+                        <div>
+                            <p>Chi phí vận chuyển</p>
+                            <p>-</p>
+                        </div>
                     </div>
                     <div className="price-payment">
-                    <div>
-                        <p>Tổng thanh toán</p>
-                        <p>{abateList?.reduce(
-                        (accumulator, currentValue) => accumulator + Number(Number(currentValue?.price?.split(" ").join('')) * Number(currentValue?.orderNumber)),
-                        0
-                        )?.toLocaleString()} VND</p>
-                    </div>
-                    <Form.Item
-                        wrapperCol={{
-                        ...layout.wrapperCol,
-                        offset: 8,
-                        }}
-                    >
-                        <Button type="primary" htmlType="submit">
-                            Xác nhận ĐĂT HÀNG
-                        </Button>
-                    </Form.Item>
+                        <div>
+                            <p>Tổng thanh toán</p>
+                            <p>{abateList?.reduce(
+                                (accumulator, currentValue) => accumulator + Number(Number(currentValue?.price?.split(" ").join('')) * Number(currentValue?.orderNumber)),
+                                0
+                            )?.toLocaleString()} VND</p>
+                        </div>
+                        <Form.Item
+                            wrapperCol={{
+                                ...layout.wrapperCol,
+                                offset: 8,
+                            }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                                Xác nhận ĐĂT HÀNG
+                            </Button>
+                        </Form.Item>
                     </div>
                     <div style={{ marginLeft: "5px" }}>
-                    <Link to='/cart' onClick={() => {
-                        remove(ref(database, "Abate"))
-                        .then(() => {
-                            dispatch(fetchListAbate());
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                    }}>Quay về Giỏ hàng</Link>
+                        <Link to='/cart' onClick={() => {
+                            remove(ref(database, "Abate"))
+                                .then(() => {
+                                    dispatch(fetchListAbate());
+                                })
+                                .catch((error) => {
+                                    console.log(error)
+                                })
+                        }}>Quay về Giỏ hàng</Link>
                     </div>
                 </div>
             </Form>

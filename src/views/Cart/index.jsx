@@ -55,19 +55,19 @@ const Cart = () => {
                     address: "",
                     phone: "",
                     note: "",
-                    pay_dilivery:""
+                    pay_dilivery: ""
                 },
                 dateOrder: ""
             }
             if (el.isCheckBox) {
                 push(ref(database, 'Abate'), ob)
-                .then(() => {
-                    dispatch(fetchOrderProduct());
-                    dispatch(fetchListAbate());
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
+                    .then(() => {
+                        dispatch(fetchOrderProduct());
+                        dispatch(fetchListAbate());
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
             }
         }
         );

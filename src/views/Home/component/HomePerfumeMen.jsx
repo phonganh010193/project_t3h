@@ -18,7 +18,6 @@ import { database } from "../../../firebase";
 function HomePerfumeMen(props) {
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    const [orderNumber, setOrderNumber] = useState(1);
     const listCart = useSelector(({ order }) => order.orderProduct);
 
 
@@ -74,7 +73,7 @@ function HomePerfumeMen(props) {
             const ob = {
                 user: user.email,
                 productId: item.id,
-                orderNumber: parseFloat(orderNumber),
+                orderNumber: 1,
                 isCheckBox: false,
             }
             push(ref(database, 'Cart'), ob)

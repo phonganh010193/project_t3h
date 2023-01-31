@@ -16,7 +16,6 @@ const SearchList = () => {
     const dispatch = useDispatch();
     const listSearch = useSelector(({ search }) => search.searchList)
     const listCart = useSelector(({ order }) => order.orderProduct)
-    const [orderNumber, setOrderNumber] = useState(1);
     useEffect(() => {
         dispatch(fetchSearchProduct(searchName));
         dispatch(fetchOrderProduct());
@@ -51,7 +50,7 @@ const SearchList = () => {
             const ob = {
                 user: user.email,
                 productId: item.id,
-                orderNumber: parseFloat(orderNumber),
+                orderNumber: 1,
                 isCheckBox: false,
             }
             console.log('ob', ob);

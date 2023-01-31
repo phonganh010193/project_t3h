@@ -25,10 +25,8 @@ const Perfume = () => {
     const categories = useSelector(({ category }) => category.categoryList);
     const listCart = useSelector(({ order }) => order.orderProduct);
     const [productData, setProductData] = useState([]);
-
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
-    const [orderNumber, setOrderNumber] = useState(1);
 
     useEffect(() => {
         dispatch(fetchProduct());
@@ -100,10 +98,9 @@ const Perfume = () => {
             const ob = {
                 user: user.email,
                 productId: item.id,
-                orderNumber: parseFloat(orderNumber),
+                orderNumber: 1,
                 isCheckBox: false,
             }
-            console.log('ob', ob);
             await push(ref(database, 'Cart'), ob)
                 .then(() => {
                     dispatch(fetchOrderProduct());
@@ -117,64 +114,64 @@ const Perfume = () => {
     return (
         <Layout>
             <div className="men-container">
-            {categories &&
-                categories.map((item, index) => {
-                    return (
-                        <div
-                            key={item.id}
-                        >
-                            {categoryId === item.id ?
-                                <>
-                                    <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
-                                    <h4>{item.categoryName.toUpperCase()}</h4>
-                                </>
-                                : null
-                            }
-                        </div>
-                    )
-                })
-            }
-
-            <div className="men-list">
-                {listDataProduct &&
-                    listDataProduct.map((item, index) => {
+                {categories &&
+                    categories.map((item, index) => {
                         return (
-                            <div key={item.id} className="men-item">
-                                <div className="men-detail">
-                                    <img src={item.image} className="men-image" alt="" />
-                                    <div className="btn-children">
-                                        <div className="btn-content">
-                                            <button onClick={() => {
-                                                addOrderItem(item)
-                                            }}>Mua sản phẩm</button>
-                                            <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>{item.productName}</p>
-                                <div className="price">
-                                    <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
-                                    <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
-                                </div>
+                            <div
+                                key={item.id}
+                            >
+                                {categoryId === item.id ?
+                                    <>
+                                        <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
+                                        <h4>{item.categoryName.toUpperCase()}</h4>
+                                    </>
+                                    : null
+                                }
                             </div>
                         )
                     })
                 }
+
+                <div className="men-list">
+                    {listDataProduct &&
+                        listDataProduct.map((item, index) => {
+                            return (
+                                <div key={item.id} className="men-item">
+                                    <div className="men-detail">
+                                        <img src={item.image} className="men-image" alt="" />
+                                        <div className="btn-children">
+                                            <div className="btn-content">
+                                                <button onClick={() => {
+                                                    addOrderItem(item)
+                                                }}>Mua sản phẩm</button>
+                                                <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>{item.productName}</p>
+                                    <div className="price">
+                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <ul className="pagination">
+                    <li className="page-item"><Link className="page-link" to="#" onClick={() => {
+                        if (page > 0) {
+                            setPage(page - 1);
+                        }
+                    }}>Trước</Link></li>
+                    {_renderPaginate()}
+                    <li className="page-item"><Link className="page-link" to="#" onClick={() => {
+                        if (page < (numberOfPage - 1)) {
+                            setPage(page + 1);
+                        }
+                    }}>Sau</Link></li>
+                </ul>
             </div>
-            <ul className="pagination">
-                <li className="page-item"><Link className="page-link" to="#" onClick={() => {
-                    if (page > 0) {
-                        setPage(page - 1);
-                    }
-                }}>Trước</Link></li>
-                {_renderPaginate()}
-                <li className="page-item"><Link className="page-link" to="#" onClick={() => {
-                    if (page < (numberOfPage - 1)) {
-                        setPage(page + 1);
-                    }
-                }}>Sau</Link></li>
-            </ul>
-        </div>
         </Layout>
     )
 }

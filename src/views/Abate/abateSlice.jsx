@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref } from 'firebase/database';
+import { get, ref, remove } from 'firebase/database';
 import { database } from '../../firebase';
 
 
@@ -18,6 +18,7 @@ export const fetchListAbate = createAsyncThunk(
     });
   }
 )
+
 const initialState = {
   isLoading: false,
   abateList: []

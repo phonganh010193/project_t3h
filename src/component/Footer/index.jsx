@@ -63,8 +63,8 @@ function Footer() {
                     </div>
                     <div className="footer-map">
                         <h5>Bản đồ</h5>
-                        <a href="https://www.google.com/maps/place/Nh%C3%A0+Thu%E1%BB%91c+Ph%C3%BAc+H%E1%BA%A3i+177/@21.0491084,105.7486527,20z/data=!4m5!3m4!1s0x31345513a4050b0b:0x8aa4401a841648ad!8m2!3d21.0492897!4d105.7488813?hl=vi-VN">
-                            <img src={IMAGE.footer_map} alt="" />
+                        <a href="https://www.google.com/maps/place/43+%C4%90.+V%C4%83n+Ti%E1%BA%BFn+D%C5%A9ng,+Ph%C3%BAc+Di%E1%BB%85n,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0492864,105.7466989,17z/data=!3m1!4b1!4m5!3m4!1s0x313454efb22ead83:0xb31d1b2467c5d9dc!8m2!3d21.0492814!4d105.7488876?hl=vi-VN">
+                            <img src={IMAGE.map} alt="" />
                         </a>
                     </div>
                     <div className="fanpage">

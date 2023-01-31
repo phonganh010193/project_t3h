@@ -77,6 +77,6 @@
 }
 
 .sale-disable {
-    color: gray;
+    color: rgb(179, 178, 178);
     text-decoration: line-through;
 }
