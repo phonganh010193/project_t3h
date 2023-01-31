@@ -77,23 +77,21 @@ const Perfume = () => {
     const addOrderItem = async (item) => {
         const findItem = listCart?.find(el => item.id === el.productId)
         if (findItem) {
-            listCart.forEach(el => {
-                if (el.productId === item.id) {
-                    update(ref(database, "Cart/" + el.key), {
-                        orderNumber: parseFloat(el.orderNumber) + 1,
-                        productId: el.productId,
-                        user: el.user,
-                        isCheckBox: false,
-                    })
-                        .then(() => {
-                            dispatch(fetchOrderProduct());
-                            toast.success('Add to Cart success!')
-                        })
-                        .catch(() => {
-                            toast.error('Add to Cart fail!')
-                        })
-                }
-            });
+            
+            await update(ref(database, "Cart/" + findItem.key), {
+                orderNumber: parseFloat(findItem.orderNumber) + 1,
+                productId: findItem.productId,
+                user: findItem.user,
+                isCheckBox: false,
+            })
+            .then(() => {
+                dispatch(fetchOrderProduct());
+                toast.success('Add to Cart success!')
+            })
+            .catch(() => {
+                toast.error('Add to Cart fail!')
+            })
+           
         } else {
             const ob = {
                 user: user.email,
@@ -102,13 +100,13 @@ const Perfume = () => {
                 isCheckBox: false,
             }
             await push(ref(database, 'Cart'), ob)
-                .then(() => {
-                    dispatch(fetchOrderProduct());
-                    toast.success('Add to Cart success!')
-                })
-                .catch((error) => {
-                    toast.error('Add to Cart fail!')
-                });
+            .then(() => {
+                dispatch(fetchOrderProduct());
+                toast.success('Add to Cart success!')
+            })
+            .catch((error) => {
+                toast.error('Add to Cart fail!')
+            });
         }
     }
     return (

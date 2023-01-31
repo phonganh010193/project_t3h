@@ -3,13 +3,12 @@ import { get, ref, remove } from 'firebase/database';
 import { database } from '../../firebase';
 
 
-export const fetchListAbate = createAsyncThunk(
-  'order/fetchListAbate',
-  async (productId, thunkAPI) => {
+export const fetchAbateById = createAsyncThunk(
+  'order/fetchAbateById',
+  async (abateId, thunkAPI) => {
     return get(ref(database, "Abate")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        return Object.values(snapshot.val());
+        return snapshot.val()[abateId];
       } else {
         console.log("No data available");
       }
@@ -21,7 +20,7 @@ export const fetchListAbate = createAsyncThunk(
 
 const initialState = {
   isLoading: false,
-  abateList: []
+  abateDetail: null,
 }
 
 export const abateListSlice = createSlice({
@@ -30,14 +29,14 @@ export const abateListSlice = createSlice({
   reducers: {
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchListAbate.pending, (state, action) => {
+    builder.addCase(fetchAbateById.pending, (state, action) => {
       state.isLoading = true;
     })
-    builder.addCase(fetchListAbate.fulfilled, (state, action) => {
-      state.abateList = action.payload;
+    builder.addCase(fetchAbateById.fulfilled, (state, action) => {
+      state.abateDetail = action.payload;
       state.isLoading = false;
     })
-    builder.addCase(fetchListAbate.rejected, (state, action) => {
+    builder.addCase(fetchAbateById.rejected, (state, action) => {
       state.isLoading = false;
     })
   },

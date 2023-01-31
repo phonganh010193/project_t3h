@@ -19,7 +19,7 @@ const routerName = createBrowserRouter([
   { path: "/signin", element: <SignIn />, errorElement: <ErrorPage /> },
   { path: "/signup", element: <SignUp />, errorElement: <ErrorPage /> },
   { path: "/cart", element: <Cart />, errorElement: <ErrorPage /> },
-  { path: "/abate", element: <Abate />, errorElement: <ErrorPage /> },
+  { path: "/abate/:orderId", element: <Abate />, errorElement: <ErrorPage /> },
   { path: "/introduce", element: <Introduce />, errorElement: <ErrorPage /> },
   { path: "/all-product", element: <AllProduct />, errorElement: <ErrorPage /> },
   { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },

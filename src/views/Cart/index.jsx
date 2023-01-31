@@ -10,6 +10,7 @@ import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
 import { fetchListAbate } from "../Abate/abateSlice";
 import "../../utils/styles/cart.container.css";
+import { System } from "../../constants/system.constants";
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -45,33 +46,28 @@ const Cart = () => {
         return;
     }
 
-    const BuyListAbate = () => {
-        listCart.filter(el => {
-            const ob = {
-                ...el,
-                user: {
-                    name: "",
-                    email: "",
-                    address: "",
-                    phone: "",
-                    note: "",
-                    pay_dilivery: ""
-                },
-                dateOrder: ""
-            }
-            if (el.isCheckBox) {
-                push(ref(database, 'Abate'), ob)
-                    .then(() => {
-                        dispatch(fetchOrderProduct());
-                        dispatch(fetchListAbate());
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    });
-            }
+    const BuyListAbate = async () => {
+        const products = listCart.filter(el => {
+            return el.isCheckBox;
+        });
+        const object = {
+            name: "",
+            email: products[0].user,
+            address: "",
+            phone: "",
+            note: "",
+            pay_dilivery: "",
+            products,
+            status: System.STATUS.ORDERING,
         }
-        );
-        navigate(`/abate`)
+        const newAbate = await push(ref(database, 'Abate'), object)
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        navigate(`/abate/${newAbate.key}`);
     }
     return (
         <LayoutCart>
@@ -110,7 +106,7 @@ const Cart = () => {
                                 listCart.forEach(el => {
                                     updates.forEach(item => {
                                         if (el.id === item.id) {
-                                            update(ref(database, "Cart/" + el.key), {
+                                            update(ref(database, "/Cart/" + el.key), {
                                                 orderNumber: item.orderNumber,
                                                 productId: item.productId,
                                                 user: item.user

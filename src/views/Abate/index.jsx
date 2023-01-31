@@ -6,14 +6,18 @@ import { database } from "../../firebase";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
-import { fetchListAbate } from "./abateSlice";
+import { Link, useParams } from "react-router-dom";
+import { fetchAbateById } from "./abateSlice";
 import "../../utils/styles/userinfo.css";
+import { async } from "@firebase/util";
+import { System } from "../../constants/system.constants";
 
 const Abate = () => {
     const dispatch = useDispatch();
-    const abateList = useSelector(({ abate }) => abate.abateList);
-    console.log('abatelist', abateList);
+    const { orderId } = useParams();
+    console.log('orderId', orderId);
+    const abateDetail = useSelector(({ abate }) => abate.abateDetail);
+    console.log('abateDetail', abateDetail);
     const layout = {
         labelCol: {
             span: 5,
@@ -35,7 +39,7 @@ const Abate = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchListAbate());
+        dispatch(fetchAbateById(orderId));
     }, [dispatch]);
 
     useEffect(() => {
@@ -43,44 +47,23 @@ const Abate = () => {
     }, []);
 
 
-    const onFinish = (values) => {
-        // const completeOrder = {
-        //     ...abateList,
-        //     user: values.user,
-        //     dateOrder: new Date()
-        // }
-        // console.log('oerder complete', completeOrder);
-        // push(ref(database, "Complete"), completeOrder)
-        //     .then(() => {
-        //         toast.success('Order thành công!')
-        //         remove(ref(database, "Abate"))
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //         toast.error('Order không thành công!')
-        //     })
-        abateList?.map(async (el) => {
-            await remove(ref(database, "Abate/"))
-                .then(() => {
-                    console.log('remove success')
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-            await update(ref(database, "Abate/" + el.key), {
-                ...el,
-                user: values.user,
-                dateOrder: new Date(),
-            })
-                .then(() => {
-                    dispatch(fetchListAbate());
-                    toast.success('Order thành công')
-                })
-                .catch((error) => {
-                    console.log(error)
-                    toast.error('Order không thành công');
-                })
-        });
+    const onFinish = async(values) => {
+        await update(ref(database, "/Abate/" + orderId), {
+            name: values.user.name,
+            email: values.user.email,
+            address: values.user.address,
+            phone: values.user.phone,
+            note: values.user.note,
+            pay_dilivery: values.user.pay_dilivery,
+            products: abateDetail.products,
+            status: System.STATUS.ORDERED,
+        })
+        .then(() => {
+            toast.success('Order thành công!')
+        })
+        .catch((error) => {
+            toast.error('order không thành công')
+        })
 
     };
     return (
@@ -94,7 +77,21 @@ const Abate = () => {
             >
                 <div className="abate-info-left">
                     <div className="m-billing-info">
-                        <h2>Thông tin thanh toán</h2>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItem: 'center',
+                        }}>
+                            <h2>Thông tin thanh toán</h2>
+                            <p style={{
+                                padding: '5px 20px',
+                                border: '2px solid #71973e',
+                                color: '#71973e',
+                                fontWeight: '900',
+                                marginLeft: '10px',
+                            }}>ORDERED</p>
+                        </div>
+                        
                         <div className="m-billing-info-step">
                             <p>Xin hãy nhập thông tin thanh toán</p>
                         </div>
@@ -171,7 +168,7 @@ const Abate = () => {
                 <div className="cofirm-payment">
                     <h2>Đơn hàng</h2>
                     <div className="product-cofirm-payment">
-                        {abateList && abateList?.map((item, index) => {
+                        {(abateDetail?.products || [])?.map((item, index) => {
                             return (
                                 <div className="info-product-abate" key={item.id}>
                                     <img src={item.image} alt="" />
@@ -189,7 +186,7 @@ const Abate = () => {
                     <div className="payment-info">
                         <div>
                             <p>Tạm tính thanh toán</p>
-                            <p>{abateList?.reduce(
+                            <p>{(abateDetail?.products || [])?.reduce(
                                 (accumulator, currentValue) => accumulator + Number(Number(currentValue?.price?.split(" ").join('')) * Number(currentValue?.orderNumber)),
                                 0
                             )?.toLocaleString()} VND</p>
@@ -202,7 +199,7 @@ const Abate = () => {
                     <div className="price-payment">
                         <div>
                             <p>Tổng thanh toán</p>
-                            <p>{abateList?.reduce(
+                            <p>{(abateDetail?.products || [])?.reduce(
                                 (accumulator, currentValue) => accumulator + Number(Number(currentValue?.price?.split(" ").join('')) * Number(currentValue?.orderNumber)),
                                 0
                             )?.toLocaleString()} VND</p>
@@ -222,7 +219,7 @@ const Abate = () => {
                         <Link to='/cart' onClick={() => {
                             remove(ref(database, "Abate"))
                                 .then(() => {
-                                    dispatch(fetchListAbate());
+                                    dispatch(fetchAbateById(orderId));
                                 })
                                 .catch((error) => {
                                     console.log(error)
