@@ -128,10 +128,10 @@ export const fetchAddOrderItem = createAsyncThunk(
         isCheckBox: false,
       })
         .then(() => {
-          toast.success('Add to Cart success!')
+          toast.success('Thêm vào giỏ hàng thành công!')
         })
         .catch(() => {
-          toast.error('Add to Cart fail!')
+          toast.error('Thêm vào giỏ hàng thất bại!')
         })
     } else {
       const ob = {
@@ -142,10 +142,10 @@ export const fetchAddOrderItem = createAsyncThunk(
       }
       push(ref(database, 'Cart'), ob)
         .then(() => {
-          toast.success('Add to Cart success!')
+          toast.success('Thêm vào giỏ hàng thành công!')
         })
         .catch((error) => {
-          toast.error('Add to Cart fail!')
+          toast.error('Thêm vào giỏ hàng thất bại!')
         });
     }
   }

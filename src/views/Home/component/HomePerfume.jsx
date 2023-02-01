@@ -9,8 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
-import { push, ref, update } from "firebase/database";
-import { database } from "../../../firebase";
 import { Link } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
 
@@ -19,7 +17,6 @@ function HomePerfume(props) {
     const { product, gender } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    const listCart = useSelector(({ order }) => order.orderProduct);
 
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
@@ -49,9 +46,13 @@ function HomePerfume(props) {
     };
 
     const addOrderItem = async (item) => {
-        const params = { ...item, user }
-        await dispatch(fetchAddOrderItem(params));
-        await dispatch(fetchOrderProduct());
+        try {
+            const params = { ...item, user }
+            await dispatch(fetchAddOrderItem(params));
+            await dispatch(fetchOrderProduct());
+        } catch (error) {
+            toast.error('Thêm không thành công')
+        }
     }
     return (
         <div style={{ marginBottom: "30px" }}>

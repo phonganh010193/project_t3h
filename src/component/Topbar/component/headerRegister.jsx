@@ -25,7 +25,7 @@ const HeaderRegister = () => {
                                             fetchSignOut();
                                         }}>Logout</Link>
                                     </div>
-                                    <div><Link to="/history-order">Lịch sử mua hàng</Link></div>
+                                    <div><Link to="/abate">Lịch sử mua hàng</Link></div>
                                 </div>
                             }
                         </>

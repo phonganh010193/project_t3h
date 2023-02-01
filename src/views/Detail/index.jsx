@@ -7,8 +7,6 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
 import { fetchProductDetail } from "./perfumeDetailSlice";
-import { push, ref, update } from "firebase/database";
-import { database } from "../../firebase";
 import PerfumeDetailInfo from "./component/perfumeDetailInfo";
 import { Tabs } from "antd";
 import "../../utils/styles/perfume.detail.css";
@@ -31,9 +29,13 @@ const Detail = () => {
     }, []);
 
     const addOrderItem = async (item) => {
-        const params = { ...item, user }
-        await dispatch(fetchAddOrderItem(params));
-        await dispatch(fetchOrderProduct());
+        try {
+            const params = { ...item, user }
+            await dispatch(fetchAddOrderItem(params));
+            await dispatch(fetchOrderProduct());
+        } catch (error) {
+            toast.error('Thêm không thành công')
+        }
     }
 
     const onChange = (key) => {

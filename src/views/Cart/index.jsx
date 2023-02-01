@@ -8,15 +8,16 @@ import { fetchOrderProduct, updateListCart } from "./orderSlice";
 import { push, ref, remove, update } from "firebase/database";
 import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
-import { fetchListAbate } from "../Abate/abateSlice";
 import "../../utils/styles/cart.container.css";
 import { System } from "../../constants/system.constants";
+
+
 
 const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const listCart = useSelector(({ order }) => order.orderProduct);
-
+    
     useEffect(() => {
         dispatch(fetchOrderProduct());
     }, [dispatch]);
@@ -31,13 +32,13 @@ const Cart = () => {
 
     const deleteListCart = () => {
         remove(ref(database, 'Cart'))
-            .then(() => {
-                dispatch(fetchOrderProduct());
-                toast.success('Delete Cart success!')
-            })
-            .catch((error) => {
-                toast.success('Delete Cart fail!')
-            })
+        .then(() => {
+            dispatch(fetchOrderProduct());
+            toast.success('Delete Cart success!')
+        })
+        .catch((error) => {
+            toast.success('Delete Cart fail!')
+        })
     }
 
 
@@ -144,8 +145,6 @@ const Cart = () => {
                             }
                         }}>Thanh toán</button>
                     </div>
-
-
                 </div>
             </div>
         </LayoutCart>

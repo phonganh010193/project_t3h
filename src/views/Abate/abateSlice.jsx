@@ -24,7 +24,7 @@ export const fetchRemoveAbatebyId = createAsyncThunk(
   async (abateId, thunkAPI) => {
     return remove(ref(database, "/Abate/" + abateId))
       .then((data) => {
-        toast.warning('Thanh toán chưa hoàn thành!')
+        toast.warning('Đặt hàng chưa hoàn thành!')
       }).catch((error) => {
         console.error(error);
       });

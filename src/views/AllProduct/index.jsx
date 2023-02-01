@@ -1,10 +1,8 @@
-import { push, ref, update } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Layout from "../../component/Layout";
-import { database } from "../../firebase";
 import "../../utils/styles/allproduct.css";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,9 +56,13 @@ const AllProduct = () => {
     }
 
     const addOrderItem = async (item) => {
-        const params = { ...item, user }
-        await dispatch(fetchAddOrderItem(params));
-        await dispatch(fetchOrderProduct());
+        try {
+            const params = { ...item, user }
+            await dispatch(fetchAddOrderItem(params));
+            await dispatch(fetchOrderProduct());
+        } catch (error) {
+            toast.error('Thêm không thành công')
+        }
     }
     return (
         <Layout>

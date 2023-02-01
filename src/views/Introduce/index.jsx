@@ -1,4 +1,3 @@
-import Layout from "../../component/Layout";
 import LayoutCart from "../../component/LayoutCart";
 import "../../utils/styles/introduce.css";
 

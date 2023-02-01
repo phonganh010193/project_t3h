@@ -1,11 +1,9 @@
-import { push, ref, update } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LayoutCart from "../../component/LayoutCart";
 import { UserContext } from "../../container/useContext";
-import { database } from "../../firebase";
 import "../../utils/styles/search.css";
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
 import { fetchSearchProduct } from "./searchSlice";
@@ -18,7 +16,6 @@ const SearchList = () => {
     const { user } = useContext(UserContext);
     const dispatch = useDispatch();
     const listSearch = useSelector(({ search }) => search.searchList)
-    const listCart = useSelector(({ order }) => order.orderProduct)
     useEffect(() => {
         dispatch(fetchSearchProduct(searchName));
         dispatch(fetchOrderProduct());
@@ -36,9 +33,13 @@ const SearchList = () => {
     }
 
     const addOrderItem = async (item) => {
-        const params = { ...item, user }
-        await dispatch(fetchAddOrderItem(params));
-        await dispatch(fetchOrderProduct());
+        try {
+            const params = { ...item, user }
+            await dispatch(fetchAddOrderItem(params));
+            await dispatch(fetchOrderProduct());
+        } catch (error) {
+            toast.error('Thêm không thành công')
+        }
     }
     return (
         <LayoutCart>

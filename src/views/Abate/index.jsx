@@ -10,58 +10,68 @@ import { fetchAbateById, fetchRemoveAbatebyId } from "./abateSlice";
 import "../../utils/styles/abate.css";
 import { System } from "../../constants/system.constants";
 import IMAGE from "../../contact";
+import { usePrevious } from "../../utils/hooks";
+import { useState } from "react";
+
+const validateMessages = {
+    required: '${label} is required!',
+    types: {
+        email: '${label} is not a valid email!',
+        number: '${label} is not a valid number!',
+    },
+    number: {
+        range: '${label} must be between ${min} and ${max}',
+    },
+};
+
+const layout = {
+    labelCol: {
+        span: 5,
+    },
+    wrapperCol: {
+        span: 14,
+    },
+};
 
 const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
+    const isLoading = useSelector(({ abate }) => abate.isLoading);
+    const prevIsLoading = usePrevious(isLoading);
+    const [fields, setFields] = useState([]);
 
-    const fields = [
-        {
-            name: ['user', 'name'],
-            value: abateDetail?.name,
-        },
-        {
-            name: ['user', 'email'],
-            value: abateDetail?.email,
-        },
-        {
-            name: ['user', 'address'],
-            value: abateDetail?.address,
-        },
-        {
-            name: ['user', 'phone'],
-            value: abateDetail?.phone,
-        },
-        {
-            name: ['user', 'note'],
-            value: abateDetail?.note,
-        },
-        {
-            name: ['user', 'pay_dilivery'],
-            value: abateDetail?.pay_dilivery,
+    useEffect(() => {
+        if (!isLoading && prevIsLoading) {
+            setFields([
+                {
+                    name: ['user', 'name'],
+                    value: abateDetail?.name,
+                },
+                {
+                    name: ['user', 'email'],
+                    value: abateDetail?.email,
+                },
+                {
+                    name: ['user', 'address'],
+                    value: abateDetail?.address,
+                },
+                {
+                    name: ['user', 'phone'],
+                    value: abateDetail?.phone,
+                },
+                {
+                    name: ['user', 'note'],
+                    value: abateDetail?.note,
+                },
+                {
+                    name: ['user', 'pay_dilivery'],
+                    value: abateDetail?.pay_dilivery,
+                }
+            ]);
         }
-    ];
-
-    const layout = {
-        labelCol: {
-            span: 5,
-        },
-        wrapperCol: {
-            span: 14,
-        },
-    };
-
-    const validateMessages = {
-        required: '${label} is required!',
-        types: {
-            email: '${label} is not a valid email!',
-            number: '${label} is not a valid number!',
-        },
-        number: {
-            range: '${label} must be between ${min} and ${max}',
-        },
-    };
+    }, [isLoading]);
+    
 
     useEffect(() => {
         dispatch(fetchAbateById(orderId));
@@ -69,34 +79,42 @@ const Abate = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }, []);
-
+    },[]);
+    
 
     const onFinish = async (values) => {
-        await update(ref(database, "/Abate/" + orderId), {
-            name: values.user.name,
-            email: values.user.email,
-            address: values.user.address,
-            phone: values.user.phone,
-            note: values.user.note,
-            pay_dilivery: values.user.pay_dilivery,
-            products: abateDetail?.products,
-            status: System.STATUS.ORDERED,
-            dateOrder: new Date()
-        })
-            .then(() => {
-                toast.success('Order thành công!')
-                dispatch(fetchAbateById(orderId));
+        try {
+            await update(ref(database, "/Abate/" + orderId), {
+                name: values.user.name,
+                email: values.user.email,
+                address: values.user.address,
+                phone: values.user.phone,
+                note: values.user.note,
+                pay_dilivery: values.user.pay_dilivery,
+                products: abateDetail?.products,
+                status: System.STATUS.ORDERED,
+                dateOrder: new Date()
             })
-            .catch((error) => {
-                toast.error('order không thành công')
-            })
-
+                .then(() => {
+                    toast.success('Order thành công!')
+                    dispatch(fetchAbateById(orderId));
+                })
+                .catch((error) => {
+                    toast.error('order không thành công')
+                })
+        } catch (error) {
+            toast.error('order không thành công')
+        }
     };
 
     const removeAbateById = async (orderId) => {
-        await dispatch(fetchRemoveAbatebyId(orderId));
-        await dispatch(fetchAbateById(orderId));
+        try {
+            await dispatch(fetchRemoveAbatebyId(orderId));
+            await dispatch(fetchAbateById(orderId));
+        } catch (error) {
+            toast.error('Xóa không thành công')
+        }
+        
     }
     return (
         <div className="container abate-container">
@@ -264,7 +282,7 @@ const Abate = () => {
                             <Link to='/'>Tiếp tục mua sắm</Link>
                             :
                             <Link to='/cart' onClick={() => {
-                                removeAbateById(orderId);
+                                removeAbateById(orderId)
                             }}>Quay về Giỏ hàng</Link>
                         }
                     </div>

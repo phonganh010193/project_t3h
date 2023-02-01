@@ -24,7 +24,7 @@ const routerName = createBrowserRouter([
   { path: "/introduce", element: <Introduce />, errorElement: <ErrorPage /> },
   { path: "/all-product", element: <AllProduct />, errorElement: <ErrorPage /> },
   { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },
-  { path: "/history-order", element: <HistoryOrder />, errorElement: <ErrorPage /> },
+  { path: "/abate", element: <HistoryOrder />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
 ]);
 

@@ -10,7 +10,6 @@ import { fetchHistoryOrder } from "./historySlice";
 const HistoryOrder = () => {
     const dispatch = useDispatch();
     const historyOrderList = useSelector(({ history }) => history.historyList);
-    console.log('historyorderList', historyOrderList);
     useEffect(() => {
         dispatch(fetchHistoryOrder());
     }, [dispatch])
