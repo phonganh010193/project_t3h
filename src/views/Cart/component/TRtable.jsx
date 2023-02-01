@@ -38,7 +38,7 @@ const TRtable = ({ item, updateOrder }) => {
             <td>
                 <img className="image-cart" src={item.image} alt="" />
             </td>
-            <td>{item.productName}</td>
+            <td><p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p></td>
             <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
             <td>
                 <input style={{ width: "50px" }} type="number" value={number} className="text-center" min="1" max="1000" onChange={(text) => {

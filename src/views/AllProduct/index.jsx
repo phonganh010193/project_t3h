@@ -81,7 +81,7 @@ const AllProduct = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <p>{item.productName}</p>
+                                <p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
                                 <div className="price">
                                     <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                     <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
