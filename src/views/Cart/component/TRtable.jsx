@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchOrderProduct } from "../orderSlice";
 
-const TRtable = ({ item, updateOrder, listCart }) => {
+const TRtable = ({ item, updateOrder }) => {
     const dispatch = useDispatch();
     const [number, setNumber] = useState(item.orderNumber);
     const [isCheckBox, setISCheckBox] = useState(false);
@@ -24,6 +24,7 @@ const TRtable = ({ item, updateOrder, listCart }) => {
 
     return (
         <tr key={item.id}>
+
             <td><input type="checkbox" checked={isCheckBox} onChange={() => {
                 setISCheckBox(!isCheckBox);
                 const value = {
@@ -53,7 +54,7 @@ const TRtable = ({ item, updateOrder, listCart }) => {
                     updateOrder(value);
                 }} />
             </td>
-            <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * number).toLocaleString()} VND</td>
+            <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(item.orderNumber)).toLocaleString()} VND</td>
             <td><img className="image-delete" src={IMAGE.delete} alt="" onClick={() => {
                 deleItemOrder(item)
             }} /></td>

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { useRef, useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { System } from "../../../constants/system.constants";
 
 function SidebarContent(props) {
     const { listShowProduct, checkShow } = props;
@@ -35,7 +36,7 @@ function SidebarContent(props) {
     return (
         <div className="seling-product">
             <div className="product-title">
-                <h4>{checkShow === 1 ? "SẢN PHẨM BÁN CHẠY" : "SẢN PHẨM MỚI VỀ"}</h4>
+                <h4>{checkShow === System.CHECKPRODUCT.BESTSELL ? "SẢN PHẨM BÁN CHẠY" : "SẢN PHẨM MỚI VỀ"}</h4>
                 <div className="btn-prev-next">
                     <button onClick={() => goPrev()}>
                         <i className="fa fa-angle-left"></i>
@@ -54,7 +55,7 @@ function SidebarContent(props) {
                             }}>
                                 <img src={item.image} alt="" />
                                 <div className="product-info">
-                                    <p>{item.productName}</p>
+                                    <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
                                     <div className="produc-price">
                                         <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
@@ -72,7 +73,7 @@ function SidebarContent(props) {
                             }}>
                                 <img src={item.image} alt="" />
                                 <div className="product-info">
-                                    <p>{item.productName}</p>
+                                    <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
                                     <div className="produc-price">
                                         <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
@@ -90,7 +91,7 @@ function SidebarContent(props) {
                             }}>
                                 <img src={item.image} alt="" />
                                 <div className="product-info">
-                                    <p>{item.productName}</p>
+                                    <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
                                     <div className="produc-price">
                                         <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>

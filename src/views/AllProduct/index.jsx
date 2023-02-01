@@ -8,7 +8,7 @@ import { database } from "../../firebase";
 import "../../utils/styles/allproduct.css";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchOrderProduct } from "../Cart/orderSlice";
+import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
 import { UserContext } from "../../container/useContext";
 
 const take = 9;
@@ -58,41 +58,9 @@ const AllProduct = () => {
     }
 
     const addOrderItem = async (item) => {
-        const findItem = listCart.find(el => item.id === el.productId)
-        if (findItem) {
-            listCart.forEach(el => {
-                if (el.productId === item.id) {
-                    update(ref(database, "Cart/" + el.key), {
-                        orderNumber: parseFloat(el.orderNumber) + 1,
-                        productId: el.productId,
-                        user: el.user,
-                        isCheckBox: false,
-                    })
-                        .then(() => {
-                            dispatch(fetchOrderProduct());
-                            toast.success('Add to Cart success!')
-                        })
-                        .catch(() => {
-                            toast.error('Add to Cart fail!')
-                        })
-                }
-            });
-        } else {
-            const ob = {
-                user: user.email,
-                productId: item.id,
-                orderNumber: 1,
-                isCheckBox: false,
-            }
-            await push(ref(database, 'Cart'), ob)
-                .then(() => {
-                    dispatch(fetchOrderProduct());
-                    toast.success('Add to Cart success!')
-                })
-                .catch((error) => {
-                    toast.error('Add to Cart fail!')
-                });
-        }
+        const params = { ...item, user }
+        await dispatch(fetchAddOrderItem(params));
+        await dispatch(fetchOrderProduct());
     }
     return (
         <Layout>

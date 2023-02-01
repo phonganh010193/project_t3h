@@ -5,6 +5,7 @@ import SidebarContent from "./sidebar-content";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategory } from "./sibarSlice";
 import { fetchProduct } from "../../views/Perfume/perfumeInfoSlice";
+import { System } from "../../constants/system.constants";
 
 function Sidebar() {
     const { categoryId } = useParams();
@@ -42,13 +43,13 @@ function Sidebar() {
             <div className="sidebar-content-item">
                 <SidebarContent
                     listShowProduct={listBestSell}
-                    checkShow={1}
+                    checkShow={System.CHECKPRODUCT.BESTSELL}
                 />
             </div>
             <div className="sidebar-content-item">
                 <SidebarContent
                     listShowProduct={listNewAdd}
-                    checkShow={2}
+                    checkShow={System.CHECKPRODUCT.NEWPRODUCT}
                 />
             </div>
         </div>

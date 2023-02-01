@@ -1,23 +1,48 @@
-import { push, ref, remove, update } from "firebase/database";
+import { ref, remove, update } from "firebase/database";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LayoutCart from "../../component/LayoutCart";
 import { database } from "../../firebase";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useParams } from "react-router-dom";
-import { fetchAbateById } from "./abateSlice";
-import "../../utils/styles/userinfo.css";
-import { async } from "@firebase/util";
+import { fetchAbateById, fetchRemoveAbatebyId } from "./abateSlice";
+import "../../utils/styles/abate.css";
 import { System } from "../../constants/system.constants";
+import IMAGE from "../../contact";
 
 const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
-    console.log('orderId', orderId);
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
-    console.log('abateDetail', abateDetail);
+
+    const fields = [
+        {
+            name: ['user', 'name'],
+            value: abateDetail?.name,
+        },
+        {
+            name: ['user', 'email'],
+            value: abateDetail?.email,
+        },
+        {
+            name: ['user', 'address'],
+            value: abateDetail?.address,
+        },
+        {
+            name: ['user', 'phone'],
+            value: abateDetail?.phone,
+        },
+        {
+            name: ['user', 'note'],
+            value: abateDetail?.note,
+        },
+        {
+            name: ['user', 'pay_dilivery'],
+            value: abateDetail?.pay_dilivery,
+        }
+    ];
+
     const layout = {
         labelCol: {
             span: 5,
@@ -40,14 +65,14 @@ const Abate = () => {
 
     useEffect(() => {
         dispatch(fetchAbateById(orderId));
-    }, [dispatch]);
+    }, [dispatch, orderId]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
 
 
-    const onFinish = async(values) => {
+    const onFinish = async (values) => {
         await update(ref(database, "/Abate/" + orderId), {
             name: values.user.name,
             email: values.user.email,
@@ -55,27 +80,39 @@ const Abate = () => {
             phone: values.user.phone,
             note: values.user.note,
             pay_dilivery: values.user.pay_dilivery,
-            products: abateDetail.products,
+            products: abateDetail?.products,
             status: System.STATUS.ORDERED,
+            dateOrder: new Date()
         })
-        .then(() => {
-            toast.success('Order thành công!')
-        })
-        .catch((error) => {
-            toast.error('order không thành công')
-        })
+            .then(() => {
+                toast.success('Order thành công!')
+                dispatch(fetchAbateById(orderId));
+            })
+            .catch((error) => {
+                toast.error('order không thành công')
+            })
 
     };
+
+    const removeAbateById = async (orderId) => {
+        await dispatch(fetchRemoveAbatebyId(orderId));
+        await dispatch(fetchAbateById(orderId));
+    }
     return (
-        <LayoutCart>
+        <div className="container abate-container">
             <Form
                 {...layout}
                 name="nest-messages"
                 onFinish={onFinish}
                 validateMessages={validateMessages}
+                disabled={abateDetail?.status === System.STATUS.ORDERED ? true : false}
                 className="abate-info"
+                fields={fields}
             >
                 <div className="abate-info-left">
+                    <img src={IMAGE.logo} alt="" style={{
+                        width: "100px"
+                    }} />
                     <div className="m-billing-info">
                         <div style={{
                             display: 'flex',
@@ -83,15 +120,18 @@ const Abate = () => {
                             alignItem: 'center',
                         }}>
                             <h2>Thông tin thanh toán</h2>
-                            <p style={{
-                                padding: '5px 20px',
-                                border: '2px solid #71973e',
-                                color: '#71973e',
-                                fontWeight: '900',
-                                marginLeft: '10px',
-                            }}>ORDERED</p>
+                            {abateDetail?.status === System.STATUS.ORDERED ?
+                                <p style={{
+                                    padding: '5px 20px',
+                                    border: '2px solid #71973e',
+                                    color: '#71973e',
+                                    fontWeight: '900',
+                                    marginLeft: '10px',
+                                }}>ORDERED</p>
+                                : null
+                            }
                         </div>
-                        
+
                         <div className="m-billing-info-step">
                             <p>Xin hãy nhập thông tin thanh toán</p>
                         </div>
@@ -174,7 +214,7 @@ const Abate = () => {
                                     <img src={item.image} alt="" />
                                     <div style={{ textAlign: "left" }}>
                                         <p>{item.productName}</p>
-                                        <p>Gía: {Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>Giá: {Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>Số lượng: {item.orderNumber}</p>
                                         <p>Thành tiền: {(Number(item.price.split(" ").join('')) * item.orderNumber).toLocaleString()} VND</p>
                                     </div>
@@ -211,24 +251,26 @@ const Abate = () => {
                             }}
                         >
                             <Button type="primary" htmlType="submit">
-                                Xác nhận ĐĂT HÀNG
+                                {abateDetail?.status === System.STATUS.ORDERED ? <p style={{
+                                    margin: "0px",
+                                    color: "black"
+                                }}>ĐẶT HÀNG THÀNH CÔNG</p> : "XÁC NHẬN ĐẶT HÀNG"}
                             </Button>
+                            <span></span>
                         </Form.Item>
                     </div>
                     <div style={{ marginLeft: "5px" }}>
-                        <Link to='/cart' onClick={() => {
-                            remove(ref(database, "Abate"))
-                                .then(() => {
-                                    dispatch(fetchAbateById(orderId));
-                                })
-                                .catch((error) => {
-                                    console.log(error)
-                                })
-                        }}>Quay về Giỏ hàng</Link>
+                        {abateDetail?.status === System.STATUS.ORDERED ?
+                            <Link to='/'>Tiếp tục mua sắm</Link>
+                            :
+                            <Link to='/cart' onClick={() => {
+                                removeAbateById(orderId);
+                            }}>Quay về Giỏ hàng</Link>
+                        }
                     </div>
                 </div>
             </Form>
-        </LayoutCart>
+        </div>
     )
 }
 

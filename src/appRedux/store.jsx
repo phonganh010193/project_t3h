@@ -5,6 +5,7 @@ import detail from "../views/Detail/perfumeDetailSlice";
 import order from "../views/Cart/orderSlice";
 import search from "../views/SearchList/searchSlice";
 import abate from "../views/Abate/abateSlice";
+import history from "../views/HistoryOrder/historySlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     detail,
     order,
     search,
-    abate
+    abate,
+    history
   },
 })

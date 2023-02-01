@@ -59,6 +59,7 @@ const Cart = () => {
             pay_dilivery: "",
             products,
             status: System.STATUS.ORDERING,
+            dateOrder: ""
         }
         const newAbate = await push(ref(database, 'Abate'), object)
             .then((data) => {
@@ -73,7 +74,7 @@ const Cart = () => {
         <LayoutCart>
             <div className="cart-container">
                 <div className="header-cart">
-                    <p>Trang chủ/ Giỏ hàng</p>
+                    <p>Trang chủ/ <span style={{ color: "rgb(45, 131, 86)" }}>Giỏ hàng</span></p>
                 </div>
                 <div className="cart-table-info">
                     <table className="table table-bordered text-center">
@@ -91,7 +92,7 @@ const Cart = () => {
                         <tbody>
                             {listCart && listCart.map((item, index) => {
                                 return (
-                                    <TRtable key={item.id} item={item} updateOrder={updateOrder} listCart={listCart} />
+                                    <TRtable key={item.id} item={item} updateOrder={updateOrder} />
                                 )
                             })}
                         </tbody>

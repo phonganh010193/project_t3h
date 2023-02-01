@@ -2,26 +2,25 @@ import "../../../utils/styles/homeperfume.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useContext, useRef, useState } from "react";
-import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
-import { useEffect } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from "react-redux";
+import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../../container/useContext";
-import { fetchOrderProduct } from "../../Cart/orderSlice";
+import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
 import { push, ref, update } from "firebase/database";
 import { database } from "../../../firebase";
+import { Link } from "react-router-dom";
+import { System } from "../../../constants/system.constants";
 
-function HomePerfumeMen(props) {
+
+function HomePerfume(props) {
+    const { product, gender } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const listCart = useSelector(({ order }) => order.orderProduct);
 
-
-    const { product } = props;
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
@@ -49,47 +48,16 @@ function HomePerfumeMen(props) {
         slideRef?.current?.slickNext()
     };
 
-    const addOrderItem = (item) => {
-        const findItem = listCart.find(el => item.id === el.productId)
-        if (findItem) {
-            
-            update(ref(database, "Cart/" + findItem.key), {
-                orderNumber: parseFloat(findItem.orderNumber) + 1,
-                productId: findItem.productId,
-                user: findItem.user,
-                isCheckBox: false,
-            })
-                .then(() => {
-                    dispatch(fetchOrderProduct());
-                    toast.success('Add to Cart success!')
-                })
-                .catch(() => {
-                    toast.error('Add to Cart fail!')
-                })
-           
-        } else {
-            const ob = {
-                user: user.email,
-                productId: item.id,
-                orderNumber: 1,
-                isCheckBox: false,
-            }
-            push(ref(database, 'Cart'), ob)
-                .then(() => {
-                    dispatch(fetchOrderProduct());
-                    toast.success('Add to Cart success!')
-                })
-                .catch((error) => {
-                    toast.error('Add to Cart fail!')
-                });
-        }
+    const addOrderItem = async (item) => {
+        const params = { ...item, user }
+        await dispatch(fetchAddOrderItem(params));
+        await dispatch(fetchOrderProduct());
     }
-
     return (
-        <div>
-            <div className="seling-home-women">
-                <div className="home-women-title">
-                    <h4>NƯỚC HOA NAM</h4>
+        <div style={{ marginBottom: "30px" }}>
+            <div className="seling-home-perfume">
+                <div className="home-perfume-title">
+                    <h4>{gender === System.GENDER.WOMMEN ? "NƯỚC HOA NỮ" : "NƯỚC HOA NAM"}</h4>
                     <div className="btn-prev-next">
                         <button onClick={() => goPrev()}>
                             <i className="fa fa-angle-left"></i>
@@ -100,12 +68,12 @@ function HomePerfumeMen(props) {
                     </div>
                 </div>
                 <Slider {...sliderSettings} ref={slideRef}>
-                    <div className="home-women-content">
+                    <div className="home-perfume-content">
                         {product1 && product1.map((el, index) => {
                             return (
-                                <div className="women-item" key={el.id}>
-                                    <div className="women-detail">
-                                        <img src={el.image} className="home-women-image" alt="" />
+                                <div className="home-perfume-item" key={el.id}>
+                                    <div className="home-perfume-detail">
+                                        <img src={el.image} className="home-perfume-image" alt="" />
                                         <div className="btn-children">
                                             <div className="btn-content">
                                                 <button onClick={() => {
@@ -115,7 +83,7 @@ function HomePerfumeMen(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{ textAlign: "center", width: "200px" }}>{el.productName}</p>
+                                    <p style={{ textAlign: "center", textTransform: "capitalize" }}>{el.productName.toLowerCase()}</p>
                                     <div className="price">
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
@@ -124,12 +92,12 @@ function HomePerfumeMen(props) {
                             )
                         })}
                     </div>
-                    <div className="home-women-content">
+                    <div className="home-perfume-content">
                         {product2 && product2.map((el, index) => {
                             return (
-                                <div className="women-item" key={el.id}>
-                                    <div className="women-detail">
-                                        <img src={el.image} className="home-women-image" alt="" />
+                                <div className="home-perfume-item" key={el.id}>
+                                    <div className="home-perfume-detail">
+                                        <img src={el.image} className="home-perfume-image" alt="" />
                                         <div className="btn-children">
                                             <div className="btn-content">
                                                 <button onClick={() => {
@@ -139,7 +107,7 @@ function HomePerfumeMen(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{ textAlign: "center", width: "200px" }}>{el.productName}</p>
+                                    <p style={{ textAlign: "center", textTransform: "capitalize" }}>{el.productName.toLowerCase()}</p>
                                     <div className="price">
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
@@ -148,12 +116,12 @@ function HomePerfumeMen(props) {
                             )
                         })}
                     </div>
-                    <div className="home-women-content">
+                    <div className="home-perfume-content">
                         {product3 && product3.map((el, index) => {
                             return (
-                                <div className="women-item" key={el.id}>
-                                    <div className="women-detail">
-                                        <img src={el.image} className="home-women-image" alt="" />
+                                <div className="home-perfume-item" key={el.id}>
+                                    <div className="home-perfume-detail">
+                                        <img src={el.image} className="home-perfume-image" alt="" />
                                         <div className="btn-children">
                                             <div className="btn-content">
                                                 <button onClick={() => {
@@ -163,7 +131,7 @@ function HomePerfumeMen(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{ textAlign: "center", width: "200px" }}>{el.productName}</p>
+                                    <p style={{ textAlign: "center", textTransform: "capitalize" }}>{el.productName.toLowerCase()}</p>
                                     <div className="price">
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
@@ -172,14 +140,15 @@ function HomePerfumeMen(props) {
                             )
                         })}
                     </div>
+
                 </Slider>
             </div>
             <div className="btn-see-all">
-                <button className="btn-see-all"><Link to={`perfume/1`}>Xem Tất Cả</Link></button>
+                <button className="btn-see-all"><Link to={`perfume/2`}>Xem Tất Cả</Link></button>
             </div>
         </div>
 
     );
 }
 
-export default HomePerfumeMen;
+export default HomePerfume;

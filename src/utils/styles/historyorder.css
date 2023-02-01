@@ -1,0 +1,31 @@
+.history-container {
+    width: 100%;
+}
+
+.history-header {
+    border-bottom: 1px solid gray;
+}
+
+
+.history-info {
+    margin-top: 50px;
+}
+
+.history-item > p{
+    border-bottom: 1px solid #2d8356;
+}
+
+.children img {
+    width: 120px;
+    margin-right: 30px;
+}
+
+.children-info p {
+    margin: 0;
+}
+
+.children {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}

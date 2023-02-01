@@ -1,9 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const HeaderNav = () => {
     const navigate = useNavigate();
     const [values, setValues] = useState('')
+    const searchItem = (value) => {
+        if (!value) {
+            toast.warning('Xin hãy nhập thông tin tìm kiếm');
+            return;
+        } else {
+            navigate(`/search/${value.toLowerCase().split(" ").join('')}`)
+        }
+    }
     return (
         <div className="header-nav">
             <div className="container header-nav-content">
@@ -16,16 +26,15 @@ const HeaderNav = () => {
                     <Link to="#about">DỊCH VỤ MỚI</Link>
                 </div>
                 <div className="search-content">
-                    <form className="form-search">
-                        <input value={values} type="text" placeholder="perfume..." onChange={(event) => {
-                            setValues(event.target.value);
-                        }} />
-                        <button type="submit" onClick={() => {
-                            navigate(`/search/${values.toLowerCase().split(" ").join('')}`)
-                        }}>
-                            Search
-                        </button>
-                    </form>
+                    <input value={values} type="text" placeholder="perfume..." onChange={(event) => {
+                        setValues(event.target.value);
+                    }} />
+                    <button type="submit" onClick={() => {
+                        searchItem(values);
+
+                    }}>
+                        Search
+                    </button>
                 </div>
             </div>
         </div>

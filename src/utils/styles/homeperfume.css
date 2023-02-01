@@ -1,10 +1,10 @@
-.seling-home-women {
+.seling-home-perfume {
     width: 800px;
     margin-left: 30px;
     margin-top: 50px;
 }
 
-.seling-home-women h4 {
+.seling-home-perfume h4 {
     height: 40px;
     line-height: 50px;
     font-size: 16px;
@@ -26,59 +26,37 @@
     transition: .3s ease;
 }
 
-.women-detail img {
+.home-perfume-detail img {
     width: 220px;
     height: 250px;
     margin: 0 auto;
 }
 
-.women-detail {
+.home-perfume-detail {
     position: relative;
 }
 
-.women-detail:hover .home-women-image {
+.home-perfume-detail:hover .home-perfume-image {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
     opacity: 0.5
 }
   
-.women-detail:hover .btn-children {
+.home-perfume-detail:hover .btn-children {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
     opacity: 1;
 }
 
-.home-women-item img {
-    width: 90px;
-    margin-right: 20px;
+.home-perfume-item {
+    width: 230px;
+    margin-top: 30px;
+    position: relative;
 }
 
-.home-women-price p {
-    margin: 0;
-    color: #2d8356;
-    font-weight: 700;
-}
-
-.home-women-price p:last-child {
-    text-decoration: line-through;
-    color: gray !important;
-    font-weight: normal !important;
-}
-
-.home-women-info > p {
-    margin: 0;
-}
-
-.home-women-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.home-women-title {
+.home-perfume-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -111,7 +89,7 @@
     opacity: 0.5;
 }
 
-.home-women-content {
+.home-perfume-content {
     display: flex !important;
     flex-direction: row;
     justify-content: space-around;

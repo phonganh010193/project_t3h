@@ -11,6 +11,7 @@ import SearchList from "../views/SearchList";
 import Introduce from "../views/Introduce";
 import AllProduct from "../views/AllProduct";
 import Cosmetic from "../views/Cosmetic";
+import HistoryOrder from "../views/HistoryOrder";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -23,6 +24,7 @@ const routerName = createBrowserRouter([
   { path: "/introduce", element: <Introduce />, errorElement: <ErrorPage /> },
   { path: "/all-product", element: <AllProduct />, errorElement: <ErrorPage /> },
   { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },
+  { path: "/history-order", element: <HistoryOrder />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
 ]);
 

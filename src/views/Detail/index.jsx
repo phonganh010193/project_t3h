@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../container/useContext";
-import { fetchOrderProduct } from "../Cart/orderSlice";
+import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
 import { fetchProductDetail } from "./perfumeDetailSlice";
 import { push, ref, update } from "firebase/database";
 import { database } from "../../firebase";
@@ -17,8 +17,6 @@ const Detail = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
-    const listCart = useSelector(({ order }) => order.orderProduct);
-
     const detailList = useSelector(({ detail }) => detail.productListDetail);
     const [number, setNumber] = useState(1);
 
@@ -32,45 +30,10 @@ const Detail = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
 
-    const addOrderItem = (item) => {
-        const findItem = listCart.find(el => item.id === el.productId)
-        if (findItem) {
-            listCart.forEach(el => {
-                if (el.productId === item.id) {
-                    update(ref(database, "Cart/" + el.key), {
-                        orderNumber: parseFloat(el.orderNumber) + parseFloat(number),
-                        productId: el.productId,
-                        user: el.user,
-                        isCheckBox: false,
-                    })
-                        .then(() => {
-                            dispatch(fetchOrderProduct());
-                            toast.success('Add to Cart success!')
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                            toast.error('Add to Cart fail!')
-                        })
-                }
-            });
-        } else {
-            const ob = {
-                user: user.email,
-                productId: item.id,
-                orderNumber: number,
-                isCheckBox: false,
-            }
-            console.log('ob', ob);
-            push(ref(database, 'Cart'), ob)
-                .then(() => {
-                    toast.success('Add to Cart success!')
-                    dispatch(fetchOrderProduct());
-                })
-                .catch((error) => {
-                    console.log(error);
-                    toast.error('Add to Cart fail!')
-                });
-        }
+    const addOrderItem = async (item) => {
+        const params = { ...item, user }
+        await dispatch(fetchAddOrderItem(params));
+        await dispatch(fetchOrderProduct());
     }
 
     const onChange = (key) => {

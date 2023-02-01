@@ -4,9 +4,9 @@ import Slider from "react-slick";
 import Layout from "../../component/Layout"
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 import HomeImageInfo from "./component/HomeImageInfo";
-import HomePerfumeMen from "./component/HomePerfumeMen";
-import HomePerfumeWomen from "./component/HomePerfumeWomen";
+import HomePerfume from "./component/HomePerfume";
 import "../../utils/styles/homepage.css";
+import { System } from "../../constants/system.constants";
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -44,9 +44,9 @@ const HomePage = () => {
                         <img src="https://img.fragrancex.com/images/aboutus/aboutus-realfragrances.jpg" alt="" />
                     </div>
                 </Slider>
-                <HomePerfumeMen product={productMen} />
+                <HomePerfume product={productMen} gender={System.GENDER.MEN} />
                 <HomeImageInfo />
-                <HomePerfumeWomen product={productWomen} />
+                <HomePerfume product={productWomen} gender={System.GENDER.WOMMEN} />
             </div>
         </Layout>
     )
