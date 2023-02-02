@@ -8,6 +8,11 @@
         "bestsellers": 1,
         "productName": "PENHALIGON'S ARTHUR (unisex)",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/8727377c-b4b9-4255-9c30-7d6f9c8098c2.webp?v=1670495875373",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/8727377c-b4b9-4255-9c30-7d6f9c8098c2.webp?v=1670495875373"},
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/e7a1c713-4600-4ee4-b910-c11810338cec-jpeg.jpg?v=1670496414317"},
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d303485e-0dbc-4bbe-a0be-eb6edccc0fd2-jpeg.jpg?v=1670496415030"}
+        ],
         "price":"5 900 000",
         "sale_price":"8 000 000",
         "categoryId": "1",
@@ -36,6 +41,10 @@
         "capacity":"80ml",
         "productName": "Ferrari Scuderia Black",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/346ea2d1-ec70-49b9-aa55-449d186a3366.webp?v=1670325966140",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/346ea2d1-ec70-49b9-aa55-449d186a3366.webp?v=1670325966140"}
+            
+        ],
         "price":"590 000",
         "sale_price":"1 000 000",
         "categoryId": "1",
@@ -57,6 +66,10 @@
         "bestsellers": 4,
         "productName": "DSQUARED² Green Wood for men 30ml",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d7f24b7b-1161-4f21-bd98-42958f83ae50.webp?v=1670039502670",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d7f24b7b-1161-4f21-bd98-42958f83ae50.webp?v=1670039502670"},
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/6da5137f-4695-4724-b6b6-941c67af2db7-jpeg.jpg?v=1670039503307"}
+        ],
         "price":"690 000",
         "sale_price":"1 390 000",
         "categoryId": "1",
@@ -78,6 +91,9 @@
         "bestsellers": 5,
         "productName": "NOYA OUD IS GREAT EAU DE PARFUM",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/6be9fd66-2ea0-42f6-bdc0-f6acaf41e695-jpeg.jpg?v=1669690962170",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/6be9fd66-2ea0-42f6-bdc0-f6acaf41e695-jpeg.jpg?v=1669690962170"}
+        ],
         "price":"990 000",
         "sale_price":"1 390 000",
         "categoryId": "1",
@@ -97,6 +113,9 @@
         "bestsellers": 8,
         "productName": "AFNAN VENTANA",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/ab9261df-6aea-467a-a8e2-721c468492c9-jpeg.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/ab9261df-6aea-467a-a8e2-721c468492c9-jpeg.jpg"}
+        ],
         "price":"990 000",
         "sale_price":"1 390 000",
         "categoryId": "1",
@@ -119,6 +138,10 @@
         "bestsellers": 1,
         "productName": "Afnan Supremacy Silver",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cb7c9be7-b272-4665-900e-cf771d046278-jpeg.jpg?v=1669616902083",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cb7c9be7-b272-4665-900e-cf771d046278-jpeg.jpg?v=1669616902083"}
+            
+        ],
         "price":"990 000",
         "sale_price":"1 399 000",
         "categoryId": "1",
@@ -141,6 +164,9 @@
         "bestsellers": 1,
         "productName": "JEAN PAUL GAULTIER ULTRA MALE",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/267fca3e-bd32-4a2e-9f24-d9a62ff27383-jpeg.jpg?v=1668669400123",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/267fca3e-bd32-4a2e-9f24-d9a62ff27383-jpeg.jpg?v=1668669400123"}
+        ],
         "price":"300 000",
         "sale_price":"699 999",
         "categoryId": "1",
@@ -162,6 +188,9 @@
         "bestsellers": 8,
         "productName": "TESTER DG THE ONE EDT FOR MEN",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/4a8a1844-787a-4afb-9866-568b3ec7fd9a.webp?v=1667473805527",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/4a8a1844-787a-4afb-9866-568b3ec7fd9a.webp?v=1667473805527"}
+        ],
         "price":"1 290 000",
         "sale_price":"1 990 000",
         "categoryId": "1",
@@ -178,6 +207,9 @@
         "bestsellers": 5,
         "productName": "Tester DOLCE LIGHT BLUE FOREVER POUR HOMME",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/2ad8110e-f87a-4644-a1d4-69580764fb8c-jpeg.jpg?v=1667469076797",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/2ad8110e-f87a-4644-a1d4-69580764fb8c-jpeg.jpg?v=1667469076797"}
+        ],
         "price":" 1 590 000",
         "sale_price":"2 790 000",
         "categoryId": "1",
@@ -200,6 +232,9 @@
         "bestsellers": 4,
         "productName": "NAUTICA VOYAGE",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/c85bcc62-7dba-43c6-9d33-c476bfb54157-jpeg.jpg?v=1665457439300",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/c85bcc62-7dba-43c6-9d33-c476bfb54157-jpeg.jpg?v=1665457439300"}
+        ],
         "price":"2 500 000",
         "sale_price":"4 990 000",
         "categoryId": "1",
@@ -219,6 +254,9 @@
         "bestsellers": 2,
         "productName": "ARMAF CLUB DE NUIT LIMITED EDITION 105ml",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d341473b-3362-47fc-9deb-17ef69c915bd-jpeg.jpg?v=1663223428427",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/d341473b-3362-47fc-9deb-17ef69c915bd-jpeg.jpg?v=1663223428427"}
+        ],
         "price":"1 850 000",
         "sale_price":"2 399 000",
         "categoryId": "1",
@@ -240,6 +278,9 @@
         "bestsellers": 5,
         "productName": "JEAN PAUL LE BEAU LE PARFUM INTENSE",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/a9a6c9bd-29c1-4169-8878-2709b321d97e-jpeg.jpg?v=1663043458380",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/a9a6c9bd-29c1-4169-8878-2709b321d97e-jpeg.jpg?v=1663043458380"}
+        ],
         "price":"2 490 000",
         "sale_price":"2 599 000",
         "categoryId": "1",
@@ -259,6 +300,9 @@
         "bestsellers": 1,
         "productName": "THOMAS KOSMALA NO 4 Après l’Amour",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/b3dedb3c-85ec-4841-8f6a-6e52c1ec7086-jpeg.jpg?v=1659500019663",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/b3dedb3c-85ec-4841-8f6a-6e52c1ec7086-jpeg.jpg?v=1659500019663"}
+        ],
         "price":"2 790 000",
         "sale_price":"3 500 000",
         "categoryId": "1",
@@ -278,6 +322,9 @@
         "bestsellers": 3,
         "productName": "ROJA DOVE AMBER AOUD",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/b71ca628-a298-4e9d-8daa-3ecc2b0bbd05-jpeg.jpg?v=1653119478837",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/b71ca628-a298-4e9d-8daa-3ecc2b0bbd05-jpeg.jpg?v=1653119478837"}
+        ],
         "price":"16 900 000",
         "sale_price":"20 000 000",
         "categoryId": "1",
@@ -297,6 +344,9 @@
         "bestsellers": 6,
         "productName": "JEAN PAUL GAULTIER SDANDAL POUR HOMME",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/jean-paul-gualtier-scandal-pour-homme-eau-de-toilette-100ml.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/jean-paul-gualtier-scandal-pour-homme-eau-de-toilette-100ml.jpg"}
+        ],
         "price":"2 590 000",
         "sale_price":"3 500 000",
         "categoryId": "1",
@@ -316,6 +366,9 @@
         "bestsellers": 9,
         "productName": "GUCCI GUILTY POUR HOMME EDP",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/2ca84f39-1b0e-4529-b47c-46a7b37144e1-jpeg.jpg?v=1635403515683",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/2ca84f39-1b0e-4529-b47c-46a7b37144e1-jpeg.jpg?v=1635403515683"}
+        ],
         "price":"2 190 000",
         "sale_price":"3 599 000",
         "categoryId": "1",
@@ -335,6 +388,9 @@
         "bestsellers": 1,
         "productName": "MAISON FRANCIS KURKDJIAN PARIS OUD SATIN MOOD EDP",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/3700559602607-1-600x600.jpg?v=1623135166313",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/3700559602607-1-600x600.jpg?v=1623135166313"}
+        ],
         "price":"4 990 000",
         "sale_price":"6 900 000",
         "categoryId": "1",
@@ -354,6 +410,9 @@
         "bestsellers": 9,
         "productName": "Giorgio Armani Acqua di Giò Profondo",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/pro.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/pro.jpg"}
+        ],
         "price":"2 390 000",
         "sale_price":"2 690 000",
         "categoryId": "1",
@@ -373,6 +432,9 @@
         "bestsellers": 4,
         "productName": "DIOR JADORE PARFUME D'EAU",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/504c1e9e-5a4e-4878-bde4-90869abaecf0-jpeg.jpg?v=1667812790217",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/504c1e9e-5a4e-4878-bde4-90869abaecf0-jpeg.jpg?v=1667812790217"}
+        ],
         "price":"3 390 000",
         "sale_price":"3 990 000",
         "categoryId": "2",
@@ -394,6 +456,9 @@
         "bestsellers": 2,
         "productName": "KILIAN Good girl gone bad",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/m18511028-p3272008-2-zoom.jpg?v=1528341239073",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/m18511028-p3272008-2-zoom.jpg?v=1528341239073"}
+        ],
         "price":"5 290 000",
         "sale_price":"7 000 000",
         "categoryId": "2",
@@ -413,6 +478,9 @@
         "bestsellers": 5,
         "productName": "Carolina Herrera Good Girl EDP Gold Fantasy",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/f4049535-df50-40e0-ab3f-7c92d8c3573b-jpeg.jpg?v=1667457730500",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/f4049535-df50-40e0-ab3f-7c92d8c3573b-jpeg.jpg?v=1667457730500"}
+        ],
         "price":"2 890 000",
         "sale_price":"3 900 000",
         "categoryId": "2",
@@ -431,6 +499,9 @@
         "bestsellers": 2,
         "productName": "MONT BLANC SIGNATURE EAU DE PARFUM",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cc172442-b701-4f8f-bcc4-6c11e7cc64ce-jpeg.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cc172442-b701-4f8f-bcc4-6c11e7cc64ce-jpeg.jpg"}
+        ],
         "price":"1 790 000",
         "sale_price":"1 990 000",
         "categoryId": "2",
@@ -450,6 +521,9 @@
         "bestsellers": 1,
         "productName": "Burberry Brit Sheer",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/266843.jpg?v=1611393069350",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/266843.jpg?v=1611393069350"}
+        ],
         "price":"1 490 000",
         "sale_price":"1 890 000",
         "categoryId": "2",
@@ -468,6 +542,9 @@
         "bestsellers": 2,
         "productName": "LANCOME La Vie Est Belle",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/nuoc-hoa-lancome-la-viest-bella.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/nuoc-hoa-lancome-la-viest-bella.jpg"}
+        ],
         "price":"2 890 000",
         "sale_price":"3 190 000",
         "categoryId": "2",
@@ -489,6 +566,9 @@
         "bestsellers": 9,
         "productName": "JEAN PAUL GAULTIER SCANDAL LE PARRFUM INTENSE",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/662312c8-f385-419d-b760-2c9bdd46c31e-jpeg.jpg?v=1664269474250",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/662312c8-f385-419d-b760-2c9bdd46c31e-jpeg.jpg?v=1664269474250"}
+        ],
         "price":"2 990 000",
         "sale_price":"3 500 000",
         "categoryId": "2",
@@ -507,6 +587,9 @@
         "bestsellers": 8,
         "productName": "LANVIN JEANNE",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/167178.jpg?v=1623224256907",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/167178.jpg?v=1623224256907"}
+        ],
         "price":"1 390 000",
         "sale_price":"1 990 000",
         "categoryId": "2",
@@ -526,6 +609,9 @@
         "bestsellers": 1,
         "productName": "SALVATORE SIGNORINA EAU DE PARFUM",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/imgw.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/imgw.jpg"}
+        ],
         "price":"1 590 000",
         "sale_price":"1 890 000",
         "categoryId": "2",
@@ -546,6 +632,9 @@
         "bestsellers": 2,
         "productName": "KILIAN ANGEL’s SHARE",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/eb24785f-4f01-447a-a6b1-2a4dd68d3af2-jpeg.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/eb24785f-4f01-447a-a6b1-2a4dd68d3af2-jpeg.jpg"}
+        ],
         "price":"3 690 000",
         "sale_price":"5 000 000",
         "categoryId": "2",
@@ -564,6 +653,9 @@
         "bestsellers": 7,
         "productName": "VERSACE BRIGHT CRYSTAL",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/nuoc-hoa-versace-bright-crystal-1517060749.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/nuoc-hoa-versace-bright-crystal-1517060749.jpg"}
+        ],
         "price":"1 690 000",
         "sale_price":"1 990 000",
         "categoryId": "2",
@@ -581,6 +673,9 @@
         "bestsellers": 10,
         "productName": "CHANEL Chanel Chance Eau Tendre",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/chanel-chance-eau-tendre-edt-50ml-perfume-for-women-jpeg.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/chanel-chance-eau-tendre-edt-50ml-perfume-for-women-jpeg.jpg"}
+        ],
         "price":"2 290 000",
         "sale_price":"2 790 000",
         "categoryId": "2",
@@ -600,6 +695,9 @@
         "bestsellers": 1,
         "productName": "CAROLINA HERRERA GOOD GIRL",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/good-girl.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/good-girl.jpg"}
+        ],
         "price":"2 690 000",
         "sale_price":"2 990 000",
         "categoryId": "2",
@@ -617,6 +715,9 @@
         "bestsellers": 1,
         "productName": "Lancome Tresor Midnight Rose",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/lancome-tresor-midnight-rose.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/lancome-tresor-midnight-rose.jpg"}
+        ],
         "price":"2 590 000",
         "sale_price":"3 500 000",
         "categoryId": "2",
@@ -635,6 +736,9 @@
         "bestsellers": 8,
         "productName": "VALENTINO VALENTINA EAU DE PARFUM",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/valentino-valentina-women-eau-de-parfum-spray-edp-spray-2-7-best-price-fragrance-parfume-fragranceoutlet-com-details-large.jpg?v=1521976969090",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/valentino-valentina-women-eau-de-parfum-spray-edp-spray-2-7-best-price-fragrance-parfume-fragranceoutlet-com-details-large.jpg?v=1521976969090"}
+        ],
         "price":"2 090 000",
         "sale_price":"2 800 000",
         "categoryId": "2",
@@ -653,6 +757,9 @@
         "bestsellers": 5,
         "productName": "DIOR MISS DIOR EAU DE PARFUM",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/80f3a914-19d7-498d-a986-9bdf66e4d386.webp?v=1672120684083",
+        "imageShow":[
+            {"image":"hhttps://bizweb.dktcdn.net/thumb/grande/100/110/910/products/80f3a914-19d7-498d-a986-9bdf66e4d386.webp?v=1672120684083"}
+        ],
         "price":"3 390 000",
         "sale_price":"3 690 000",
         "categoryId": "2",
@@ -671,6 +778,9 @@
         "bestsellers": 3,
         "productName": "CHLOE LOVE STORY",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/5502071love-story.jpg?v=1469854089527",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/5502071love-story.jpg?v=1469854089527"}
+        ],
         "price":"1 800 000",
         "sale_price":"2 490 000",
         "categoryId": "2",
@@ -690,6 +800,9 @@
         "bestsellers": 9,
         "productName": "CAROLINA HERRERA 212 SEXY FOR WOMEN",
         "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/carolina-herrera-212-sexy-eau-de-parfum-100-ml.jpg?v=1667186699843",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/carolina-herrera-212-sexy-eau-de-parfum-100-ml.jpg?v=1667186699843"}
+        ],
         "price":"2 150 000",
         "sale_price":"2 600 000",
         "categoryId": "2",

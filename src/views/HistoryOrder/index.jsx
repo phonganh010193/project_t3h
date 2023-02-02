@@ -28,7 +28,7 @@ const HistoryOrder = () => {
                                             <div className="children" key={el.id}>
                                                 <img src={el.image} alt="" />
                                                 <div className="children-info">
-                                                    <p>{el.productName}</p>
+                                                    <p style={{ textTransform: "capitalize" }}>{el.productName.toLowerCase()}</p>
                                                     <p>Giá: {Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                                     <p>Số lượng: {el.orderNumber}</p>
                                                     <p>Thành tiền: {(Number(el.price.split(" ").join('')) * el.orderNumber).toLocaleString()} VND</p>

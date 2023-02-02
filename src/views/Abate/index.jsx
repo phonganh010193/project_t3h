@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useParams } from "react-router-dom";
-import { fetchAbateById, fetchRemoveAbatebyId } from "./abateSlice";
+import { fetchAbateById, fetchAbateList, fetchRemoveAbatebyId } from "./abateSlice";
 import "../../utils/styles/abate.css";
 import { System } from "../../constants/system.constants";
 import IMAGE from "../../contact";
@@ -71,7 +71,7 @@ const Abate = () => {
             ]);
         }
     }, [isLoading]);
-    
+
 
     useEffect(() => {
         dispatch(fetchAbateById(orderId));
@@ -79,8 +79,8 @@ const Abate = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    },[]);
-    
+    }, []);
+
 
     const onFinish = async (values) => {
         try {
@@ -111,10 +111,11 @@ const Abate = () => {
         try {
             await dispatch(fetchRemoveAbatebyId(orderId));
             await dispatch(fetchAbateById(orderId));
+            await dispatch(fetchAbateList());
         } catch (error) {
             toast.error('Xóa không thành công')
         }
-        
+
     }
     return (
         <div className="container abate-container">
@@ -231,7 +232,7 @@ const Abate = () => {
                                 <div className="info-product-abate" key={item.id}>
                                     <img src={item.image} alt="" />
                                     <div style={{ textAlign: "left" }}>
-                                        <p>{item.productName}</p>
+                                        <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
                                         <p>Giá: {Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>Số lượng: {item.orderNumber}</p>
                                         <p>Thành tiền: {(Number(item.price.split(" ").join('')) * item.orderNumber).toLocaleString()} VND</p>

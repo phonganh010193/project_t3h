@@ -3,13 +3,16 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchOrderProduct, updateListCart } from "./orderSlice";
 import { push, ref, remove, update } from "firebase/database";
 import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
 import "../../utils/styles/cart.container.css";
 import { System } from "../../constants/system.constants";
+import { fetchAbateList, fetchRemoveAbatebyId } from "../Abate/abateSlice";
+import { usePrevious } from "../../utils/hooks";
+import { Modal } from "antd";
 
 
 
@@ -17,28 +20,54 @@ const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const listCart = useSelector(({ order }) => order.orderProduct);
-    
+    const abateList = useSelector(({ abate }) => abate.abateList);
+    const isLoading = useSelector(({ abate }) => abate.isLoading);
+    const prevIsLoading = usePrevious(isLoading);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleOk = () => {
+        navigate(`/abate/${abateList?.key}`)
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = async () => {
+        try {
+            await dispatch(fetchRemoveAbatebyId(abateList?.key))
+            toast.success('Hủy thành công!')
+        } catch (error) {
+            console.log(error);
+            toast.error('Hủy không thành công!')
+        }
+        setIsModalOpen(false);
+    };
+    useEffect(() => {
+        if (!isLoading && prevIsLoading && abateList) {
+            console.log('abateList', abateList);
+
+            setIsModalOpen(true)
+        }
+    }, [abateList])
     useEffect(() => {
         dispatch(fetchOrderProduct());
+        dispatch(fetchAbateList());
     }, [dispatch]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, [])
 
-    const updateOrder = (value) => {
-        dispatch(updateListCart(value));
+    const updateOrder = async (value) => {
+        await dispatch(updateListCart(value));
     }
 
     const deleteListCart = () => {
         remove(ref(database, 'Cart'))
-        .then(() => {
-            dispatch(fetchOrderProduct());
-            toast.success('Delete Cart success!')
-        })
-        .catch((error) => {
-            toast.success('Delete Cart fail!')
-        })
+            .then(() => {
+                dispatch(fetchOrderProduct());
+                toast.success('Delete Cart success!')
+            })
+            .catch((error) => {
+                toast.success('Delete Cart fail!')
+            })
     }
 
 
@@ -131,11 +160,13 @@ const Cart = () => {
                     </div>
                     <div className="all-price">
                         <table className="table table-bordered" style={{ width: "30%", marginTop: "10px" }}>
-                            <td>Tổng tiền thanh toán</td>
-                            <td>{listCart.filter(el => el.isCheckBox).reduce(
-                                (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
-                                0
-                            ).toLocaleString()} VND</td>
+                            <tbody>
+                                <td>Tổng tiền thanh toán</td>
+                                <td>{listCart.filter(el => el.isCheckBox).reduce(
+                                    (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
+                                    0
+                                ).toLocaleString()} VND</td>
+                            </tbody>
                         </table>
                         <button onClick={() => {
                             if (listCart.filter(el => el.isCheckBox).length === 0) {
@@ -147,6 +178,19 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+                title={<p style={{ color: "red" }}>Đơn hàng của bạn chưa hoàn thành. Bạn có muốn tiếp tục?</p>}
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                content='Bla bla ...'
+                okText="Tiếp tục"
+                cancelText="Hủy đơn hàng"
+                style={{
+                    marginTop: "200px"
+                }}
+            />
+
         </LayoutCart>
     )
 }

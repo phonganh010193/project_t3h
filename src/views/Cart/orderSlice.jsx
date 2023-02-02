@@ -121,7 +121,7 @@ export const fetchAddOrderItem = createAsyncThunk(
     }
     const findItem = listCart.find(el => params.id === el.productId)
     if (findItem) {
-      update(ref(database, "Cart/" + findItem.key), {
+      await update(ref(database, "Cart/" + findItem.key), {
         orderNumber: parseFloat(findItem.orderNumber) + 1,
         productId: findItem.productId,
         user: findItem.user,
@@ -140,7 +140,7 @@ export const fetchAddOrderItem = createAsyncThunk(
         orderNumber: 1,
         isCheckBox: false,
       }
-      push(ref(database, 'Cart'), ob)
+      await push(ref(database, 'Cart'), ob)
         .then(() => {
           toast.success('Thêm vào giỏ hàng thành công!')
         })

@@ -1,4 +1,4 @@
-import { ref, remove, update } from "firebase/database";
+import { ref, remove } from "firebase/database";
 import { useState } from "react";
 import IMAGE from "../../../contact";
 import { database } from "../../../firebase";
@@ -24,7 +24,6 @@ const TRtable = ({ item, updateOrder }) => {
 
     return (
         <tr key={item.id}>
-
             <td><input type="checkbox" checked={isCheckBox} onChange={() => {
                 setISCheckBox(!isCheckBox);
                 const value = {

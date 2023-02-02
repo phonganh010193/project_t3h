@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { get, ref, remove } from 'firebase/database';
 import { toast } from 'react-toastify';
+import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
 
 
 export const fetchAbateById = createAsyncThunk(
   'abate/fetchAbateById',
   async (abateId, thunkAPI) => {
-    return get(ref(database, "Abate")).then((snapshot) => {
+    return await get(ref(database, "Abate")).then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val()[abateId];
       } else {
@@ -19,12 +20,35 @@ export const fetchAbateById = createAsyncThunk(
   }
 );
 
+export const fetchAbateList = createAsyncThunk(
+  'abate/fetchAbateList',
+  async (params, thunkAPI) => {
+    const abateList = await get(ref(database, "Abate")).then((snapshot) => {
+      if (snapshot.exists()) {
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        })
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    return abateList.find(el => el.status === System.STATUS.ORDERING)
+  }
+);
+
 export const fetchRemoveAbatebyId = createAsyncThunk(
   'abate/fetchAbateById',
   async (abateId, thunkAPI) => {
-    return remove(ref(database, "/Abate/" + abateId))
+    return await remove(ref(database, "/Abate/" + abateId))
       .then((data) => {
-        toast.warning('Đặt hàng chưa hoàn thành!')
+        return data;
       }).catch((error) => {
         console.error(error);
       });
@@ -34,6 +58,7 @@ export const fetchRemoveAbatebyId = createAsyncThunk(
 const initialState = {
   isLoading: false,
   abateDetail: null,
+  abateList: null,
 }
 
 export const abateListSlice = createSlice({
@@ -50,6 +75,16 @@ export const abateListSlice = createSlice({
       state.isLoading = false;
     })
     builder.addCase(fetchAbateById.rejected, (state, action) => {
+      state.isLoading = false;
+    })
+    builder.addCase(fetchAbateList.pending, (state, action) => {
+      state.isLoading = true;
+    })
+    builder.addCase(fetchAbateList.fulfilled, (state, action) => {
+      state.abateList = action.payload;
+      state.isLoading = false;
+    })
+    builder.addCase(fetchAbateList.rejected, (state, action) => {
       state.isLoading = false;
     })
   },
