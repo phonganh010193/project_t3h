@@ -5,14 +5,23 @@ import Slider from "react-slick";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
 import { Link } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
 
-
+const sliderSettings = {
+    dots: false,
+    infinite: false,
+    speed: 400,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    rows: 1,
+    slidesPerRow: 1,
+    arrows: true
+};
 function HomePerfume(props) {
     const { product, gender } = props;
     const dispatch = useDispatch();
@@ -22,16 +31,6 @@ function HomePerfume(props) {
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
     const slideRef = useRef();
-    const [sliderSettings, setSliderSeting] = useState({
-        dots: false,
-        infinite: false,
-        speed: 400,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        rows: 1,
-        slidesPerRow: 1,
-        arrows: true
-    });
 
     useEffect(() => {
         dispatch(fetchOrderProduct());
@@ -47,7 +46,11 @@ function HomePerfume(props) {
 
     const addOrderItem = async (item) => {
         try {
-            const params = { ...item, user }
+            const params = {
+                ...item,
+                user,
+                orderNumber: 1
+            }
             await dispatch(fetchAddOrderItem(params));
             await dispatch(fetchOrderProduct());
         } catch (error) {

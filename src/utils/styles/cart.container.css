@@ -8,6 +8,30 @@
     width: 20px;
 }
 
+.btn-confirm-order button{
+    width: 120px;
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-confirm-order button:last-child{
+    background-color: #2d8356;
+    color: white;
+}
+
+.btn-confirm-order button:last-child:hover{
+    background-color: #55a37b;
+    color: white;
+}
+
+
+.btn-confirm-order button:first-child:hover{
+    background-color: red;
+    color: white;
+}
+
 .header-cart {
     border-bottom: 1px solid #2d8356;
     height: 40px;

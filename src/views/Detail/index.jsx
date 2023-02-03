@@ -10,19 +10,19 @@ import { fetchProductDetail } from "./perfumeDetailSlice";
 import PerfumeDetailInfo from "./component/perfumeDetailInfo";
 import { Tabs } from "antd";
 import "../../utils/styles/perfume.detail.css";
-// import { Carousel } from "react-carousel-minimal";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+
 const Detail = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
     const detailList = useSelector(({ detail }) => detail.productListDetail);
-    console.log('detailList', detailList);
     const [number, setNumber] = useState(1);
+    const [image, setImage] = useState('')
 
-
+    useEffect(() => {
+        setImage(detailList?.image)
+    }, [detailList])
     useEffect(() => {
         dispatch(fetchProductDetail(productId));
         dispatch(fetchOrderProduct());
@@ -34,7 +34,11 @@ const Detail = () => {
 
     const addOrderItem = async (item) => {
         try {
-            const params = { ...item, user }
+            const params = {
+                ...item,
+                user,
+                orderNumber: number
+            }
             await dispatch(fetchAddOrderItem(params));
             await dispatch(fetchOrderProduct());
         } catch (error) {
@@ -63,33 +67,35 @@ const Detail = () => {
         },
     ];
 
+
+
     return (
         <LayoutCart>
-            <div style={{
-                padding: "0 20px"
-            }}>
-
-            </div>
             <div className="container perfume-detail">
                 <div className="header-detail">
                     <p>Nhóm sản phẩm/<span style={{ color: "#2d8356" }}>{detailList?.productName}</span></p>
                 </div>
                 <div className="content-detail">
-                    <Carousel
-                        showArrows={false}
-                        showStatus={false}
-                        showIndicators={false}
-                        thumbWidth="70px"
-                        width="70%"
-                    >
-                        {detailList && detailList?.imageShow?.map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <img src={item.image} alt="" />
-                                </div>
-                            )
-                        })}
-                    </Carousel>
+                    <div className="content-detail-image">
+                        <img src={image} alt="" />
+                        <div className="icon-click-image">
+                            {detailList?.imageShow?.map((item, index) => {
+                                return (
+                                    <div className="list-image-show" key={index}>
+                                        <img
+                                            key={index}
+                                            src={item.image}
+                                            alt=""
+                                            onClick={() => {
+                                                setImage(item.image)
+                                            }}
+                                        />
+                                    </div>
+
+                                )
+                            })}
+                        </div>
+                    </div>
 
                     <div className="buy-info">
                         <h2 style={{ textTransform: "capitalize" }}>{detailList?.productName?.toLowerCase()}</h2>

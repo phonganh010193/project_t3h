@@ -13,74 +13,62 @@
     },
     {
         "id": "4",
-        "categoryName": "Nước hoa nữ dưới 1 triệu"
-    },
-    {
-        "id": "5",
-        "categoryName": "Nước hoa mới ra mắt"
-    },
-    {
-        "id": "6",
-        "categoryName": "Nước hoa Nam dưới 1 triệu"
-    },
-    {
-        "id": "7",
         "categoryName": "Lousi vuition"
     },
     {
-        "id": "8",
+        "id": "5",
         "categoryName": "Chanel"
     },
     {
-        "id": "9",
+        "id": "6",
         "categoryName": "Kilian"
     },
     {
-        "id": "10",
+        "id": "7",
         "categoryName": "Dior"
     },
     {
-        "id": "11",
+        "id": "8",
         "categoryName": "Jo malone"
     },
     {
-        "id": "12",
+        "id": "9",
         "categoryName": "Creen"
     },
     {
-        "id": "13",
+        "id": "10",
         "categoryName": "Dolce gabbala"
     },
     {
-        "id": "14",
+        "id": "11",
         "categoryName": "Hermes"
     },
     {
-        "id": "15",
+        "id": "12",
         "categoryName": "Guicci"
     },
     {
-        "id": "16",
+        "id": "13",
         "categoryName": "Lancome"
     },
     {
-        "id": "17",
+        "id": "14",
         "categoryName": "Mỹ phẩm"
     },
     {
-        "id": "18",
+        "id": "15",
         "categoryName": "Vesarce"
     },
     {
-        "id": "19",
+        "id": "16",
         "categoryName": "Jean paul gaultier"
     },
     {
-        "id": "20",
+        "id": "17",
         "categoryName": "Tom ford"
     },
     {
-        "id": "21",
+        "id": "18",
         "categoryName": "Hugo boss"
     }
 ]

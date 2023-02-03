@@ -24,14 +24,14 @@ const Cart = () => {
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const handleOk = () => {
-        navigate(`/abate/${abateList?.key}`)
+    const handleOk = (key) => {
+        navigate(`/abate/${key}`)
         setIsModalOpen(false);
     };
 
-    const handleCancel = async () => {
+    const handleCancel = async (key) => {
         try {
-            await dispatch(fetchRemoveAbatebyId(abateList?.key))
+            await dispatch(fetchRemoveAbatebyId(key))
             toast.success('Hủy thành công!')
         } catch (error) {
             console.log(error);
@@ -41,8 +41,6 @@ const Cart = () => {
     };
     useEffect(() => {
         if (!isLoading && prevIsLoading && abateList) {
-            console.log('abateList', abateList);
-
             setIsModalOpen(true)
         }
     }, [abateList])
@@ -179,16 +177,24 @@ const Cart = () => {
                 </div>
             </div>
             <Modal
-                title={<p style={{ color: "red" }}>Đơn hàng của bạn chưa hoàn thành. Bạn có muốn tiếp tục?</p>}
+                title={<p style={{ color: "green" }}>Đơn hàng của bạn chưa hoàn thành. Bạn có muốn tiếp tục?</p>}
                 open={isModalOpen}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                content='Bla bla ...'
-                okText="Tiếp tục"
+                onCancel={false}
+                closable={false}
                 cancelText="Hủy đơn hàng"
                 style={{
                     marginTop: "200px"
                 }}
+                footer={
+                    <div className="btn-confirm-order">
+                        <button onClick={() => {
+                            handleCancel(abateList?.key)
+                        }}>Hủy đơn hàng</button>
+                        <button onClick={() => {
+                            handleOk(abateList?.key)
+                        }}>Tiếp tục</button>
+                    </div>
+                }
             />
 
         </LayoutCart>

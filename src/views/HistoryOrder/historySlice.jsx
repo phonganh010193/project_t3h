@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref } from 'firebase/database';
+import { get, ref, remove } from 'firebase/database';
 import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
-
-
 
 export const fetchHistoryOrder = createAsyncThunk(
     'history/fetchHistoryOrder',
@@ -11,7 +9,6 @@ export const fetchHistoryOrder = createAsyncThunk(
         const listAbate = await get(ref(database, "Abate")).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(typeof snapshot.val());
-                //   return snapshot.val();
                 const response = snapshot.val();
                 const keys = Object.keys(response);
                 return keys.map(key => {
@@ -41,6 +38,17 @@ export const fetchHistoryOrder = createAsyncThunk(
             })
         }
         return listHistoryOrder;
+    }
+);
+
+export const fetchCancelOrderById = createAsyncThunk(
+    'history/fetchCancelOrderById',
+    async (orderId, thunkAPI) => {
+        return await remove(ref(database, "/Abate/" + orderId)).then((snapshot) => {
+            return snapshot;
+        }).catch((error) => {
+            console.error(error);
+        });
     }
 );
 

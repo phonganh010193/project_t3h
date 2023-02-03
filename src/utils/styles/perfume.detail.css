@@ -8,10 +8,38 @@
     padding: 0;
 }
 
+.icon-click-image {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
+    margin-top: 30px;
+    width: 250px;
+    justify-content: space-between;
+}
+
+
 .content-detail {
     padding: 40px 50px;
     display: flex;
     flex-direction: row;
+}
+
+.content-detail-image > img {
+    width: 180px;
+    height: 450px;
+}
+
+.list-image-show > img:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1); 
+}
+
+.list-image-show > img {
+    width: 70px !important;
+    height: 90px;
+    transition: transform .2s;
+    border: 1px solid black;
 }
 
 .content-detail img {
@@ -20,6 +48,7 @@
 
 .buy-info {
     width: 100%;
+    margin-left: 100px;
 }
 
 
@@ -27,7 +56,7 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #2d8356;
     width:  100%;
-    height: 50px;
+    height: auto;
     font-size: 25px;
 
 }

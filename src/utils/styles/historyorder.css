@@ -6,6 +6,17 @@
     border-bottom: 1px solid gray;
 }
 
+.btn-confirm-cancel {
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    color: red;
+}
+
+.btn-confirm-cancel:hover{
+    background-color: red;
+    color: white;
+}
 
 .history-info {
     margin-top: 50px;

@@ -120,9 +120,10 @@ export const fetchAddOrderItem = createAsyncThunk(
       })
     }
     const findItem = listCart.find(el => params.id === el.productId)
+
     if (findItem) {
       await update(ref(database, "Cart/" + findItem.key), {
-        orderNumber: parseFloat(findItem.orderNumber) + 1,
+        orderNumber: parseFloat(findItem.orderNumber) + parseFloat(params.orderNumber),
         productId: findItem.productId,
         user: findItem.user,
         isCheckBox: false,

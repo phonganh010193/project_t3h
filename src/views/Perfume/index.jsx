@@ -21,7 +21,6 @@ const Perfume = () => {
     const productLoading = useSelector(({ product }) => product.isLoading);
     const preProductLoading = usePrevious(productLoading);
     const categories = useSelector(({ category }) => category.categoryList);
-    const listCart = useSelector(({ order }) => order.orderProduct);
     const [productData, setProductData] = useState([]);
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
@@ -74,7 +73,11 @@ const Perfume = () => {
 
     const addOrderItem = async (item) => {
         try {
-            const params = { ...item, user }
+            const params = {
+                ...item,
+                user,
+                orderNumber: "1"
+            }
             await dispatch(fetchAddOrderItem(params));
             await dispatch(fetchOrderProduct());
         } catch (error) {

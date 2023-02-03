@@ -2,11 +2,21 @@ import "../../../utils/styles/sidebar.content.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
 
+const sliderSettings = {
+    dots: false,
+    infinite: false,
+    speed: 400,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    rows: 1,
+    slidesPerRow: 1,
+    arrows: false
+};
 function SidebarContent(props) {
     const { listShowProduct, checkShow } = props;
     const navigate = useNavigate();
@@ -14,16 +24,6 @@ function SidebarContent(props) {
     const listShowProduct_2 = listShowProduct.slice(4, 8);
     const listShowProduct_3 = listShowProduct.slice(8, 12);
     const slideRef = useRef();
-    const [sliderSettings, setSliderSeting] = useState({
-        dots: false,
-        infinite: false,
-        speed: 400,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        rows: 1,
-        slidesPerRow: 1,
-        arrows: false
-    });
 
     const goPrev = () => {
         slideRef?.current?.slickPrev();
