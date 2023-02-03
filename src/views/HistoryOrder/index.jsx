@@ -1,5 +1,5 @@
 import moment from "moment/moment";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,24 +7,33 @@ import LayoutCart from "../../component/LayoutCart";
 import "../../utils/styles/historyorder.css";
 import { fetchCancelOrderById, fetchHistoryOrder } from "./historySlice";
 import 'react-toastify/dist/ReactToastify.css';
+import { Modal } from "antd";
+import { useCallback } from "react";
 
 const HistoryOrder = () => {
     const dispatch = useDispatch();
     const historyOrderList = useSelector(({ history }) => history.historyList);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [key, setKey] = useState('');
+
     useEffect(() => {
         dispatch(fetchHistoryOrder());
     }, [dispatch])
 
-    const cancelOrderByID = async (cancelId) => {
-        try {
-            await dispatch(fetchCancelOrderById(cancelId));
-            await dispatch(fetchHistoryOrder());
-            toast.success('Hủy đơn hàng thành công')
-        } catch (error) {
-            console.log(error);
-            toast.error('Hủy không thành công');
-        }
+  const handleOk = useCallback((key) => {
+    try {
+        dispatch(fetchCancelOrderById(key));
+        dispatch(fetchHistoryOrder());
+        toast.success('Hủy đơn hàng thành công')
+    } catch (error) {
+        console.log(error);
+        toast.error('Hủy không thành công');
     }
+    setIsModalOpen(false);
+  }, [key]);
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
     return (
         <LayoutCart>
             <div className="history-container">
@@ -38,14 +47,10 @@ const HistoryOrder = () => {
                                     <span style={{ marginLeft: "40px" }}><Link to={`/abate/${item.key}`}>Xem chi tiết</Link></span>
                                     <span style={{ marginLeft: "40px" }}>
                                         <button
-                                            style={{
-                                                width: "120px",
-                                                borderRadius: "5px",
-                                                backgroundColor: "red",
-                                                color: "white",
-                                            }}
+                                            className="btn-show-confirm-cancel"
                                             onClick={() => {
-                                                cancelOrderByID(item.key)
+                                                setKey(item.key)
+                                                setIsModalOpen(true)
                                             }}
                                         >Huỷ đơn hàng</button>
                                     </span>
@@ -72,7 +77,24 @@ const HistoryOrder = () => {
 
                 </div>
             </div>
-
+            <Modal 
+                title={<p style={{color: "green"}}>Bạn chắc chắn muốn hủy đơn hàng?</p>} 
+                open={isModalOpen} 
+                closable={false}
+                footer={
+                    <div className="btn-confirm-cancel">
+                        <button onClick={() => {
+                            handleCancel();
+                        }}>Hủy</button>
+                        <button onClick={() => {
+                            handleOk(key)
+                        }}>Xác nhận</button>
+                    </div>
+                }
+                
+            />
+        
+      
         </LayoutCart>
     )
 }

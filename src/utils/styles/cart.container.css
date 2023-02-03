@@ -6,6 +6,13 @@
 
 .image-delete {
     width: 20px;
+    transition: transform .2s;
+}
+
+.image-delete:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1); 
 }
 
 .btn-confirm-order button{

@@ -6,14 +6,30 @@
     border-bottom: 1px solid gray;
 }
 
-.btn-confirm-cancel {
+.btn-show-confirm-cancel {
+    border-radius: 5px;
+    width: 120px;
+    border: none;
+}
+
+.btn-show-confirm-cancel:hover{
+    background-color: red;
+    color: aliceblue;
+}
+
+.btn-confirm-cancel button {
     width: 120px;
     border-radius: 5px;
     border: none;
-    color: red;
+    margin-left: 5px;
 }
 
-.btn-confirm-cancel:hover{
+.btn-confirm-cancel button:last-child:hover{
+    background-color: #2d8356;
+    color: white;
+}
+
+.btn-confirm-cancel button:first-child:hover{
     background-color: red;
     color: white;
 }
