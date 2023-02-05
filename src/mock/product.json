@@ -1,6 +1,5 @@
 [
     {
-        "numberOfSell": 11,
         "categoryName": "Nước hoa nam",
         "gender": 1,
         "dateAdd": 1,
@@ -437,7 +436,7 @@
         ],
         "price":"3 390 000",
         "sale_price":"3 990 000",
-        "categoryId": "2",
+        "categoryId": "10",
         "detail_product":{
             "title_1":"Nước hoa Dior không chứa cồn đầu tiên, Dior J’adore Parfum d’eau tái hiện lại bó hoa mang tính biểu tượng của J’adore trong một những hương thơm tự nhiên. Hương thơm mang lại cho bạn một cách hào phóng các nốt hương của hoa nhài sambac, hoa cam và hoa mộc lan trên da.",
             "title_2":"Cho chai nước hoa không cồn đầu tay, Dior sử dụng những mùi hương yêu thích của nước Pháp – gồm hoa cam, hoa nhài Sambac, hoa hồng Damask, và mộc lan. Thoa J’Adore Parfum d’Eau lên da, bạn sẽ có cảm giác như đang bước đi giữa vườn hoa mùa hè của xứ sở này.",
@@ -461,7 +460,7 @@
         ],
         "price":"5 290 000",
         "sale_price":"7 000 000",
-        "categoryId": "2",
+        "categoryId": "9",
         "detail_product":{
             "title_1":"Kilian good girl gone bad ",
             "title_2":"Em đã đổi thay? Sự thay đổi từ một cô gái trong trắng đến một người phụ nữ hấp dẫn ? Mùi hương nữ tính mạnh mẽ và gợi cảm nhất mà bạn sẽ cảm nhận được từ mẫu nước hoa này.",
@@ -637,7 +636,7 @@
         ],
         "price":"3 690 000",
         "sale_price":"5 000 000",
-        "categoryId": "2",
+        "categoryId": "9",
         "detail_product":{
             "title_1":"Tựa như một cái hôn phớt giữa quán bar, Angel Share của nhà Kilian là tổng hợp những gì tội lỗi nhất, lãng mạn nhất và đương nhiên cũng ngọt ngào không kém.",
             "title_2":"Không phải tự dưng tôi phải lấy bối cảnh của một quán bar, mà chính Cognac ngay trong tầng hương đầu đầy mời gọi và đôi chút cám dỗ đã vẽ nên khung cảnh vồn vã, nhộn nhịp đó. Cảm giác khi say rượu thế nào thì cảm giác khi bạn say Angel Share sau vài lần thử mùi cũng là điều dễ hiểu, vì không chỉ có Cognac, kẻ “đội lốt” này còn chưng cất những nồng cay đậm vị của Quế cùng Gỗ sồi, để rồi từ một cái chạm môi nhanh chóng câu chuyện được đẩy lên cao trào đến những mân mê da thịt đầy táo bạo.",
@@ -762,7 +761,7 @@
         ],
         "price":"3 390 000",
         "sale_price":"3 690 000",
-        "categoryId": "2",
+        "categoryId": "10",
         "detail_product":{
             "title_1":"Nhà thiết kế thời trang Christian Dior sinh ra ở Pháp và có danh tiếng đình đám trên thế giới trong lĩnh vực thời trang với việc tạo ra “New Look” thông qua việc nhấn mạnh vào đường cong quyến rũ của người phụ nữ. Chirstian Dior là hãng nước hoa lâu đời và danh tiếng. ",
             "title_2":"Được tiết lộ như một bông hoa nữ tính đầy gợi cảm, vẻ đẹp bên ngoài kết hợp với hương vị độc đáo được tạo thành bên trong khiến cho Miss Dior trở nên hoàn hảo và toàn diện. Không dừng ở đó với khuôn mặt đại diện Natalie Portman, đem lại cho nó trở nên rất có tiếng nói trong giới nước hoa thời điểm 2017, và cho đến sau này sản phẩm này vẫn tạo được rất nhiều ấn tượng đối với người yêu thích hương vị ngọt ngào của nước hoa.",
@@ -815,446 +814,9 @@
         }
     },
     {
-        "gender": 1,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "37",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "KILIAN Good girl gone bad",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/m18511028-p3272008-2-zoom.jpg?v=1528341239073",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/m18511028-p3272008-2-zoom.jpg?v=1528341239073"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Kilian good girl gone bad ",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/kilian-good-girl-gone-bad-5da3760e-ceb4-4235-a6c6-d8d0eb76b451.jpg?v=1591670574177",
-            "title_2":"Em đã đổi thay? Sự thay đổi từ một cô gái trong trắng đến một người phụ nữ hấp dẫn ? Mùi hương nữ tính mạnh mẽ và gợi cảm nhất mà bạn sẽ cảm nhận được từ mẫu nước hoa này.",
-            "title_3":"Mùi hương mở ra cho ta thấy một cô gái trẻ trung, xinh xắn trong bộ váy trắng tinh khiết, nhưng càng đi sâu thì cô gái đó càng bộc lộ sự nổi loạn bên trong bản thân mình. Khoảng cách tỏa hương và thời gian lưu hương tuyệt vời cùng kiểu chai sang trọng, bắt mắt cũng là ưu điểm cho sản phẩm này",
-            "title_4":"Good girl gone Bad ấn tượng và dữ dội như một cơn lốc hoa. Mở đầu với mùi hương tươi mới của những cánh hoa nhài Sambac và trái mơ ngọt lịm vùng Osmanthus, nhưng vẻ nữ tính trong trắng này không đánh lừa được khứu giác. Hoa hồng tháng Năm với mùi hương dao động giữa hai thái cực nhẹ và mạnh mẽ, với một lớp mật ong mỏng, nối tiếp với hương vị kem đặc trưng của hoa huệ Ấn Độ, và liều thuốc mê tự nhiên của thuỷ tiên Ai Cập, đem tới một tổng thể mùi hương khó kiểm soát và ám ảnh dai dẳng.",
-            "title_5":"Thiết kế của Kilian cực kỳ sang chảnh bởi sự kết hợp hài hòa giữa chất liệu bóng bẫy, khá bắt sáng và màu sắc tao nhã nhưng vẫn vô cùng ấn tượng bởi những chi tiết trạm nổi. Dù bạn là ai thì cũng sẽ dễ dàng bị chinh phục bởi ngoại hình quá xuất sắc của Kilian ở bất kỳ chai nước hoa nào."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "38",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "MAISON FRANCIS KURKDJIAN PARIS BACCARAT ROUGE 540 EXTRAIT DE PARFUM",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/extrait-2.jpg",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/extrait-2.jpg"}
-        ],
-        "price":"8 550 000",
-        "sale_price":"9 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"MAISON FRANCIS KURKDJIAN PARIS BACCARAT ROUGE 540 EXTRAIT DE PARFUM",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/ccf736bc-eb51-4402-9878-66cd942badf5-jpeg.jpg?v=1607831156104",
-            "title_2":"BACCARAT ROUGE 540 EXTRAIT DE PARFUM của hãng MAISON FRANCIS KURKDJIAN với mùi hương hoa mới vẫn thuộc nhóm hương hoa cỏ phương Đông, phù hợp cho cả nam và nữ. Thời điểm Xuân,Thu, Đông là lúc mùi hương này được phát huy hết tác dụng của nó. Với lớp hương đầu là sự kết hợp tinh tế của hương hoa nhài Grandiflorum và nghệ tây Ai Cập. Bên cạnh đó là quả hạnh nhân đắng từu Morocco và gỗ tuyết tùng. Cuối cùng những mùi hương được tạo dựng xung quanh Ambergris được dịu lại khi kết hợp với xạ hương và gỗ.",
-            "title_3":"BACCARAT ROUGE 540 phù hợp với những người yêu thích sự nhẹ nhàng, tinh khiết nhưng vẫn mang được nét sang trọng, quý phái. Khi sử dụng mùi hương này bạn sẽ có cảm giác như được tận hưởng những giây phút trong lành bình yên của cuộc sống..."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "39",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "THE MARCHANT OF VENICE IMPERIAL EMERALD",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/3cd82e5a-b6df-4c3d-8b13-14bd50e3e986-jpeg.jpg?v=1652433851170",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/3cd82e5a-b6df-4c3d-8b13-14bd50e3e986-jpeg.jpg?v=1652433851170"},
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/627270f8-6834-4c30-b3ce-47912dd4e12e-jpeg.jpg?v=1666957024517"}
-        ],
-        "price":"5 550 000",
-        "sale_price":"7 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"THE MARCHANT OF VENICE IMPERIAL EMERALD",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/ea27a17c-e727-4185-a1fb-b3792dbd3e14-jpeg.jpg?v=1652433767733",
-            "title_2":"The Merchant of Venice ( for Women)đã lấy cảm hứng từ những hoa văn màu xanh lục bảo và xanh lam như đuôi của con công, tạo ra một kiệt tác mùi hương vừa thanh mát, tinh tế lại vừa nhẹ nhàng - The Merchant of Venice Imperial Emerald.",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/512d9e1a-ae79-45ce-8907-e5ff5fd8e266-jpeg.jpg?v=1652433806612",
-            "title_3":"The Merchant of Venice Imperial Emerald là một mùi hương quyến rũ đến từ The Merchant of Venice, lấy cảm hứng từ con công. Trải qua hàng nghìn năm, con công đã trở thành nguồn cảm hứng cho những huyền thoại và truyền thuyết ở cả hai nền văn hóa phương Tây và phương Đông, những truyền thuyết này mang những ý nghĩa cao quý: vẻ đẹp, tuổi thọ, tình yêu, sang trọng và sự hãnh diện. Như một lời tri ân dành cho sự thanh lịch và kỳ diệu của Venice, The Merchant of Venice đã lấy cảm hứng từ những hoa văn màu xanh lục bảo và xanh lam như đuôi của con công, tạo ra một kiệt tác mùi hương."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "40",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "CLIVE CHRISTIAN NO1",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/4sis-387-800x600-1-11.jpg?v=1567656853283",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/4sis-387-800x600-1-11.jpg?v=1567656853283"}
-        ],
-        "price":"10 550 000",
-        "sale_price":"11 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"CLIVE CHRISTIAN NO1",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/fullsizerender-31-8bf77b12-f16e-4ccf-b22f-e5ebea5f4702.jpg?v=1500881351690",
-            "title_2":"Mỗi mẫu nước hoa CLIVE CHRISTIAN đều sx 1 mẫu nam và 1 mẫu nữ với hình thức giống nhau DongNo1 50ml 495 bảng Anh .Dòng C ,V,X, hoặc 1872 50ml 200-250 bảng Anh. Dòng số VII, VIII gíá 50ml 350 bảng Anh. Bộ gồm 3 chai 30ml của nam , hoặc bộ 3 chai 30ml nữ giá 425 bảng Anh. Có sẵn liên hệ ngay với shop d2 để giao hàng"
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "41",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "CHANEL COCO NOIR",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/chanel-coco-noir-100ml-perfume.jpg",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/chanel-coco-noir-100ml-perfume.jpg"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Chanel Coco noir là 1 sản phẩm mới của dòng nước hoa Chanel được thừa hưởng cả 2 nét đẹp rạng rỡ và nồng ấm từ Coco Mademoiselle và Coco eau de parfum. Vẻ hấp dẫn đầy bí ẩn của Coco Noir cuốn hút cho sức mạnh, quyền lực và sự đam mê từ Chanel Coco noir sẽ là một món quà tinh thần tuyệt vời dành cho những người phụ nữ hiện đại.",
-            "image_detail_1": "http://www.parfani.com/wp-content/uploads/2014/03/Coco-Noir_main_image_object.jpg",
-            "title_2":"Chanel mô tả về Coco Noir như sau: “Coco Noir cho thấy một màu đen mà là thân mật, quyến rũ và mạnh mẽ rực rỡ. Các hương thơm đặc trưng của bưởi và cam nhấn mạnh hương hoa, cùng với hoa hồng và nhài, trong khi hoắc hương và gỗ đàn hương đến từ Indonesia thêm vào hương vị ấm áp.”",
-            "image_detail_2": "https://66.media.tumblr.com/5b9ba9faba5fab58b59abaf3bdbbc425/tumblr_olfu1bwoCB1tk6s5po1_640.jpg",
-            "title_3":"Khúc dạo đầu sôi nổi và rực rỡ, kích thích tò mò và gây sự chú ý. Nhưng đáng chú ý nhất là lá hồng Geranium thơm một cách nổi bật, trong khi đó, đậu Tonka Venezuela và hoa patchouli Indonesia làm tăng dần lên khiến càng về sau hương thơm càng thêm phần ngọt ngào và ấm áp. Ngay sau đó, nước hoa tiếp tục phát triển và tạo thành những lớp bong bóng mịn màng màu tím. Những đám mây được làm từ kem mịn này khiến mùi hương trở nên nhẹ nhàng và êm dịu khi kết thúc. Nó không phải là một mùi hương cay nồng kịch tính như Coco, nhưng nó cũng sẽ không khiến người ta phải đứng bật dậy để lần theo những vệt hương để lại như Coco mademoiselle EDP.Còn mùi hương Coco Noir ôm sát cơ thể, bao bọc, thân mật và ấm cúng."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "42",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "𝐂𝐡𝐫𝐢𝐬𝐭𝐢𝐚𝐧 𝐋𝐨𝐮𝐛𝐨𝐮𝐭𝐢𝐧 Loubirouge",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/61aa14f9-49fd-4537-8199-29ea61cf68f0.png?v=1620362892963",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/61aa14f9-49fd-4537-8199-29ea61cf68f0.png?v=1620362892963"}
-        ],
-        "price":"6 550 000",
-        "sale_price":"8 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"”Giày cao gót”- Loubirouge",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/1fa0f3c2-c4ed-427e-974c-141cf24d2d12-jpeg.jpg?v=1620362675508",
-            "title_2":"Sẽ không phải là một bộ sưu tập nước hoa của Christian Louboutin nếu không có mùi hương lấy cảm hứng từ những đôi giày đế đỏ sải bước trên những con phố quyến rũ của Paris, và đó chính xác là những gì 𝙇𝙤𝙪𝙗𝙞𝙧𝙤𝙪𝙜𝙚 thu hút. Một quán rượu dành cho các giác quan, nó có các nốt hương gợi cảm của bạch đậu khấu, vani và hoa diên vĩ kết hợp với nhau trong một làn sóng gia vị phương Đông.",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/b1fdb8e0-9c7e-4746-bf5a-829dcb8c1188-jpeg.jpg?v=1620363039101"
-           
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "43",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "LOUIS VUITTON CALIFONIA DREAM",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/138535-c5fb89bbf695cfcd40ced0c07a9fc752-california-dream.jpg?v=1623136461913",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/138535-c5fb89bbf695cfcd40ced0c07a9fc752-california-dream.jpg?v=1623136461913"}
-        ],
-        "price":"7 550 000",
-        "sale_price":"9 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"”California Dream – Mơ màng trong một chiều hoàng hôn mùa hạ",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/louis-vuitton-califonia-dream.jpg?v=1591334466012",
-            "title_2":"“Hoàng hôn là một điều gì đó vừa nhất thời, vừa vĩnh cửu. Đó là khoảnh khắc độc đáo và vô cùng đẹp đẽ, nhưng không thể nắm bắt vì chỉ cần sảy một ánh mắt là cảnh tượng đã thay đổi đến ngỡ ngàng. Nước hoa, bằng cách nào đó, cũng mang vẻ đẹp tương tự – luôn đúng lúc nhưng không thể nào nắm giữ”, nhà chế tạo mùi hương Jacques Cavallier Belletrud.",
-            "image_detail_2": "https://missi.com.vn/wp-content/uploads/2020/06/100610481_146317596983231_3309405802036461568_n.jpg",
-            "title_3":"Louis Vuitton quyết tâm theo đuổi hành trình đầy gợi cảm của dòng nước hoa Cologne, một ý tưởng ngẫu nhiên dựa trên sự kết hợp đặc biệt giữa mist hương cam với mùi hương nồng nàn của hoa cỏ. Bộ ba đầy mê hoặc trước đây bao gồm Sun Song – giai điệu tươi vui cho ngày đẹp trời, Cactus Garden – chuyến dạo chơi trong sân vườn kỳ lạ, và Afternoon Swim – ngụp lặn trong đại dương của niềm vui. Với California Dream, câu chuyện mùa hè và hoàng hôn của Louis Vuitton được tiếp nối trong một bộ sưu tập lung linh đầy sức hút.",
-            "title_4":"California Dream, mẫu nước hoa Cologne mới nhất của thương hiệu chính là giọt màu mê hoặc cuối cùng của buổi chiều hoàng hôn, là khoảnh khắc rực rỡ của ngày hè California tràn ngập hạnh phúc.",
-            "title_5":"Đưa hoàng hôn California vào nước hoa là một sáng tạo thú vị. Thành phố Los Angeles nhộn nhịp và thiên nhiên hữu tình như hòa làm một, được phủ đầy dưới lớp màu sắc vô tận của bầu trời, trải dài đến ngút tầm mắt. Một bầu trời thoáng trong xanh bỗng chốc trở nên tối sẫm trong màn đêm óng ánh.",
-            "title_6":"Tinh chất quýt chứa đựng nhiều tầng lớp giống như bầu trời nhiều màu của hoàng hôn. Tinh chất chanh là niềm vui ngọt ngào không thể che giấu mỗi khi hè đến. Xạ hương kéo dài cảm giác ấm áp. Ambrette làm bật lên hương đất ẩm và quả lê mùa hè. Đó là niềm hạnh phúc trong lời tiễn biệt ánh sáng cuối ngày, cũng là niềm hân hoan chờ đợi những điều thú vị sắp tới của màn đêm. Khi màn đêm buông xuống, đôi vai mềm như được ôm ấp cùng benzoin duyên dáng và hương vani, nhẹ nhàng như lời chào của mùa hạ."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "44",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 9,
-        "productName": "ROJA ELIXIR ESSENCE POUR FEMME",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/10-dupn9con1-medium.jpg?v=1623658822710",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/10-dupn9con1-medium.jpg?v=1623658822710"}
-        ],
-        "price":"6 550 000",
-        "sale_price":"7 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"ROJA ELIXIR ESSENCE POUR FEMME",
-            "image_detail_1": "https://cdn.starwebserver.se/shops/mozart/files/cache/13_duphuzh91_medium.jpg?_=1572558778",
-            "title_2":"Roja Elixir Essence Pour Femme mang đến cho bạn hương thơm gợi cảm, lôi cuốn. Nhờ  thành phần chính có trong Roja là lá violet, gỗ tuyết tùng, xạ hương. Roja Elixir ra mắt công chúng vào năm 2016 và thích hợp cho các bạn từ 25 tuổi trở  lên. Có độ  lưu hương lâu và tỏa hương trong vòng 2 mét. Thời điểm thích hợp để dùng loại nước hoa này là Ngày, Đêm, Xuân, Thu, Đông.",
-            "image_detail_2": "https://fraguru.com/mdimg/secundar/o.60326.jpg",
-            "title_3":"Với Roja Elixir Pour Femme Essence De Parfum được bào chế từ  các tinh dầu hoa quý hiếm như: lily thung lũng, nhài dại, ngọc lan tây, lá violet, phong lữ, vòi voi phối với một ít mâm xôi, đào, quế rồi nhấn nhá thêm chút êm dịu từ gỗ tuyết tùng, xạ hương, vanilla.. tất cả tạo nên một tổng thể vô cùng hài hoà và sắc nét.",
-            "title_4":"Dòng nước hoa mới nhất Roja Dove hương thơm Elixir giống như một thần dược vô hình. Có sức hút mãnh liệt khiến bạn không thể cưỡng lại. Làm tăng sự tự tin và quyến rũ ở mọi nơi bạn tới. Hương thơm của Elixir được ví như  bó hoa mùa xuân vậy, nhẹ nhàng và sâu lắng. Bạn sẽ cảm nhận được ngay với những lời thầm thì từ  xạ hương và Violet như  đang quấn quanh lấy da thịt bạn không muốn rời. Lưu lại trên da note hương cuối thật ấn tượng."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "45",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 4,
-        "productName": "MAISON FRANCIS KURKDJIAN À LA ROSE EDP",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cd3993614e308e0d03c8ef3d39ca97f5.jpg?v=1622882266357",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/cd3993614e308e0d03c8ef3d39ca97f5.jpg?v=1622882266357"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"MAISON FRANCIS KURKDJIAN À LA ROSE EDP",
-            "image_detail_1": "https://i.pinimg.com/originals/0d/30/5f/0d305f187b49dbb3d141275e0228106e.jpg",
-            "title_2":"À La Rose là hương thơm nhẹ nhàng và gợi cảm được tạo nên từ hai loại hoa hồng đặc biệt: hoa hồng Damascena từ Bulgari và hoa hồng Centifolia từ Grasse. Chúng kết hợp với nhau tạo nên mùi hương của xạ hương tinh tế và bay bổng. À La Rose là sự tôn vinh sự nữ tính cũng như là tuyên ngôn của tình yêu được chuyển thành một loại nước hoa. Đây còn là sự kết hợp táo bạo của sự nữ tính rạng rỡ với phong cách vô tư hay thay đổi.",
-            "image_detail_2": "https://www.franciskurkdjian.com/on/demandware.static/-/Sites-mfk-master-catalog/default/dw8b4fa442/ALR-TRIPTYQUE-2.jpg",
-            "title_3":"À La Rose bao gồm đậu ngọt là một loài hoa màu trắng hoặc có màu sắc sặc sỡ từ một loại cây leo có nguồn gốc từ miền Nam nước Ý, nó lộ ra một mùi hương mật ong rất tinh tế, ngọt ngào, cũng được tìm thấy ở hoa cam. Bằng cách pha trộn với các thành phần khác đã chiết xuất ra mùi hương của hạt đậu trắng ngọt ngào nhất. Kết quả là một nốt hương hoa tươi, mềm mại và tinh tế, với tông màu mật ong.",
-            "title_4":"Tiếp theo là Hoa hồng Centifolia hay còn được gọi là hoa hồng Tháng Năm bởi vì đó là tháng ra hoa của nó, xuất hiện ở miền nam nước Pháp. Hương thơm hoa hồng này được sử dụng trong hương giữa và hương cuối, một mùi hương hào phóng nhưng cũng phức tạp.Bên cạnh đó còn có sự hấp dẫn của hương hoa hồng Damascena với mùi hương có một chút cay nhẹ. Nó thu được bằng cách chưng cất hơi nước."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "46",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 4,
-        "productName": "Parfums De Marly Delina For Women",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/parfum-de-marly-delina.jpg?v=1672990990777",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/parfum-de-marly-delina.jpg?v=1672990990777"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Nước hoa nữ Delina EDP  của thương hiệu Parfums De Marly được ra mắt năm 2017. Đây là một trong những chai nước hoa Niche rất nổi tiếng của Pháp. Nếu nhà Parfums De Marly cho ra mắt những mùi hương dành cho nam giới mang sức hút mãnh liệt và kiêu ngạo thì ngược lại, những mùi hương dành cho nữ đều toát lên một vẻ đẹp tao nhã và có sức hút bất ngờ.",
-            "image_detail_1": "https://orchard.vn/wp-content/uploads/2018/10/DELINA-4-600x600.jpg",
-            "title_2":"Hương hoa chủ đạo làm nên những giây phút gợi cảm ngất ngây đem đến cho Parfums De Marly Delina For Women trở nên nữ tính hơn bao giờ hết nhưng ẩn chứa trong đó là một sức hút kiêu kỳ đầy thần thái xuất chúng như một nữ thần.",
-            "image_detail_2": "https://orchard.vn/wp-content/uploads/2018/10/DELINA-2-768x508.jpg",
-            "title_3":"Mùi hương đặc trưng",
-            "title_4":"Hương đầu: cây đại hoàng, quả vải, cam bergamot, nhục đậu khấu",
-            "title_5":"Hương giữa: hoa hồng, hoa mẫu đơn, vani, xạ hương",
-            "title_6":"Hương cuối: xạ hương cashmeran, khói thơm, cỏ vetiver, gỗ tuyết tùng"
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "47",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 4,
-        "productName": "LOUIS VUITTON STELLAR TIMES",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/359efa33-173d-4904-859b-2c2c9c7b51ec-jpeg.jpg?v=1638427650307",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/359efa33-173d-4904-859b-2c2c9c7b51ec-jpeg.jpg?v=1638427650307"},
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/f0872064-b93c-4874-a268-139cf46dcd14-jpeg.jpg?v=1638427652437"}
-        ],
-        "price":"16 550 000",
-        "sale_price":"18 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Siêu phẩm của 𝐋𝐨𝐮𝐢𝐬 𝐕𝐮𝐢𝐭𝐭𝐨𝐧 vừa ra mắt mang tên 𝐋𝐞𝐬 𝐄𝐱𝐭𝐫𝐚𝐢𝐭 đã trở lại sau giãn cách toàn cầu. So với các sản phẩm trước đây thì bộ 𝐋𝐞𝐬 𝐄𝐱𝐭𝐫𝐚𝐢𝐭 có hương thơm vô cùng tinh xảo, không hề có hương thơm đầu, hương giữa hay hương cuối… hương thơm gần như hòa quyện giữa thiên nhiên ngọt ngào và tinh tế chạm đến từng cung bậc cảm xúc…",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/8f062914-7a13-4cd2-b54f-8f9eadba6b77-jpeg.jpg?v=1638427489318",
-            "title_2":"Chuyến du hành quay về nơi giấc mơ ấu thơ đến thăm những đền đài kỳ ảo, những khu vườn khảm đá mosaic với thác nước kiều diễm. Jacques Cavallier Belletrud vẽ nên chuyến đi mộng tưởng đó bằng: “Long diên hương trôi chảy trên đại dương, hổ phách kinh điển thấm đẫm vanilla và nhựa cây. Tôi tạo ra hổ phách mềm mỏng, trắng tinh, sâu lắng”. Hợp hương như chiếc thảm thần kỳ nâng bổng người ta bay về cung điện khảm vàng trên cao tít tầng không, nơi ngát hương hoa cam, hổ phách và nốt da thuộc từ nhựa thơm balsam Peru. Hành trình hòa trộn giữa ánh sáng và bóng tối, nét thẳng và đường cong, kim loại lạnh và nguyên liệu thô, ảo ảnh và thực tại, tan rã và hợp nhất, chỉ còn xúc cảm ở thể ban sơ thuần chất.",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/21efd6ca-3290-4615-832f-d09594ac4c24-jpeg.jpg?v=1638427720435"
-           
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "48",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 4,
-        "productName": "LOUIS VUITTON DANCING BLOSSOM",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/0fedc42d-3399-46d5-b058-cc9174e59db5-jpeg.jpg?v=1638426597837",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/0fedc42d-3399-46d5-b058-cc9174e59db5-jpeg.jpg?v=1638426597837"},
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/976182a6-8b86-4d1d-bd23-ec1aaaf3c992-jpeg.jpg?v=1638426604760"}
-        ],
-        "price":"16 550 000",
-        "sale_price":"18 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Dancing Blossom nằm trong Bộ Sưu Tập Les Extraits – công trình kiến trúc đẹp vĩ đại của Jacques Cavallier-Belletrud (Nhà chế tác nước hoa – Linh Hồn của Louis Vuitton) và Frank Gehry (kiến trúc sư bậc nhất thế giới đương đại).",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/0e51bc8d-df6d-44b7-b63f-f7df3ff0dda0-jpeg.jpg?v=1638426629445",
-            "title_2":"Bắt đầu với thiết kế mẫu chai nguyên thủy của nhà thiết kế đã thay đổi và mở rộng các đường nét thiết kế của chai thủy tinh. Thiết kế lần này là một thiết kế hữu cơ. Thân chai thủy tinh được phá cách, phá vỡ cấu trúc khi không còn thẳng thớm như bình thường mà trở nên uyển chuyển, sinh động, êm tay hơn với thiết kế cong nhẹ.",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/21de4826-7f6e-400a-b552-f52f074cd98f-jpeg.jpg?v=1638426672777",
-            "title_3":"Bộ Sưu Tập lần này tôn vinh tinh thần tự do, hơi thở của cuộc sống và sự uyển chuyển trong những thay đổi “bất quy tắc” của thiên nhiên. 5 chai nước hoa trong BST lần này như một miền ký ức gợi nhớ về quá khứ, với 5 loại hương trái cây làm nền, như những cung bậc cảm xúc khó quên trong cuộc sống, trong các kỷ niệm, trong các khoảnh khắc của từng hơi thở",
-            "title_4":"Dancing Blossom là nước hoa họ hoa (floral), đây là sự kết hợp từ các mùi hương của hoa nhài sambac, hoa hồng tháng Năm, hoa mộc tê (osmanthus) và huệ trắng Ấn Độ. Tất cả hòa quyện lại với nhau tạo nên một bó hoa chứa đầy cảm xúc và tinh tế."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "49",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 4,
-        "productName": "CREED LOVE IN BLACK",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/creed-love-in-black-75ml.jpg?v=1568431720690",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/creed-love-in-black-75ml.jpg?v=1568431720690"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Love in Black là một chai nước hoa nữ, đã được giới thiệu vào năm 2008. Hương thơm của nước hoa được lấy cảm hứng từ cưu đệ nhất phu nhân, Jacqueline Kennedy, và thành phần hương thơm được tổ hợp từ những nguyên liệu thu hoạch từ những nơi mà bà đã từng đến và yêu quý. Love in Black được xếp vào dòng hương hoa cỏ và do chính Erwin Creed đời thứ 7 và Olivier Creed đời thứ 6 sáng tạo nên.",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/b7b250d5-5293-4f52-a215-cdce1aa3c7d8-jpeg.jpg?v=1669953521524",
-            "title_2":"Với nốt hương chủ đạo là hoa violet,  nước hoa Love in Black mang một màu tím sẫm thay vì đen tuyền như cái tên đã gợi ý (Black có nghĩa là đen trong tiếng Anh). Các nốt hương trái cây (quả lý chua đen), cây cỏ và gia vị (đinh hương) hòa âm cùng với hương thơm của hoa violet, và được làm dịu đi bới hương hoa diên vĩ và hoa hồng, Lớp hương đầu sử dụng hương hoa violet Ý, hoa nhài nở về đêm và gỗ tuyết tùng từ Virginia.Lớp hương giữa thêm sự nữ tính từ hoa diên vĩ Florentine, đinh hương và xạ hương, trong khi đó, lớp hương cuối tỏa hương nồng nàn với lý chua đen và hoa hồng Bulgary.",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/aac69ed9-87dc-424c-a211-764a341fd3ab-jpeg.jpg?v=1669953542570",
-            "title_3":"Chai nước hoa được làm từ cát đen giống với loại trên các quần đảo Hy Lạp. Phiên bản nước hoa này muốn ca ngợi phép màu của mỗi người phụ nữ và vẻ tao nhã về đêm của họ, và chiếc nơ đen trên cổ chai như muốn nhấn mạnh điều đó.",
-            "title_4":"Love in Black dành cho những người phụ nữ muốn tạo ra một ấn tượng mãi không phai, với một hương thơm hài hòa. Hương thơm cay nồng với các nét đặc trưng thú vị và phong phú này thể hiện thật tuyệt vời trong nhiều dịp giản dị và chắc chắn sẽ thu hút sự chú ý cho dù bạn đang ở đâu."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "50",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 8,
-        "productName": "CHANEL COCO MADEMOISELLE INTENSE",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/lr6687.jpg",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/lr6687.jpg"},
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/chanel-coco-made-intense.jpg?v=1611306089180"}
-        ],
-        "price":"3 550 000",
-        "sale_price":"4 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"CHANEL COCO MADEMOISELLE INTENSE",
-            "image_detail_1": "https://perfumediary.com/media/reviews/photos/original/4f/4f/c8/chanel-coco-mademoiselle-intense-24-1517561873.jpg",
-            "title_2":"Chắc hẳn dòng nước hoa Coco mademoiselle EDP của Chanel không còn quá xa lạ với chị em phụ nữ yêu nước hoa, hầu như ai cũng thích mùi hương sang chảnh và quyến rũ này. Ra mắt từ năm 2001 và Coco mademoiselle edp luôn giữ top đầu trong danh sách những mùi hương mà chị em yêu thích.",
-            "image_detail_2": "https://1.bp.blogspot.com/-0Tu-aolfW6Y/WrvCS2X98KI/AAAAAAACUZ8/DieHiVMsVJs-X40VwyyrJruSekP976BMQCLcBGAs/s1600/chanel-coco-mademoiselle-fragrance.jpg",
-            "title_3":"Chanel Coco mademoiselle intense được đánh giá là hương thơm cực kỳ nữ tính, mới lạ với nồng độ các thành phần tạo nên hương mạnh mẻ và sâu sắc hơn phiên bản 2001. Hương thơm hoa phương Đông ban đầu Coco Mademoiselle trong phiên bản mới đã trở thành phương Đông, ấm áp và quyến rũ, với nồng độ cao của hột xoàn, hổ phách, các loại đậu ngon và madagascar vanilla.",
-            "title_4":"Hương thơm đặc trưng:",
-            "title_5":"Hương đầu: camiliciliana, củ hành hương Calabria;",
-            "title_6":"Hương giữa: hoa hồng, hoa nhài, hoắc hương, hổ phách;",
-            "title_7":"Hương cuối: đậu Tonka, Madagascar Vanilla;"
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "51",
-        "dateAdd": 2,
-        "capacity":"80ml",
-        "bestsellers": 5,
-        "productName": "Kilian Voulez-Vous Coucher Avec Moi",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/148870a0-4278-499b-8e51-3b64393beb9e-jpeg.jpg?v=1607915679657",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/148870a0-4278-499b-8e51-3b64393beb9e-jpeg.jpg?v=1607915679657"}
-        ],
-        "price":"5 550 000",
-        "sale_price":"6 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Kilian Voulez-Vous Coucher Avec Moi",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/22e79d50-0e08-423e-bfe1-f0d5bb94b77d-jpeg.jpg?v=1607914923469",
-            "title_2":"Đặt chân vào Khu vườn Thiện và Ác của Kilian Hennessy, ta liền bị những chất hương gây nghiện quấn lấy mà quên hết lối về. Những đoá hoa dành dành tươi tắn cùng hoàng lan và hoa huệ quyến rũ buông lời tỉ tê bên tai khiến cho bất kỳ ai cũng cảm thấy lâng lâng, ngây ngất. “Voulez-vous coucher avec Moi” là lời mời trải qua cuộc chơi đêm tối đầy xa xỉ với những thú vui kích thích. Vẻ gợi cảm, đê mê ấy thế nhưng không làm mất đi sự sang trọng cùng phong thái bí ẩn, khó nắm bắt vốn có bên trong từng note hương.  ",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/6ffbadef-8f6a-4dad-a578-54e132fbe23e-jpeg.jpg?v=1607915012364",
-            "title_3":"Ẩn bên dưới từng note hương hoa, Voulez-vous coucher avec Moi hài hòa các thái cực khi để tinh chất quýt mandarin cân bằng đàn hương xác thịt, giúp sự ngọt ngào lưu luyến trên cơ thể. Và khi đã chìm đắm trong những kích thích thì bất chợt cái vuốt ve nhẹ nhàng, âu yếm của vani khiến ta vương vấn không thôi.",
-            "title_4":"Vậy, bạn có muốn tham gia vào cuộc vui đêm nay không?"
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "52",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 1,
-        "productName": "FREDERIC MALLE CARNAL FLOWER",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/294050770087.jpg?v=1469854833833",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/294050770087.jpg?v=1469854833833"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"FREDERIC MALLE CARNAL FLOWER",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/d3a70e38-ccc2-4a04-8d60-674825037f02-jpeg.jpg?v=1597213700842",
-            "title_2":"Mẫu chai nước hoa được thiết kế theo hình trụ, làm từ thủy tinh trong suốt thấy được màu nước hoa vàng óng bên trong. Nắp chai có màu đen phù hợp với vòng đen xung quanh thân chai, tạo nên một tổng thể thống nhất, mẫu thiết kế chai khá đơn giản.",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/b02c7f75-ec61-4209-9d3e-027ec27e894e-jpeg.jpg?v=1597213737716",
-            "title_3":"Carnal Flower là dòng nước hoa phù hợp với cả nam lẫn nữ mang mùi hương ngọt ngào, nồng nàn nhưng rất cá tính và có đôi chút phá cách. Carnal Flower hoàn hảo cho những ngày thời tiết ấm áp, nó sẽ mang cho bạn một hương thơm tự nhiên, gần gũi những vẫn luôn có những khoảng trầm ấm, tinh tế ở bên trong.",
-            "title_4":"Thành phần: Hoà quyện của mùi hương của cam bergamot, dưa -bạch đàn-hoa ylang-ylang, hoa nhài, hoa huệ, salicylate"
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "53",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 1,
-        "productName": "DIPTYQUE DO SON EAU DE PARFUM",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dd352854-5590-45f7-aa2c-93db2cb89dcd.webp?v=1669951977750",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dd352854-5590-45f7-aa2c-93db2cb89dcd.webp?v=1669951977750"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"DIPTYQUE DO SON EAU DE PARFUM",
-            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/7a204b97-ab2e-4a45-a0f4-4556dd6bcafa-jpeg.jpg?v=1669951831170",
-            "title_2":"Khi còn trẻ, ông đã dành cả mùa hè của mình tại bãi biển và ở trong chùa, nơi cha của ông đã từng xây dựng ở Đồ Sơn. Gió biển mang theo mùi hương nồng nàn và hơi cay của hoa huệ mà mẹ anh vô cùng yêu thích. Đồ Sơn có cả sự tinh tế và bền bỉ của một ký ức từ thời thơ ấu ở Đông Dương",
-            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/30a76377-9b10-48cf-a66b-4dbd5850292e-jpeg.jpg?v=1669951852673",
-            "title_3":"Trong phiên bản Eau De Parfume, tông hương hoa huệ lại bền bỉ hơn, kết hợp với những hương thơm tự nhiên của lá cam và hồng tiêu gợi nhớ về một khu rừng nguyên sinh, đầy hương hoa sẵn sàng mê hoặc bất kì ai lỡ lạc lối. Thêm vào đó là mùi gỗ trong chùa, được mô phỏng qua mùi xạ hương, mùi gỗ của sự thanh tịnh chốn linh thiêng và cảm giác bình an cho tâm hồn."
-        }
-    },
-    {
-        "gender": 2,
-        "categoryName": "Nước hoa cao cấp trên 3 triệu",
-        "id": "54",
-        "dateAdd": 1,
-        "capacity":"80ml",
-        "bestsellers": 1,
-        "productName": "Diptyque Eau Capitale (unisex)",
-        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/255251f5-4161-4fe6-baae-2be3beb15163-jpeg.jpg?v=1675391376513",
-        "imageShow":[
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/255251f5-4161-4fe6-baae-2be3beb15163-jpeg.jpg?v=1675391376513"},
-            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/e4dfa1c0-664a-43e6-bf02-98dc8171bd2d-jpeg.jpg?v=1675391377187"}
-        ],
-        "price":"4 550 000",
-        "sale_price":"5 600 000",
-        "categoryId": "3",
-        "detail_product":{
-            "title_1":"Diptyque Eau Capitale (unisex)",
-            "title_2":"Phong cách: Tinh tế, Sang trọng, Ma mị",
-            "title_3":"Hương Đầu: Tiêu Hồng, Cam Bergamot",
-            "title_4":"Hương Giữa: Hoa Hồng",
-            "title_5":"Hương Cuối: Hoa Hoắc Hương",
-            "title_6":"Diptyque Eau Capitale gợi lên những đường nét Tân Nghệ Thuật của Kinh Đô Ánh Sáng - Paris, thành phố với sự chuyển biến từ nhiều khía cạnh nhưng vẫn vẹn cái cốt lõi vốn có của nó.",
-            "title_7":"Một trong những khía cạnh độc đáo của Paris là tòa tháp Eiffel đang hiên ngang sừng sững đứng giữa khung cảnh thơ mộng, nơi những cay nồng đan xen với thanh tao của Tiêu Hồng và Cam Bergamot. Tòa tháp là chứng nhân của những câu chuyện tình yêu lãng mạn nhưng cũng không bỏ quên đôi ba câu chuyện chia đôi.",
-            "title_8":"Một đóa hoa hồng rực rỡ xuất hiện sau Tiêu Hồng và Cam Bergamot, một khía cạnh mới xuất hiện. Sự lãng mạn của hoa hồng là một biểu tượng đặc trưng lâu đời của thành phố tình yêu Paris, đang dần tỏa hương đưa du khách lạc vào những thơ mộng của thủ đô.",
-            "title_9":"Cuối cùng, không phải là Rêu mà là Hoắc Hương, vì sao ư? Vì Hoắc Hương gợi lên được cái cảm xúc mạnh mẽ ngay từ tầng hương đầu, loài hoa đang tỏa mình trong ánh nắng và không quên đắm mình trong những cảm xúc mới, khác với Rêu, thứ hương thơm cổ điển đang hiện hữu trên những bức tường rêu phong."
-        }
-    },
-    {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "55",
+        "id": "37",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 5,
@@ -1266,7 +828,7 @@
         ],
         "price":"7 950 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Louis Vuitton Rose des Vents là một trong những chai nước hoa nữ bán chạy nhất của dòng Les Parfum đến từ Louis Vuitton. Sản phẩm được giới thiệu là mùi hương thì thầm của những cánh hoa. Những giọt nước lấp lánh này mở ra chân trời mới về hương thơm ngay trước mắt nàng. Louis Vuitton Rose des Vents là người bạn đồng hành đưa nàng đắm mình vào cánh đồng hoa hồng. Nhóm hương hoa cỏ trải chiếc áo tàng hình mang hương thơm nhẹ nhàng, tinh tế lên cơ thể nàng để nàng bộc lộ khí chất quyến rũ của chính mình.",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/c3ca49c0-492c-4727-b399-b074427c7d3b-jpeg.jpg?v=1667886868736",
@@ -1278,7 +840,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "56",
+        "id": "38",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 4,
@@ -1290,7 +852,7 @@
         ],
         "price":"7 950 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Louis Vuitton City of stars là sáng tạo mùi hương thứ 6 của team Southern California trong bộ Collection vốn đã quá nổi tiếng trước đó. City Of Stars được coi là một mùi hương tiếp nối cho câu chuyện của California Dream, sau khi hoàng hôn buông xuống nơi bờ biển phía Tây nước Mỹ, thành phố Los Angeles mới thực sự lộ ra vẻ hoa lệ vốn có của nó – Một thành phố náo nhiệt không bao giờ ngủ.",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/0dd9b9dc-cb7e-48ef-9396-e27c073d38f6-jpeg.jpg?v=1667878370346",
@@ -1303,7 +865,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "57",
+        "id": "39",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1315,7 +877,7 @@
         ],
         "price":"16 050 000",
         "sale_price":"18 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Siêu phẩm của 𝐋𝐨𝐮𝐢𝐬 𝐕𝐮𝐢𝐭𝐭𝐨𝐧 vừa ra mắt mang tên 𝐋𝐞𝐬 𝐄𝐱𝐭𝐫𝐚𝐢𝐭 đã trở lại sau giãn cách toàn cầu. So với các sản phẩm trước đây thì bộ 𝐋𝐞𝐬 𝐄𝐱𝐭𝐫𝐚𝐢𝐭 có hương thơm vô cùng tinh xảo, không hề có hương thơm đầu, hương giữa hay hương cuối… hương thơm gần như hòa quyện giữa thiên nhiên ngọt ngào và tinh tế chạm đến từng cung bậc cảm xúc…",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/8f062914-7a13-4cd2-b54f-8f9eadba6b77-jpeg.jpg?v=1638427489318",
@@ -1326,7 +888,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "58",
+        "id": "40",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1338,7 +900,7 @@
         ],
         "price":"16 050 000",
         "sale_price":"18 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Dancing Blossom nằm trong Bộ Sưu Tập Les Extraits – công trình kiến trúc đẹp vĩ đại của Jacques Cavallier-Belletrud (Nhà chế tác nước hoa – Linh Hồn của Louis Vuitton) và Frank Gehry (kiến trúc sư bậc nhất thế giới đương đại).",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/0e51bc8d-df6d-44b7-b63f-f7df3ff0dda0-jpeg.jpg?v=1638426629445",
@@ -1351,7 +913,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "59",
+        "id": "41",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1362,7 +924,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Phiên bản mới của nhà  LOUIS VUITTON, nước hoa có tên là Imagination, ra mắt vào tháng 6 năm 2021. Bộ sưu tập nước hoa này được thiết kế để truyền cảm hứng cũng như khát vọng phiêu lưu và thoát khỏi trần tục. Imagination là ấn bản thứ bảy của dòng nước hoa Les Parfums Louis Vuitton. ",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/z2520109627556-54258e0fa9b12a762744e71b264b0ae6.jpg?v=1622273224765",
@@ -1373,7 +935,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "60",
+        "id": "42",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1384,7 +946,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Louis Vuitton On The Beach",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/22e5fd4f-64a5-4624-8505-3123360c799b-jpeg.jpg?v=1617163916415",
@@ -1396,7 +958,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "61",
+        "id": "43",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1407,7 +969,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"Météore by Louis Vuitton là một loại nước hoa Citrus Aromatic dành cho nam giới. Đây là một hương thơm mới. Météore được ra mắt vào năm 2020. Người đứng sau hương thơm này là Jacques Cavallier. ",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/me1.jpg?v=1606547464029",
@@ -1417,7 +979,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "62",
+        "id": "44",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1428,7 +990,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"LOUIS VUITTON HEURES d'ABSENCE",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/heu2.png?v=1606545568673",
@@ -1442,7 +1004,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "63",
+        "id": "45",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1453,7 +1015,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":"LOUIS VUITTON COEUR BATTANT",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/lv4-bd06c816-91a7-4593-9bdb-86b0a3b1b578.jpg?v=1606545119952",
@@ -1463,7 +1025,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "64",
+        "id": "46",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1474,7 +1036,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":" “Hoàng hôn là một điều gì đó vừa nhất thời, vừa vĩnh cửu. Đó là khoảnh khắc độc đáo và vô cùng đẹp đẽ, nhưng không thể nắm bắt vì chỉ cần sảy một ánh mắt là cảnh tượng đã thay đổi đến ngỡ ngàng. Nước hoa, bằng cách nào đó, cũng mang vẻ đẹp tương tự – luôn đúng lúc nhưng không thể nào nắm giữ”, nhà chế tạo mùi hương Jacques Cavallier Belletrud.",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/louis-vuitton-califonia-dream.jpg?v=1591334466012",
@@ -1487,7 +1049,7 @@
     {
         "gender": 2,
         "categoryName": "Lousi vuition",
-        "id": "65",
+        "id": "47",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1498,7 +1060,7 @@
         ],
         "price":"6 050 000",
         "sale_price":"8 600 000",
-        "categoryId": "4",
+        "categoryId": "7",
         "detail_product":{
             "title_1":" LOUIS VUITTON Mille Feux",
             "image_detail_1": "https://bizweb.dktcdn.net/thumb/large/100/110/910/files/img-4522.jpg?v=1547879421141",
@@ -1512,7 +1074,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "66",
+        "id": "48",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1525,7 +1087,7 @@
         ],
         "price":"1 350 000",
         "sale_price":"2 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"Chance Eau Vive với nồng độ EDT. Người tạo ra chai nước hoa này chính là Olivier Polge, người kế nghiệp Jacques Polge và cũng chính là con trai ông, cái tên huyền thoại phía sau thành công của những mùi hương huyền thoại của Chanel như Coco Mademoiselle hay chính 3 phiên bản quen thuộc của Chance.",
             "image_detail_1": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/files/c630a281-524f-4296-a28f-3e640d8e86c6-jpeg.jpg?v=1672075097628",
@@ -1535,7 +1097,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "67",
+        "id": "49",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1546,7 +1108,7 @@
         ],
         "price":"2 050 000",
         "sale_price":"3 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL CHANCE EAU TENDRE EDP",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/ceba8132-44c8-4003-9213-d081167adea6-jpeg.jpg?v=1620359628466",
@@ -1557,7 +1119,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "68",
+        "id": "50",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1568,7 +1130,7 @@
         ],
         "price":"3 050 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL COCO MADEMOISELLE EAU DE PARFUM L'EAU PRIVÉE",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/leau1.jpg?v=1608449909704",
@@ -1578,9 +1140,9 @@
         }
     },
     {
-        "gender": 2,
+        "gender": 1,
         "categoryName": "Chanel",
-        "id": "69",
+        "id": "51",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1591,7 +1153,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL BLEU DE CHANEL PARFUM",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/bleu-de-chanel-pafume-2018-b4b92cf4-9773-4b7a-a634-b3871a75f127.jpg?v=1588665810448",
@@ -1606,7 +1168,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "69",
+        "id": "52",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1617,7 +1179,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL Allure Sensuelle",
             "image_detail_1": "https://piimages.parfumo.de/4/8/1679_cd34ffdad8878f893fbaddc3ca8807be.jpg",
@@ -1629,9 +1191,9 @@
         }
     },
     {
-        "gender": 2,
+        "gender": 1,
         "categoryName": "Chanel",
-        "id": "70",
+        "id": "53",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1642,7 +1204,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL BLEU DE CHANEL EAU DE PARFUM",
             "image_detail_1": "https://i.ytimg.com/vi/KTJSMHCxcdE/maxresdefault.jpg",
@@ -1657,7 +1219,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "71",
+        "id": "54",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1668,7 +1230,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL GABRIELLE ESSENCE",
             "image_detail_1": "https://teascentedlibrary.files.wordpress.com/2019/11/gabrielle_chanel_essence.jpg",
@@ -1678,9 +1240,9 @@
         }
     },
     {
-        "gender": 2,
+        "gender": 1,
         "categoryName": "Chanel",
-        "id": "72",
+        "id": "55",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1691,7 +1253,7 @@
         ],
         "price":"5 450 000",
         "sale_price":"6 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL No5 RED LIMITED EDITION",
             "image_detail_1": "https://bizweb.dktcdn.net/thumb/large/100/110/910/files/chanel1.jpg?v=1545121303514",
@@ -1703,7 +1265,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "73",
+        "id": "56",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1714,7 +1276,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL COCO MADEMOISELLE INTENSE",
             "image_detail_1": "https://perfumediary.com/media/reviews/photos/original/4f/4f/c8/chanel-coco-mademoiselle-intense-24-1517561873.jpg",
@@ -1726,7 +1288,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "74",
+        "id": "57",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1737,7 +1299,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL GABRIELLE",
             "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/chanel-gabrielle-eau-de-parfum.jpg?v=1590479997737",
@@ -1749,7 +1311,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "75",
+        "id": "58",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1760,7 +1322,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"N°5 L’Eau tôn vinh sự đơn giản nhưng cũng rất hiện đại là thành quả sáng tạo của chuyên gia điều chế Olivier Polge. N°5 L’Eau mang trong mình mùi hương tươi mát của cam quýt, chanh, hoa cỏ và chút dư âm ngọt ngào pha chút phóng khoáng của cỏ vetiver, gỗ tuyết tùng, xạ hương…Theo lời của hãng, đây sẽ là phiên bản nhẹ nhàng nhất, vì từ “l'eau” trong tiếng Pháp có nghĩa là nước.",
             "image_detail_1": "http://thegirlfrompanama.com/wp-content/uploads/2016/09/What-You-Don%E2%80%99t-Know-About-the-New-Chanel-N%C2%B05-LEAU-@pamhetlinger-7.jpg",
@@ -1773,9 +1335,9 @@
         }
     },
     {
-        "gender": 2,
+        "gender": 1,
         "categoryName": "Chanel",
-        "id": "76",
+        "id": "59",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1786,7 +1348,7 @@
         ],
         "price":"3 450 000",
         "sale_price":"4 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL COCO MADEMOISELLE EAU DE PARFUM",
             "image_detail_1": "http://congdongreview.com/wp-content/uploads/2018/01/Chanel-Mademoiselle-100ml-8-1.jpg",
@@ -1800,7 +1362,7 @@
     {
         "gender": 2,
         "categoryName": "Chanel",
-        "id": "77",
+        "id": "60",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1811,7 +1373,7 @@
         ],
         "price":"2 450 000",
         "sale_price":"3 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL COCO NOIR",
             "image_detail_1": "http://cdn.shopclues.net/images/detailed/4407/categorycoconoir131396546307_1399409787.jpg",
@@ -1823,9 +1385,9 @@
         }
     },
     {
-        "gender": 2,
+        "gender": 1,
         "categoryName": "Chanel",
-        "id": "78",
+        "id": "61",
         "dateAdd": 1,
         "capacity":"80ml",
         "bestsellers": 1,
@@ -1836,11 +1398,293 @@
         ],
         "price":"2 750 000",
         "sale_price":"3 600 000",
-        "categoryId": "5",
+        "categoryId": "8",
         "detail_product":{
             "title_1":"CHANEL Allure Homme Sport Eau Extremme",
             "image_detail_1": "https://www.hangngoainhap.com.vn/images/201808/source_img/2488_P_1535684296397.jpg",
             "title_2":"Cây xô thơm, Quả quýt hồng, Cây bạc hà, các Note hương đầu tiên của Chanel Allure Homme Sport Eau Extreme khiến bạn bất ngờ bởi chúng đều là những nguyên liệu giúp bạn thanh nhiệt, giải khát. Đúng với mục đích và mong muốn của nhà sáng chế Jacques Polge của hãng Chanel, Chanel Allure Homme Sport Eau Extreme giữ được sự tươi mát trọn vẹn của dòng Chanel Allure Homme nhưng lại phá cách, trở nên cá tính hơn với hương Tiêu chiếm trọn vẹn trong note hương thứ hai. Không hề gắt, dù Tiêu có chiếm trọn vẹn ở hương giữa, thì sự tài tình trong cách pha chế, đẩy Xạ hương làm nền và mix cùng Gỗ tuyết tùng và sự trung tính của đậu Tonka, Chanel Allure Homme Sport Eau Extreme mang tới trải nghiệm mùi hương bằng sự thoải mái và trọn vẹn. Đủ sự sạch sẽ, mát mẻ cho những ngày bận rộn, nhưng cũng đủ tạo nên cá tính riêng biệt cho một người đàn ông biết yêu và chăm sóc bản thân mình."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Kilian",
+        "id": "62",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "Kilian A Kiss from a Rose",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/o-103100.jpg?v=1619594439607",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/o-103100.jpg?v=1619594439607"}
+        ],
+        "price":"4 750 000",
+        "sale_price":"5 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"Kilian A Kiss from a Rose",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/2c45163def811ddf4490.jpg?v=1619594234640",
+            "title_2":"A Kiss from a Rose được ra mắt vào trước mùa xuân năm 2021, được thiết kế trong chai màu đỏ như phiên bản Rolling in Love trước đó. Kilian Hennessy cho biết thêm: Tôi muốn thể hiện những cánh hoa và gai của hoa hồng.",
+            "title_3":"Đây là câu chuyện về những bông hồng thơm nhất thế giới. Phiên bản hoa hồng tháng 5 rực rỡ, thơm quên lối về. Hoa hồng có gai là để tự bảo vệ bản thân. Phụ nữ mạnh mẽ là để bảo vệ trái tim mình. Hãy là một đóa hồng có gai.",
+            "title_4":"Kilian Hennessy đã hợp tác với nhà pha chế nước hoa Alberto Morillas để tạo ra loại nước hoa mới này, được mô tả như một bó hoa rực rỡ và thoáng mát của hoa hồng tháng Năm từ Pháp và hoa nhài sambac của Trung Quốc; màu xanh lá cây, vị trái cây, và hơi ngọt. Hương thực vật tươi mát và sắc nét mở ra thành phần, trong khi các điểm nhấn xạ hương phong phú và nhiều lớp được đặt ở lớp hương cuối."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Kilian",
+        "id": "63",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "KILIAN ROSES ON ICE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/691e1c8f-88b0-4312-821e-bf800773100c-jpeg.jpg?v=1668758492710",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/691e1c8f-88b0-4312-821e-bf800773100c-jpeg.jpg?v=1668758492710"}
+        ],
+        "price":"3 750 000",
+        "sale_price":"4 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"KILIAN ROSES ON ICE",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/130b719b-000b-42c8-b3e6-ea662926ee90-jpeg.jpg?v=1606533761367",
+            "title_2":"Cô nàng Roses On Ice mảnh mai , cô gái mặc chiếc váy hoa tầm xuân khoe vai gợi cảm bước vô quầy rượu , ném lại nụ cười bao ánh mắt si tình dõi theo! Gọi một ly Gin Tonic, nhấp một chút...vị Gin mix chút dưa leo mát lạnh, mùi hoa hồng quyện hoà lẫn không thật sự rõ mạnh nhưng vừa phải, đủ tinh tế đủ cao sang, đủ để tao nên một Rose on Ice tuy nhẹ nhàng cổ điển nhưng vẫn gợi cảm vô cùng.",
+            "title_3":"Bộ sưu tập mới hé lộ những trải nghiệm riêng tư nhất của Kilian Hennessy. Thay vì tiếp nối kỹ nghệ chưng cất rượu Cognac trứ danh của dòng tộc Hennessy, quý ngài Kilian đã dành đam mê của mình cho nghệ thuật làm hương. Tuy nhiên, không vì thế mà rũ bỏ truyền thống gia đình, ông tiếp tục dòng máu “rượu” đặc trưng luôn chảy trong huyết quản người nhà Hennessy bằng những sáng tạo nước hoa đậm chất “di sản” nhưng không ngừng biến hóa, cách tân."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Kilian",
+        "id": "64",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "KILIAN ROLLING IN LOVE",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/kilian-rolling-in-love.png",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/kilian-rolling-in-love.png"}
+        ],
+        "price":"4 750 000",
+        "sale_price":"5 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"KILIAN ROLLING IN LOVE",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/kilian-rolling-in-love.jpg?v=1591066435274",
+            "title_2":"Rolling In Love By Kilian là mùi hương unisex dành cho cả nam và nữ, được hãng nước hoa danh giá Kilian ra mắt vào năm 2019. Nước hoa Rolling In Love thuộc nhóm hương hoa phương Đông cực kỳ quyến rũ và tinh tế, được sáng tạo bởi Pascal Gaurin.",
+            "title_3":"Vẫn giữ nguyên thiết kế đơn giản nhưng đầy sang trọng như các phiên bản tiền nhiệm, nước hoa Rolling In Love By Kilian đầy nổi bật với sắc đỏ tươi rực rỡ và quyền lực. Màu sắc này cũng phần nào nói lên tính cách của chai nước hoa này. Rolling In Love sẽ cực kỳ thích hợp với những ai mang phong cách hiện đại, đầy cuốn hút và quyến rũ, luôn muốn khác biệt trong đám đông và hiểu được sức mạnh, lợi thế của mình ở đâu.",
+            "title_4":"Rolling In Love By Kilian được thiết kế để trở thành một cái kén thân mật gây nghiện. Những tầng hương hoa của loại nước hoa dành cho người sành điệu này gợi lên mùi hương của xạ hương . Với mùi hương này, được thể hiện qua bàn tay nghệ thuật của chuyên gia nước hoa Pascal Gaurin, Kilian Hennessy đã từ bỏ lớp vỏ của mình để đi theo một hướng mới.",
+            "title_5":"Rolling In Love  nắm bắt sự lãng mạn và cảm giác háo hức của những mối quan hệ mới vừa chớm nở. Các thành phần sữa kem hạnh nhân, hoa diên vĩ và xạ hương là những thành phần cơ bản của mùi hương này. Thêm vào đó, các thành phần hương hoa tươi mát, ngọt ngào cũng góp phần làm đậm đà, sâu sắc hơn cho Rolling In Love . Thực tế, sự pha trộn của hoa hồng, hoa cam và chi dành dành sẽ tạo nên mùi hương cực kỳ hoàn hảo cho buổi hẹn hò đêm dưới ánh nến lãng mạn. Những thành phần đắt giá khác như hạt ambrette, lan Nam Phi, đậu Tonka, vanilla và hoa huệ cũng khiến bạn bị nghiện với Kilian Rolling In Love."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Kilian",
+        "id": "65",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "KILIAN MOONLIGHT IN HEAVEN",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/by-kilian-moonlight-in-heaven-woda-perfumowana-do-napelnienia-50-ml-254671.jpg?v=1622621038273",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/by-kilian-moonlight-in-heaven-woda-perfumowana-do-napelnienia-50-ml-254671.jpg?v=1622621038273"}
+        ],
+        "price":"4 750 000",
+        "sale_price":"5 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"KILIAN MOONLIGHT IN HEAVEN",
+            "image_detail_1": "https://www.bykilian.co.uk/media/images/products/833x968/kl_sku_N1RL01_833x968_0.jpg",
+            "title_2":"Nước hoa unisex Moonlight in Heaven được cho ra mắt vào năm 2016. Đây là dòng nước hoa By Kilian thuộc nhóm Aromatic. By Kilian tâm lý và biết chiều lòng giới nữ. Từ hình thức lọ nước hoa cầu kì, cho đến cách đặt tên các mùi hương Moonlight in Heaven phủ lên da lớp hương hoa quả cực đáng yêu, nũng nịu, ngây ngô, và tinh túy. Hương hoa quả dập dìu, lôi cuốn, sống động, và êm ru",
+            "title_3":"Moonlight mới đầu có vị xanh non của lá, có vị ngầy ngậy quả sung, và có vị chua chín dịu của hương hoa quả nhiệt đới, mà cụ thể ở đây là quả xoài.Sau khoảng 40 phút, vị xanh của cây lá khuất dần, moonlight trở nên mênh mang, dìu dặt, dập dìu. Mùi hương trở nên trắng sữa khi có vị gạo non quyện dừa. Vị ngậy tinh tươm này bở bung trên da, phủ lên cây lá hoa quả. Và Ánh Trăng nơi Thiên Đường chính thức xuất hiện.",
+            "title_4":"Moonlight In Heaven là sự pha trộn hài hòa giữa hương vị trái cây cùng món tráng miệng hài hòa và đặc sắc của đất nước Thái Lan. Mùi hương như một làn gió mát lành thổi đến từ bên kia đại dương, báo hiệu rằng mùa hè đã đến trên đất nước đầy nắng và gió."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Kilian",
+        "id": "66",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "Kilian Gold Knight",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/kilian-gold-knight.jpg?v=1509963640287",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/kilian-gold-knight.jpg?v=1509963640287"}
+        ],
+        "price":"6 750 000",
+        "sale_price":"7 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"Nước hoa nam Kilian Gold Knight nằm trong bộ sưu tập nước hoa “Từ tro tàn đến rạng đông” với nước hoa kilian women in Gold, Gold Knight là hương gỗ phương Đông dành cho nam giới, được phát triển bởi nhà sáng tạo nước hoa Pascal Gaurin. Thành phần của hương nước hoa này được truyền cảm hứng từ sự đối lập giữa cảm giác tươi mát và ấm áp, bởi mật ong và hương hồi ôm ấp cam bergamot thơm mát, vani ngọt béo và hoắc hương tinh tế",
+            "title_2":"Gold Knight với thiết kế chai màu đen và nắp màu vàng sang trọng, tinh tế cùng với hương thơm biểu hiện rõ sự đối lập nhưng lại vô cùng hòa hợp ăn ý, chắc chắn sẽ gây được ấn tượng mạnh mẽ cho những quý ông sang trọng và sành điệu.",
+            "title_3":"Hương thơm đặc trưng:",
+            "title_4":"Hương đầu: hoa hồi, cam begarmot",
+            "title_5":"Hương giữa: mật ong, vani",
+            "title_6":"Hương cuối: hoắc hương"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Kilian",
+        "id": "67",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "KILIAN WOMAN IN GOLD",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/bf34e22e-2bb8-481f-8d5d-9bbb40747d0c-jpeg.jpg?v=1595742049753",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/bf34e22e-2bb8-481f-8d5d-9bbb40747d0c-jpeg.jpg?v=1595742049753"}
+        ],
+        "price":"4 750 000",
+        "sale_price":"5 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"Kilian Woman in Gold",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/kilian-women-in-gold-ff3043da-6cca-408d-9376-4ffd468b1fe7.jpg?v=1591085187790",
+            "title_2":"Kilian Hennessy đã kỷ niệm mười năm ra đời của thương hiệu bằng việc giới thiệu một Bộ Sưu Tập mới mang tên From Dusk Till Dawn với ý nghĩa Từ tro tàn đến rạng đông được lấy cảm hứng từ vàng và lòng tôn kính tới họa sỹ người Áo - Gustav Klimt.",
+            "title_3":"Bộ sưu tập được lên kệ vào giữa tháng 9 năm 2017 với hai phiên bản mới đó là: Woman in Gold và Gold Knight.",
+            "title_4":"Và quý cô được lòng người hâm mộ nhất chắc có lẽ là Woman in Gold, siêu phẩm này được lấy cảm hứng từ bức chân dung được vẽ vào năm 1907 của Adele Bloch-Bauer, hay còn được gọi là “Austrian Mona Lisa” và “Golden Adele” với những làn hương đầy mơn trớn và quyến rũ như một quý cô gợi cảm giữa một đêm tiệc quý tộc Pháp đầy sang trọng và xa hoa.",
+            "title_5":"Nhờ vào sự tương phản, đối lập đầy mâu thuẫn của mình, Woman in Gold sẽ giúp cho các nàng trở nên bí ẩn, cuốn hút và có khả năng khoả lấp mọi ánh nhìn."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Kilian",
+        "id": "68",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "Kilian Black Phantom for Men",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/9da5f5ae-c1b7-4839-877c-ba52db091dca-jpeg.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/9da5f5ae-c1b7-4839-877c-ba52db091dca-jpeg.jpg"},
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/9da5f5ae-c1b7-4839-877c-ba52db091dca-jpeg.jpg?v=1670322316480"},
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/16edf5d8-4900-4217-aec6-bd67468ffddd-jpeg.jpg?v=1670322316480"}
+        ],
+        "price":"5 250 000",
+        "sale_price":"6 600 000",
+        "categoryId": "9",
+        "detail_product":{
+            "title_1":"Kilian Black Phantom for Men",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/kilian-black-phantom-6da9185a-3816-4b39-8859-f9c73c69a754.jpg?v=1591585272497",
+            "title_2":"Đắm chìm đến chết trong mùi hương bí ẩn của Bóng Ma Đêm với rượu Rum, socola caramen và cafe.",
+            "title_3":"Black Phantom được định vị như một dòng nước hoa sành điệu, kết hợp một cách tự nhiên và hài hòa giữa rượu rum, đường, cà phê, socola và caramel, gợi cho người thưởng thức đến một ly latte sánh đậm khó cưỡng. Và đến khi mùi hương bay hơi một chút, hương vị ngọt đậm của kẹo và ngậy như kem vẫn còn bám rất lâu, quấn quít quen thuộc. Những người đã từng cảm nhận Black Phantom đều cho rằng đây là một mùi hương của bóng tối, vừa bí ẩn lại vô cùng quyến rũ",
+            "title_4":"Black Phantom chắc chắn sẽ là một ứng cử viên nặng ký trong bộ sưu tập của quý ông lịch lãm hay quý bà sành điệu. Black Phantom thực sự là hiện thân hoàn mỹ và nghệ thuật một cách ma mị, nó tồn tại vượt ngoài không gian, thời gian và mọi rào cản và xứng đáng để bạn sở hữu. Tuy nhiên, bạn nên tận hưởng hương thơm này vào những buổi tiệc tùng khi ảnh hoàng hôn đã buông xuống vào mùa hè hoặc trong cái lạnh se se của mùa đông, Black Phantom sẽ để lại trong bạn những cảm nhận rõ nét và vô cùng ấn tượng."
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Dior",
+        "id": "69",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "Miss dior edt 50ml unbox",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/1b6a1f64-a7c6-41b2-b758-02e5adaa94e0-jpeg.jpg?v=1670242755453",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/1b6a1f64-a7c6-41b2-b758-02e5adaa94e0-jpeg.jpg?v=1670242755453"},
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dc387392-0754-4ba5-a81d-36cdb62d7e9b.webp?v=1670242755770"}
+        ],
+        "price":"1 250 000",
+        "sale_price":"2 600 000",
+        "categoryId": "10",
+        "detail_product":{
+            "title_1":"Hàng thanh lý , hàng mẫu , trưng bày được giảm giá chính hãng từ Pháp , khách hàng click vào đặt hàng hoặc liên hệ trước với shop vì số lượng có hạn Miss dior edt ",
+            "title_2":"Hương Đầu: Cam Đỏ",
+            "title_3":"Hương Giữa: Hoa Hồng Damask, Hoa Hồng Bu-Ga-Ri, Hoa Cam",
+            "title_4":"Hương Cuối: Hoa Hoắc Hương.",
+            "title_5":"Miss Dior Eau de Toilette là một cơn lốc hương hoa ly kỳ và sảng khoái. Một điệu valse điên cuồng nhảy múa xung quanh những đóa hoa hồng rực rỡ với hương sắc vẹn toàn. Hoa Hoắc Hương xuất hiện như một chiếc váy lót vải tuyn nhẹ tâng tựa như làn da của một cô gái đôi mươi xuân thì. Một Miss Dior rạng rỡ lao đầu vào vòng xoáy không bao giờ ngừng của cuộc sống và tình yêu."
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Dior",
+        "id": "70",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "DIOR J’ADORE IN JOY",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/77e561af-872e-4f0f-86b7-c80ce7ab2b03-jpeg.jpg?v=1639881945747",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/77e561af-872e-4f0f-86b7-c80ce7ab2b03-jpeg.jpg?v=1639881945747"}
+        ],
+        "price":"2 250 000",
+        "sale_price":"3 600 000",
+        "categoryId": "10",
+        "detail_product":{
+            "title_1":"Dior J'adore In Joy",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/58930cb9-bf22-4287-bcd5-29194084ece5-jpeg.jpg?v=1639881968037",
+            "title_2":"Các tầng hương:",
+            "title_3":"Hương đầu: hoa muối biển",
+            "title_4":"Hương giữa: hoa nhài sambac, hoa hoàng lan, hoa huệ, hoa cam",
+            "title_5":"Hương cuối: quả đào"
+        }
+    },
+    {
+        "gender": 2,
+        "categoryName": "Dior",
+        "id": "71",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "GRIS DIOR",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/5900638f-b345-4665-b06a-41e337120b37.png?v=1672457147053",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/5900638f-b345-4665-b06a-41e337120b37.png?v=1672457147053"}
+        ],
+        "price":"2 250 000",
+        "sale_price":"3 600 000",
+        "categoryId": "10",
+        "detail_product":{
+            "title_1":"Hương thơm mở đầu với không khí tươi mát, thoáng khí được tạo ra bởi cam Bergamot. Kết hợp cùng rêu sồi tạo nên một hỗn hợp tươi tắn mà đặc biệt vô cùng. Hương hoa hồng duyên dáng, nữ tính kết hợp cùng nhài ngọt ngào, tinh khiết tạo nên vẻ thanh nhã, tinh khôi. Hoắc hương cùng gỗ đàn hương xanh ngát mang đến một mùi hương ẩm nhẹ mà tự nhiên.",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/d6374f0d-0de8-4738-95b7-138c3cf8df81-jpeg.jpg?v=1672283354687"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Dior",
+        "id": "72",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "DIOR SAUVAGE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dior-sauvage-parfum-82cb78fb-eab1-4617-869d-cd0a4f4a7e8d.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dior-sauvage-parfum-82cb78fb-eab1-4617-869d-cd0a4f4a7e8d.jpg"}
+        ],
+        "price":"2 350 000",
+        "sale_price":"3 500 000",
+        "categoryId": "10",
+        "detail_product":{
+            "title_1":"DIOR SAUVAGE PARFUM",
+            "image_detail_1": "https://images.radio-canada.ca/q_auto,w_1250/v1/ici-info/16x9/sauvage-dior.PNG",
+            "title_2":"DIOR Sauvage parfum 2019- Một Dior mới tươi tắn, mạnh mẽ, một Sauvage đậm chất phương Đông với sự bổ sung đậu Tonka cùng với sự thống trị tuyệt vời của gỗ đàn hương. Chúng như dựng lên một không gian lãnh thổ mới với ánh trăng, lửa trại và đêm tối, khi vạn vật bắt đầu biến đổi và bản năng hoang dã của con người bắt đầu lên tiếng.",
+            "title_3":"-Hương đầu: Cam bergamot, quả quýt cay",
+            "title_4":"- Hương giữa : Gỗ đàn hương từ Sri Lanka",
+            "title_5":"- Hương cuối : Tonka, nhũ hương"
+        }
+    },
+    {
+        "gender": 1,
+        "categoryName": "Dior",
+        "id": "73",
+        "dateAdd": 1,
+        "capacity":"80ml",
+        "bestsellers": 1,
+        "productName": "DIOR SAUVAGE EAU DE PARFUM",
+        "image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dior-sauvage-edp.jpg",
+        "imageShow":[
+            {"image":"https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/dior-sauvage-edp.jpg"}
+        ],
+        "price":"2 950 000",
+        "sale_price":"3 500 000",
+        "categoryId": "10",
+        "detail_product":{
+            "title_1":"DIOR SAUVAGE  EAU DE PARFUM",
+            "image_detail_1": "https://bizweb.dktcdn.net/100/110/910/files/dior-sauvage-edp-5fd1fa19-d7f2-4a9b-b234-5692185b0c07.jpg?v=1591773410391",
+            "title_2":"Lấy ý tưởng từ những bối cảnh hoang dã nhất, Dior Sauvage EDP gói ghém tông hương thanh cay, mộc mạc mà chân thật trong mình. Bắt đầu bằng Cam chanh tươi mát, Dior Sauvage EDP không đơn giản chỉ dừng lại ở đó, mà tỉ mẩn len lỏi dẫn dắt ta đến tầng hương thứ hai đầy mê hoặc với Oải hương, Tiêu và Nhục đậu khấu",
+            "title_3":"Tựa như một viên ngọc thô, Dior Sauvage EDP ánh lên nét quyến rũ hoang dại được đơm kết bởi hương hoa, kết hợp khéo léo với chút cay nồng, ngọt nhẹ của gia vị, tạo nên nét nam tính, trưởng thành đến lạ.",
+            "image_detail_2": "https://bizweb.dktcdn.net/100/110/910/files/dior-sauvage-edp-b1ed2c0c-aa2b-485b-b63e-86e0464d11c4.jpg?v=1591774119713",
+            "title_4":"Như đem ta trở về những ngày rong ruổi cắm trại trên bất kể nẻo đường, lửa trại đêm bùng lên tí tách từng vệt đỏ tía, Dior Sauvage EDP nhen nhúm cho ta sự tò mò, thích thú cùng ít nhiều niềm thỏa mãn được tận hưởng, được chinh phục, được yêu chính bản thân mình trong từng khắc.",
+            "title_5":"Ambroxan cùng Vanilla nhẹ nhàng ve vuốt khứu giác với vẻ dịu dàng, gọi mời khó cưỡng, hệt như những viên marshmallow tan chảy, Dior Sauvage EDP sau lớp vỏ bọc vẫn là chàng trai ân cần với tông hương cuối ngọt xốp, mềm mại đầy quyến luyến."
         }
     }
 ]

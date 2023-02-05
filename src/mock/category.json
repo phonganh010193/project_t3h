@@ -9,66 +9,78 @@
     },
     {
         "id": "3",
-        "categoryName": "Nước hoa cao cấp trên 3 triệu"
+        "categoryName": "Nước hoa Nam cao cấp trên 3 triệu"
     },
     {
         "id": "4",
-        "categoryName": "Lousi vuition"
+        "categoryName": "Nước hoa Nữ cao cấp trên 3 triệu"
     },
     {
         "id": "5",
-        "categoryName": "Chanel"
+        "categoryName": "Nước hoa Nam dưới 1 triệu"
     },
     {
         "id": "6",
-        "categoryName": "Kilian"
+        "categoryName": "Nước hoa Nữ dưới 1 triệu"
     },
     {
         "id": "7",
-        "categoryName": "Dior"
+        "categoryName": "Lousi vuition"
     },
     {
         "id": "8",
-        "categoryName": "Jo malone"
+        "categoryName": "Chanel"
     },
     {
         "id": "9",
-        "categoryName": "Creen"
+        "categoryName": "Kilian"
     },
     {
         "id": "10",
-        "categoryName": "Dolce gabbala"
+        "categoryName": "Dior"
     },
     {
         "id": "11",
-        "categoryName": "Hermes"
+        "categoryName": "Jo malone"
     },
     {
         "id": "12",
-        "categoryName": "Guicci"
+        "categoryName": "Creen"
     },
     {
         "id": "13",
-        "categoryName": "Lancome"
+        "categoryName": "Dolce gabbala"
     },
     {
         "id": "14",
-        "categoryName": "Mỹ phẩm"
+        "categoryName": "Hermes"
     },
     {
         "id": "15",
-        "categoryName": "Vesarce"
+        "categoryName": "Guicci"
     },
     {
         "id": "16",
-        "categoryName": "Jean paul gaultier"
+        "categoryName": "Lancome"
     },
     {
         "id": "17",
-        "categoryName": "Tom ford"
+        "categoryName": "Mỹ phẩm"
     },
     {
         "id": "18",
+        "categoryName": "Vesarce"
+    },
+    {
+        "id": "19",
+        "categoryName": "Jean paul gaultier"
+    },
+    {
+        "id": "20",
+        "categoryName": "Tom ford"
+    },
+    {
+        "id": "21",
         "categoryName": "Hugo boss"
     }
 ]

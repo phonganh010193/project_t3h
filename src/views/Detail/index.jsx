@@ -17,7 +17,8 @@ const Detail = () => {
     const { productId } = useParams();
     const { user } = useContext(UserContext);
     const detailList = useSelector(({ detail }) => detail.productListDetail);
-    const [number, setNumber] = useState(1);
+    console.log('detail========', detailList);
+    const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
 
     useEffect(() => {
@@ -30,6 +31,7 @@ const Detail = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        setNumber(1)
     }, []);
 
     const addOrderItem = async (item) => {
@@ -39,6 +41,7 @@ const Detail = () => {
                 user,
                 orderNumber: number
             }
+            console.log('paramsssssssssssssssssssssss', params);
             await dispatch(fetchAddOrderItem(params));
             await dispatch(fetchOrderProduct());
         } catch (error) {

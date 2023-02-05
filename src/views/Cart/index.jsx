@@ -96,7 +96,65 @@ const Cart = () => {
             .catch((error) => {
                 console.log(error)
             });
+        updateCartOnline();
         navigate(`/abate/${newAbate.key}`);
+
+    }
+
+    const updateCartOnline = () => {
+        const updates = listCart.filter(el => el.isChanged);
+            updates.forEach(item => {
+                update(ref(database, "/Cart/" + item.key), {
+                    orderNumber: item.orderNumber,
+                    productId: item.productId,
+                    user: item.user,
+                    isCheckBox: item.isCheckBox,
+                })
+                    .then((res) => {
+                        console.log(res)
+                    })
+                    .catch(() => {
+                        toast.error('Cập nhật không thành công!')
+                    })
+            })
+        dispatch(fetchOrderProduct());
+    }
+
+    const isAllCheckbox = () => {
+        const findUncheck = listCart.find(el => !el.isCheckBox);
+        if (listCart.length === 0) {
+            return findUncheck;
+        }
+        return !findUncheck;
+    }
+
+    const handleOnAllCheckbox = () => {
+        const findUncheck = listCart.find(el => !el.isCheckBox);
+        if (findUncheck) {
+            listCart.forEach((el) => {
+                const value = {
+                    item: {
+                        ...el,
+                        orderNumber: el.orderNumber,
+                        isChanged: true,
+                        isCheckBox: true
+                    },
+                };
+                updateOrder(value);
+            });
+        } else {
+            listCart.forEach((el) => {
+                const value = {
+                    item: {
+                        ...el,
+                        orderNumber: el.orderNumber,
+                        isChanged: true,
+                        isCheckBox: false
+                    },
+                };
+                updateOrder(value);
+            });
+        }
     }
     return (
         <LayoutCart>
@@ -108,7 +166,21 @@ const Cart = () => {
                     <table className="table table-bordered text-center">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>
+                                    <label className="btn-checkbox-all">
+                                        <input
+                                            id="toggle-all"
+                                            className="toggle-all"
+                                            type="checkbox"
+                                            checked={isAllCheckbox() || false}
+                                            data-reactid=".0.1.0"
+                                            onChange={() => {
+                                                handleOnAllCheckbox()
+                                            }}
+                                        />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </th>
                                 <th scope="col">Hình ảnh</th>
                                 <th scope="col">Tên Sản Phẩm</th>
                                 <th scope="col">Đơn giá</th>
@@ -131,25 +203,12 @@ const Cart = () => {
                         }}>Tiếp tục mua sắm</button>
                         <div className="btn-left">
                             <button onClick={() => {
-                                const updates = listCart.filter(el => el.isChanged);
-                                listCart.forEach(el => {
-                                    updates.forEach(item => {
-                                        if (el.id === item.id) {
-                                            update(ref(database, "/Cart/" + el.key), {
-                                                orderNumber: item.orderNumber,
-                                                productId: item.productId,
-                                                user: item.user
-                                            })
-                                                .then(() => {
-                                                    toast.success('Cập nhật thành công giỏ hàng!')
-                                                })
-                                                .catch(() => {
-                                                    toast.error('Cập nhật fail!')
-                                                })
-                                        }
-                                    })
-                                });
-                                dispatch(fetchOrderProduct());
+                                try {
+                                    updateCartOnline()
+                                    toast.success('Cập nhật giỏ hàng thành công')
+                                } catch (error) {
+                                    toast.error('Cập nhật giỏ hàng không thành công!')
+                                }
                             }}>Cập nhật giỏ hàng</button>
                             <button onClick={() => {
                                 deleteListCart();
@@ -167,7 +226,8 @@ const Cart = () => {
                             </tbody>
                         </table>
                         <button onClick={() => {
-                            if (listCart.filter(el => el.isCheckBox).length === 0) {
+                            const findItem = listCart?.find(el => el.isCheckBox)
+                            if (!findItem) {
                                 ConfirmListAbate();
                             } else {
                                 BuyListAbate();
@@ -183,7 +243,7 @@ const Cart = () => {
                 closable={false}
                 cancelText="Hủy đơn hàng"
                 style={{
-                    marginTop: "200px"
+                    marginTop: "180px"
                 }}
                 footer={
                     <div className="btn-confirm-order">

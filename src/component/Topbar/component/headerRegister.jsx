@@ -21,9 +21,9 @@ const HeaderRegister = () => {
                             {show === true &&
                                 <div className="logout">
                                     <div>
-                                        <Link to="/signin" onClick={() => {
+                                        <a href="/signin" onClick={() => {
                                             fetchSignOut();
-                                        }}>Logout</Link>
+                                        }}>Logout</a>
                                     </div>
                                     <div><Link to="/abate">Lịch sử mua hàng</Link></div>
                                 </div>

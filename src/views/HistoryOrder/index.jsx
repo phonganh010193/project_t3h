@@ -81,6 +81,9 @@ const HistoryOrder = () => {
                 title={<p style={{color: "green"}}>Bạn chắc chắn muốn hủy đơn hàng?</p>} 
                 open={isModalOpen} 
                 closable={false}
+                style={{
+                    marginTop: "180px"
+                }}
                 footer={
                     <div className="btn-confirm-cancel">
                         <button onClick={() => {

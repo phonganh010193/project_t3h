@@ -9,7 +9,6 @@ import HomePage from "../views/Home";
 import Perfume from "../views/Perfume";
 import SearchList from "../views/SearchList";
 import Introduce from "../views/Introduce";
-import AllProduct from "../views/AllProduct";
 import Cosmetic from "../views/Cosmetic";
 import HistoryOrder from "../views/HistoryOrder";
 
@@ -22,7 +21,7 @@ const routerName = createBrowserRouter([
   { path: "/cart", element: <Cart />, errorElement: <ErrorPage /> },
   { path: "/abate/:orderId", element: <Abate />, errorElement: <ErrorPage /> },
   { path: "/introduce", element: <Introduce />, errorElement: <ErrorPage /> },
-  { path: "/all-product", element: <AllProduct />, errorElement: <ErrorPage /> },
+  { path: "/perfume/:100", element: <Perfume />, errorElement: <ErrorPage /> },
   { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },
   { path: "/abate", element: <HistoryOrder />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },

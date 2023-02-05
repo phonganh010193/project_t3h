@@ -14,6 +14,7 @@ const take = 9;
 
 const Perfume = () => {
     const { categoryId } = useParams();
+    console.log('categoryId=============', categoryId);
     const { user } = useContext(UserContext);
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
@@ -24,31 +25,82 @@ const Perfume = () => {
     const [productData, setProductData] = useState([]);
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
-
+    // useEffect(() => {
+    //     if(listDataProduct) {
+    //         function shuffleArray(array) {
+    //             for (var i = array.length - 1; i > 0; i--) {
+    //                 var j = Math.floor(Math.random() * (i + 1));
+    //                 var temp = array[i];
+    //                 array[i] = array[j];
+    //                 array[j] = temp;
+    //             }
+    //         };
+    //         shuffleArray(listDataProduct);
+    //     }
+    // },[listDataProduct])
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchCategory());
         dispatch(fetchOrderProduct());
     }, [dispatch]);
-
+    const showListProduct = () => {
+        if( categoryId === "1") {
+            return product?.filter(el => el.gender === 1)
+        } else if (categoryId === "2") {
+            return product?.filter(el => el.gender === 2)
+        } else if (categoryId === "3") {
+            return product?.filter(el => {
+                if (Number(el.price.split(" ").join('')) > 3000000 && el.gender === 1) {
+                    return el
+                }
+            })
+        } else if (categoryId === "4") {
+            return product?.filter(el => {
+                if (Number(el.price.split(" ").join('')) > 3000000 && el.gender === 2) {
+                    return el
+                }
+            })
+        } else if (categoryId === "5") {
+            return product?.filter(el => {
+                if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === 1) {
+                    return el
+                }
+            })
+        }else if (categoryId === "6") {
+            return product?.filter(el => {
+                if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === 2) {
+                    return el
+                }
+            })
+        }else if (categoryId === "100") {
+            return product?.filter(el => {
+                if (el.gender === 1 || el.gender === 2) {
+                    return el
+                }
+            })
+        } else {
+            return product?.filter(el => el.categoryId === categoryId)
+        }
+    } 
+    
     useEffect(() => {
         if (product.length > 0) {
-            const tmpProductData = product?.filter(el => el.categoryId === categoryId);
+            const tmpProductData = showListProduct();
             setPage(0);
             setProductData(tmpProductData);
             if (page === 0) {
                 setListDataProduct(tmpProductData?.slice(0, take));
             }
-            setNumberOfPage(Math.ceil(productData?.length / take));
+            setNumberOfPage(Math.ceil(tmpProductData?.length / take));
         }
     }, [categoryId]);
 
     useEffect(() => {
         if (!productLoading && preProductLoading) {
-            const tmpProductData = product?.filter(el => el.categoryId === categoryId);
+            const tmpProductData = showListProduct();
             setProductData(tmpProductData);
             setListDataProduct(tmpProductData?.slice(0, take));
-            setNumberOfPage(Math.ceil(productData?.length / take));
+            setNumberOfPage(Math.ceil(tmpProductData?.length / take));
         }
     }, [productLoading, preProductLoading]);
 

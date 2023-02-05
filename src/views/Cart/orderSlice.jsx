@@ -26,6 +26,7 @@ export const fetchOrderProduct = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
+    console.log('orderlist from servise', orderList)
 
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
@@ -138,7 +139,7 @@ export const fetchAddOrderItem = createAsyncThunk(
       const ob = {
         user: params.user.email,
         productId: params.id,
-        orderNumber: 1,
+        orderNumber: params.orderNumber,
         isCheckBox: false,
       }
       await push(ref(database, 'Cart'), ob)
@@ -151,6 +152,7 @@ export const fetchAddOrderItem = createAsyncThunk(
     }
   }
 );
+
 
 const initialState = {
   isLoading: false,

@@ -6,11 +6,16 @@ import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchOrderProduct } from "../orderSlice";
+import { useEffect } from "react";
 
 const TRtable = ({ item, updateOrder }) => {
     const dispatch = useDispatch();
     const [number, setNumber] = useState(item.orderNumber);
-    const [isCheckBox, setISCheckBox] = useState(false);
+    const [isCheckBox, setISCheckBox] = useState(item.isCheckBox);
+
+    useEffect(() => {
+        setISCheckBox(item.isCheckBox);
+    }, [item.isCheckBox])
     const deleItemOrder = (item) => {
         remove(ref(database, 'Cart/' + item.key))
             .then(() => {
@@ -25,13 +30,15 @@ const TRtable = ({ item, updateOrder }) => {
     return (
         <tr key={item.id}>
             <td><input type="checkbox" checked={isCheckBox} onChange={() => {
-                setISCheckBox(!isCheckBox);
+                const nextValue = !isCheckBox;
                 const value = {
                     item: {
                         ...item,
-                        isCheckBox: !isCheckBox
+                        isChanged: true,
+                        isCheckBox: nextValue
                     }
                 };
+                setISCheckBox(nextValue);
                 updateOrder(value);
             }} /></td>
             <td>
