@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+.gx-user-popover li {
+    list-style: none;
+}
+
+.gx-user-popover li:hover {
+    background-color: #2d8356;
+}
 .user-name img {
     width: 40px;
     height: 40px;

@@ -5,13 +5,16 @@ import '../../../node_modules/antd/dist/reset.css';
 import '../../utils/styles/signin.css';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
       const user = createUserWithEmailAndPassword(auth, values.username, values.password);
       console.log('user', user)
+      navigate('/signin')
     } catch (err) {
       console.log(err.response.data)
     }
