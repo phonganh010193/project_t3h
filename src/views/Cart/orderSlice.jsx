@@ -137,7 +137,7 @@ export const fetchAddOrderItem = createAsyncThunk(
         })
     } else {
       const ob = {
-        user: params.user.email,
+        user: params.user,
         productId: params.id,
         orderNumber: params.orderNumber,
         isCheckBox: false,
@@ -165,7 +165,7 @@ export const orderProductSlice = createSlice({
   reducers: {
     updateListCart: (state, action) => {
       state.orderProduct = state.orderProduct.map(el => {
-        if (el.user === action.payload.item.user && el.productId === action.payload.item.productId) {
+        if (el.user.email === action.payload.item.user.email && el.productId === action.payload.item.productId) {
           return action.payload.item;
         }
         return el;

@@ -1,5 +1,5 @@
 import moment from "moment/moment";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,15 +9,18 @@ import { fetchCancelOrderById, fetchHistoryOrder } from "./historySlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from "antd";
 import { useCallback } from "react";
+import { UserContext } from "../../container/useContext";
 
 const HistoryOrder = () => {
     const dispatch = useDispatch();
+    const { user } = useContext(UserContext);
     const historyOrderList = useSelector(({ history }) => history.historyList);
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [key, setKey] = useState('');
 
     useEffect(() => {
-        dispatch(fetchHistoryOrder());
+        dispatch(fetchHistoryOrder(user));
     }, [dispatch])
 
   const handleOk = useCallback((key) => {

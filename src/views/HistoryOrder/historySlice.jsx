@@ -5,7 +5,7 @@ import { database } from '../../firebase';
 
 export const fetchHistoryOrder = createAsyncThunk(
     'history/fetchHistoryOrder',
-    async (orderId, thunkAPI) => {
+    async (params, thunkAPI) => {
         const listAbate = await get(ref(database, "Abate")).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(typeof snapshot.val());
@@ -24,11 +24,11 @@ export const fetchHistoryOrder = createAsyncThunk(
             console.error(error);
         });
 
-
+        console.log('listabate==========', listAbate);
         const listHistoryOrder = [];
         if (listAbate) {
             listAbate.forEach(item => {
-                if (item.status === System.STATUS.ORDERED) {
+                if (item.status === System.STATUS.ORDERED && item.email === params.email) {
                     listHistoryOrder.push(
                         {
                             ...item,

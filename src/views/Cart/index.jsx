@@ -78,11 +78,8 @@ const Cart = () => {
         const products = listCart.filter(el => {
             return el.isCheckBox;
         });
+        console.log('product=============', products)
         const object = {
-            name: "",
-            email: products[0].user,
-            address: "",
-            phone: "",
             note: "",
             pay_dilivery: "",
             products,

@@ -37,6 +37,7 @@ const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
+    console.log('abatedetail', abateDetail);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [fields, setFields] = useState([]);
@@ -46,19 +47,19 @@ const Abate = () => {
             setFields([
                 {
                     name: ['user', 'name'],
-                    value: abateDetail?.name,
+                    value: abateDetail?.products[0]?.user.name,
                 },
                 {
                     name: ['user', 'email'],
-                    value: abateDetail?.email,
+                    value: abateDetail?.products[0]?.user.email,
                 },
                 {
                     name: ['user', 'address'],
-                    value: abateDetail?.address,
+                    value: abateDetail?.products[0]?.user.address,
                 },
                 {
                     name: ['user', 'phone'],
-                    value: abateDetail?.phone,
+                    value: abateDetail?.products[0]?.user.phone,
                 },
                 {
                     name: ['user', 'note'],

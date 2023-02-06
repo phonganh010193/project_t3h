@@ -5,12 +5,13 @@ import Slider from "react-slick";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
 import { Link } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
+import { fetchUserItem } from "../../../container/userSlice";
 
 const sliderSettings = {
     dots: false,
@@ -26,7 +27,7 @@ function HomePerfume(props) {
     const { product, gender } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-
+    const userCurrent = useSelector(({user}) => user.userCurrent)
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
@@ -34,6 +35,7 @@ function HomePerfume(props) {
 
     useEffect(() => {
         dispatch(fetchOrderProduct());
+        dispatch(fetchUserItem(user));
     }, [dispatch])
 
     const goPrev = () => {
@@ -48,7 +50,7 @@ function HomePerfume(props) {
         try {
             const params = {
                 ...item,
-                user,
+                user: userCurrent,
                 orderNumber: 1
             }
             await dispatch(fetchAddOrderItem(params));

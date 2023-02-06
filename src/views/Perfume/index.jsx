@@ -9,13 +9,17 @@ import { fetchProduct } from "./perfumeInfoSlice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
-import "../../utils/styles/perfume.css"
+import "../../utils/styles/perfume.css";
+import { fetchUserItem } from "../../container/userSlice";
+
+
 const take = 9;
 
 const Perfume = () => {
     const { categoryId } = useParams();
     console.log('categoryId=============', categoryId);
     const { user } = useContext(UserContext);
+    const userCurrent = useSelector(({user}) => user.userCurrent)
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const product = useSelector(({ product }) => product.productList);
@@ -42,6 +46,7 @@ const Perfume = () => {
         dispatch(fetchProduct());
         dispatch(fetchCategory());
         dispatch(fetchOrderProduct());
+        dispatch(fetchUserItem(user))
     }, [dispatch]);
     const showListProduct = () => {
         if( categoryId === "1") {
@@ -127,7 +132,7 @@ const Perfume = () => {
         try {
             const params = {
                 ...item,
-                user,
+                user: userCurrent,
                 orderNumber: "1"
             }
             await dispatch(fetchAddOrderItem(params));

@@ -10,12 +10,15 @@ import { fetchProductDetail } from "./perfumeDetailSlice";
 import PerfumeDetailInfo from "./component/perfumeDetailInfo";
 import { Tabs } from "antd";
 import "../../utils/styles/perfume.detail.css";
+import { fetchUserItem } from "../../container/userSlice";
+import PerfumeEvaluate from "./component/perfumeEvaluate";
 
 
 const Detail = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
+    const userCurrent = useSelector(({user}) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
     console.log('detail========', detailList);
     const [number, setNumber] = useState("");
@@ -27,6 +30,7 @@ const Detail = () => {
     useEffect(() => {
         dispatch(fetchProductDetail(productId));
         dispatch(fetchOrderProduct());
+        dispatch(fetchUserItem(user))
     }, [dispatch, productId]);
 
     useEffect(() => {
@@ -38,7 +42,7 @@ const Detail = () => {
         try {
             const params = {
                 ...item,
-                user,
+                user: userCurrent,
                 orderNumber: number
             }
             console.log('paramsssssssssssssssssssssss', params);
@@ -66,7 +70,7 @@ const Detail = () => {
         {
             key: '3',
             label: `ĐÁNH GIÁ CHI TIẾT`,
-            children: `Content of Tab Pane 3`,
+            children: <PerfumeEvaluate />,
         },
     ];
 
