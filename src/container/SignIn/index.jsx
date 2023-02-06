@@ -15,6 +15,7 @@ const SignIn = () => {
     await RunMockData.runMockCategory();
     await RunMockData.runMockProduct();
     await RunMockData.runMockCart();
+    await RunMockData.runMockUser();
     await fetchUser(values);
   };
 

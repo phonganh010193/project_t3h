@@ -3,6 +3,7 @@ import { database } from "../firebase";
 import CategoryData from './category.json';
 import ProductMenData from './product.json';
 import OrderData from './order.json';
+import UserData from './user.json';
 class RunMockData {
     static async runMockCategory() {
         let colRef = ref(database, "/Category");
@@ -37,7 +38,20 @@ class RunMockData {
         console.log('===================3===========')
     }
 
-   
+    static async runMockUser() {
+        console.log('===================4===========')
+        // let colRef = ref(database, "/Cart");
+        // await remove(colRef);
+        const userListRef = ref(database, 'User');
+        console.log('===================5===========')
+        UserData.forEach(el => {
+            const newUserRef = push(userListRef);
+            set(newUserRef, el);
+        });
+        console.log('===================6===========')
+    }
+
+
 }
 
 export default RunMockData;

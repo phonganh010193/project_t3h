@@ -6,6 +6,7 @@ import order from "../views/Cart/orderSlice";
 import search from "../views/SearchList/searchSlice";
 import abate from "../views/Abate/abateSlice";
 import history from "../views/HistoryOrder/historySlice";
+import user from "../container/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     order,
     search,
     abate,
-    history
+    history,
+    user
   },
 })
