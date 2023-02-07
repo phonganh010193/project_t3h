@@ -25,10 +25,12 @@ class RunMockData {
         });
     }
 
-    static async runMockCart() {
+    static async runMockCart(user) {
         console.log('===================1===========')
         let colRef = ref(database, "/Cart");
-        await remove(colRef);
+        if (!user) {
+            await remove(colRef);
+        }
         const orderListRef = ref(database, 'Cart');
         console.log('===================2===========')
         OrderData.forEach(el => {

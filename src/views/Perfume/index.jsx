@@ -17,9 +17,8 @@ const take = 9;
 
 const Perfume = () => {
     const { categoryId } = useParams();
-    console.log('categoryId=============', categoryId);
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({user}) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const product = useSelector(({ product }) => product.productList);
@@ -29,27 +28,15 @@ const Perfume = () => {
     const [productData, setProductData] = useState([]);
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
-    // useEffect(() => {
-    //     if(listDataProduct) {
-    //         function shuffleArray(array) {
-    //             for (var i = array.length - 1; i > 0; i--) {
-    //                 var j = Math.floor(Math.random() * (i + 1));
-    //                 var temp = array[i];
-    //                 array[i] = array[j];
-    //                 array[j] = temp;
-    //             }
-    //         };
-    //         shuffleArray(listDataProduct);
-    //     }
-    // },[listDataProduct])
+
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchCategory());
-        dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user))
     }, [dispatch]);
     const showListProduct = () => {
-        if( categoryId === "1") {
+        if (categoryId === "1") {
             return product?.filter(el => el.gender === 1)
         } else if (categoryId === "2") {
             return product?.filter(el => el.gender === 2)
@@ -71,13 +58,13 @@ const Perfume = () => {
                     return el
                 }
             })
-        }else if (categoryId === "6") {
+        } else if (categoryId === "6") {
             return product?.filter(el => {
                 if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === 2) {
                     return el
                 }
             })
-        }else if (categoryId === "100") {
+        } else if (categoryId === "100") {
             return product?.filter(el => {
                 if (el.gender === 1 || el.gender === 2) {
                     return el
@@ -86,8 +73,8 @@ const Perfume = () => {
         } else {
             return product?.filter(el => el.categoryId === categoryId)
         }
-    } 
-    
+    }
+
     useEffect(() => {
         if (product.length > 0) {
             const tmpProductData = showListProduct();
@@ -136,7 +123,7 @@ const Perfume = () => {
                 orderNumber: "1"
             }
             await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct());
+            await dispatch(fetchOrderProduct(user));
         } catch (error) {
             toast.error('Thêm không thành công')
         }

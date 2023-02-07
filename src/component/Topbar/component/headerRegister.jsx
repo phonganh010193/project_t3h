@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { usePrevious } from "../../../utils/hooks";
 import { fetchUpdateUserItem, fetchUserItem } from "../../../container/userSlice";
+import { toast } from "react-toastify";
 
 
 const layout = {
@@ -38,28 +39,9 @@ const HeaderRegister = () => {
     const prevIsLoading = usePrevious(isLoading);
     const [open, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [fields, setFields] = useState([
-        {
-            name: ['user', 'name'],
-            value: "",
-        },
-        {
-            name: ['user', 'email'],
-            value: user?.email,
-        },
-        {
-            name: ['user', 'address'],
-            value: "",
-        },
-        {
-            name: ['user', 'phone'],
-            value: "",
-        },
-        {
-            name: ['user', 'avatar'],
-            value: "",
-        }
-    ])
+    const [fields, setFields] = useState([])
+
+
     const handleOk = () => {
         setIsModalOpen(false);
     };
@@ -68,7 +50,6 @@ const HeaderRegister = () => {
     };
 
 
-    // const findItem = userList?.find(el => el.email === user?.email)
     useEffect(() => {
         if (!isLoading && prevIsLoading && userCurrent) {
             setFields([
@@ -93,11 +74,9 @@ const HeaderRegister = () => {
                     value: userCurrent?.avatar,
                 }
             ])
-
-
         }
 
-    }, [user, userCurrent, isLoading]);
+    }, [userCurrent, isLoading]);
 
     useEffect(() => {
         if (user) {
@@ -126,10 +105,14 @@ const HeaderRegister = () => {
     );
 
     const onFinish = async (values) => {
-        await dispatch(fetchUpdateUserItem(values.user))
-        await dispatch(fetchUserItem(user))
-        console.log(values)
-        setIsModalOpen(false)
+        try {
+            await dispatch(fetchUpdateUserItem(values.user))
+            await dispatch(fetchUserItem(user))
+            toast.success('Cập nhật thông tin người dùng thành công!')
+            setIsModalOpen(false)
+        } catch (error) {
+            toast.error('Cập nhật thông tin người dùng không thành công')
+        }
     };
 
     return (

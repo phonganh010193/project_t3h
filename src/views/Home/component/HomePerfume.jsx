@@ -27,14 +27,14 @@ function HomePerfume(props) {
     const { product, gender } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({user}) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
     const slideRef = useRef();
 
     useEffect(() => {
-        dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user));
     }, [dispatch])
 
@@ -47,16 +47,18 @@ function HomePerfume(props) {
     };
 
     const addOrderItem = async (item) => {
-        try {
-            const params = {
-                ...item,
-                user: userCurrent,
-                orderNumber: 1
+        if (user && userCurrent) {
+            try {
+                const params = {
+                    ...item,
+                    user: userCurrent,
+                    orderNumber: 1
+                }
+                await dispatch(fetchAddOrderItem(params));
+                await dispatch(fetchOrderProduct(user));
+            } catch (error) {
+                toast.error('Thêm không thành công')
             }
-            await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct());
-        } catch (error) {
-            toast.error('Thêm không thành công')
         }
     }
     return (

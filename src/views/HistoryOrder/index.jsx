@@ -15,7 +15,6 @@ const HistoryOrder = () => {
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const historyOrderList = useSelector(({ history }) => history.historyList);
-    
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [key, setKey] = useState('');
 
@@ -23,20 +22,20 @@ const HistoryOrder = () => {
         dispatch(fetchHistoryOrder(user));
     }, [dispatch])
 
-  const handleOk = useCallback((key) => {
-    try {
-        dispatch(fetchCancelOrderById(key));
-        dispatch(fetchHistoryOrder());
-        toast.success('Hủy đơn hàng thành công')
-    } catch (error) {
-        console.log(error);
-        toast.error('Hủy không thành công');
-    }
-    setIsModalOpen(false);
-  }, [key]);
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+    const handleOk = useCallback((key) => {
+        try {
+            dispatch(fetchCancelOrderById(key));
+            dispatch(fetchHistoryOrder(user));
+            toast.success('Hủy đơn hàng thành công')
+        } catch (error) {
+            console.log(error);
+            toast.error('Hủy không thành công');
+        }
+        setIsModalOpen(false);
+    }, [key]);
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
         <LayoutCart>
             <div className="history-container">
@@ -80,9 +79,9 @@ const HistoryOrder = () => {
 
                 </div>
             </div>
-            <Modal 
-                title={<p style={{color: "green"}}>Bạn chắc chắn muốn hủy đơn hàng?</p>} 
-                open={isModalOpen} 
+            <Modal
+                title={<p style={{ color: "green" }}>Bạn chắc chắn muốn hủy đơn hàng?</p>}
+                open={isModalOpen}
                 closable={false}
                 style={{
                     marginTop: "180px"
@@ -97,10 +96,10 @@ const HistoryOrder = () => {
                         }}>Xác nhận</button>
                     </div>
                 }
-                
+
             />
-        
-      
+
+
         </LayoutCart>
     )
 }

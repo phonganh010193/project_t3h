@@ -10,17 +10,17 @@ import RunMockData from '../../mock/runMockData';
 const SignIn = () => {
   const navigate = useNavigate();
   const { user, fetchUser } = useContext(UserContext);
-
   const onFinish = async (values) => {
     await RunMockData.runMockCategory();
     await RunMockData.runMockProduct();
-    await RunMockData.runMockCart();
+
     await RunMockData.runMockUser();
     await fetchUser(values);
   };
 
   useEffect(() => {
     if (user) {
+      RunMockData.runMockCart(user);
       navigate('/');
     }
   }, [user]);
@@ -47,7 +47,7 @@ const SignIn = () => {
             name="password"
             rules={[{ required: true, message: 'Please input your Password!' }]}
           >
-            <Input
+            <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"

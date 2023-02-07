@@ -23,12 +23,11 @@ export const fetchHistoryOrder = createAsyncThunk(
         }).catch((error) => {
             console.error(error);
         });
-
-        console.log('listabate==========', listAbate);
+        console.log('llistAbate=====================', listAbate);
         const listHistoryOrder = [];
         if (listAbate) {
             listAbate.forEach(item => {
-                if (item.status === System.STATUS.ORDERED && item.email === params.email) {
+                if (item.status === System.STATUS.ORDERED && item.products[0].user.email === params.email) {
                     listHistoryOrder.push(
                         {
                             ...item,

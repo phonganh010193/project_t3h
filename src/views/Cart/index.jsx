@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchOrderProduct, updateListCart } from "./orderSlice";
+import { fetchDeleteOrderItem, fetchOrderProduct, updateListCart } from "./orderSlice";
 import { push, ref, remove, update } from "firebase/database";
 import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
@@ -13,13 +13,18 @@ import { System } from "../../constants/system.constants";
 import { fetchAbateList, fetchRemoveAbatebyId } from "../Abate/abateSlice";
 import { usePrevious } from "../../utils/hooks";
 import { Modal } from "antd";
+import { fetchUserItem } from "../../container/userSlice";
+import { useContext } from "react";
+import { UserContext } from "../../container/useContext";
 
 
 
 const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { user } = useContext(UserContext);
     const listCart = useSelector(({ order }) => order.orderProduct);
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     const abateList = useSelector(({ abate }) => abate.abateList);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
@@ -45,9 +50,10 @@ const Cart = () => {
         }
     }, [abateList])
     useEffect(() => {
-        dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct(user));
         dispatch(fetchAbateList());
-    }, [dispatch]);
+        dispatch(fetchUserItem(user))
+    }, [dispatch, user]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -57,15 +63,17 @@ const Cart = () => {
         await dispatch(updateListCart(value));
     }
 
-    const deleteListCart = () => {
-        remove(ref(database, 'Cart'))
-            .then(() => {
-                dispatch(fetchOrderProduct());
+    const deleteListCart = async () => {
+        if (user) {
+            try {
+                await dispatch(fetchDeleteOrderItem(user))
+                await dispatch(fetchOrderProduct(user))
                 toast.success('Delete Cart success!')
-            })
-            .catch((error) => {
+            } catch (error) {
                 toast.success('Delete Cart fail!')
-            })
+            }
+        }
+
     }
 
 
@@ -78,10 +86,13 @@ const Cart = () => {
         const products = listCart.filter(el => {
             return el.isCheckBox;
         });
-        console.log('product=============', products)
         const object = {
+            name: "",
+            email: userCurrent.email,
+            address: "",
+            phone: "",
             note: "",
-            pay_dilivery: "",
+            pay_dilivery: true,
             products,
             status: System.STATUS.ORDERING,
             dateOrder: ""
@@ -100,21 +111,21 @@ const Cart = () => {
 
     const updateCartOnline = () => {
         const updates = listCart.filter(el => el.isChanged);
-            updates.forEach(item => {
-                update(ref(database, "/Cart/" + item.key), {
-                    orderNumber: item.orderNumber,
-                    productId: item.productId,
-                    user: item.user,
-                    isCheckBox: item.isCheckBox,
-                })
-                    .then((res) => {
-                        console.log(res)
-                    })
-                    .catch(() => {
-                        toast.error('Cập nhật không thành công!')
-                    })
+        updates.forEach(item => {
+            update(ref(database, "/Cart/" + item.key), {
+                orderNumber: item.orderNumber,
+                productId: item.productId,
+                user: item.user,
+                isCheckBox: item.isCheckBox,
             })
-        dispatch(fetchOrderProduct());
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(() => {
+                    toast.error('Cập nhật không thành công!')
+                })
+        })
+        dispatch(fetchOrderProduct(user));
     }
 
     const isAllCheckbox = () => {
@@ -189,7 +200,7 @@ const Cart = () => {
                         <tbody>
                             {listCart && listCart.map((item, index) => {
                                 return (
-                                    <TRtable key={item.id} item={item} updateOrder={updateOrder} />
+                                    <TRtable key={item.id} item={item} updateOrder={updateOrder} user={user} />
                                 )
                             })}
                         </tbody>

@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { fetchOrderProduct } from "../orderSlice";
 import { useEffect } from "react";
 
-const TRtable = ({ item, updateOrder }) => {
+const TRtable = ({ item, updateOrder, user }) => {
     const dispatch = useDispatch();
     const [number, setNumber] = useState(item.orderNumber);
     const [isCheckBox, setISCheckBox] = useState(item.isCheckBox);
@@ -20,7 +20,7 @@ const TRtable = ({ item, updateOrder }) => {
         remove(ref(database, 'Cart/' + item.key))
             .then(() => {
                 toast.success('Delete success!')
-                dispatch(fetchOrderProduct());
+                dispatch(fetchOrderProduct(user));
             })
             .catch((error) => {
                 toast.error('Delete Fail!')

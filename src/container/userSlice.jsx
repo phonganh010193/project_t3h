@@ -35,7 +35,6 @@ export const fetchUserItem = createAsyncThunk(
 export const fetchUpdateUserItem = createAsyncThunk(
     'user/fetchAddUserItem',
     async (params, thunkAPI) => {
-        console.log('param from login', params)
         const userList = await get(ref(database, "User")).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(typeof snapshot.val());
@@ -57,20 +56,20 @@ export const fetchUpdateUserItem = createAsyncThunk(
         const findItem = userList?.find(el => el.email === params.email)
         if (findItem) {
             await update(ref(database, "/User/" + findItem.key), params)
-                .then(() => {
-                    toast.success('Cập nhật thông tin người dùng thành công')
+                .then((res) => {
+                    return res;
                 })
-                .catch(() => {
-                    console.log('Cập nhật thông tin người dùng thất bại')
+                .catch((error) => {
+                    console.log(error)
                 })
             console.log('finditem', findItem);
         } else {
             await push(ref(database, "User"), params)
-                .then(() => {
-                    toast.success('Cập nhật thông tin người dùng thành công')
+                .then((res) => {
+                    return res
                 })
-                .catch(() => {
-                    console.log('Cập nhật thông tin người dùng thất bại')
+                .catch((error) => {
+                    console.log(error)
                 })
         }
     }

@@ -15,7 +15,7 @@ const HeaderLogo = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() => {
-        dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct(user));
     }, [dispatch]);
 
     const numberCart = orderList?.length;

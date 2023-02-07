@@ -15,12 +15,12 @@ const SearchList = () => {
     const values = window.location.href.slice(29)
     const [searchName, setSearchName] = useState(values)
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({user}) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     const dispatch = useDispatch();
     const listSearch = useSelector(({ search }) => search.searchList)
     useEffect(() => {
         dispatch(fetchSearchProduct(searchName));
-        dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user))
     }, [dispatch])
 
@@ -37,13 +37,13 @@ const SearchList = () => {
 
     const addOrderItem = async (item) => {
         try {
-            const params = { 
-                ...item, 
+            const params = {
+                ...item,
                 user: userCurrent,
-                orderNumber: 1 
+                orderNumber: 1
             }
             await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct());
+            await dispatch(fetchOrderProduct(user));
         } catch (error) {
             toast.error('Thêm không thành công')
         }

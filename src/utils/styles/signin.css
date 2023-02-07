@@ -9,6 +9,11 @@
     height: 300px;
 }
 
+.image-logout img {
+    width: 300px;
+    height: 400px;
+}
+
 .login-content {
     display: flex;
     flex-direction: row;
@@ -19,5 +24,18 @@
     top: 200px;
     right: 400px;
     background-color: beige;
+}
+
+.logout-content {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 10px;
+    width: 710px;
+    position: absolute;
+    top: 200px;
+    right: 400px;
+    background-color: beige;
+    height: 450px;
 }
 

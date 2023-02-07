@@ -18,6 +18,7 @@ const validateMessages = {
     types: {
         email: '${label} is not a valid email!',
         number: '${label} is not a valid number!',
+        checkbox: '${label} is not a valid checkbox!'
     },
     number: {
         range: '${label} must be between ${min} and ${max}',
@@ -37,29 +38,56 @@ const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
-    console.log('abatedetail', abateDetail);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [fields, setFields] = useState([]);
 
     useEffect(() => {
-        if (!isLoading && prevIsLoading) {
+        if (!isLoading && prevIsLoading && abateDetail.status === System.STATUS.ORDERING) {
             setFields([
                 {
                     name: ['user', 'name'],
-                    value: abateDetail?.products[0]?.user.name,
+                    value: abateDetail?.products[0]?.user?.name,
                 },
                 {
                     name: ['user', 'email'],
-                    value: abateDetail?.products[0]?.user.email,
+                    value: abateDetail?.products[0]?.user?.email,
                 },
                 {
                     name: ['user', 'address'],
-                    value: abateDetail?.products[0]?.user.address,
+                    value: abateDetail?.products[0]?.user?.address,
                 },
                 {
                     name: ['user', 'phone'],
-                    value: abateDetail?.products[0]?.user.phone,
+                    value: abateDetail?.products[0]?.user?.phone,
+                },
+                {
+                    name: ['user', 'note'],
+                    value: abateDetail?.note,
+                },
+                {
+                    name: ['user', 'pay_dilivery'],
+                    value: abateDetail?.pay_dilivery,
+                }
+
+            ]);
+        } else if (!isLoading && prevIsLoading && abateDetail.status === System.STATUS.ORDERED) {
+            setFields([
+                {
+                    name: ['user', 'name'],
+                    value: abateDetail?.name,
+                },
+                {
+                    name: ['user', 'email'],
+                    value: abateDetail?.email,
+                },
+                {
+                    name: ['user', 'address'],
+                    value: abateDetail?.address,
+                },
+                {
+                    name: ['user', 'phone'],
+                    value: abateDetail?.phone,
                 },
                 {
                     name: ['user', 'note'],
@@ -71,6 +99,7 @@ const Abate = () => {
                 }
             ]);
         }
+
     }, [isLoading]);
 
 
@@ -104,7 +133,7 @@ const Abate = () => {
                     toast.error('order không thành công')
                 })
         } catch (error) {
-            toast.error('order không thành công')
+            toast.error('Xin kiểm tra lại thông tin thanh toán')
         }
     };
 
@@ -153,7 +182,7 @@ const Abate = () => {
                         </div>
 
                         <div className="m-billing-info-step">
-                            <p>Xin hãy nhập thông tin thanh toán</p>
+                            <p>Xin hãy xác nhận thông tin thanh toán</p>
                         </div>
                         <Form.Item
                             name={['user', 'name']}
@@ -215,6 +244,7 @@ const Abate = () => {
                                 noStyle
                                 rules={[
                                     {
+                                        type: 'checkbox',
                                         required: true,
                                     },
                                 ]}

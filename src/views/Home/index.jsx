@@ -7,15 +7,20 @@ import HomeImageInfo from "./component/HomeImageInfo";
 import HomePerfume from "./component/HomePerfume";
 import "../../utils/styles/homepage.css";
 import { System } from "../../constants/system.constants";
+import { fetchOrderProduct } from "../Cart/orderSlice";
+import { useContext } from "react";
+import { UserContext } from "../../container/useContext";
 
 const HomePage = () => {
     const dispatch = useDispatch();
     const product = useSelector(({ product }) => product.productList)
+    const { user } = useContext(UserContext);
     const productMen = product.filter(el => el.gender === 1);
     const productWomen = product.filter(el => el.gender === 2);
     useEffect(() => {
         dispatch(fetchProduct());
-    }, [dispatch])
+        dispatch(fetchOrderProduct(user))
+    }, [dispatch, user])
     const sliderRef = useRef();
     const sliderrSettings = {
         dots: true,

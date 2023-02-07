@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, push, ref, update } from 'firebase/database';
+import { get, push, ref, remove, update } from 'firebase/database';
 import { toast } from 'react-toastify';
 import { database } from '../../firebase';
 
@@ -7,7 +7,7 @@ import { database } from '../../firebase';
 
 export const fetchOrderProduct = createAsyncThunk(
   'cart/fetchProductDetail',
-  async (productId, thunkAPI) => {
+  async (params, thunkAPI) => {
     const orderList = await get(ref(database, "Cart")).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(typeof snapshot.val());
@@ -26,8 +26,7 @@ export const fetchOrderProduct = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    console.log('orderlist from servise', orderList)
-
+    console.log('orderlist==================', orderList)
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(typeof snapshot.val());
@@ -46,10 +45,11 @@ export const fetchOrderProduct = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
+    console.log('products===============', product);
     const listCart = [];
     if (product && orderList) {
-      product.forEach(el => {
-        orderList.forEach(item => {
+      product?.forEach(el => {
+        orderList?.filter(event => event?.user?.email === params.email)?.forEach(item => {
           if (el.id === item.productId) {
             listCart.push(
               {
@@ -58,11 +58,14 @@ export const fetchOrderProduct = createAsyncThunk(
               }
             );
           }
+          return listCart;
         })
       })
     }
+    console.log('listcart============', listCart)
     return listCart;
   }
+
 );
 
 export const fetchAddOrderItem = createAsyncThunk(
@@ -120,10 +123,11 @@ export const fetchAddOrderItem = createAsyncThunk(
         })
       })
     }
-    const findItem = listCart.find(el => params.id === el.productId)
+    console.log('lisetcart11111', listCart);
+    const findItem = listCart?.find(el => params.id === el.productId && params.user.email === el.user.email)
 
     if (findItem) {
-      await update(ref(database, "Cart/" + findItem.key), {
+      await update(ref(database, "/Cart/" + findItem.key), {
         orderNumber: parseFloat(findItem.orderNumber) + parseFloat(params.orderNumber),
         productId: findItem.productId,
         user: findItem.user,
@@ -152,6 +156,73 @@ export const fetchAddOrderItem = createAsyncThunk(
     }
   }
 );
+
+export const fetchDeleteOrderItem = createAsyncThunk(
+  'cart/fetchDeleteOrderItem',
+  async (params, thunkAPI) => {
+    const orderList = await get(ref(database, "Cart")).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(typeof snapshot.val());
+        //   return snapshot.val();
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        })
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    console.log('orderlist==================', orderList)
+    const oderListbyUser = orderList?.filter(el => el.user.email === params.email);
+
+    const product = await get(ref(database, "Product")).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(typeof snapshot.val());
+        //   return snapshot.val();
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        })
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    console.log('products===============', product);
+    const listCart = [];
+    if (product && oderListbyUser) {
+      product.forEach(el => {
+        oderListbyUser.forEach(item => {
+          if (el.id === item.productId) {
+            listCart.push(
+              {
+                ...el,
+                ...item
+              }
+            );
+          }
+        })
+      })
+    }
+    if (listCart) {
+      listCart?.forEach(el => {
+        remove(ref(database, "/Cart/" + el.key))
+      })
+    }
+  }
+);
+
 
 
 const initialState = {

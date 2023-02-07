@@ -18,9 +18,8 @@ const Detail = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({user}) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
-    console.log('detail========', detailList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
 
@@ -29,7 +28,7 @@ const Detail = () => {
     }, [detailList])
     useEffect(() => {
         dispatch(fetchProductDetail(productId));
-        dispatch(fetchOrderProduct());
+        dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user))
     }, [dispatch, productId]);
 
@@ -45,9 +44,8 @@ const Detail = () => {
                 user: userCurrent,
                 orderNumber: number
             }
-            console.log('paramsssssssssssssssssssssss', params);
             await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct());
+            await dispatch(fetchOrderProduct(user));
         } catch (error) {
             toast.error('Thêm không thành công')
         }

@@ -6,14 +6,28 @@ import '../../utils/styles/signin.css';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { fetchUpdateUserItem } from '../userSlice';
+import { useDispatch } from 'react-redux';
+import RunMockData from '../../mock/runMockData';
 
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const onFinish = async (values) => {
     try {
-      const user = createUserWithEmailAndPassword(auth, values.username, values.password);
-      console.log('user', user)
+      await createUserWithEmailAndPassword(auth, values.username, values.password);
+      await RunMockData.runMockCategory();
+      await RunMockData.runMockProduct();
+      await RunMockData.runMockUser();
+      const value = {
+        name: values.name,
+        email: values.username,
+        address: values.address,
+        phone: values.phone,
+        avatar: ""
+      }
+      await dispatch(fetchUpdateUserItem(value))
       navigate('/signin')
     } catch (err) {
       console.log(err.response.data)
@@ -21,8 +35,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className='login-content'>
-      <div className='image-login'>
+    <div className='logout-content '>
+      <div className='image-logout'>
         <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
       </div>
       <div className='form-login'>
@@ -33,6 +47,24 @@ const SignUp = () => {
           onFinish={onFinish}
         >
           <Form.Item
+            name="name"
+            rules={[{ required: true, message: 'Please input your Name!' }]}
+          >
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Họ và tên" />
+          </Form.Item>
+          <Form.Item
+            name="address"
+            rules={[{ required: true, message: 'Please input your Address!' }]}
+          >
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Địa chỉ" />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            rules={[{ required: true, message: 'Please input your Phone!' }]}
+          >
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Số điện thoại" />
+          </Form.Item>
+          <Form.Item
             name="username"
             rules={[{ required: true, message: 'Please input your Username!' }]}
           >
@@ -42,7 +74,7 @@ const SignUp = () => {
             name="password"
             rules={[{ required: true, message: 'Please input your Password!' }]}
           >
-            <Input
+            <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
@@ -52,7 +84,7 @@ const SignUp = () => {
             name="confirm-password"
             rules={[{ required: true, message: 'Please input your ConfirmPassword!' }]}
           >
-            <Input
+            <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="ConfirmPassword"
