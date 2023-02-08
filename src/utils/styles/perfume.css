@@ -8,6 +8,41 @@
     height: auto;
 }
 
+@media only screen and (max-width: 1200px) {
+    .men-container {
+        margin-left: 0 !important;
+        width: 100%;
+        height: auto;
+    }
+}
+@media only screen and (max-width: 769px) {
+    .men-container {
+        margin-left: 0 !important;
+        width: 100%;
+        height: auto;
+    }
+    .men-list {
+        display: grid !important;
+        justify-content: space-between !important;
+        grid-template-columns: auto auto !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .men-item img {
+        width: 160px !important;
+        height: 170px !important;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .men-item {
+        width: 100% !important;
+        margin-top: 30px !important;
+        position: relative !important;
+    }
+}
+
 .men-container h4 {
     height: 40px;
     border-bottom: 1px solid ;

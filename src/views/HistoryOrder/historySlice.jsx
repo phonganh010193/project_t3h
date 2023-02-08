@@ -23,7 +23,6 @@ export const fetchHistoryOrder = createAsyncThunk(
         }).catch((error) => {
             console.error(error);
         });
-        console.log('llistAbate=====================', listAbate);
         const listHistoryOrder = [];
         if (listAbate) {
             listAbate.forEach(item => {

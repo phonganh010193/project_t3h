@@ -10,7 +10,6 @@ export const fetchProduct = createAsyncThunk(
     return get(dataProductRef).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(typeof snapshot.val());
-        //   return snapshot.val();
         return Object.values(snapshot.val());
       } else {
         console.log("No data available");
@@ -31,25 +30,19 @@ export const productSlice = createSlice({
   reducers: {
   },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchProduct.pending, (state, action) => {
-      // Add user to the state array
       state.isLoading = true;
     })
     builder.addCase(fetchProduct.fulfilled, (state, action) => {
-      // Add user to the state array
       state.productList = action.payload;
       state.isLoading = false;
     })
     builder.addCase(fetchProduct.rejected, (state, action) => {
-      // Add user to the state array
-      //   state.productList = action.payload;
       state.isLoading = false;
     })
   },
 })
 
-// Action creators are generated for each case reducer function
 export const { } = productSlice.actions
 
 export default productSlice.reducer;

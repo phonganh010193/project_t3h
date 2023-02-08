@@ -13,7 +13,6 @@ const SignIn = () => {
   const onFinish = async (values) => {
     await RunMockData.runMockCategory();
     await RunMockData.runMockProduct();
-
     await RunMockData.runMockUser();
     await fetchUser(values);
   };

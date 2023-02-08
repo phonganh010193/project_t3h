@@ -61,17 +61,19 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="footer-map">
-                        <h5>Bản đồ</h5>
-                        <a target="_blank" href="https://www.google.com/maps/place/43+%C4%90.+V%C4%83n+Ti%E1%BA%BFn+D%C5%A9ng,+Ph%C3%BAc+Di%E1%BB%85n,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0492864,105.7466989,17z/data=!3m1!4b1!4m5!3m4!1s0x313454efb22ead83:0xb31d1b2467c5d9dc!8m2!3d21.0492814!4d105.7488876?hl=vi-VN">
-                            <img src={IMAGE.map} alt="" />
-                        </a>
-                    </div>
-                    <div className="fanpage">
-                        <h5>FanPage</h5>
-                        <a target="_blank" href="https://www.facebook.com/profile.php?id=100085660191588">
-                            <img src={IMAGE.fanpage} alt="" />
-                        </a>
+                    <div style={{ display: "flex", flexDirection: "row", gap: "30px", marginLeft: "30px" }}>
+                        <div className="footer-map">
+                            <h5>Bản đồ</h5>
+                            <a target="_blank" href="https://www.google.com/maps/place/43+%C4%90.+V%C4%83n+Ti%E1%BA%BFn+D%C5%A9ng,+Ph%C3%BAc+Di%E1%BB%85n,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0492864,105.7466989,17z/data=!3m1!4b1!4m5!3m4!1s0x313454efb22ead83:0xb31d1b2467c5d9dc!8m2!3d21.0492814!4d105.7488876?hl=vi-VN">
+                                <img src={IMAGE.map} alt="" />
+                            </a>
+                        </div>
+                        <div className="fanpage">
+                            <h5>FanPage</h5>
+                            <a target="_blank" href="https://www.facebook.com/profile.php?id=100085660191588">
+                                <img src={IMAGE.fanpage} alt="" />
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="col-lg-8 footer-end">

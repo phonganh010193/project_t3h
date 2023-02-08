@@ -19,6 +19,65 @@
     padding: 50px 0px 0px;
 }
 
+@media only screen and (max-width: 1450px) {
+    .footer-item {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        padding: 50px 0px 0px;
+    }
+    .footer-logo {
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left: 30px;
+    }
+    .footer-logo ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100% !important;
+        margin-left: 30px;
+
+    }
+
+    .policy ul {
+        display: flex;
+        flex-direction: row;
+        width: 100% !important;
+        justify-content: space-around;
+        
+
+    }
+    .policy {
+        margin-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 1450px) {
+    .footer-logo{
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .footer-logo ul{
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-left: 30px;
+    }
+    .footer-logo ul li:first-child p {
+        width: 100% !important;
+    }
+}
+
 .icon-logo-footer {
     width: 30px;
     height: 30px;
@@ -78,6 +137,15 @@
 
 .footer-map a img {
     width: 280px;
+}
+
+@media only screen and (max-width: 669px) {
+    .footer-map a img {
+        width: 200px;
+    }
+    .fanpage > a img {
+        width: 200px !important;
+    }
 }
 
 .fanpage h5 {

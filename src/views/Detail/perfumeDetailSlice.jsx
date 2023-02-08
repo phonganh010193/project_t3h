@@ -31,19 +31,14 @@ export const productDetailSlice = createSlice({
   reducers: {
   },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchProductDetail.pending, (state, action) => {
-      // Add user to the state array
       state.isLoading = true;
     })
     builder.addCase(fetchProductDetail.fulfilled, (state, action) => {
-      // Add user to the state array
       state.productListDetail = action.payload;
       state.isLoading = false;
     })
     builder.addCase(fetchProductDetail.rejected, (state, action) => {
-      // Add user to the state array
-      //   state.productList = action.payload;
       state.isLoading = false;
     })
   },

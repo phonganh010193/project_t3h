@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { get, push, ref, update } from 'firebase/database';
-import { toast } from 'react-toastify';
 import { database } from '../firebase';
 
 
@@ -33,7 +32,7 @@ export const fetchUserItem = createAsyncThunk(
 );
 
 export const fetchUpdateUserItem = createAsyncThunk(
-    'user/fetchAddUserItem',
+    'user/fetchUpdateUserItem',
     async (params, thunkAPI) => {
         const userList = await get(ref(database, "User")).then((snapshot) => {
             if (snapshot.exists()) {
@@ -62,7 +61,7 @@ export const fetchUpdateUserItem = createAsyncThunk(
                 .catch((error) => {
                     console.log(error)
                 })
-            console.log('finditem', findItem);
+
         } else {
             await push(ref(database, "User"), params)
                 .then((res) => {

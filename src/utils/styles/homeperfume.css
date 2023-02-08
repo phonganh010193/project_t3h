@@ -4,6 +4,56 @@
     margin-top: 50px;
 }
 
+@media only screen and (max-width: 1200px) {
+    .seling-home-perfume{
+        width: 100% !important;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .home-perfume-image {
+        width: 170px !important;
+        height: 180px !important;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .home-perfume-image {
+        width: 140px !important;
+        height: 150px !important;
+    }
+
+    .home-perfume-item > p {
+        font-size: 13px;
+    }
+
+    .price > p {
+        font-size: 13px !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .home-perfume-image {
+        width: 110px !important;
+        height: 120px !important;
+    }
+
+    .home-perfume-item > p {
+        font-size: 12px;
+    }
+
+    .price > p {
+        font-size: 12px !important;
+    }
+    .btn-content > button {
+        width: 70px !important;
+        height: 30px !important;
+        font-size: 10px !important;
+    }
+   
+}
+
 .seling-home-perfume h4 {
     height: 40px;
     line-height: 50px;

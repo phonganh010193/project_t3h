@@ -39,7 +39,7 @@ const HeaderRegister = () => {
     const prevIsLoading = usePrevious(isLoading);
     const [open, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [fields, setFields] = useState([])
+    const [fields, setFields] = useState(null)
 
 
     const handleOk = () => {
@@ -214,7 +214,7 @@ const HeaderRegister = () => {
                     <Form.Item
                         wrapperCol={{
                             ...layout.wrapperCol,
-                            offset: 8,
+                            offset: 10,
                         }}
                     >
                         <Button type="primary" htmlType="submit">

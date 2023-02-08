@@ -6,13 +6,38 @@
   color: black;
 }
 
+.sidebar-width-reponsive{
+  display: none;
+}
+
+@media only screen and (max-width: 1200px){
+  .sidebar-width-reponsive {
+    display: inline !important;
+  }
+  .sidebar {
+    display: none;
+  }
+  .sidebar-content-item {
+    display: none;
+  }
+  .sidebar-content {
+    width: 100% !important;
+    height: 395px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+  }
+}
+
 .sidebar-title {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 50px;
   background-color: #2d8356;
-
 }
 
 .sidebar-content-item {

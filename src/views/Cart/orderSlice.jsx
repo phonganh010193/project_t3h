@@ -26,7 +26,6 @@ export const fetchOrderProduct = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    console.log('orderlist==================', orderList)
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(typeof snapshot.val());
@@ -45,7 +44,6 @@ export const fetchOrderProduct = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    console.log('products===============', product);
     const listCart = [];
     if (product && orderList) {
       product?.forEach(el => {
@@ -62,7 +60,6 @@ export const fetchOrderProduct = createAsyncThunk(
         })
       })
     }
-    console.log('listcart============', listCart)
     return listCart;
   }
 
@@ -123,7 +120,6 @@ export const fetchAddOrderItem = createAsyncThunk(
         })
       })
     }
-    console.log('lisetcart11111', listCart);
     const findItem = listCart?.find(el => params.id === el.productId && params.user.email === el.user.email)
 
     if (findItem) {
@@ -178,7 +174,6 @@ export const fetchDeleteOrderItem = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    console.log('orderlist==================', orderList)
     const oderListbyUser = orderList?.filter(el => el.user.email === params.email);
 
     const product = await get(ref(database, "Product")).then((snapshot) => {
@@ -199,7 +194,6 @@ export const fetchDeleteOrderItem = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    console.log('products===============', product);
     const listCart = [];
     if (product && oderListbyUser) {
       product.forEach(el => {
@@ -222,8 +216,6 @@ export const fetchDeleteOrderItem = createAsyncThunk(
     }
   }
 );
-
-
 
 const initialState = {
   isLoading: false,

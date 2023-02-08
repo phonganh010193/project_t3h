@@ -12,3 +12,20 @@
     margin-left: 30px;
 }
 
+@media only screen and (max-width: 1200px) {
+    .slide-content {
+        margin-left: 0 !important;
+        margin: 0 auto !important;
+    }
+}
+@media only screen and (max-width: 995px) {
+    .slide-content {
+        width: 100%;
+        margin: 0 auto !important;
+        margin-left: 0 !important;
+    }
+    .slide-item img {
+        width: 100%;
+    }
+}
+
