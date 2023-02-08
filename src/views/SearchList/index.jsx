@@ -83,10 +83,10 @@ const SearchList = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <p>{item.productName}</p>
+                                    <p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
                                     <div className="price">
-                                        <p>{item.price.split(" ").join('.')} VND</p>
-                                        <p>{item.sale_price.split(" ").join('.')} VND</p>
+                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
                                 </div>
                             )

@@ -45,16 +45,16 @@
 }
 
 .search-list-item {
-    width: 230px;
+    width: 210px;
     margin-top: 30px;
     position: relative;
 }
 
 .search-list-item img {
-    width: 210px;
+    width: 180px;
     margin: 0 auto;
     display: block;
-    height: 250px;
+    height: 200px;
 }
 
 .search-list-item > p {

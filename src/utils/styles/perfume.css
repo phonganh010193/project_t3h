@@ -144,6 +144,12 @@
     border: none;
 }
 
+.btn-content button a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+}
+
 .btn-content button:hover {
     background-color:#2d8356;
 }
