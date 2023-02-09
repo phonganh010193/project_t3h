@@ -68,9 +68,9 @@ const Cart = () => {
             try {
                 await dispatch(fetchDeleteOrderItem(user))
                 await dispatch(fetchOrderProduct(user))
-                toast.success('Delete Cart success!')
+                toast.success('Xóa giỏ hàng thành công!')
             } catch (error) {
-                toast.success('Delete Cart fail!')
+                toast.success('Xóa giỏ hàng thất bại!')
             }
         }
 
