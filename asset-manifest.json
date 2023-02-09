@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/http//:phonganh010193.github.io/project_t3h/static/css/main.90f6b5c3.css",
+    "main.js": "/http//:phonganh010193.github.io/project_t3h/static/js/main.f006a713.js",
+    "static/media/fanpage.png": "/http//:phonganh010193.github.io/project_t3h/static/media/fanpage.b96cb23ac6dad8e87b10.png",
+    "static/media/user.jpg": "/http//:phonganh010193.github.io/project_t3h/static/media/user.eb003e68a39570eca35f.jpg",
+    "static/media/map.png": "/http//:phonganh010193.github.io/project_t3h/static/media/map.9c0fe599eaa61f09d58a.png",
+    "static/media/logo1.png": "/http//:phonganh010193.github.io/project_t3h/static/media/logo1.c32c4980e95b299ad56f.png",
+    "static/media/logo.png": "/http//:phonganh010193.github.io/project_t3h/static/media/logo.5b5a6a326fadb7a0dc3b.png",
+    "static/media/OIP.jfif": "/http//:phonganh010193.github.io/project_t3h/static/media/OIP.0c822f43689a2afdf34c.jfif",
+    "static/media/R.png": "/http//:phonganh010193.github.io/project_t3h/static/media/R.668c533ed98524bdeaa6.png",
+    "static/media/slick.svg": "/http//:phonganh010193.github.io/project_t3h/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/http//:phonganh010193.github.io/project_t3h/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/http//:phonganh010193.github.io/project_t3h/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/http//:phonganh010193.github.io/project_t3h/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/http//:phonganh010193.github.io/project_t3h/index.html",
+    "main.90f6b5c3.css.map": "/http//:phonganh010193.github.io/project_t3h/static/css/main.90f6b5c3.css.map",
+    "main.f006a713.js.map": "/http//:phonganh010193.github.io/project_t3h/static/js/main.f006a713.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90f6b5c3.css",
+    "static/js/main.f006a713.js"
+  ]
+}
