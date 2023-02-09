@@ -148,6 +148,29 @@
     }
 }
 
+@media only screen and (max-width: 550px) {
+    .footer-map a img {
+        width: 150px;
+    }
+    .fanpage > a img {
+        width: 150px !important;
+    }
+
+    .policy > ul > li {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    .footer-map a img {
+        width: 130px;
+    }
+    .fanpage > a img {
+        width: 130px !important;
+    }
+}
+
+
 .fanpage h5 {
     color: #2d8356;
     margin-bottom: 30px;
