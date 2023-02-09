@@ -85,6 +85,30 @@
     grid-template-columns: auto auto auto auto auto;
 }
 
+@media only screen and (max-width: 1200px) {
+    .search-list {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: auto auto auto auto;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .search-list {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media only screen and (max-width: 766px) {
+    .search-list {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: auto auto;
+    }
+}
+
 .btn-children {
     position: absolute;
     bottom: 10%;
