@@ -12,7 +12,7 @@ import { fetchUserItem } from "../../container/userSlice";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(33))
+    const values = (window.location.href.slice(32))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
