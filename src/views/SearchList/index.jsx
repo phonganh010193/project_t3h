@@ -13,7 +13,7 @@ import { fetchUserItem } from "../../container/userSlice";
 const SearchList = () => {
     const navigate = useNavigate();
     const values = window.location.href.slice(29)
-    const [searchName, setSearchName] = useState(values)
+    const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const dispatch = useDispatch();
@@ -24,7 +24,12 @@ const SearchList = () => {
         dispatch(fetchUserItem(user))
     }, [dispatch])
 
-
+    useEffect(() => {
+        if (values) {
+            setSearchName(values);
+            searchProduct(values);
+        }
+    }, [values])
     const searchProduct = async (value) => {
         if (!value) {
             toast.warning('Xin hãy nhập thông tin tìm kiếm');

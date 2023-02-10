@@ -31,7 +31,6 @@ const HeaderNav = () => {
                     }} />
                     <button type="submit" onClick={() => {
                         searchItem(values);
-
                     }}>
                         Search
                     </button>
