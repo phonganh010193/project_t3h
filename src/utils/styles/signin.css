@@ -20,9 +20,8 @@
     padding: 20px;
     border-radius: 10px;
     width: 710px;
-    position: absolute;
-    top: 200px;
-    right: 400px;
+    margin-top: 230px !important;
+    margin: 0 auto;
     background-color: beige;
 }
 
@@ -32,9 +31,8 @@
     padding: 20px;
     border-radius: 10px;
     width: 710px;
-    position: absolute;
-    top: 200px;
-    right: 400px;
+    margin-top: 230px !important;
+    margin: 0 auto;
     background-color: beige;
     height: 450px;
 }
