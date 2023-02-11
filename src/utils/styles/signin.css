@@ -4,6 +4,11 @@
     padding: 30px;
 }
 
+.logout-form {
+    width: 400px;
+    padding-left: 30px;
+}
+
 .image-login img {
     width: 300px;
     height: 300px;
@@ -19,32 +24,31 @@
     flex-direction: row;
     padding: 20px;
     border-radius: 10px;
-    width: 710px;
-    margin-top: 230px !important;
     margin: 0 auto;
     background-color: beige;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
+
 
 .logout-content {
     display: flex;
     flex-direction: row;
     padding: 20px;
     border-radius: 10px;
-    width: 710px;
-    margin-top: 230px !important;
     margin: 0 auto;
     background-color: beige;
-    height: 450px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 @media only screen and (max-width: 775px) {
     .login-content {
         display: flex;
         flex-direction: row;
-        padding: 20px;
         border-radius: 10px;
-        width: 400px !important;
-        margin-top: 230px !important;
         margin: 0 auto;
         background-color: beige;
     }
@@ -60,6 +64,10 @@
         height: 300px;
         padding: 0px !important;
     }
+
+    .login-header > p {
+        font-size: 30px !important;
+    } 
     
 }
 
@@ -67,10 +75,7 @@
     .login-content {
         display: flex;
         flex-direction: row;
-        padding: 20px;
         border-radius: 10px;
-        width: 300px !important;
-        margin-top: 230px !important;
         margin: 0 auto;
         background-color: beige;
     }
@@ -78,13 +83,9 @@
     .logout-content {
         display: flex;
         flex-direction: row;
-        padding: 20px;
         border-radius: 10px;
-        width: 300px !important;
-        margin-top: 230px !important;
         margin: 0 auto;
         background-color: beige;
-        height: 450px;
     }
     .image-login img {
         display: none !important;
@@ -94,10 +95,36 @@
     }
 
     .login-form {
-        width: 266px !important;
+        width: 280px !important;
         height: 300px;
         padding: 0px !important;
+        margin: 0 auto !important;
+        padding: 5px;
+    }
+
+    .logout-form {
+        width: 280px !important;
+        padding-left: 0 !important;
+        margin: 0 auto !important;
+        padding: 5px ;
     }
     
 }
+.login-header {
+    width: 100%;
+    height: 150px;
+    background-color: green;
+    line-height: 150px;
+    text-align: center;
+}
+
+.login-header > p {
+    font-size: 50px;
+    color: antiquewhite;
+}
+
+.login-container {
+    padding: 0;
+}
+
 

@@ -6,6 +6,7 @@ import '../../utils/styles/signin.css';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../useContext';
 import RunMockData from '../../mock/runMockData';
+import Footer from '../../component/Footer';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -24,55 +25,66 @@ const SignIn = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+}, [])
+
   return (
-    <div className='login-content'>
-      <div className='image-login'>
-        <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
+    
+    <div className='container-fluid login-container'>
+      <div className='login-header'>
+        <p>Apo Đăng nhập</p>
       </div>
-      <div className='form-login'>
-        <Form
-          name="normal_login"
-          className="login-form"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-        >
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: 'Please input your Username!' }]}
+      <div className='login-content'>
+        <div className='image-login'>
+          <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
+        </div>
+        <div className='form-login'>
+          <p style={{color: "blue", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥SingIn♥۝༒꧂</p>
+          <Form
+            name="normal_login"
+            className="login-form"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: 'Please input your Password!' }]}
-          >
-            <Input.Password
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-            />
-          </Form.Item>
-          <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
+            <Form.Item
+              name="username"
+              rules={[{ required: true, message: 'Please input your Username!' }]}
+            >
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[{ required: true, message: 'Please input your Password!' }]}
+            >
+              <Input.Password
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+            <Form.Item>
+              <Form.Item name="remember" valuePropName="checked" noStyle>
+                <Checkbox>Remember me</Checkbox>
+              </Form.Item>
+
+              <a className="login-form-forgot" href="">
+                Forgot password
+              </a>
             </Form.Item>
 
-            <a className="login-form-forgot" href="">
-              Forgot password
-            </a>
-          </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="login-form-button">
+                Log in
+              </Button>
+              Or <a href="/signup">register now!</a>
+            </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
-            </Button>
-            Or <a href="/signup">register now!</a>
-          </Form.Item>
-
-        </Form>
+          </Form>
+        </div>
       </div>
+      <Footer />
     </div>
-
   );
 };
 

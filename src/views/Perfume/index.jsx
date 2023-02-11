@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../component/Layout"
 import { fetchCategory } from "../../component/SideBar/sibarSlice";
 import { UserContext } from "../../container/useContext";
@@ -16,6 +16,7 @@ import { fetchUserItem } from "../../container/userSlice";
 const take = 9;
 
 const Perfume = () => {
+    const navigate = useNavigate();
     const { categoryId } = useParams();
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
@@ -116,16 +117,20 @@ const Perfume = () => {
     }
 
     const addOrderItem = async (item) => {
-        try {
-            const params = {
-                ...item,
-                user: userCurrent,
-                orderNumber: "1"
+        if (user && userCurrent) {
+            try {
+                const params = {
+                    ...item,
+                    user: userCurrent,
+                    orderNumber: 1
+                }
+                await dispatch(fetchAddOrderItem(params));
+                await dispatch(fetchOrderProduct(user));
+            } catch (error) {
+                toast.error('Thêm không thành công')
             }
-            await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct(user));
-        } catch (error) {
-            toast.error('Thêm không thành công')
+        } else {
+           navigate('/signin');
         }
     }
     return (

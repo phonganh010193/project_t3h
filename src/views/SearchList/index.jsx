@@ -12,7 +12,7 @@ import { fetchUserItem } from "../../container/userSlice";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(29))
+    const values = (window.location.href.slice(33))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
@@ -43,16 +43,20 @@ const SearchList = () => {
 
 
     const addOrderItem = async (item) => {
-        try {
-            const params = {
-                ...item,
-                user: userCurrent,
-                orderNumber: 1
+        if (user && userCurrent) {
+            try {
+                const params = {
+                    ...item,
+                    user: userCurrent,
+                    orderNumber: 1
+                }
+                await dispatch(fetchAddOrderItem(params));
+                await dispatch(fetchOrderProduct(user));
+            } catch (error) {
+                toast.error('Thêm không thành công')
             }
-            await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct(user));
-        } catch (error) {
-            toast.error('Thêm không thành công')
+        } else {
+           navigate('/signin');
         }
     }
     return (

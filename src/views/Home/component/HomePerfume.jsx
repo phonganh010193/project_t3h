@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
 import { fetchUserItem } from "../../../container/userSlice";
 
@@ -24,6 +24,7 @@ const sliderSettings = {
     arrows: true
 };
 function HomePerfume(props) {
+    const navigate = useNavigate();
     const { product, gender } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
@@ -59,6 +60,8 @@ function HomePerfume(props) {
             } catch (error) {
                 toast.error('Thêm không thành công')
             }
+        } else {
+           navigate('/signin');
         }
     }
     return (

@@ -2,7 +2,7 @@ import LayoutCart from "../../component/LayoutCart";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
@@ -16,6 +16,7 @@ import PerfumeEvaluate from "./component/perfumeEvaluate";
 
 const Detail = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
@@ -38,17 +39,22 @@ const Detail = () => {
     }, []);
 
     const addOrderItem = async (item) => {
-        try {
-            const params = {
-                ...item,
-                user: userCurrent,
-                orderNumber: number
+        if( user && userCurrent) {
+            try {
+                const params = {
+                    ...item,
+                    user: userCurrent,
+                    orderNumber: number
+                }
+                await dispatch(fetchAddOrderItem(params));
+                await dispatch(fetchOrderProduct(user));
+            } catch (error) {
+                toast.error('Thêm không thành công')
             }
-            await dispatch(fetchAddOrderItem(params));
-            await dispatch(fetchOrderProduct(user));
-        } catch (error) {
-            toast.error('Thêm không thành công')
+        } else {
+            navigate('/signin');
         }
+        
     }
 
     const onChange = (key) => {
