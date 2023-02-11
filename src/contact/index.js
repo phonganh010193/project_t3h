@@ -7,7 +7,10 @@ const IMAGE = {
     delete: require('../assets/image/delete.png'),
     user: require('../assets/image/user.jpg'),
     map: require('../assets/image/map.png'),
-    fanpage: require('../assets/image/fanpage.png')
+    fanpage: require('../assets/image/fanpage.png'),
+    step1: require('../assets/image/step1.jpg'),
+    step2: require('../assets/image/step2.jpg'),
+    step3: require('../assets/image/step3.jpg'),
 }
 
 export default IMAGE;

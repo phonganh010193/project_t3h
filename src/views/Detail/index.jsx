@@ -6,12 +6,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
-import { fetchProductDetail } from "./perfumeDetailSlice";
+import { fetchAddCommentDetail, fetchCommentListByUser, fetchProductDetail } from "./perfumeDetailSlice";
 import PerfumeDetailInfo from "./component/perfumeDetailInfo";
 import { Tabs } from "antd";
 import "../../utils/styles/perfume.detail.css";
 import { fetchUserItem } from "../../container/userSlice";
 import PerfumeEvaluate from "./component/perfumeEvaluate";
+import GuideShopping from "./component/guideShopping";
 
 
 const Detail = () => {
@@ -21,6 +22,7 @@ const Detail = () => {
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
+    const commentList = useSelector(({ detail }) => detail.commentList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
 
@@ -30,7 +32,8 @@ const Detail = () => {
     useEffect(() => {
         dispatch(fetchProductDetail(productId));
         dispatch(fetchOrderProduct(user));
-        dispatch(fetchUserItem(user))
+        dispatch(fetchUserItem(user));
+        dispatch(fetchCommentListByUser(productId));
     }, [dispatch, productId]);
 
     useEffect(() => {
@@ -56,6 +59,15 @@ const Detail = () => {
         }
         
     }
+    const addCommentByUser = async(value) => {
+        try {
+            dispatch(fetchAddCommentDetail(value));
+            dispatch(fetchCommentListByUser(productId));
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const onChange = (key) => {
         console.log(key);
@@ -69,12 +81,17 @@ const Detail = () => {
         {
             key: '2',
             label: `HƯỚNG DẪN MUA HÀNG`,
-            children: `Content of Tab Pane 2`,
+            children: <GuideShopping />,
         },
         {
             key: '3',
             label: `ĐÁNH GIÁ CHI TIẾT`,
-            children: <PerfumeEvaluate />,
+            children: <PerfumeEvaluate 
+                userCurrent={userCurrent}
+                detailList={detailList}
+                addCommentByUser={addCommentByUser}
+                commentList={commentList}
+            />,
         },
     ];
 

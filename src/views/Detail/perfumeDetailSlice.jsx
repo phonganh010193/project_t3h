@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref } from "firebase/database";
+import { get, push, ref } from "firebase/database";
 import { database } from '../../firebase';
 
 
@@ -19,10 +19,44 @@ export const fetchProductDetail = createAsyncThunk(
       console.error(error);
     });
   }
-)
+);
+
+export const fetchCommentListByUser = createAsyncThunk(
+  'product/fetchCommentListByUser',
+  async (productId, thunkAPI) => {
+    const commentList = await get(ref(database, "Comment")).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(typeof snapshot.val());
+        //   return snapshot.val();
+        return Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    return commentList?.filter(el => el.productId === productId);
+  }
+  
+);
+
+export const fetchAddCommentDetail = createAsyncThunk(
+  'product/fetchCommentDetail',
+  async (params, thunkAPI) => {
+    return await push(ref(database, "Comment"), params)
+    .then((snapshot) => {
+      console.log(snapshot)
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+);
+
+
 const initialState = {
   isLoading: false,
   productListDetail: {},
+  commentList: null
 }
 
 export const productDetailSlice = createSlice({
@@ -39,6 +73,16 @@ export const productDetailSlice = createSlice({
       state.isLoading = false;
     })
     builder.addCase(fetchProductDetail.rejected, (state, action) => {
+      state.isLoading = false;
+    })
+    builder.addCase(fetchCommentListByUser.pending, (state, action) => {
+      state.isLoading = true;
+    })
+    builder.addCase(fetchCommentListByUser.fulfilled, (state, action) => {
+      state.commentList = action.payload;
+      state.isLoading = false;
+    })
+    builder.addCase(fetchCommentListByUser.rejected, (state, action) => {
       state.isLoading = false;
     })
   },
