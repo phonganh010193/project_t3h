@@ -20,7 +20,7 @@ const UserContextProvider = ({ children }) => {
             const user = await signInWithEmailAndPassword(auth, values.username, values.password);
             setUser(user.user);
         } catch (error) {
-            toast.error('Tên đăng nhập không đúng')
+            toast.error('Tên đăng nhập hoặc mật khẩu không đúng')
         }
     }
     const fetchSignOut = async () => {

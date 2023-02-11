@@ -11,29 +11,37 @@ import { useDispatch } from 'react-redux';
 import RunMockData from '../../mock/runMockData';
 import Footer from '../../component/Footer';
 import { useEffect } from 'react';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const onFinish = async (values) => {
-    try {
-      await createUserWithEmailAndPassword(auth, values.username, values.password);
-      await RunMockData.runMockCategory();
-      await RunMockData.runMockProduct();
-      await RunMockData.runMockUser();
-      const value = {
-        name: values.name,
-        email: values.username,
-        address: values.address,
-        phone: values.phone,
-        avatar: ""
+    if(values.password === values.confirm_password) {
+      try {
+        await createUserWithEmailAndPassword(auth, values.username, values.password);
+        await RunMockData.runMockCategory();
+        await RunMockData.runMockProduct();
+        await RunMockData.runMockUser();
+        const value = {
+          name: values.name,
+          email: values.username,
+          address: values.address,
+          phone: values.phone,
+          avatar: ""
+        }
+        await dispatch(fetchUpdateUserItem(value))
+        navigate('/signin')
+      } catch (err) {
+        toast.error('Tên đăng nhập đã tồn tại');
       }
-      await dispatch(fetchUpdateUserItem(value))
-      navigate('/signin')
-    } catch (err) {
-      console.log(err.response.data)
+    } else {
+      toast.error('Mật khẩu không trùng khớp')
     }
+    
   };
 
   useEffect(() => {
@@ -43,7 +51,7 @@ const SignUp = () => {
   return (
     <div className='container-fluid login-container'>
       <div className='login-header'>
-        <p>Apo Đăng nhập</p>
+        <p>Apo Đăng Nhập</p>
       </div>
       <div className='logout-content '>
         <div className='image-logout'>
@@ -92,7 +100,7 @@ const SignUp = () => {
               />
             </Form.Item>
             <Form.Item
-              name="confirm-password"
+              name="confirm_password"
               rules={[{ required: true, message: 'Please input your ConfirmPassword!' }]}
             >
               <Input.Password

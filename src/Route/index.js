@@ -11,6 +11,7 @@ import SearchList from "../views/SearchList";
 import Introduce from "../views/Introduce";
 import Cosmetic from "../views/Cosmetic";
 import HistoryOrder from "../views/HistoryOrder";
+import ForgotPassword from "../container/ForgotPassword";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -25,6 +26,7 @@ const routerName = createBrowserRouter([
   { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },
   { path: "/abate", element: <HistoryOrder />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
+  { path: "/forgot-password", element: <ForgotPassword />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

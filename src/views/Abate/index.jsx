@@ -308,6 +308,7 @@ const Abate = () => {
                             </Button>
                             <span></span>
                         </Form.Item>
+                        
                     </div>
                     <div style={{ marginLeft: "5px" }}>
                         {abateDetail?.status === System.STATUS.ORDERED ?

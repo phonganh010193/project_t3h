@@ -3,7 +3,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 import '../../../node_modules/antd/dist/reset.css';
 import '../../utils/styles/signin.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../useContext';
 import RunMockData from '../../mock/runMockData';
 import Footer from '../../component/Footer';
@@ -27,13 +27,13 @@ const SignIn = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-}, [])
+  }, [])
 
   return (
     
     <div className='container-fluid login-container'>
       <div className='login-header'>
-        <p>Apo Đăng nhập</p>
+        <p>Apo Đăng Nhập</p>
       </div>
       <div className='login-content'>
         <div className='image-login'>
@@ -68,9 +68,9 @@ const SignIn = () => {
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
 
-              <a className="login-form-forgot" href="">
+              <Link className="login-form-forgot" to="/forgot-password">
                 Forgot password
-              </a>
+              </Link>
             </Form.Item>
 
             <Form.Item>

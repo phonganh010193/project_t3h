@@ -136,7 +136,13 @@ const Perfume = () => {
     return (
         <Layout>
             <div className="men-container">
-                {categories &&
+                {categoryId === "100" ?
+                    <>
+                    <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>Tất cả sản phẩm</span></p>
+                    <h4>TẤT CẢ SẢN PHẨM</h4>
+                    </>
+                :    
+                    categories &&
                     categories?.map((item, index) => {
                         return (
                             <div
@@ -148,6 +154,7 @@ const Perfume = () => {
                                         <h4>{item.categoryName.toUpperCase()}</h4>
                                     </>
                                     : null
+                                    
                                 }
                             </div>
                         )
