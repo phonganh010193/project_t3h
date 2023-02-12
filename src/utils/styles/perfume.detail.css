@@ -172,3 +172,28 @@
 .guide-container {
     text-align: center;
 }
+
+.comment-interact > span {
+   font-weight: 700;
+   transition: transform .2s;
+}
+
+.comment-interact > span:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+    color: #2d8356;
+    cursor: pointer;
+}
+
+
+.comment-interact span:last-child{
+    margin-left: 15px;
+
+}
+
+.icon-like img {
+    width: 22px !important;
+    height: 22px !important;
+    margin-left: 5px;
+}

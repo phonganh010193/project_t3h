@@ -23,6 +23,7 @@ const Detail = () => {
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
     const commentList = useSelector(({ detail }) => detail.commentList);
+    console.log('commentlist', commentList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
 
@@ -61,8 +62,16 @@ const Detail = () => {
     }
     const addCommentByUser = async(value) => {
         try {
-            dispatch(fetchAddCommentDetail(value));
-            dispatch(fetchCommentListByUser(productId));
+            await dispatch(fetchAddCommentDetail(value));
+            await dispatch(fetchCommentListByUser(productId));
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const likeCommentByUser = async(value) => {
+        try {
+            await dispatch(fetchCommentListByUser(value));
 
         } catch (error) {
             console.log(error);

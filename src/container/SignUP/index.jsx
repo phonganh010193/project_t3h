@@ -58,7 +58,7 @@ const SignUp = () => {
           <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
         </div>
         <div className='form-login'>
-          <p style={{color: "blue", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥SingUp♥۝༒꧂</p>
+          <p style={{color: "#2d8356", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥SingUp♥۝༒꧂</p>
           <Form
             name="normal_login"
             className="logout-form"

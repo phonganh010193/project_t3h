@@ -26,11 +26,14 @@ export const fetchCommentListByUser = createAsyncThunk(
   async (productId, thunkAPI) => {
     const commentList = await get(ref(database, "Comment")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        //   return snapshot.val();
-        return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        })
       }
     }).catch((error) => {
       console.error(error);

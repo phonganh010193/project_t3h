@@ -1,6 +1,9 @@
+import { ref, update } from "firebase/database";
 import moment from "moment";
 import { useEffect } from "react";
 import { useState } from "react";
+import { database } from "../../../firebase";
+import { fetchCommentListByUser } from "../perfumeDetailSlice";
 
 
 const PerfumeEvaluate = (props) => {
@@ -8,10 +11,11 @@ const PerfumeEvaluate = (props) => {
         addCommentByUser,
         userCurrent,
         detailList,
-        commentList
+        commentList,
     } = props;
     const [comment, setComment] = useState('');
-    const [newDate, setnewDate] = useState('')
+    const [newDate, setnewDate] = useState('');
+    const userLike = [];
 
     useEffect(() => {
         setnewDate(moment(new Date()).format("DD-MM-YYYY HH:mm:ss"))
@@ -35,7 +39,12 @@ const PerfumeEvaluate = (props) => {
                                     user: userCurrent,
                                     dateComment: newDate,
                                     productId: detailList?.id,
-                                    comment: comment
+                                    comment: {
+                                        info: comment,
+                                        like: false,
+                                        numberLike: 0,
+                                        userLike: userLike
+                                    }
                                 });
                                 setComment('')
                            }
@@ -51,8 +60,21 @@ const PerfumeEvaluate = (props) => {
                                 <img src={item.user?.avatar} alt="" />
                                 <div className="comment-info">
                                     <p>{item.user?.name}</p>
-                                    <p>{item.comment}</p>
+                                    <p>
+                                        {item.comment.info}
+                                        {item.comment.like ?
+                                            <span className="icon-like">
+                                                <img src="https://static.vecteezy.com/system/resources/previews/000/425/828/original/like-icon-vector-illustration.jpg" alt="" />
+                                            </span>
+                                        : null
+                                    }
+                                    </p>
+                                    <div className="comment-interact">
+                                        <span>Thích</span>
+                                        <span>Phản hồi</span>
+                                    </div>
                                 </div>
+                                
                             </div>
                         )
                     })}

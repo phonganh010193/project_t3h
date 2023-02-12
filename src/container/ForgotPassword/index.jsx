@@ -40,7 +40,7 @@ const ForgotPassword = () => {
           <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
         </div>
         <div className='form-login'>
-          <p className='forgot-password' style={{color: "blue", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥ForgotPassword♥۝༒꧂</p>
+          <p className='forgot-password' style={{color: "#2d8356", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥ForgotPassword♥۝༒꧂</p>
           <Form
             name="normal_login"
             className="login-form"
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Gửi Email
               </Button>
-              Or <Link style={{marginLeft: "5px"}} to="/signin">Now login!</Link>
+              Or <Link style={{marginLeft: "5px"}} to="/signin">now login!</Link>
             </Form.Item>
 
           </Form>
