@@ -12,6 +12,7 @@ import Introduce from "../views/Introduce";
 import Cosmetic from "../views/Cosmetic";
 import HistoryOrder from "../views/HistoryOrder";
 import ForgotPassword from "../container/ForgotPassword";
+import Renraku from "../component/Renraku";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -27,6 +28,7 @@ const routerName = createBrowserRouter([
   { path: "/abate", element: <HistoryOrder />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
   { path: "/forgot-password", element: <ForgotPassword />, errorElement: <ErrorPage /> },
+  { path: "/reraku", element: <Renraku />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

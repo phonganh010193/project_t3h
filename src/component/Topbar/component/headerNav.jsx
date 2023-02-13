@@ -21,8 +21,7 @@ const HeaderNav = () => {
                     <Link to="/">TRANG CHỦ</Link>
                     <Link to="/introduce">GIỚI THIỆU</Link>
                     <Link to="/perfume/100">SẢN PHẨM</Link>
-                    <Link to="/cosmetic">MỸ PHẨM</Link>
-                    <Link to="#about">LIÊN HỆ</Link>
+                    <Link to="/reraku">LIÊN HỆ</Link>
                     <Link to="#about">DỊCH VỤ MỚI</Link>
                 </div>
                 <div className="search-content">
