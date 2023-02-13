@@ -56,7 +56,7 @@ const SearchList = () => {
                 toast.error('Thêm không thành công')
             }
         } else {
-           navigate('/signin');
+            navigate('/signin');
         }
     }
     return (

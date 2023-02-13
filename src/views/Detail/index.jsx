@@ -43,7 +43,7 @@ const Detail = () => {
     }, []);
 
     const addOrderItem = async (item) => {
-        if( user && userCurrent) {
+        if (user && userCurrent) {
             try {
                 const params = {
                     ...item,
@@ -58,9 +58,9 @@ const Detail = () => {
         } else {
             navigate('/signin');
         }
-        
+
     }
-    const addCommentByUser = async(value) => {
+    const addCommentByUser = async (value) => {
         try {
             await dispatch(fetchAddCommentDetail(value));
             await dispatch(fetchCommentListByUser(productId));
@@ -69,14 +69,7 @@ const Detail = () => {
             console.log(error);
         }
     }
-    const likeCommentByUser = async(value) => {
-        try {
-            await dispatch(fetchCommentListByUser(value));
 
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const onChange = (key) => {
         console.log(key);
@@ -95,7 +88,7 @@ const Detail = () => {
         {
             key: '3',
             label: `ĐÁNH GIÁ CHI TIẾT`,
-            children: <PerfumeEvaluate 
+            children: <PerfumeEvaluate
                 userCurrent={userCurrent}
                 detailList={detailList}
                 addCommentByUser={addCommentByUser}
