@@ -5,13 +5,12 @@ import Slider from "react-slick";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useContext, useRef } from "react";
 import { UserContext } from "../../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
-import { fetchUserItem } from "../../../container/userSlice";
 
 const sliderSettings = {
     dots: false,
@@ -25,19 +24,14 @@ const sliderSettings = {
 };
 function HomePerfume(props) {
     const navigate = useNavigate();
-    const { product, gender } = props;
+    const { product, gender, userCurrent } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({ user }) => user.userCurrent)
+
     const product1 = product.slice(0, 3);
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
     const slideRef = useRef();
-
-    useEffect(() => {
-        dispatch(fetchOrderProduct(user));
-        dispatch(fetchUserItem(user));
-    }, [dispatch])
 
     const goPrev = () => {
         slideRef?.current?.slickPrev();
@@ -61,7 +55,7 @@ function HomePerfume(props) {
                 toast.error('Thêm không thành công')
             }
         } else {
-           navigate('/signin');
+            navigate('/signin');
         }
     }
     return (

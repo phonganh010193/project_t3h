@@ -10,16 +10,19 @@ import { System } from "../../constants/system.constants";
 import { fetchOrderProduct } from "../Cart/orderSlice";
 import { useContext } from "react";
 import { UserContext } from "../../container/useContext";
+import { fetchUserItem } from "../../container/userSlice";
 
 const HomePage = () => {
     const dispatch = useDispatch();
     const product = useSelector(({ product }) => product.productList)
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     const { user } = useContext(UserContext);
     const productMen = product.filter(el => el.gender === 1);
     const productWomen = product.filter(el => el.gender === 2);
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchOrderProduct(user))
+        dispatch(fetchUserItem(user));
     }, [dispatch, user])
     const sliderRef = useRef();
     const sliderrSettings = {
@@ -49,9 +52,9 @@ const HomePage = () => {
                         <img src="https://img.fragrancex.com/images/aboutus/aboutus-realfragrances.jpg" alt="" />
                     </div>
                 </Slider>
-                <HomePerfume product={productMen} gender={System.GENDER.MEN} />
+                <HomePerfume product={productMen} gender={System.GENDER.MEN} userCurrent={userCurrent} />
                 <HomeImageInfo />
-                <HomePerfume product={productWomen} gender={System.GENDER.WOMMEN} />
+                <HomePerfume product={productWomen} gender={System.GENDER.WOMMEN} userCurrent={userCurrent} />
             </div>
         </Layout>
     )

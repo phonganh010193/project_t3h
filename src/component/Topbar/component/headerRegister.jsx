@@ -1,4 +1,4 @@
-import { Avatar, Button, Form, Input, Modal, Popover, Upload } from "antd";
+import { Avatar, Button, Form, Input, Modal, Popover } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IMAGE from "../../../contact";
