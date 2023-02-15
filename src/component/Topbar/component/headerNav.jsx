@@ -21,8 +21,8 @@ const HeaderNav = () => {
                     <Link to="/">TRANG CHỦ</Link>
                     <Link to="/introduce">GIỚI THIỆU</Link>
                     <Link to="/perfume/100">SẢN PHẨM</Link>
-                    <Link to="/reraku">LIÊN HỆ</Link>
-                    <Link to="#about">DỊCH VỤ MỚI</Link>
+                    <Link to="/renraku">LIÊN HỆ</Link>
+                    <Link to="/newservice">DỊCH VỤ MỚI</Link>
                 </div>
                 <div className="search-content">
                     <input value={values} type="text" placeholder="perfume..." onChange={(event) => {
