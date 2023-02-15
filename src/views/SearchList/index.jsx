@@ -12,17 +12,27 @@ import { fetchUserItem } from "../../container/userSlice";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(33))
+    const values = (window.location.href.slice(29))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const dispatch = useDispatch();
     const listSearch = useSelector(({ search }) => search.searchList)
+    const isLoading = useSelector(({ search }) => search.isLoading)
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         dispatch(fetchSearchProduct(searchName));
         dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user))
     }, [dispatch]);
+
+    useEffect(() => {
+        if (isLoading === true) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [isLoading])
 
     const searchProduct = async (value) => {
         if (!value) {
@@ -78,34 +88,40 @@ const SearchList = () => {
                         searchProduct(searchName)
                     }}>Search</button>
                 </div>
-                <div className="search-list">
-                    {listSearch.length > 0 ?
-                        listSearch.map((item, index) => {
-                            return (
-                                <div key={item.id} className="search-list-item">
-                                    <div className="list-detail">
-                                        <img src={item.image} className="list-image" alt="" />
-                                        <div className="btn-children">
-                                            <div className="btn-content">
-                                                <button onClick={() => {
-                                                    addOrderItem(item)
-                                                }}>Mua sản phẩm</button>
-                                                <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
+                {loading ?
+                    <div style={{ textAlign: "center", width: "100%" }}>
+                        <p style={{ fontSize: "20px" }}>Loading ... </p>
+                    </div>
+                    :
+                    <div className="search-list">
+                        {listSearch.length > 0 ?
+                            listSearch.map((item, index) => {
+                                return (
+                                    <div key={item.id} className="search-list-item">
+                                        <div className="list-detail">
+                                            <img src={item.image} className="list-image" alt="" />
+                                            <div className="btn-children">
+                                                <div className="btn-content">
+                                                    <button onClick={() => {
+                                                        addOrderItem(item)
+                                                    }}>Mua sản phẩm</button>
+                                                    <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
+                                                </div>
                                             </div>
                                         </div>
+                                        <p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
+                                        <div className="price">
+                                            <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                            <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
+                                        </div>
                                     </div>
-                                    <p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>
-                                    <div className="price">
-                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
-                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
-                                    </div>
-                                </div>
-                            )
+                                )
 
-                        })
-                        : <p>Sản phẩm không tồn tại !</p>
-                    }
-                </div>
+                            })
+                            : <p>Sản phẩm không tồn tại !</p>
+                        }
+                    </div>
+                }
 
             </div>
         </LayoutCart>

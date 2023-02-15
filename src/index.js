@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { store } from './appRedux/store';
 import { ToastContainer } from 'react-toastify';
 
+const key = 'AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

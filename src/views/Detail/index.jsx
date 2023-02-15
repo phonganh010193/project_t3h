@@ -22,10 +22,12 @@ const Detail = () => {
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
+    const isLoading = useSelector(({ detail }) => detail.isLoading)
     const commentList = useSelector(({ detail }) => detail.commentList);
     console.log('commentlist', commentList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setImage(detailList?.image)
@@ -36,6 +38,14 @@ const Detail = () => {
         dispatch(fetchUserItem(user));
         dispatch(fetchCommentListByUser(productId));
     }, [dispatch, productId]);
+
+    useEffect(() => {
+        if (isLoading === true) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [isLoading])
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -101,60 +111,66 @@ const Detail = () => {
 
     return (
         <LayoutCart>
-            <div className="container perfume-detail">
-                <div className="header-detail">
-                    <p>Nhóm sản phẩm/<span style={{ color: "#2d8356" }}>{detailList?.productName}</span></p>
+            {loading ?
+                <div style={{ textAlign: "center", width: "100%" }}>
+                    <p style={{ fontSize: "20px" }}>Loading ... </p>
                 </div>
-                <div className="content-detail">
-                    <div className="content-detail-image">
-                        <img src={image} alt="" />
-                        <div className="icon-click-image">
-                            {detailList?.imageShow?.map((item, index) => {
-                                return (
-                                    <div className="list-image-show" key={index}>
-                                        <img
-                                            key={index}
-                                            src={item.image}
-                                            alt=""
-                                            onClick={() => {
-                                                setImage(item.image)
-                                            }}
-                                        />
+                :
+                <div className="container perfume-detail">
+                    <div className="header-detail">
+                        <p>Nhóm sản phẩm/<span style={{ color: "#2d8356" }}>{detailList?.productName}</span></p>
+                    </div>
+                    <div className="content-detail">
+                        <div className="content-detail-image">
+                            <img src={image} alt="" />
+                            <div className="icon-click-image">
+                                {detailList?.imageShow?.map((item, index) => {
+                                    return (
+                                        <div className="list-image-show" key={index}>
+                                            <img
+                                                key={index}
+                                                src={item.image}
+                                                alt=""
+                                                onClick={() => {
+                                                    setImage(item.image)
+                                                }}
+                                            />
+                                        </div>
+
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="buy-info">
+                            <h2 style={{ textTransform: "capitalize" }}>{detailList?.productName?.toLowerCase()}</h2>
+                            <div className="capacity">
+                                <h6>Dung Tích</h6>
+                                <div className="capacity-info">
+                                    <p>{detailList?.capacity}</p>
+                                    <p>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
+                                </div>
+                                <div className="amount">
+                                    <h6>Số Lượng</h6>
+                                    <div className="amount-form">
+                                        <input type="number" value={number} className="text-center" min="1" max="1000" onChange={(event) => {
+                                            setNumber(event.target.value);
+                                        }} />
+                                        <button className="cart-shop" onClick={() => {
+                                            addOrderItem(detailList);
+                                        }}>Thêm vào giỏ hàng</button>
                                     </div>
 
-                                )
-                            })}
-                        </div>
-                    </div>
-
-                    <div className="buy-info">
-                        <h2 style={{ textTransform: "capitalize" }}>{detailList?.productName?.toLowerCase()}</h2>
-                        <div className="capacity">
-                            <h6>Dung Tích</h6>
-                            <div className="capacity-info">
-                                <p>{detailList?.capacity}</p>
-                                <p>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
-                            </div>
-                            <div className="amount">
-                                <h6>Số Lượng</h6>
-                                <div className="amount-form">
-                                    <input type="number" value={number} className="text-center" min="1" max="1000" onChange={(event) => {
-                                        setNumber(event.target.value);
-                                    }} />
-                                    <button className="cart-shop" onClick={() => {
-                                        addOrderItem(detailList);
-                                    }}>Thêm vào giỏ hàng</button>
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
+                    <div className="detail-indo">
+                        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+                    </div>
                 </div>
-                <div className="detail-indo">
-                    <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-                </div>
-            </div>
+            }
         </LayoutCart>
     )
 }

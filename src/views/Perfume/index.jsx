@@ -29,13 +29,21 @@ const Perfume = () => {
     const [productData, setProductData] = useState([]);
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
-
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchCategory());
         dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user))
     }, [dispatch]);
+
+    useEffect(() => {
+        if (productLoading === true) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [productLoading])
     const showListProduct = () => {
         if (categoryId === "1") {
             return product?.filter(el => el.gender === 1)
@@ -130,80 +138,86 @@ const Perfume = () => {
                 toast.error('Thêm không thành công')
             }
         } else {
-           navigate('/signin');
+            navigate('/signin');
         }
     }
     return (
         <Layout>
-            <div className="men-container">
-                {categoryId === "100" ?
-                    <>
-                    <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>Tất cả sản phẩm</span></p>
-                    <h4>TẤT CẢ SẢN PHẨM</h4>
-                    </>
-                :    
-                    categories &&
-                    categories?.map((item, index) => {
-                        return (
-                            <div
-                                key={item.id}
-                            >
-                                {categoryId === item.id ?
-                                    <>
-                                        <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
-                                        <h4>{item.categoryName.toUpperCase()}</h4>
-                                    </>
-                                    : null
-                                    
-                                }
-                            </div>
-                        )
-                    })
-                }
-
-                <div className="men-list">
-                    {listDataProduct &&
-                        listDataProduct?.map((item, index) => {
+            {loading ?
+                <div style={{ textAlign: "center", width: "100%" }}>
+                    <p style={{ fontSize: "20px" }}>Loading ... </p>
+                </div>
+                :
+                <div className="men-container">
+                    {categoryId === "100" ?
+                        <>
+                            <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>Tất cả sản phẩm</span></p>
+                            <h4>TẤT CẢ SẢN PHẨM</h4>
+                        </>
+                        :
+                        categories &&
+                        categories?.map((item, index) => {
                             return (
-                                <div key={item.id} className="men-item">
-                                    <div className="men-detail">
-                                        <img src={item.image} className="men-image" alt="" />
-                                        <div className="btn-children">
-                                            <div className="btn-content">
-                                                <button onClick={() => {
-                                                    addOrderItem(item)
-                                                }}>Mua sản phẩm</button>
-                                                <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p>{item.productName.toLowerCase()}</p>
-                                    <div className="price">
-                                        <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
-                                        <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
-                                    </div>
+                                <div
+                                    key={item.id}
+                                >
+                                    {categoryId === item.id ?
+                                        <>
+                                            <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
+                                            <h4>{item.categoryName.toUpperCase()}</h4>
+                                        </>
+                                        : null
+
+                                    }
                                 </div>
                             )
                         })
                     }
+
+                    <div className="men-list">
+                        {listDataProduct &&
+                            listDataProduct?.map((item, index) => {
+                                return (
+                                    <div key={item.id} className="men-item">
+                                        <div className="men-detail">
+                                            <img src={item.image} className="men-image" alt="" />
+                                            <div className="btn-children">
+                                                <div className="btn-content">
+                                                    <button onClick={() => {
+                                                        addOrderItem(item)
+                                                    }}>Mua sản phẩm</button>
+                                                    <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>{item.productName.toLowerCase()}</p>
+                                        <div className="price">
+                                            <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
+                                            <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    {listDataProduct?.length > 0 ?
+                        <ul className="pagination">
+                            <li className="page-item"><Link className="page-link" to="#" onClick={() => {
+                                if (page > 0) {
+                                    setPage(page - 1);
+                                }
+                            }}>Trước</Link></li>
+                            {_renderPaginate()}
+                            <li className="page-item"><Link className="page-link" to="#" onClick={() => {
+                                if (page < (numberOfPage - 1)) {
+                                    setPage(page + 1);
+                                }
+                            }}>Sau</Link></li>
+                        </ul>
+                        : null
+                    }
                 </div>
-                {listDataProduct?.length > 0 ?
-                    <ul className="pagination">
-                        <li className="page-item"><Link className="page-link" to="#" onClick={() => {
-                            if (page > 0) {
-                                setPage(page - 1);
-                            }
-                        }}>Trước</Link></li>
-                        {_renderPaginate()}
-                        <li className="page-item"><Link className="page-link" to="#" onClick={() => {
-                            if (page < (numberOfPage - 1)) {
-                                setPage(page + 1);
-                            }
-                        }}>Sau</Link></li>
-                    </ul>
-                    : null
-                }
-            </div>
+            }
         </Layout>
     )
 }

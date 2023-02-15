@@ -9,10 +9,10 @@ import HomePage from "../views/Home";
 import Perfume from "../views/Perfume";
 import SearchList from "../views/SearchList";
 import Introduce from "../views/Introduce";
-import Cosmetic from "../views/Cosmetic";
 import HistoryOrder from "../views/HistoryOrder";
 import ForgotPassword from "../container/ForgotPassword";
 import Renraku from "../component/Renraku";
+import NewService from "../component/NewService";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -24,11 +24,11 @@ const routerName = createBrowserRouter([
   { path: "/abate/:orderId", element: <Abate />, errorElement: <ErrorPage /> },
   { path: "/introduce", element: <Introduce />, errorElement: <ErrorPage /> },
   { path: "/perfume/:100", element: <Perfume />, errorElement: <ErrorPage /> },
-  { path: "/cosmetic", element: <Cosmetic />, errorElement: <ErrorPage /> },
   { path: "/abate", element: <HistoryOrder />, errorElement: <ErrorPage /> },
   { path: "/search/:value", element: <SearchList />, errorElement: <ErrorPage /> },
   { path: "/forgot-password", element: <ForgotPassword />, errorElement: <ErrorPage /> },
-  { path: "/reraku", element: <Renraku />, errorElement: <ErrorPage /> },
+  { path: "/renraku", element: <Renraku />, errorElement: <ErrorPage /> },
+  { path: "/newservice", element: <NewService />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;
