@@ -149,7 +149,7 @@ function HomePerfume(props) {
                 </Slider>
             </div>
             <div className="btn-see-all">
-                <button className="btn-see-all"><Link to={`perfume/2`}>Xem Tất Cả</Link></button>
+                <button className="btn-see-all"><Link to={`perfume/${gender === System.GENDER.WOMMEN ? 2 : 1}`}>Xem Tất Cả</Link></button>
             </div>
         </div>
 
