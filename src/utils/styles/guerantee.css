@@ -1,0 +1,19 @@
+.guerantee-container {
+    width: 100%;
+}
+
+.guerantee-header {
+    border-bottom: 1px solid gray;
+}
+
+.guerantee-header p {
+    margin: 0;
+}
+
+.guerantee-content-info {
+    margin-top: 10px;
+}
+
+.guerantee-content-info ul {
+    margin-left: 50px;
+}

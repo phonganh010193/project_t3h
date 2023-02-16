@@ -1,0 +1,23 @@
+.security-container{
+    width: 100%;
+}
+
+.security-header {
+    border-bottom: 1px solid gray;
+}
+
+.security-header p{
+    margin: 0;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.security-content-info ul {
+    margin-left: 50px;
+}
+
+.security-content-info {
+    margin-top: 20px;
+}

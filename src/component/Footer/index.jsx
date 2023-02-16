@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import IMAGE from "../../contact";
 import "../../utils/styles/footer.css";
 
@@ -39,25 +40,19 @@ function Footer() {
                         <h5>Chính Sách</h5>
                         <ul>
                             <li>
-                                <a href="">Thanh toán</a>
+                                <Link to="/payment">Thanh toán</Link>
                             </li>
                             <li>
-                                <a href="">Vận chuyển</a>
+                                <Link to="/transport">Vận chuyển</Link>
                             </li>
                             <li>
-                                <a href="">Đổi trả</a>
+                                <Link to="/return-product">Đổi trả</Link>
                             </li>
                             <li>
-                                <a href="">Bảo hành</a>
+                                <Link to="/guerantee">Bảo hành</Link>
                             </li>
                             <li>
-                                <a href="">Bảo mật</a>
-                            </li>
-                            <li>
-                                <a href="">Mua hàng</a>
-                            </li>
-                            <li>
-                                <a href="">Cộng tác viên</a>
+                                <Link to="/security">Bảo mật</Link>
                             </li>
                         </ul>
                     </div>
@@ -78,7 +73,7 @@ function Footer() {
                 </div>
                 <div className="col-lg-8 footer-end">
                     <p>© Bản quyền thuộc về Phong Anh | Cung cấp bởi Apo</p>
-                    <p>HKD Phong Anh- số ĐKKD 01G345h34 do UBND Q Phong Thu cấp ngày 06/05/2018<br />Đã khai báo với Bộ Công Thương</p>
+                    <p>HKD Phong Anh- số ĐKKD 010193PT080999 do UBND Q Phong Thu cấp ngày 06/05/2018<br />Đã khai báo với Bộ Công Thương</p>
                 </div>
             </div>
         </div>

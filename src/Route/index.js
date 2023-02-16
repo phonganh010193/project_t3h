@@ -13,6 +13,11 @@ import HistoryOrder from "../views/HistoryOrder";
 import ForgotPassword from "../container/ForgotPassword";
 import Renraku from "../component/Renraku";
 import NewService from "../component/NewService";
+import PayMent from "../component/PayMent";
+import Transport from "../Transport";
+import ReturnProduct from "../component/ReturnProduct";
+import Guerantee from "../component/Guarantee";
+import Security from "../component/Security";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -29,6 +34,11 @@ const routerName = createBrowserRouter([
   { path: "/forgot-password", element: <ForgotPassword />, errorElement: <ErrorPage /> },
   { path: "/renraku", element: <Renraku />, errorElement: <ErrorPage /> },
   { path: "/newservice", element: <NewService />, errorElement: <ErrorPage /> },
+  { path: "/payment", element: <PayMent />, errorElement: <ErrorPage /> },
+  { path: "/transport", element: <Transport />, errorElement: <ErrorPage /> },
+  { path: "/return-product", element: <ReturnProduct />, errorElement: <ErrorPage /> },
+  { path: "/guerantee", element: <Guerantee />, errorElement: <ErrorPage /> },
+  { path: "/security", element: <Security />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

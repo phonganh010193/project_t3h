@@ -263,7 +263,10 @@
     background-color: #2d8356;
     color: black;
   }
-  
+  .active {
+    background-color: #2d8356;
+    color: black;
+  }
 
 .search-content {
     width: 250px;

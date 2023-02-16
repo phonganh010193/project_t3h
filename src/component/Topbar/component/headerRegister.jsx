@@ -99,8 +99,7 @@ const HeaderRegister = () => {
             }}>Lịch sử mua hàng</li>
             <li onClick={() => {
                 fetchSignOut();
-                navigate('/signin')
-            }}>Logout</li>
+            }}><a style={{ color: "black", textDecoration: "none" }} href="/signin">Logout</a></li>
         </ul>
     );
 
@@ -128,7 +127,7 @@ const HeaderRegister = () => {
                                     alt=""
                                     style={{ width: "40px", height: "40px" }}
                                 />
-                                <span className="gx-avatar-name" style={{ marginLeft: "5px" }}>
+                                <span className="gx-avatar-name" style={{ marginLeft: "5px", fontWeight: "bold" }}>
                                     {userCurrent?.email === user?.email ? userCurrent?.name : user.email}
                                     <i className="icon icon-chevron-down gx-fs-xxs gx-ml-2" />
                                 </span>

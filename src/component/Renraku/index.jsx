@@ -1,9 +1,8 @@
 import IMAGE from "../../contact";
 import LayoutCart from "../LayoutCart";
 import React from 'react'
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input } from 'antd';
 import "../../utils/styles/renraku.css";
-import { Link } from "react-router-dom";
 import { push, ref } from "@firebase/database";
 import { async } from "q";
 import { database } from "../../firebase";
@@ -65,55 +64,7 @@ const Renraku = () => {
                 <p style={{ borderBottom: "1px solid gray" }}>Trang chủ/<span style={{ color: "#2d8356" }}>Liên hệ</span></p>
                 <a target="_blank" href="https://www.google.com/maps/place/43+%C4%90.+V%C4%83n+Ti%E1%BA%BFn+D%C5%A9ng,+Ph%C3%BAc+Di%E1%BB%85n,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0492864,105.7466989,17z/data=!3m1!4b1!4m5!3m4!1s0x313454efb22ead83:0xb31d1b2467c5d9dc!8m2!3d21.0492814!4d105.7488876?hl=vi-VN"><img style={{ width: "100%" }} src={IMAGE.renraku} alt="" /></a>
                 <div className="renraku-content">
-                    <div className="content-left">
-                        <Form
-                            {...layout}
-                            layout="vertical"
-                            name="nest-messages"
-                            onFinish={onFinish}
-                            fields={fields}
-                            style={{
-                                maxWidth: 600,
-                            }}
-                            validateMessages={validateMessages}
-                        >
-                            <Form.Item
-                                name={['renraku', 'name']}
-                                label="Họ và tên"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name={['renraku', 'email']}
-                                label="Email"
-                                rules={[
-                                    {
-                                        type: 'email',
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item name={['renraku', 'introduction']} label="Viết bình luận" >
-                                <Input.TextArea className="po" />
-                            </Form.Item>
-                            <Form.Item
-                                wrapperCol={{
-                                    ...layout.wrapperCol,
-                                    offset: 2,
-                                }}
-                            >
-                                <Button type="primary" htmlType="submit">
-                                    Gửi liên hệ
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                    </div>
+
                     <div className="content-right">
 
                         <img src={IMAGE.logo2} alt="" />
@@ -143,6 +94,56 @@ const Renraku = () => {
                                 <p>phamvanphong010193@gmail.com</p>
                             </li>
                         </ul>
+                    </div>
+                    <div className="content-left">
+                        <Form
+                            {...layout}
+                            layout="vertical"
+                            name="nest-messages"
+                            onFinish={onFinish}
+                            fields={fields}
+                            className="form-lh"
+                            style={{
+                                maxWidth: 600,
+                            }}
+                            validateMessages={validateMessages}
+                        >
+                            <Form.Item
+                                name={['renraku', 'name']}
+                                label="Họ và tên"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                name={['renraku', 'email']}
+                                label="Email"
+                                rules={[
+                                    {
+                                        type: 'email',
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item name={['renraku', 'introduction']} label="Viết bình luận" >
+                                <Input.TextArea className="note" />
+                            </Form.Item>
+                            <Form.Item
+                                wrapperCol={{
+                                    ...layout.wrapperCol,
+                                    offset: 2,
+                                }}
+                            >
+                                <Button type="primary" htmlType="submit">
+                                    Gửi liên hệ
+                                </Button>
+                            </Form.Item>
+                        </Form>
                     </div>
                 </div>
 

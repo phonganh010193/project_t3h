@@ -1,0 +1,18 @@
+.return-container {
+    width: 100%;
+}
+
+.return-header {
+    border-bottom: 1px solid gray;
+}
+
+.return-header p{
+    margin: 0;
+}
+
+.return-content-info {
+    margin-top: 10px;
+}
+.return-content-info ul {
+    margin-left: 50px;
+}

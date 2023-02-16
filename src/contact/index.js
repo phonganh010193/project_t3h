@@ -12,7 +12,8 @@ const IMAGE = {
     step1: require('../assets/image/step1.jpg'),
     step2: require('../assets/image/step2.jpg'),
     step3: require('../assets/image/step3.jpg'),
-    renraku: require('../assets/image/renraku.png')
+    renraku: require('../assets/image/renraku.png'),
+    payment_logo: require('../assets/image/payment-logo.png'),
 }
 
 export default IMAGE;

@@ -8,6 +8,23 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 50px;
+    align-items: center;
+}
+
+@media only screen and (max-width: 800px) {
+    .renraku-content {
+        display: flex;
+        flex-direction: column;
+    }
+    .content-left {
+        width: 100% !important;
+    }
+    .content-right {
+        width: 100% !important;
+    }
+    .form-lh {
+        width: 100% !important;
+    }
 }
 .content-left {
     width: 50%;
@@ -16,7 +33,7 @@
     width: 50%;
 }
 
-.po {
+.note {
     height: 150px !important;
 }
 

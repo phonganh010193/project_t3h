@@ -1,0 +1,22 @@
+
+.transport-container {
+    width: 100%;
+}
+
+.transport-header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+.transport-header p {
+    margin: 0;
+}
+
+.transport-content-info ul {
+    margin-left: 40px;
+}
+
+.transport-content-info {
+    margin-top: 20px;
+
+}

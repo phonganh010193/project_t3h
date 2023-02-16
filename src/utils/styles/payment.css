@@ -1,0 +1,29 @@
+.payment-container {
+    width: 100%;
+}
+
+.payment-header {
+    border-bottom: 1px solid gray;
+}
+
+.payment-header p {
+    margin: 0;
+}
+
+.payment-content-info img {
+    text-align: center;
+}
+
+@media only screen and (max-width: 680px) {
+    .image-thank {
+        width: 80%;
+    }
+}
+
+.payment-content-info {
+    margin-top: 20px;
+}
+
+.payment-content-info ul {
+    margin-left: 50px;
+}
