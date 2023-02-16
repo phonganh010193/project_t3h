@@ -46,14 +46,12 @@
     .price > p {
         font-size: 12px !important;
     }
-    .btn-content > button {
+    .btn-content button {
         width: 70px !important;
         height: 30px !important;
         font-size: 9px !important;
     }
     .btn-content > button a {
-        width: 70px !important;
-        height: 30px !important;
         font-size: 9px !important;
     }
    

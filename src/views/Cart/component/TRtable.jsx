@@ -41,7 +41,7 @@ const TRtable = ({ item, updateOrder, user }) => {
                 setISCheckBox(nextValue);
                 updateOrder(value);
             }} /></td>
-            <td>
+            <td className="image-column">
                 <img className="image-cart" src={item.image} alt="" />
             </td>
             <td><p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p></td>

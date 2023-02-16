@@ -171,40 +171,42 @@ const Cart = () => {
                     <p>Trang chủ/ <span style={{ color: "rgb(45, 131, 86)" }}>Giỏ hàng</span></p>
                 </div>
                 <div className="cart-table-info">
-                    <table className="table table-bordered text-center">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <label className="btn-checkbox-all">
-                                        <input
-                                            id="toggle-all"
-                                            className="toggle-all"
-                                            type="checkbox"
-                                            checked={isAllCheckbox() || false}
-                                            data-reactid=".0.1.0"
-                                            onChange={() => {
-                                                handleOnAllCheckbox()
-                                            }}
-                                        />
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </th>
-                                <th scope="col">Hình ảnh</th>
-                                <th scope="col">Tên Sản Phẩm</th>
-                                <th scope="col">Đơn giá</th>
-                                <th scope="col">Số Lượng</th>
-                                <th scope="col">Thành tiền</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listCart && listCart.map((item, index) => {
-                                return (
-                                    <TRtable key={item.id} item={item} updateOrder={updateOrder} user={user} />
-                                )
-                            })}
-                        </tbody>
-                    </table>
+                    <div className="table-scroll">
+                        <table className="table table-bordered text-center ">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <label className="btn-checkbox-all">
+                                            <input
+                                                id="toggle-all"
+                                                className="toggle-all"
+                                                type="checkbox"
+                                                checked={isAllCheckbox() || false}
+                                                data-reactid=".0.1.0"
+                                                onChange={() => {
+                                                    handleOnAllCheckbox()
+                                                }}
+                                            />
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </th>
+                                    <th className="image-column" scope="col">Hình ảnh</th>
+                                    <th scope="col">Tên Sản Phẩm</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số Lượng</th>
+                                    <th scope="col">Thành tiền</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listCart && listCart.map((item, index) => {
+                                    return (
+                                        <TRtable key={item.id} item={item} updateOrder={updateOrder} user={user} />
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                     <div className="btn-all-info">
                         <button onClick={() => {
                             navigate("/");
@@ -224,7 +226,7 @@ const Cart = () => {
                         </div>
                     </div>
                     <div className="all-price">
-                        <table className="table table-bordered" style={{ width: "30%", marginTop: "10px" }}>
+                        <table className="table table-bordered" style={{ width: "40%", marginTop: "10px" }}>
                             <tbody>
                                 <td>Tổng tiền thanh toán</td>
                                 <td>{listCart.filter(el => el.isCheckBox).reduce(

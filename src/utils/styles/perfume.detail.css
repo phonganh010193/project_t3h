@@ -8,6 +8,15 @@
     padding: 0;
 }
 
+.perfume-detail-info {
+    width: 100%;
+    overflow: hidden;
+}
+
+.perfume-detail-info img {
+    max-width: 60%;
+}
+
 .icon-click-image {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -23,7 +32,52 @@
     display: flex;
     flex-direction: row;
 }
+.content-right img {
+    width: 100%;
+}
 
+@media only screen and (max-width: 993px) {
+    .content-detail-image > img {
+        width: 230px !important;
+        height: 300px !important;
+    }
+    .list-image-show img {
+        width: 50px !important;
+        height: 80px !important;
+        transition: transform .2s;
+        border: 1px solid black;
+    }
+    .buy-info {
+        margin-left: 40px !important;
+    }
+}
+
+@media only screen and (max-width: 785px) {
+    .content-detail-image > img {
+        width: 260px !important;
+        height: 350px !important;
+    }
+
+    .header-detail > p {
+        font-size: 14px;
+    }
+    .list-image-show img {
+        display: none;
+    }
+    .buy-info {
+        margin-left: 0 !important;
+    }
+    .content-detail {
+        display: flex;
+        flex-direction: column;
+    }
+    .perfume-detail-info {
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        margin-left: 10px;
+    }
+}
 .content-detail-image > img {
     width: 180px;
     height: 450px;

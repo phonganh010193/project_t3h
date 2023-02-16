@@ -14,6 +14,29 @@
     -webkit-transform: scale(1.1); /* Safari 3-8 */
     transform: scale(1.1); 
 }
+@media only screen and (max-width: 769px) {
+    .cart-container{
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 610px) {
+    .cart-container{
+        font-size: 12px;
+    }
+    .image-cart {
+        width: 50px !important;
+    }
+    .btn-all-info button {
+        width: 100px !important;
+    }
+    
+}
+
+@media only screen and (max-width: 410px) {
+    .table-scroll{
+        overflow-x: scroll !important;
+    }
+}
 
 .btn-confirm-order button{
     width: 120px;
