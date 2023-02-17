@@ -1,12 +1,6 @@
-import { push, ref, update } from "firebase/database";
 import moment from "moment";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import { database } from "../../../firebase";
-import { fetchCommentListByUser } from "../perfumeDetailSlice";
-
 
 const PerfumeEvaluate = (props) => {
     const {
@@ -43,6 +37,8 @@ const PerfumeEvaluate = (props) => {
                                     productId: detailList?.id,
                                     comment: comment,
                                 });
+                                const element = document.getElementById('content');
+                                element.scrollIntoView(true)
                                 setComment('')
                             }
                         }
@@ -50,7 +46,7 @@ const PerfumeEvaluate = (props) => {
                 />
             </div>
             <div className="evaluate-content">
-                <div className="evaluate-item">
+                <div className="evaluate-item" id = "content">
                     {commentList && commentList.map((item, index) => {
                         return (
                             <div className="user-comment" key={index}>
