@@ -3,6 +3,10 @@
     height: 150px;
 }
 
+.content-right img {
+    width: 65%;
+}
+
 .renraku-content {
     display: flex;
     flex-direction: row;
@@ -24,6 +28,15 @@
     }
     .form-lh {
         width: 100% !important;
+    }
+    .content-right img {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .content-right img {
+        width: 90%;
     }
 }
 .content-left {

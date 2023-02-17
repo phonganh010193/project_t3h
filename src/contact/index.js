@@ -2,7 +2,7 @@
 const IMAGE = {
     logo: require('../assets/image/logo.png'),
     logo1: require('../assets/image/logo1.png'),
-    logo2: require('../assets/image/logo3.png'),
+    logo2: require('../assets/image/logo2.jpg'),
     checkbox: require('../assets/image/OIP.jfif'),
     uncheckbox: require('../assets/image/R.png'),
     delete: require('../assets/image/delete.png'),
