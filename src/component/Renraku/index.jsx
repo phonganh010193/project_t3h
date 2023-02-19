@@ -12,8 +12,8 @@ import { UserContext } from "../../container/useContext";
 import { useState } from "react";
 const layout = {
 
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    labelCol: { span: 16 },
+    wrapperCol: { span: 24 },
 };
 
 /* eslint-disable no-template-curly-in-string */
@@ -105,6 +105,7 @@ const Renraku = () => {
                             className="form-lh"
                             style={{
                                 maxWidth: 600,
+                                width: "75%"
                             }}
                             validateMessages={validateMessages}
                         >

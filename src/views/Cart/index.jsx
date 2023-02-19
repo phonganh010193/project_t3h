@@ -1,7 +1,7 @@
 import LayoutCart from "../../component/LayoutCart"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchDeleteOrderItem, fetchOrderProduct, updateListCart } from "./orderSlice";
@@ -18,7 +18,7 @@ import { useContext } from "react";
 import { UserContext } from "../../container/useContext";
 
 
-
+const take = 5
 const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -29,6 +29,12 @@ const Cart = () => {
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [listDataOrder, setListDataOrder] = useState([]);
+    const [numberOfPage, setNumberOfPage] = useState(0);
+    const [page, setPage] = useState(0);
+    const orderLoading = useSelector(({ order }) => order.isLoading);
+    const prevOrderLoading = usePrevious(orderLoading);
+
     const handleOk = (key) => {
         navigate(`/abate/${key}`)
         setIsModalOpen(false);
@@ -164,6 +170,41 @@ const Cart = () => {
             });
         }
     }
+
+    useEffect(() => {
+        if (listCart?.length > 0) {
+            setPage(0);
+            if (page === 0) {
+                setListDataOrder(listCart?.slice(0, take));
+            }
+            setNumberOfPage(Math.ceil(listCart?.length / take));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!orderLoading && prevOrderLoading) {
+            setListDataOrder(listCart?.slice(0, take));
+            setNumberOfPage(Math.ceil(listCart?.length / take));
+        }
+    }, [orderLoading, prevOrderLoading]);
+
+    useEffect(() => {
+        if (listCart) {
+            setListDataOrder(listCart?.slice(page * take, page * take + take));
+        }
+    }, [page, listCart]);
+
+    const _renderPaginate = () => {
+        const data = [];
+        for (let index = 0; index < numberOfPage; index++) {
+            data.push(
+                <li className="page-item-cart"><Link className={`page-link ${page === index ? 'active' : 'normal'}`} to="#" onClick={() => {
+                    setPage(index);
+                }}>{index + 1}</Link></li>
+            )
+        }
+        return data;
+    }
     return (
         <LayoutCart>
             <div className="cart-container">
@@ -198,13 +239,34 @@ const Cart = () => {
                                     <th scope="col">Xóa</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {listCart && listCart.map((item, index) => {
+                            <tbody className="body-cart-info">
+                                {listDataOrder && listDataOrder?.map((item, index) => {
                                     return (
                                         <TRtable key={item.id} item={item} updateOrder={updateOrder} user={user} />
                                     )
                                 })}
+                                <tr>
+                                    <td colspan="7" style={{padding: "0"}}>
+                                        {listDataOrder?.length > 0 ?
+                                        <ul className="pagination-cart">
+                                            <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
+                                                if (page > 0) {
+                                                    setPage(page - 1);
+                                                }
+                                            }}><i class='fas fa-angle-double-left' style={{color: "#2d8356"}}></i></Link></li>
+                                            {_renderPaginate()}
+                                            <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
+                                                if (page < (numberOfPage - 1)) {
+                                                    setPage(page + 1);
+                                                }
+                                            }}><i class='fas fa-angle-double-right' style={{color: "#2d8356"}}></i></Link></li>
+                                        </ul>
+                                        : null
+                                        }
+                                    </td>
+                                </tr>
                             </tbody>
+                            
                         </table>
                     </div>
                     <div className="btn-all-info">

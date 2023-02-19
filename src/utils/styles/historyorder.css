@@ -33,7 +33,11 @@
     background-color: red;
     color: white;
 }
-
+ @media only screen and (max-width: 520px) {
+    .history-item p span:last-child{
+        margin-left: 0 !important;
+    }
+ }
 .history-info {
     margin-top: 50px;
 }

@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { fetchOrderProduct } from "../orderSlice";
 import { useEffect } from "react";
 
-const TRtable = ({ item, updateOrder, user }) => {
+const 
+TRtable = ({ item, updateOrder, user }) => {
     const dispatch = useDispatch();
     const [number, setNumber] = useState(item.orderNumber);
     const [isCheckBox, setISCheckBox] = useState(item.isCheckBox);
@@ -61,9 +62,15 @@ const TRtable = ({ item, updateOrder, user }) => {
                 }} />
             </td>
             <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(item.orderNumber)).toLocaleString()} VND</td>
-            <td><img className="image-delete" src={IMAGE.delete} alt="" onClick={() => {
-                deleItemOrder(item)
-            }} /></td>
+            <td>
+                <img 
+                    className="image-delete" 
+                    src={IMAGE.delete} alt="" 
+                    onClick={() => {
+                        deleItemOrder(item)
+                    }}
+                />
+            </td>
         </tr>
     );
 }

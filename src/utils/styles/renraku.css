@@ -41,9 +41,16 @@
 }
 .content-left {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 .content-right {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .note {

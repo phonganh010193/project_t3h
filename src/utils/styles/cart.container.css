@@ -9,6 +9,7 @@
     transition: transform .2s;
 }
 
+
 .image-delete:hover {
     -ms-transform: scale(1.1); /* IE 9 */
     -webkit-transform: scale(1.1); /* Safari 3-8 */
@@ -51,15 +52,35 @@
     color: white;
 }
 
+.pagination-cart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    border-radius: none;
+    margin: 0;
+}
+
+.pagination-cart li {
+    list-style: none;
+}
+
 .btn-confirm-order button:last-child:hover{
     background-color: #55a37b;
     color: white;
 }
 
-
+.normal {
+    color: #2d8356;
+}
 .btn-confirm-order button:first-child:hover{
     background-color: red;
     color: white;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .header-cart {
@@ -72,7 +93,7 @@
 }
 
 .image-cart {
-    width: 100px;
+    width: 60px;
     margin: 0 auto !important;
 }
 
@@ -133,7 +154,6 @@
 .btn-checkbox-all {
     display: block;
     position: relative;
-    padding-left: 20px;
     margin-bottom: 25px;
     cursor: pointer;
     font-size: 22px;
