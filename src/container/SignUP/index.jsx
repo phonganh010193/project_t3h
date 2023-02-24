@@ -20,7 +20,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const onFinish = async (values) => {
-    if(values.password === values.confirm_password) {
+    if (values.password === values.confirm_password) {
       try {
         await createUserWithEmailAndPassword(auth, values.username, values.password);
         await RunMockData.runMockCategory();
@@ -31,7 +31,8 @@ const SignUp = () => {
           email: values.username,
           address: values.address,
           phone: values.phone,
-          avatar: ""
+          avatar: "",
+          roles: "B"
         }
         await dispatch(fetchUpdateUserItem(value))
         navigate('/signin')
@@ -41,7 +42,7 @@ const SignUp = () => {
     } else {
       toast.error('Mật khẩu không trùng khớp')
     }
-    
+
   };
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const SignUp = () => {
           <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
         </div>
         <div className='form-login'>
-          <p style={{color: "#2d8356", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥SingUp♥۝༒꧂</p>
+          <p style={{ color: "#2d8356", textAlign: "center", fontSize: "25px" }}>꧁༒۝♥SingUp♥۝༒꧂</p>
           <Form
             name="normal_login"
             className="logout-form"

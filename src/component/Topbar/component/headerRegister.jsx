@@ -1,13 +1,15 @@
-import { Avatar, Button, Form, Input, Modal, Popover } from "antd";
-import { useContext, useEffect, useState } from "react";
+import { Avatar, Button, Form, Input, Modal, Popover, Radio, Space, Table } from "antd";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import IMAGE from "../../../contact";
 import { UserContext } from "../../../container/useContext";
 import { useDispatch, useSelector } from "react-redux";
-
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
 import { usePrevious } from "../../../utils/hooks";
-import { fetchUpdateUserItem, fetchUserItem } from "../../../container/userSlice";
+import { fetchUpdateUserItem, fetchUser, fetchUserItem } from "../../../container/userSlice";
 import { toast } from "react-toastify";
+import { System } from "../../../constants/system.constants";
 
 
 const layout = {
@@ -18,6 +20,7 @@ const layout = {
         span: 16,
     },
 };
+
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
@@ -35,20 +38,44 @@ const HeaderRegister = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const userCurrent = useSelector(({ user }) => user.userCurrent)
+    const userList = useSelector(({ user }) => user.userList)
+    console.log('userList', userList);
     const isLoading = useSelector(({ user }) => user.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [open, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [fields, setFields] = useState(null)
-
+    const [isModalOpenByRoles, setIsModalOpenByRoles] = useState(false)
+    const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
+    const searchInput = useRef(null);
 
     const handleOk = () => {
         setIsModalOpen(false);
+        setIsModalOpenByRoles(false);
     };
     const handleCancel = () => {
         setIsModalOpen(false);
-    };
+        setIsModalOpenByRoles(false);
 
+    };
+    const handleChange = (value) => {
+        console.log('value', value)
+    }
+
+
+    const data = userList?.map((item, index) => {
+        return {
+            key: item.key,
+            name: item.name,
+            roles:
+                <Radio.Group onChange={handleChange} name="radiogroup" defaultValue={item.roles}>
+                    <Radio value={System.ROLESUSER.ADMIN}>Admin</Radio>
+                    <Radio value={System.ROLESUSER.USER}>User</Radio>
+                </Radio.Group>,
+            email: item.email,
+        }
+    })
 
     useEffect(() => {
         if (!isLoading && prevIsLoading && userCurrent) {
@@ -81,6 +108,7 @@ const HeaderRegister = () => {
     useEffect(() => {
         if (user) {
             dispatch(fetchUserItem(user))
+            dispatch(fetchUser())
         }
     }, [user, dispatch])
 
@@ -93,7 +121,15 @@ const HeaderRegister = () => {
         <ul className="gx-user-popover">
             <li onClick={() => {
                 setIsModalOpen(true)
+                setOpen(false)
             }}>My Account</li>
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ?
+                <li onClick={() => {
+                    setIsModalOpenByRoles(true)
+                    setOpen(false)
+                }}>Vai Trò</li>
+                : null
+            }
             <li onClick={() => {
                 navigate('/abate')
             }}>Lịch sử mua hàng</li>
@@ -113,6 +149,134 @@ const HeaderRegister = () => {
             toast.error('Cập nhật thông tin người dùng không thành công')
         }
     };
+
+
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
+    };
+    const handleReset = (clearFilters) => {
+        clearFilters();
+        setSearchText('');
+    };
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+            <div
+                style={{
+                    padding: 8,
+                    width: "300px"
+                }}
+                onKeyDown={(e) => e.stopPropagation()}
+            >
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{
+                        marginBottom: 8,
+                        display: 'block',
+                    }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => clearFilters && handleReset(clearFilters)}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            confirm({
+                                closeDropdown: false,
+                            });
+                            setSearchText(selectedKeys[0]);
+                            setSearchedColumn(dataIndex);
+                        }}
+                    >
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}
+                    >
+                        close
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: (filtered) => (
+            <SearchOutlined
+                style={{
+                    color: filtered ? '#1890ff' : undefined,
+                }}
+            />
+        ),
+        onFilter: (value, record) =>
+            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilterDropdownOpenChange: (visible) => {
+            if (visible) {
+                setTimeout(() => searchInput.current?.select(), 100);
+            }
+        },
+        render: (text) =>
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={{
+                        backgroundColor: '#ffc069',
+                        padding: 0,
+                    }}
+                    searchWords={[searchText]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ''}
+                />
+            ) : (
+                text
+            ),
+    });
+    const columns = [
+        {
+            title: 'Họ tên',
+            dataIndex: 'name',
+            key: 'name',
+            width: '30%',
+            ...getColumnSearchProps('name'),
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            ...getColumnSearchProps('address'),
+        },
+        {
+            title: 'Vai Trò',
+            dataIndex: 'roles',
+            key: 'roles',
+            width: '20%',
+            ...getColumnSearchProps('age'),
+        },
+    ];
 
     return (
         <div className="header-register">
@@ -172,7 +336,7 @@ const HeaderRegister = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input disabled={userCurrent?.roles === System.ROLESUSER.ADMIN ? "disabled" : false} />
                     </Form.Item>
                     <Form.Item
                         name={['user', 'email']}
@@ -195,13 +359,13 @@ const HeaderRegister = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input disabled={userCurrent?.roles === System.ROLESUSER.ADMIN ? "disabled" : false} />
                     </Form.Item>
                     <Form.Item
                         name={['user', 'phone']}
                         label="Số điện thoại"
                     >
-                        <Input />
+                        <Input disabled={userCurrent?.roles === System.ROLESUSER.ADMIN ? "disabled" : false} />
                     </Form.Item>
                     <Form.Item
                         name={['user', 'avatar']}
@@ -221,6 +385,17 @@ const HeaderRegister = () => {
                         </Button>
                     </Form.Item>
                 </Form>
+            </Modal>
+            <Modal
+                title="Phân quyền người dùng"
+                open={isModalOpenByRoles}
+                closable={true}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                footer={false}
+                width={1000}
+            >
+                <Table columns={columns} dataSource={data} />;
             </Modal>
         </div>
 

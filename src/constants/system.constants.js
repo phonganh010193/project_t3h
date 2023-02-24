@@ -12,6 +12,10 @@ export const System = {
     CHECKPRODUCT: {
         BESTSELL: "1",
         NEWPRODUCT: "2"
+    },
+    ROLESUSER: {
+        ADMIN: "A",
+        USER: "B"
     }
 }
 

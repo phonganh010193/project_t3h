@@ -3,8 +3,29 @@ import { get, push, ref, update } from 'firebase/database';
 import { database } from '../firebase';
 
 
-
-
+export const fetchUser = createAsyncThunk(
+    'user/fetchUser',
+    async (params, thunkAPI) => {
+        return await get(ref(database, "User")).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(typeof snapshot.val());
+                //   return snapshot.val();
+                const response = snapshot.val();
+                const keys = Object.keys(response);
+                return keys.map(key => {
+                    return {
+                        ...response[key],
+                        key,
+                    }
+                })
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
+)
 export const fetchUserItem = createAsyncThunk(
     'user/fetchUserItem',
     async (params, thunkAPI) => {
@@ -80,6 +101,7 @@ export const fetchUpdateUserItem = createAsyncThunk(
 const initialState = {
     isLoading: false,
     userCurrent: {},
+    userList: null
 }
 
 export const userSlice = createSlice({
@@ -97,6 +119,16 @@ export const userSlice = createSlice({
             state.isLoading = false;
         })
         builder.addCase(fetchUserItem.rejected, (state, action) => {
+            state.isLoading = false;
+        })
+        builder.addCase(fetchUser.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        builder.addCase(fetchUser.fulfilled, (state, action) => {
+            state.userList = action.payload;
+            state.isLoading = false;
+        })
+        builder.addCase(fetchUser.rejected, (state, action) => {
             state.isLoading = false;
         })
     },

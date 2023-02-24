@@ -3,11 +3,11 @@ import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { auth } from '../../firebase';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
     const [isLoadingUser, setIsLoadingUser] = useState(false)
     const fetchStart = () => {
