@@ -16,8 +16,8 @@ class RunMockData {
     }
 
     static async runMockProduct() {
-        let colRef = ref(database, "/Product");
-        await remove(colRef);
+        // let colRef = ref(database, "/Product");
+        // await remove(colRef);
         const productListRef = ref(database, 'Product');
         ProductMenData.forEach(el => {
             const newProductRef = push(productListRef);

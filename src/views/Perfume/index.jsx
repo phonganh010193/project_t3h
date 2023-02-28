@@ -46,36 +46,36 @@ const Perfume = () => {
     }, [productLoading])
     const showListProduct = () => {
         if (categoryId === "1") {
-            return product?.filter(el => el.gender === 1)
+            return product?.filter(el => el.gender === "1")
         } else if (categoryId === "2") {
-            return product?.filter(el => el.gender === 2)
+            return product?.filter(el => el.gender === "2")
         } else if (categoryId === "3") {
             return product?.filter(el => {
-                if (Number(el.price.split(" ").join('')) > 3000000 && el.gender === 1) {
+                if (Number(el.price.split(" ").join('')) > 3000000 && el.gender === "1") {
                     return el
                 }
             })
         } else if (categoryId === "4") {
             return product?.filter(el => {
-                if (Number(el.price.split(" ").join('')) > 3000000 && el.gender === 2) {
+                if (Number(el.price.split(" ").join('')) > 3000000 && el.gender === "2") {
                     return el
                 }
             })
         } else if (categoryId === "5") {
             return product?.filter(el => {
-                if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === 1) {
+                if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === "1") {
                     return el
                 }
             })
         } else if (categoryId === "6") {
             return product?.filter(el => {
-                if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === 2) {
+                if (Number(el.price.split(" ").join('')) < 1000000 && el.gender === "2") {
                     return el
                 }
             })
         } else if (categoryId === "100") {
             return product?.filter(el => {
-                if (el.gender === 1 || el.gender === 2) {
+                if (el.gender === "1" || el.gender === "2") {
                     return el
                 }
             })

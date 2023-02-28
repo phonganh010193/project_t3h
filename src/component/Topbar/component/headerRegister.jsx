@@ -1,4 +1,4 @@
-import { Avatar, Button, Form, Input, Modal, Popover, Radio, Space, Table } from "antd";
+import { Avatar, Button, Form, Input, Modal, Popover, Space, Table } from "antd";
 import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import IMAGE from "../../../contact";
@@ -10,6 +10,9 @@ import { usePrevious } from "../../../utils/hooks";
 import { fetchUpdateUserItem, fetchUser, fetchUserItem } from "../../../container/userSlice";
 import { toast } from "react-toastify";
 import { System } from "../../../constants/system.constants";
+import { push, ref, update } from "firebase/database";
+import { database } from "../../../firebase";
+import { fetchProduct } from "../../../views/Perfume/perfumeInfoSlice";
 
 
 const layout = {
@@ -61,6 +64,24 @@ const HeaderRegister = () => {
     };
     const handleChange = (value) => {
         console.log('value', value)
+        userList.forEach(el => {
+            if (el.key === value.item.key) {
+                update(ref(database, "/User/" + el.key), {
+                    email: el.email,
+                    address: el.address,
+                    phone: el.phone,
+                    avatar: el.avatar,
+                    name: el.name,
+                    roles: value.values
+                })
+                    .then((res) => {
+                        return res
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+        })
     }
 
 
@@ -69,10 +90,18 @@ const HeaderRegister = () => {
             key: item.key,
             name: item.name,
             roles:
-                <Radio.Group onChange={handleChange} name="radiogroup" defaultValue={item.roles}>
-                    <Radio value={System.ROLESUSER.ADMIN}>Admin</Radio>
-                    <Radio value={System.ROLESUSER.USER}>User</Radio>
-                </Radio.Group>,
+                <select
+                    id="roles"
+                    onChange={(event) => {
+                        handleChange({
+                            item: item,
+                            values: event.target.value
+                        })
+                    }}
+                >
+                    <option value="A">Admin</option>
+                    <option value="B" selected={item.roles === System.ROLESUSER.USER ? true : false}>User</option>
+                </select>,
             email: item.email,
         }
     })
@@ -128,6 +157,12 @@ const HeaderRegister = () => {
                     setIsModalOpenByRoles(true)
                     setOpen(false)
                 }}>Vai Trò</li>
+                : null
+            }
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ?
+                <li onClick={() => {
+                    navigate('/admin/update/product')
+                }}>Cập nhật sản phẩm mới</li>
                 : null
             }
             <li onClick={() => {
@@ -284,7 +319,7 @@ const HeaderRegister = () => {
                 <div className={user ? "header-users" : "header-register"}>
                     {user ?
                         <>
-                            <Popover onVisibleChange={onVisibleChange} placement="bottom" content={userMenuOptions} trigger="click" open={open}>
+                            <Popover onOpenChange={onVisibleChange} placement="bottom" content={userMenuOptions} trigger="click" open={open}>
                                 <Avatar
                                     src={userCurrent?.email === user?.email ? userCurrent?.avatar : IMAGE.user || 'https://via.placeholder.com/150'}
                                     className="gx-size-40 gx-pointer gx-mr-3"
@@ -397,6 +432,7 @@ const HeaderRegister = () => {
             >
                 <Table columns={columns} dataSource={data} />;
             </Modal>
+
         </div>
 
     )

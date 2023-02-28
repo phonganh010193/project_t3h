@@ -19,13 +19,15 @@ const Detail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { productId } = useParams();
+    console.log('productiD', productId)
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
+    console.log('detail', detailList);
     const commentList = useSelector(({ detail }) => detail.commentList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
-   
+
 
     useEffect(() => {
         setImage(detailList?.image)
@@ -37,7 +39,7 @@ const Detail = () => {
         dispatch(fetchCommentListByUser(productId));
     }, [dispatch, productId]);
 
-    
+
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -112,19 +114,21 @@ const Detail = () => {
                         <img src={image} alt="" />
                         <div className="icon-click-image">
                             {detailList?.imageShow?.map((item, index) => {
-                                return (
-                                    <div className="list-image-show" key={index}>
-                                        <img
-                                            key={index}
-                                            src={item.image}
-                                            alt=""
-                                            onClick={() => {
-                                                setImage(item.image)
-                                            }}
-                                        />
-                                    </div>
+                                if (item.image) {
+                                    return (
+                                        <div className="list-image-show" key={index}>
+                                            <img
+                                                key={index}
+                                                src={item.image}
+                                                alt=""
+                                                onClick={() => {
+                                                    setImage(item.image)
+                                                }}
+                                            />
+                                        </div>
 
-                                )
+                                    )
+                                }
                             })}
                         </div>
                     </div>

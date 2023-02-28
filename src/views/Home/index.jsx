@@ -15,6 +15,7 @@ import { fetchUserItem } from "../../container/userSlice";
 const HomePage = () => {
     const dispatch = useDispatch();
     const product = useSelector(({ product }) => product.productList)
+    console.log('product', product);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const { user } = useContext(UserContext);
     const productMen = product.filter(el => el.gender === 1);

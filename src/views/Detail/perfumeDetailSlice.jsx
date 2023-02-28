@@ -7,7 +7,7 @@ const dataProductDetailRef = ref(database, "Product")
 export const fetchProductDetail = createAsyncThunk(
   'product/fetchProductDetail',
   async (productId, thunkAPI) => {
-    return get(dataProductDetailRef).then((snapshot) => {
+    return await get(dataProductDetailRef).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(typeof snapshot.val());
         //   return snapshot.val();
@@ -40,18 +40,18 @@ export const fetchCommentListByUser = createAsyncThunk(
     });
     return commentList?.filter(el => el.productId === productId);
   }
-  
+
 );
 
 export const fetchAddCommentDetail = createAsyncThunk(
   'product/fetchCommentDetail',
   async (params, thunkAPI) => {
     return await push(ref(database, "Comment"), params)
-    .then((snapshot) => {
-      console.log(snapshot)
-    }).catch((error) => {
-      console.error(error);
-    });
+      .then((snapshot) => {
+        console.log(snapshot)
+      }).catch((error) => {
+        console.error(error);
+      });
   }
 );
 

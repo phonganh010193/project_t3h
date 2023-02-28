@@ -1,0 +1,38 @@
+.form-update-product {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.new-product-info {
+    width: 45%;
+}
+
+.detail-product-info {
+    width: 45%;
+}
+
+.review-product-modal {
+
+}
+
+.review-product-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.product-info-content {
+    width: 40%;
+    margin-right: 15px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.product-info-content img {
+    width: 300px;
+}
+
+.info-children {
+    height: 600px;
+     overflow-y: scroll;
+}

@@ -18,6 +18,7 @@ import Transport from "../Transport";
 import ReturnProduct from "../component/ReturnProduct";
 import Guerantee from "../component/Guarantee";
 import Security from "../component/Security";
+import UpdateNewProduct from "../views/UpdateNewProduct";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -39,6 +40,7 @@ const routerName = createBrowserRouter([
   { path: "/return-product", element: <ReturnProduct />, errorElement: <ErrorPage /> },
   { path: "/guerantee", element: <Guerantee />, errorElement: <ErrorPage /> },
   { path: "/security", element: <Security />, errorElement: <ErrorPage /> },
+  { path: "/admin/update/product", element: <UpdateNewProduct />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

@@ -13,7 +13,6 @@ const PerfumeDetailInfo = (props) => {
                 {detailList?.detail_product?.title_4}
             </p>
             <img src={detailList?.detail_product?.image_detail_2} alt="" />
-            <span>{detailList?.detail_product?.productName}</span>
             <p>
                 {detailList?.detail_product?.title_5}
                 {detailList?.detail_product?.title_6}
