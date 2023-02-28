@@ -12,7 +12,7 @@ function Sidebar() {
     const dispatch = useDispatch();
     const categoryData = useSelector(({ category }) => category.categoryList)
     const product = useSelector(({ product }) => product.productList);
-    const listBestSell = product.filter(el => el.bestsellers >= 5);
+    const listBestSell = product.filter(el => el.bestsellers === "1");
     const listNewAdd = product.filter(el => el.dateAdd === 1);
     const [show, setShow] = useState(false)
     useEffect(() => {
