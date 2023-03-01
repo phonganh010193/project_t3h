@@ -70,7 +70,6 @@ export const fetchAddOrderItem = createAsyncThunk(
   async (params, thunkAPI) => {
     const orderList = await get(ref(database, "Cart")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
         //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
@@ -89,7 +88,6 @@ export const fetchAddOrderItem = createAsyncThunk(
 
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
         //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);

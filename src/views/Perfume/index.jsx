@@ -188,7 +188,7 @@ const Perfume = () => {
                                                         addOrderItem(item)
                                                     }}>Mua sản phẩm</button>
                                                     <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
-                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN ? <button>Cập nhật</button> : null}
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN ? <button><Link to={`/admin/update/product/${item.id}`}>Cập nhật</Link></button> : null}
                                                 </div>
                                             </div>
                                         </div>

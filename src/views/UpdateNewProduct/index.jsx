@@ -8,17 +8,226 @@ import { toast } from "react-toastify";
 import { database } from "../../firebase";
 import { usePrevious } from "../../utils/hooks";
 import "../../utils/styles/update.new.product.css";
-import { fetchProduct } from "../Perfume/perfumeInfoSlice";
+import { fetchProduct, fetchProductById, fetchUpdateProductById } from "../Perfume/perfumeInfoSlice";
 
 const UpdateNewProduct = () => {
+    const productId = (window.location.href.slice(43))
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [productInfoReview, setProductInfoReview] = useState(null);
     const productList = useSelector(({ product }) => product.productList);
-    console.log('productReview', productInfoReview);
+    const productUpdate = useSelector(({ product }) => product.productUpdate);
+    const isLoading = useSelector(({ product }) => product.isLoading);
+    const prevIsLoading = usePrevious(isLoading);
     const [count, setCount] = useState(0);
-    console.log('count', count)
+    const [fields, setFields] = useState([]);
+
+
+    useEffect(() => {
+        if (!productUpdate) {
+            setFields([
+                {
+                    name: ['product', 'categoryName'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'categoryId'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'gender'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'dateAdd'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'productName'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'image'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'price'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'sale_price'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'capacity'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'bestsellers'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'image_1'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'image_2'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'image_3'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_1'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_2'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_3'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_4'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_5'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_6'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_7'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_8'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'title_9'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'image_detail_1'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'image_detail_2'],
+                    value: "",
+                }
+
+            ]);
+            
+        } else {
+            setFields([
+                {
+                    name: ['product', 'categoryName'],
+                    value: productUpdate?.categoryName,
+                },
+                {
+                    name: ['product', 'categoryId'],
+                    value: productUpdate?.categoryId,
+                },
+                {
+                    name: ['product', 'gender'],
+                    value: productUpdate?.gender,
+                },
+                {
+                    name: ['product', 'dateAdd'],
+                    value: productUpdate?.dateAdd,
+                },
+                {
+                    name: ['product', 'productName'],
+                    value: productUpdate?.productName,
+                },
+                {
+                    name: ['product', 'image'],
+                    value: productUpdate?.image,
+                },
+                {
+                    name: ['product', 'price'],
+                    value: productUpdate?.price,
+                },
+                {
+                    name: ['product', 'sale_price'],
+                    value: productUpdate?.sale_price,
+                },
+                {
+                    name: ['product', 'capacity'],
+                    value: productUpdate?.capacity,
+                },
+                {
+                    name: ['product', 'bestsellers'],
+                    value: productUpdate?.bestsellers,
+                },
+                {
+                    name: ['product', 'image_1'],
+                    value: productUpdate?.imageShow[0]?.image,
+                },
+                {
+                    name: ['product', 'image_2'],
+                    value: productUpdate?.imageShow[1]?.image,
+                },
+                {
+                    name: ['product', 'image_3'],
+                    value: productUpdate?.imageShow[2]?.image,
+                },
+                {
+                    name: ['product', 'title_1'],
+                    value: productUpdate?.detail_product?.title_1,
+                },
+                {
+                    name: ['product', 'title_2'],
+                    value: productUpdate?.detail_product?.title_2,
+                },
+                {
+                    name: ['product', 'title_3'],
+                    value: productUpdate?.title_3,
+                },
+                {
+                    name: ['product', 'title_4'],
+                    value: productUpdate?.detail_product?.title_4,
+                },
+                {
+                    name: ['product', 'title_5'],
+                    value: productUpdate?.detail_product?.title_5,
+                },
+                {
+                    name: ['product', 'title_6'],
+                    value: productUpdate?.detail_product?.title_6,
+                },
+                {
+                    name: ['product', 'title_7'],
+                    value: productUpdate?.detail_product?.title_7,
+                },
+                {
+                    name: ['product', 'title_8'],
+                    value: productUpdate?.detail_product?.title_8,
+                },
+                {
+                    name: ['product', 'title_9'],
+                    value: productUpdate?.detail_product?.title_9,
+                },
+                {
+                    name: ['product', 'image_detail_1'],
+                    value: productUpdate?.detail_product?.image_detail_1,
+                },
+                {
+                    name: ['product', 'image_detail_2'],
+                    value: productUpdate?.detail_product?.image_detail_2,
+                }
+
+            ]);
+        }
+    }, [isLoading, prevIsLoading, productUpdate])
     const layout = {
         labelCol: {
             span: 8,
@@ -30,7 +239,8 @@ const UpdateNewProduct = () => {
 
     useEffect(() => {
         dispatch(fetchProduct());
-    }, [dispatch]);
+        dispatch(fetchProductById(productId))
+    }, [dispatch, productId]);
 
     useEffect(() => {
         if (productList) {
@@ -69,8 +279,6 @@ const UpdateNewProduct = () => {
                 title_9: productInfoReview?.title_9 ? productInfoReview?.title_9 : ""
             }
         };
-        console.log('product theem vao', value)
-        console.log('value', value)
         await push(ref(database, "Product"), value)
             .then((res) => {
                 toast.success('theem thanhf coong')
@@ -97,7 +305,6 @@ const UpdateNewProduct = () => {
     /* eslint-enable no-template-curly-in-string */
 
     const onFinish = async (values) => {
-        console.log('value', values)
         await setProductInfoReview(values.product);
         await setCount(count + 1)
         await setIsModalOpen(true)
@@ -111,6 +318,7 @@ const UpdateNewProduct = () => {
                 onFinish={onFinish}
                 className="form-update-product"
                 validateMessages={validateMessages}
+                fields={fields}
             >
                 <div className="new-product-info">
                     <Form.Item name={['product', 'categoryName']} label="CategoryName" rules={[{ required: true }]}>
@@ -224,7 +432,10 @@ const UpdateNewProduct = () => {
                     </div>
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                         <Button type="primary" htmlType="submit">
-                            Review Product
+                            {!productUpdate ?
+                                "Review Product"
+                                : "Cập nhật"
+                            }
                         </Button>
                     </Form.Item>
                     <button onClick={() => {

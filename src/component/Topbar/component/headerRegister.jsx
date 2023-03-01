@@ -42,7 +42,6 @@ const HeaderRegister = () => {
     const dispatch = useDispatch();
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const userList = useSelector(({ user }) => user.userList)
-    console.log('userList', userList);
     const isLoading = useSelector(({ user }) => user.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [open, setOpen] = useState(false);
@@ -161,7 +160,7 @@ const HeaderRegister = () => {
             }
             {userCurrent?.roles === System.ROLESUSER.ADMIN ?
                 <li onClick={() => {
-                    navigate('/admin/update/product')
+                    navigate(`/admin/update/product/${0}`)
                 }}>Cập nhật sản phẩm mới</li>
                 : null
             }

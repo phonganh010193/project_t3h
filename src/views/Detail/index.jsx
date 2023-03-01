@@ -19,11 +19,9 @@ const Detail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { productId } = useParams();
-    console.log('productiD', productId)
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const detailList = useSelector(({ detail }) => detail.productListDetail);
-    console.log('detail', detailList);
     const commentList = useSelector(({ detail }) => detail.commentList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')

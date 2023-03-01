@@ -40,7 +40,7 @@ const routerName = createBrowserRouter([
   { path: "/return-product", element: <ReturnProduct />, errorElement: <ErrorPage /> },
   { path: "/guerantee", element: <Guerantee />, errorElement: <ErrorPage /> },
   { path: "/security", element: <Security />, errorElement: <ErrorPage /> },
-  { path: "/admin/update/product", element: <UpdateNewProduct />, errorElement: <ErrorPage /> },
+  { path: "/admin/update/product/:id", element: <UpdateNewProduct />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

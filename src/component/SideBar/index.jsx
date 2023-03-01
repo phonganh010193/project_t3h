@@ -13,7 +13,6 @@ function Sidebar() {
     const dispatch = useDispatch();
     const categoryData = useSelector(({ category }) => category.categoryList)
     const product = useSelector(({ product }) => product.productList);
-    console.log('product', product);
     const listBestSell = product.filter(el => el.bestsellers === "1");
     const listNewAdd = [];
     const [show, setShow] = useState(false)
