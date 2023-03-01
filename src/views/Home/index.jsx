@@ -18,8 +18,8 @@ const HomePage = () => {
     console.log('product', product);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const { user } = useContext(UserContext);
-    const productMen = product.filter(el => el.gender === 1);
-    const productWomen = product.filter(el => el.gender === 2);
+    const productMen = product.filter(el => el.gender === "1");
+    const productWomen = product.filter(el => el.gender === "2");
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchOrderProduct(user))

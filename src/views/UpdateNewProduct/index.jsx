@@ -1,7 +1,9 @@
 import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
 import { push, ref } from "firebase/database";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { database } from "../../firebase";
 import { usePrevious } from "../../utils/hooks";
@@ -9,6 +11,7 @@ import "../../utils/styles/update.new.product.css";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 
 const UpdateNewProduct = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [productInfoReview, setProductInfoReview] = useState(null);
@@ -39,7 +42,7 @@ const UpdateNewProduct = () => {
             categoryName: productInfoReview?.categoryName,
             id: String(count),
             gender: productInfoReview?.gender,
-            dateAdd: productInfoReview?.dateAdd.$d ? productInfoReview?.dateAdd.$d : "",
+            dateAdd: productInfoReview?.dateAdd?.$d ? moment(productInfoReview?.dateAdd?.$d).format("DD-MM-YYYY") : "",
             bestsellers: productInfoReview?.bestsellers ? productInfoReview?.bestsellers : "",
             productName: productInfoReview?.productName,
             image: productInfoReview?.image,
@@ -66,6 +69,7 @@ const UpdateNewProduct = () => {
                 title_9: productInfoReview?.title_9 ? productInfoReview?.title_9 : ""
             }
         };
+        console.log('product theem vao', value)
         console.log('value', value)
         await push(ref(database, "Product"), value)
             .then((res) => {
@@ -93,6 +97,7 @@ const UpdateNewProduct = () => {
     /* eslint-enable no-template-curly-in-string */
 
     const onFinish = async (values) => {
+        console.log('value', values)
         await setProductInfoReview(values.product);
         await setCount(count + 1)
         await setIsModalOpen(true)
@@ -222,6 +227,9 @@ const UpdateNewProduct = () => {
                             Review Product
                         </Button>
                     </Form.Item>
+                    <button onClick={() => {
+                        navigate('/')
+                    }}>Quay về trang chủ</button>
                 </div>
 
 

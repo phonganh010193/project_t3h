@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
 import "../../utils/styles/perfume.css";
 import { fetchUserItem } from "../../container/userSlice";
+import { System } from "../../constants/system.constants";
 
 
 const take = 9;
@@ -187,6 +188,7 @@ const Perfume = () => {
                                                         addOrderItem(item)
                                                     }}>Mua sản phẩm</button>
                                                     <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN ? <button>Cập nhật</button> : null}
                                                 </div>
                                             </div>
                                         </div>
