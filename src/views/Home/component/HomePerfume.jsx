@@ -42,6 +42,10 @@ function HomePerfume(props) {
     };
 
     const addOrderItem = async (item) => {
+        if (item.status === System.STATUS_PRODUCT.HET) {
+            toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
+            return;
+        }
         if (user && userCurrent) {
             try {
                 const params = {
@@ -85,14 +89,19 @@ function HomePerfume(props) {
                                                     addOrderItem(el)
                                                 }}>Mua sản phẩm</button>
                                                 <button><Link to={`/perfume-detail/${el.id}`}>Xem chi tiết</Link></button>
+                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${el.id}`}>Cập nhật</Link></button> : null}
                                             </div>
                                         </div>
                                     </div>
-                                    <p style={{ textAlign: "center", textTransform: "capitalize" }}>{el.productName.toLowerCase()}</p>
+                                    <p style={{ textAlign: "center", textTransform: "capitalize", marginTop: "10px" }}>{el.productName.toLowerCase()}</p>
                                     <div className="price">
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
+                                    {el.status === System.STATUS_PRODUCT.HET ?
+                                        <p style={{ color: "red", margin: "0", textAlign: "center" }}>Đã hết hàng</p>
+                                        : null
+                                    }
                                 </div>
                             )
                         })}
@@ -117,6 +126,10 @@ function HomePerfume(props) {
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
+                                    {el.status === System.STATUS_PRODUCT.HET ?
+                                        <p style={{ color: "red", margin: "0", textAlign: "center" }}>Đã hết hàng</p>
+                                        : null
+                                    }
                                 </div>
                             )
                         })}
@@ -141,6 +154,10 @@ function HomePerfume(props) {
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
+                                    {el.status === System.STATUS_PRODUCT.HET ?
+                                        <p style={{ color: "red", margin: "0", textAlign: "center" }}>Đã hết hàng</p>
+                                        : null
+                                    }
                                 </div>
                             )
                         })}

@@ -4,6 +4,10 @@
     height: 40px;
 }
 
+.icon-status {
+    width: 45px !important;
+}
+
 .perfume-detail {
     padding: 0;
 }

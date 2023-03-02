@@ -9,10 +9,11 @@ import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
 import { fetchSearchProduct } from "./searchSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchUserItem } from "../../container/userSlice";
+import { System } from "../../constants/system.constants";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(29))
+    const values = (window.location.href.slice(33))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
@@ -53,6 +54,10 @@ const SearchList = () => {
 
 
     const addOrderItem = async (item) => {
+        if (item.status === System.STATUS_PRODUCT.HET) {
+            toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
+            return;
+        }
         if (user && userCurrent) {
             try {
                 const params = {
@@ -106,6 +111,7 @@ const SearchList = () => {
                                                         addOrderItem(item)
                                                     }}>Mua sản phẩm</button>
                                                     <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${item.id}`}>Cập nhật</Link></button> : null}
                                                 </div>
                                             </div>
                                         </div>
@@ -114,6 +120,10 @@ const SearchList = () => {
                                             <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                             <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                         </div>
+                                        {item.status === System.STATUS_PRODUCT.HET ?
+                                            <p style={{ color: "red", margin: "0" }}>Đã hết hàng</p>
+                                            : null
+                                        }
                                     </div>
                                 )
 

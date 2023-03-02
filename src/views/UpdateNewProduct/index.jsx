@@ -1,17 +1,22 @@
 import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
-import { push, ref } from "firebase/database";
+import dayjs from "dayjs";
+import { push, ref, update } from "firebase/database";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { System } from "../../constants/system.constants";
+import { UserContext } from "../../container/useContext";
+import { fetchUserItem } from "../../container/userSlice";
 import { database } from "../../firebase";
 import { usePrevious } from "../../utils/hooks";
 import "../../utils/styles/update.new.product.css";
-import { fetchProduct, fetchProductById, fetchUpdateProductById } from "../Perfume/perfumeInfoSlice";
+import { fetchProduct, fetchProductById } from "../Perfume/perfumeInfoSlice";
 
 const UpdateNewProduct = () => {
-    const productId = (window.location.href.slice(43))
+    const url = window.location.href;
+    const productId = (url.slice(43));
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,15 +25,21 @@ const UpdateNewProduct = () => {
     const productUpdate = useSelector(({ product }) => product.productUpdate);
     const isLoading = useSelector(({ product }) => product.isLoading);
     const prevIsLoading = usePrevious(isLoading);
+    const isLoadingUser = useSelector(({ user }) => user.isLoading);
+    const prevIsLoadingUser = usePrevious(isLoadingUser);
     const [count, setCount] = useState(0);
     const [fields, setFields] = useState([]);
-
-
+    const { user } = useContext(UserContext);
+    const userCurrent = useSelector(({ user }) => user.userCurrent)
     useEffect(() => {
         if (!productUpdate) {
             setFields([
                 {
                     name: ['product', 'categoryName'],
+                    value: "",
+                },
+                {
+                    name: ['product', 'status'],
                     value: "",
                 },
                 {
@@ -125,7 +136,7 @@ const UpdateNewProduct = () => {
                 }
 
             ]);
-            
+
         } else {
             setFields([
                 {
@@ -137,12 +148,16 @@ const UpdateNewProduct = () => {
                     value: productUpdate?.categoryId,
                 },
                 {
+                    name: ['product', 'status'],
+                    value: productUpdate?.status,
+                },
+                {
                     name: ['product', 'gender'],
                     value: productUpdate?.gender,
                 },
                 {
                     name: ['product', 'dateAdd'],
-                    value: productUpdate?.dateAdd,
+                    value: dayjs(productUpdate?.dateAdd, 'YYYY-MM-DD'),
                 },
                 {
                     name: ['product', 'productName'],
@@ -240,7 +255,8 @@ const UpdateNewProduct = () => {
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchProductById(productId))
-    }, [dispatch, productId]);
+        dispatch(fetchUserItem(user));
+    }, [dispatch, productId, user]);
 
     useEffect(() => {
         if (productList) {
@@ -250,9 +266,10 @@ const UpdateNewProduct = () => {
     const handleOk = async () => {
         const value = {
             categoryName: productInfoReview?.categoryName,
-            id: String(count),
+            id: !productUpdate ? String(count) : productUpdate?.id,
             gender: productInfoReview?.gender,
-            dateAdd: productInfoReview?.dateAdd?.$d ? moment(productInfoReview?.dateAdd?.$d).format("DD-MM-YYYY") : "",
+            status: productInfoReview?.status,
+            dateAdd: productInfoReview?.dateAdd?.$d ? moment(productInfoReview?.dateAdd?.$d).format("YYYY-MM-DD") : "",
             bestsellers: productInfoReview?.bestsellers ? productInfoReview?.bestsellers : "",
             productName: productInfoReview?.productName,
             image: productInfoReview?.image,
@@ -279,22 +296,32 @@ const UpdateNewProduct = () => {
                 title_9: productInfoReview?.title_9 ? productInfoReview?.title_9 : ""
             }
         };
-        await push(ref(database, "Product"), value)
-            .then((res) => {
-                toast.success('theem thanhf coong')
-            })
-            .catch((error) => {
-                toast.error('thaat bai')
-            })
-        await dispatch(fetchProduct());
-        setIsModalOpen(false);
+        if (!productUpdate) {
+            await push(ref(database, "Product"), value)
+                .then((res) => {
+                    toast.success('Thêm sản phẩm thành công')
+                })
+                .catch((error) => {
+                    toast.error('Thêm sản phẩm thất bại')
+                })
+            await setIsModalOpen(false);
+        } else {
+            await update(ref(database, "/Product/" + productUpdate.key), value)
+                .then((res) => {
+                    toast.success('Cập nhật thành công')
+                })
+                .catch((error) => {
+                    toast.error('Cập nhật không thành công')
+                })
+            await setIsModalOpen(false);
+        }
+
     };
 
     const handleCancel = () => {
         setCount(count - 1)
         setIsModalOpen(false);
     };
-    /* eslint-disable no-template-curly-in-string */
     const validateMessages = {
         required: '${label} is required!',
         types: {
@@ -302,156 +329,165 @@ const UpdateNewProduct = () => {
             number: '${label} is not a valid number!',
         },
     };
-    /* eslint-enable no-template-curly-in-string */
 
     const onFinish = async (values) => {
         await setProductInfoReview(values.product);
         await setCount(count + 1)
         await setIsModalOpen(true)
     };
+
+    const onModoru = () => {
+        navigate('/');
+    }
     return (
         <div className="container mt-5">
             <h4 className="mb-5">Thông tin sản phẩm</h4>
-            <Form
-                {...layout}
-                name="nest-messages"
-                onFinish={onFinish}
-                className="form-update-product"
-                validateMessages={validateMessages}
-                fields={fields}
-            >
-                <div className="new-product-info">
-                    <Form.Item name={['product', 'categoryName']} label="CategoryName" rules={[{ required: true }]}>
-                        <Select>
-                            <Select.Option value="Nước hoa nam">Nước hoa nam</Select.Option>
-                            <Select.Option value="Nước hoa nữ">Nước hoa nữ</Select.Option>
-                            <Select.Option value="Lousi vuition">Lousi vuition</Select.Option>
-                            <Select.Option value="Chanel">Chanel</Select.Option>
-                            <Select.Option value="Kilian">Kilian</Select.Option>
-                            <Select.Option value="Dior">Dior</Select.Option>
-                            <Select.Option value="Jo malone">Jo malone</Select.Option>
-                            <Select.Option value="Creen">Creen</Select.Option>
-                            <Select.Option value="Dolce gabbala">Dolce gabbala</Select.Option>
-                            <Select.Option value="Hermes">Hermes</Select.Option>
-                            <Select.Option value="Guicci">Guicci</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item name={['product', 'categoryId']} label="CategoryId" rules={[{ required: true }]}>
-                        <Select>
-                            <Select.Option value="1">Nước hoa nam</Select.Option>
-                            <Select.Option value="2">Nước hoa nữ</Select.Option>
-                            <Select.Option value="7">Lousi vuition</Select.Option>
-                            <Select.Option value="8">Chanel</Select.Option>
-                            <Select.Option value="9">Kilian</Select.Option>
-                            <Select.Option value="10">Dior</Select.Option>
-                            <Select.Option value="11">Jo malone</Select.Option>
-                            <Select.Option value="12">Creen</Select.Option>
-                            <Select.Option value="13">Dolce gabbala</Select.Option>
-                            <Select.Option value="14">Hermes</Select.Option>
-                            <Select.Option value="15">Guicci</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item name={['product', 'gender']} label="Gender" rules={[{ required: true }]}>
-                        <Select>
-                            <Select.Option value="1">Men</Select.Option>
-                            <Select.Option value="2">Wommen</Select.Option>
-                            <Select.Option value="3">ALL</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item name={['product', 'dateAdd']} label="DateAdd">
-                        <DatePicker />
-                    </Form.Item>
-                    <Form.Item name={['product', 'productName']} label="Product Name" rules={[{ required: true }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'image']} label="ImageUrl" rules={[{ required: true }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'price']} label="Price" rules={[{ required: true }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'sale_price']} label="Sale Price" rules={[{ required: true }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'capacity']} label="Capacity" rules={[{ required: true }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'bestsellers']} label="Best sellers">
-                        <Select>
-                            <Select.Option value="1">Bán chạy</Select.Option>
-                            <Select.Option value="2">Không</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <div className="image-show">
-                        <Form.Item name={['product', 'image_1']} label="Image1Url" rules={[{ required: true }]}>
+            {userCurrent.roles === System.ROLESUSER.ADMIN ||
+                userCurrent.roles === System.ROLESUSER.MEMBER ?
+                <Form
+                    {...layout}
+                    name="nest-messages"
+                    onFinish={onFinish}
+                    className="form-update-product"
+                    validateMessages={validateMessages}
+                    fields={fields}
+                >
+                    <div className="new-product-info">
+                        <Form.Item name={['product', 'categoryName']} label="CategoryName" rules={[{ required: true }]}>
+                            <Select>
+                                <Select.Option value="Nước hoa nam">Nước hoa nam</Select.Option>
+                                <Select.Option value="Nước hoa nữ">Nước hoa nữ</Select.Option>
+                                <Select.Option value="Lousi vuition">Lousi vuition</Select.Option>
+                                <Select.Option value="Chanel">Chanel</Select.Option>
+                                <Select.Option value="Kilian">Kilian</Select.Option>
+                                <Select.Option value="Dior">Dior</Select.Option>
+                                <Select.Option value="Jo malone">Jo malone</Select.Option>
+                                <Select.Option value="Creen">Creen</Select.Option>
+                                <Select.Option value="Dolce gabbala">Dolce gabbala</Select.Option>
+                                <Select.Option value="Hermes">Hermes</Select.Option>
+                                <Select.Option value="Guicci">Guicci</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item name={['product', 'categoryId']} label="CategoryId" rules={[{ required: true }]}>
+                            <Select>
+                                <Select.Option value="1">Nước hoa nam</Select.Option>
+                                <Select.Option value="2">Nước hoa nữ</Select.Option>
+                                <Select.Option value="7">Lousi vuition</Select.Option>
+                                <Select.Option value="8">Chanel</Select.Option>
+                                <Select.Option value="9">Kilian</Select.Option>
+                                <Select.Option value="10">Dior</Select.Option>
+                                <Select.Option value="11">Jo malone</Select.Option>
+                                <Select.Option value="12">Creen</Select.Option>
+                                <Select.Option value="13">Dolce gabbala</Select.Option>
+                                <Select.Option value="14">Hermes</Select.Option>
+                                <Select.Option value="15">Guicci</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item name={['product', 'gender']} label="Gender" rules={[{ required: true }]}>
+                            <Select>
+                                <Select.Option value="1">Men</Select.Option>
+                                <Select.Option value="2">Wommen</Select.Option>
+                                <Select.Option value="3">ALL</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item name={['product', 'dateAdd']} label="DateAdd">
+                            <DatePicker />
+                        </Form.Item>
+                        <Form.Item name={['product', 'productName']} label="Product Name" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['product', 'image_2']} label="Image2Url">
+                        <Form.Item name={['product', 'image']} label="ImageUrl" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item name={['product', 'image_3']} label="Image3Url">
+                        <Form.Item name={['product', 'price']} label="Price" rules={[{ required: true }]}>
                             <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'sale_price']} label="Sale Price" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'capacity']} label="Capacity" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'bestsellers']} label="Best sellers">
+                            <Select>
+                                <Select.Option value="1">Bán chạy</Select.Option>
+                                <Select.Option value="2">Không</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <div className="image-show">
+                            <Form.Item name={['product', 'image_1']} label="Image1Url" rules={[{ required: true }]}>
+                                <Input />
+                            </Form.Item>
+                            <Form.Item name={['product', 'image_2']} label="Image2Url">
+                                <Input />
+                            </Form.Item>
+                            <Form.Item name={['product', 'image_3']} label="Image3Url">
+                                <Input />
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <div className="detail-product-info">
+                        <Form.Item name={['product', 'status']} label="Status" rules={[{ required: true }]}>
+                            <Select>
+                                <Select.Option value="1">Còn hàng</Select.Option>
+                                <Select.Option value="2">Sắp hết hàng</Select.Option>
+                                <Select.Option value="3">Hết hàng</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_1']} label="Title_1">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_2']} label="Title_2">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_3']} label="Title_3">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_4']} label="Title_4">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_5']} label="Title_5">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_6']} label="Title_6">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_7']} label="Title_7">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_8']} label="Title_8">
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['product', 'title_9']} label="Title_9">
+                            <Input />
+                        </Form.Item>
+                        <div className="detail-image-new-info">
+                            <Form.Item name={['product', 'image_detail_1']} label="Image Detail 1">
+                                <Input />
+                            </Form.Item>
+                            <Form.Item name={['product', 'image_detail_2']} label="Image Detail 2">
+                                <Input />
+                            </Form.Item>
+                        </div>
+                        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                            <Button type="primary" htmlType="submit">
+                                Review Product
+                            </Button>
+                            <Button htmlType="button" style={{ marginLeft: "10px" }} onClick={onModoru}>
+                                Quay về Trang chủ
+                            </Button>
                         </Form.Item>
                     </div>
-                </div>
-                <div className="detail-product-info">
-                    <Form.Item name={['product', 'title_1']} label="Title_1">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_2']} label="Title_2">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_3']} label="Title_3">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_4']} label="Title_4">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_5']} label="Title_5">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_6']} label="Title_6">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_7']} label="Title_7">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_8']} label="Title_8">
-                        <Input />
-                    </Form.Item>
-                    <Form.Item name={['product', 'title_9']} label="Title_9">
-                        <Input />
-                    </Form.Item>
-                    <div className="detail-image-new-info">
-                        <Form.Item name={['product', 'image_detail_1']} label="Image Detail 1">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'image_detail_2']} label="Image Detail 2">
-                            <Input />
-                        </Form.Item>
-                    </div>
-                    <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                        <Button type="primary" htmlType="submit">
-                            {!productUpdate ?
-                                "Review Product"
-                                : "Cập nhật"
-                            }
-                        </Button>
-                    </Form.Item>
-                    <button onClick={() => {
-                        navigate('/')
-                    }}>Quay về trang chủ</button>
-                </div>
-
-
-            </Form>
+                </Form>
+                : <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
+            }
             <Modal
                 title="Review Product"
                 centered
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                okText="Thêm sản phẩm"
+                okText={!productUpdate ? "Thêm sản phẩm" : "Cập nhật"}
                 cancelText="Trở lại"
                 width={1000}
                 style={{
@@ -465,6 +501,14 @@ const UpdateNewProduct = () => {
                         <p>{productInfoReview?.productName}</p>
                         <p>{Number(productInfoReview?.price.split(" ").join('')).toLocaleString()} VND</p>
                         <p style={{ textDecoration: "line-through", color: "gray" }}>{Number(productInfoReview?.sale_price.split(" ").join('')).toLocaleString()} VND</p>
+                        {productInfoReview?.status === System.STATUS_PRODUCT.CON ?
+                            <p><img className="icon-status" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" /><span>Còn hàng</span></p>
+                            : productInfoReview?.status === System.STATUS_PRODUCT.SAP ?
+                                <p><img className="icon-status" src="https://cdn3d.iconscout.com/3d/premium/thumb/checkmark-2997167-2516205.png" /><span>Sắp hết hàng</span></p>
+                                : productInfoReview?.status === System.STATUS_PRODUCT.HET ?
+                                    <p><img className="icon-status" src="https://www.citypng.com/public/uploads/preview/png-red-round-close-x-icon-31631915146jpppmdzihs.png" /><span>Hết hàng</span></p>
+                                    : null
+                        }
                     </div>
                     <div className="review-detail-info">
                         <h5>Thông tin sản phẩm</h5>

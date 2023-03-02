@@ -10,8 +10,6 @@ export const fetchOrderProduct = createAsyncThunk(
   async (params, thunkAPI) => {
     const orderList = await get(ref(database, "Cart")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
         return keys.map(key => {
@@ -28,8 +26,6 @@ export const fetchOrderProduct = createAsyncThunk(
     });
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
         return keys.map(key => {
@@ -70,7 +66,6 @@ export const fetchAddOrderItem = createAsyncThunk(
   async (params, thunkAPI) => {
     const orderList = await get(ref(database, "Cart")).then((snapshot) => {
       if (snapshot.exists()) {
-        //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
         return keys.map(key => {
@@ -88,7 +83,6 @@ export const fetchAddOrderItem = createAsyncThunk(
 
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
-        //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
         return keys.map(key => {
@@ -156,8 +150,6 @@ export const fetchDeleteOrderItem = createAsyncThunk(
   async (params, thunkAPI) => {
     const orderList = await get(ref(database, "Cart")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
         return keys.map(key => {
@@ -176,8 +168,6 @@ export const fetchDeleteOrderItem = createAsyncThunk(
 
     const product = await get(ref(database, "Product")).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        //   return snapshot.val();
         const response = snapshot.val();
         const keys = Object.keys(response);
         return keys.map(key => {

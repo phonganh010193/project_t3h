@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -29,9 +29,6 @@ const HeaderNav = () => {
     const [values, setValues] = useState('');
     const [active, setActive] = useState(null);
 
-    // useEffect(() => {
-    //     setActive(0)
-    // }, [])
     const searchItem = (value) => {
         if (!value) {
             toast.warning('Xin hãy nhập thông tin tìm kiếm');

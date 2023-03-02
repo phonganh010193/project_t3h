@@ -9,7 +9,6 @@ export const fetchProductDetail = createAsyncThunk(
   async (productId, thunkAPI) => {
     return await get(dataProductDetailRef).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
         //   return snapshot.val();
         return Object.values(snapshot.val()).find(el => el.id === productId);
       } else {

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchDeleteOrderItem, fetchOrderProduct, updateListCart } from "./orderSlice";
-import { push, ref, remove, update } from "firebase/database";
+import { push, ref, update } from "firebase/database";
 import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
 import "../../utils/styles/cart.container.css";
@@ -228,7 +228,7 @@ const Cart = () => {
                                                     handleOnAllCheckbox()
                                                 }}
                                             />
-                                            <span class="checkmark"></span>
+                                            <span className="checkmark"></span>
                                         </label>
                                     </th>
                                     <th className="image-column" scope="col">Hình ảnh</th>
@@ -240,33 +240,33 @@ const Cart = () => {
                                 </tr>
                             </thead>
                             <tbody className="body-cart-info">
-                                {listDataOrder && listDataOrder?.map((item, index) => {
+                                {listDataOrder ? listDataOrder?.map((item, index) => {
                                     return (
                                         <TRtable key={item.id} item={item} updateOrder={updateOrder} user={user} />
                                     )
-                                })}
+                                }) : null}
                                 <tr>
-                                    <td colspan="7" style={{padding: "0"}}>
+                                    <td colSpan="7" style={{ padding: "0" }}>
                                         {listDataOrder?.length > 0 ?
-                                        <ul className="pagination-cart">
-                                            <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
-                                                if (page > 0) {
-                                                    setPage(page - 1);
-                                                }
-                                            }}><i class='fas fa-angle-double-left' style={{color: "#2d8356"}}></i></Link></li>
-                                            {_renderPaginate()}
-                                            <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
-                                                if (page < (numberOfPage - 1)) {
-                                                    setPage(page + 1);
-                                                }
-                                            }}><i class='fas fa-angle-double-right' style={{color: "#2d8356"}}></i></Link></li>
-                                        </ul>
-                                        : null
+                                            <ul className="pagination-cart">
+                                                <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
+                                                    if (page > 0) {
+                                                        setPage(page - 1);
+                                                    }
+                                                }}><i className='fas fa-angle-double-left' style={{ color: "#2d8356" }}></i></Link></li>
+                                                {_renderPaginate()}
+                                                <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
+                                                    if (page < (numberOfPage - 1)) {
+                                                        setPage(page + 1);
+                                                    }
+                                                }}><i className='fas fa-angle-double-right' style={{ color: "#2d8356" }}></i></Link></li>
+                                            </ul>
+                                            : null
                                         }
                                     </td>
                                 </tr>
                             </tbody>
-                            
+
                         </table>
                     </div>
                     <div className="btn-all-info">

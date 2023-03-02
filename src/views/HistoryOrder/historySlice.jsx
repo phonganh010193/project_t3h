@@ -8,7 +8,6 @@ export const fetchHistoryOrder = createAsyncThunk(
     async (params, thunkAPI) => {
         const listAbate = await get(ref(database, "Abate")).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(typeof snapshot.val());
                 const response = snapshot.val();
                 const keys = Object.keys(response);
                 return keys.map(key => {

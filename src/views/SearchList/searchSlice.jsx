@@ -9,7 +9,6 @@ export const fetchSearchProduct = createAsyncThunk(
     async (params, thunkAPI) => {
         const product = await get(dataProductRef).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(typeof snapshot.val());
                 return Object.values(snapshot.val());
             } else {
                 console.log("No data available");

@@ -9,8 +9,6 @@ export const fetchCategory = createAsyncThunk(
   async (userId, thunkAPI) => {
     return get(dataCategoryRef).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(typeof snapshot.val());
-        //   return snapshot.val();
         return Object.values(snapshot.val());
       } else {
         console.log("No data available");

@@ -8,8 +8,6 @@ export const fetchUser = createAsyncThunk(
     async (params, thunkAPI) => {
         return await get(ref(database, "User")).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(typeof snapshot.val());
-                //   return snapshot.val();
                 const response = snapshot.val();
                 const keys = Object.keys(response);
                 return keys.map(key => {
@@ -31,8 +29,6 @@ export const fetchUserItem = createAsyncThunk(
     async (params, thunkAPI) => {
         const userList = await get(ref(database, "User")).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(typeof snapshot.val());
-                //   return snapshot.val();
                 const response = snapshot.val();
                 const keys = Object.keys(response);
                 return keys.map(key => {
@@ -57,8 +53,6 @@ export const fetchUpdateUserItem = createAsyncThunk(
     async (params, thunkAPI) => {
         const userList = await get(ref(database, "User")).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(typeof snapshot.val());
-                //   return snapshot.val();
                 const response = snapshot.val();
                 const keys = Object.keys(response);
                 return keys.map(key => {

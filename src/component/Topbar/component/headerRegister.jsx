@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import { System } from "../../../constants/system.constants";
 import { push, ref, update } from "firebase/database";
 import { database } from "../../../firebase";
-import { fetchProduct } from "../../../views/Perfume/perfumeInfoSlice";
 
 
 const layout = {
@@ -62,7 +61,6 @@ const HeaderRegister = () => {
 
     };
     const handleChange = (value) => {
-        console.log('value', value)
         userList.forEach(el => {
             if (el.key === value.item.key) {
                 update(ref(database, "/User/" + el.key), {
@@ -99,7 +97,8 @@ const HeaderRegister = () => {
                     }}
                 >
                     <option value="A">Admin</option>
-                    <option value="B" selected={item.roles === System.ROLESUSER.USER ? true : false}>User</option>
+                    <option value="B" selected={item.roles === System.ROLESUSER.MEMBER ? true : false}>Member</option>
+                    <option value="C" selected={item.roles === System.ROLESUSER.USER ? true : false}>User</option>
                 </select>,
             email: item.email,
         }
@@ -158,7 +157,8 @@ const HeaderRegister = () => {
                 }}>Vai Trò</li>
                 : null
             }
-            {userCurrent?.roles === System.ROLESUSER.ADMIN ?
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <li onClick={() => {
                     navigate(`/admin/update/product/${0}`)
                 }}>Cập nhật sản phẩm mới</li>

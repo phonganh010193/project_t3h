@@ -15,7 +15,13 @@ export const System = {
     },
     ROLESUSER: {
         ADMIN: "A",
-        USER: "B"
+        MEMBER: "B",
+        USER: "C"
+    },
+    STATUS_PRODUCT: {
+        CON: "1",
+        SAP: "2",
+        HET: "3"
     }
 }
 

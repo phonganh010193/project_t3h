@@ -11,8 +11,8 @@ import { useDispatch } from 'react-redux';
 import RunMockData from '../../mock/runMockData';
 import Footer from '../../component/Footer';
 import { useEffect } from 'react';
-import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { System } from '../../constants/system.constants';
 
 
 const SignUp = () => {
@@ -32,7 +32,7 @@ const SignUp = () => {
           address: values.address,
           phone: values.phone,
           avatar: "",
-          roles: "B"
+          roles: System.ROLESUSER.USER
         }
         await dispatch(fetchUpdateUserItem(value))
         navigate('/signin')

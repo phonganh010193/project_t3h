@@ -36,7 +36,7 @@ const Perfume = () => {
         dispatch(fetchCategory());
         dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user))
-    }, [dispatch]);
+    }, [dispatch, user]);
 
     useEffect(() => {
         if (productLoading === true) {
@@ -95,7 +95,7 @@ const Perfume = () => {
             }
             setNumberOfPage(Math.ceil(tmpProductData?.length / take));
         }
-    }, [categoryId]);
+    }, [categoryId, product]);
 
     useEffect(() => {
         if (!productLoading && preProductLoading) {
@@ -126,6 +126,10 @@ const Perfume = () => {
     }
 
     const addOrderItem = async (item) => {
+        if (item.status === System.STATUS_PRODUCT.HET) {
+            toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
+            return;
+        }
         if (user && userCurrent) {
             try {
                 const params = {
@@ -188,7 +192,7 @@ const Perfume = () => {
                                                         addOrderItem(item)
                                                     }}>Mua sản phẩm</button>
                                                     <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
-                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN ? <button><Link to={`/admin/update/product/${item.id}`}>Cập nhật</Link></button> : null}
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${item.id}`}>Cập nhật</Link></button> : null}
                                                 </div>
                                             </div>
                                         </div>
@@ -197,6 +201,10 @@ const Perfume = () => {
                                             <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                             <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                         </div>
+                                        {item.status === System.STATUS_PRODUCT.HET ?
+                                            <p style={{ color: "red", margin: "0" }}>Đã hết hàng</p>
+                                            : null
+                                        }
                                     </div>
                                 )
                             })

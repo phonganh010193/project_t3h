@@ -13,6 +13,7 @@ import "../../utils/styles/perfume.detail.css";
 import { fetchUserItem } from "../../container/userSlice";
 import PerfumeEvaluate from "./component/perfumeEvaluate";
 import GuideShopping from "./component/guideShopping";
+import { System } from "../../constants/system.constants";
 
 
 const Detail = () => {
@@ -45,6 +46,10 @@ const Detail = () => {
     }, []);
 
     const addOrderItem = async (item) => {
+        if (item.status === System.STATUS_PRODUCT.HET) {
+            toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
+            return;
+        }
         if (user && userCurrent) {
             try {
                 const params = {
@@ -139,6 +144,14 @@ const Detail = () => {
                                 <p>{detailList?.capacity}</p>
                                 <p>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
                             </div>
+                            {detailList?.status === System.STATUS_PRODUCT.CON ?
+                                <p><img className="icon-status" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" /><span>Còn hàng</span></p>
+                                : detailList?.status === System.STATUS_PRODUCT.SAP ?
+                                    <p><img className="icon-status" src="https://cdn3d.iconscout.com/3d/premium/thumb/checkmark-2997167-2516205.png" /><span>Sắp hết hàng</span></p>
+                                    : detailList?.status === System.STATUS_PRODUCT.HET ?
+                                        <p><img className="icon-status" src="https://www.citypng.com/public/uploads/preview/png-red-round-close-x-icon-31631915146jpppmdzihs.png" /><span>Hết hàng</span></p>
+                                        : null
+                            }
                             <div className="amount">
                                 <h6>Số Lượng</h6>
                                 <div className="amount-form">
