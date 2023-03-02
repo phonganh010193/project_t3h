@@ -80,39 +80,8 @@ export const fetchAddOrderItem = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-
-    const product = await get(ref(database, "Product")).then((snapshot) => {
-      if (snapshot.exists()) {
-        const response = snapshot.val();
-        const keys = Object.keys(response);
-        return keys.map(key => {
-          return {
-            ...response[key],
-            key,
-          }
-        })
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-    const listCart = [];
-    if (product && orderList) {
-      product.forEach(el => {
-        orderList.forEach(item => {
-          if (el.id === item.productId) {
-            listCart.push(
-              {
-                ...el,
-                ...item
-              }
-            );
-          }
-        })
-      })
-    }
-    const findItem = listCart?.find(el => params.id === el.productId && params.user.email === el.user.email)
+    
+    const findItem = orderList?.find(el => params.id === el.productId && params.user.email === el.user.email)
 
     if (findItem) {
       await update(ref(database, "/Cart/" + findItem.key), {
@@ -164,41 +133,9 @@ export const fetchDeleteOrderItem = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    const oderListbyUser = orderList?.filter(el => el.user.email === params.email);
-
-    const product = await get(ref(database, "Product")).then((snapshot) => {
-      if (snapshot.exists()) {
-        const response = snapshot.val();
-        const keys = Object.keys(response);
-        return keys.map(key => {
-          return {
-            ...response[key],
-            key,
-          }
-        })
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-    const listCart = [];
-    if (product && oderListbyUser) {
-      product.forEach(el => {
-        oderListbyUser.forEach(item => {
-          if (el.id === item.productId) {
-            listCart.push(
-              {
-                ...el,
-                ...item
-              }
-            );
-          }
-        })
-      })
-    }
-    if (listCart) {
-      listCart?.forEach(el => {
+    const oderListByUser = orderList?.filter(el => el.user.email === params.email);
+    if (oderListByUser) {
+      oderListByUser?.forEach(el => {
         remove(ref(database, "/Cart/" + el.key))
       })
     }
@@ -208,6 +145,10 @@ export const fetchDeleteOrderItem = createAsyncThunk(
 const initialState = {
   isLoading: false,
   orderProduct: [],
+  isLoadingAdd: false,
+  addOrderProduct: null,
+  deleteOrderProduct: null,
+  isLoadingDelete: false
 }
 
 export const orderProductSlice = createSlice({
@@ -233,6 +174,26 @@ export const orderProductSlice = createSlice({
     })
     builder.addCase(fetchOrderProduct.rejected, (state, action) => {
       state.isLoading = false;
+    })
+    builder.addCase(fetchAddOrderItem.pending, (state, action) => {
+      state.isLoadingAdd = true;
+    })
+    builder.addCase(fetchAddOrderItem.fulfilled, (state, action) => {
+      state.addOrderProduct = action.payload;
+      state.isLoadingAdd = false;
+    })
+    builder.addCase(fetchAddOrderItem.rejected, (state, action) => {
+      state.isLoadingAdd = false;
+    })
+    builder.addCase(fetchDeleteOrderItem.pending, (state, action) => {
+      state.isLoadingDelete = true;
+    })
+    builder.addCase(fetchDeleteOrderItem.fulfilled, (state, action) => {
+      state.deleteOrderProduct = action.payload;
+      state.isLoadingDelete = false;
+    })
+    builder.addCase(fetchDeleteOrderItem.rejected, (state, action) => {
+      state.isLoadingDelete = false;
     })
   },
 })

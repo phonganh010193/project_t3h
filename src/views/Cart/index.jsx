@@ -10,7 +10,7 @@ import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
 import "../../utils/styles/cart.container.css";
 import { System } from "../../constants/system.constants";
-import { fetchAbateList, fetchRemoveAbatebyId } from "../Abate/abateSlice";
+import { fetchAbateList, fetchRemoveAbateById, } from "../Abate/abateSlice";
 import { usePrevious } from "../../utils/hooks";
 import { Modal } from "antd";
 import { fetchUserItem } from "../../container/userSlice";
@@ -34,15 +34,22 @@ const Cart = () => {
     const [page, setPage] = useState(0);
     const orderLoading = useSelector(({ order }) => order.isLoading);
     const prevOrderLoading = usePrevious(orderLoading);
+    const isLoadingDelete = useSelector(({ order }) => order.isLoadingDelete);
+    const prevDeleteLoading = usePrevious(isLoadingDelete);
 
+    useEffect(() => {
+        if(!isLoadingDelete && prevDeleteLoading) {
+            dispatch(fetchOrderProduct(user))
+        }
+    }, [isLoadingDelete])
     const handleOk = (key) => {
         navigate(`/abate/${key}`)
         setIsModalOpen(false);
     };
 
-    const handleCancel = async (key) => {
+    const handleCancel = (key) => {
         try {
-            await dispatch(fetchRemoveAbatebyId(key))
+            dispatch(fetchRemoveAbateById(key))
             toast.success('Hủy thành công!')
         } catch (error) {
             console.log(error);
@@ -69,17 +76,15 @@ const Cart = () => {
         await dispatch(updateListCart(value));
     }
 
-    const deleteListCart = async () => {
+    const deleteListCart =() => {
         if (user) {
             try {
-                await dispatch(fetchDeleteOrderItem(user))
-                await dispatch(fetchOrderProduct(user))
+                dispatch(fetchDeleteOrderItem(user))
                 toast.success('Xóa giỏ hàng thành công!')
             } catch (error) {
                 toast.success('Xóa giỏ hàng thất bại!')
             }
         }
-
     }
 
 

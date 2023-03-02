@@ -10,13 +10,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from "antd";
 import { useCallback } from "react";
 import { UserContext } from "../../container/useContext";
+import { usePrevious } from "../../utils/hooks";
 
 const HistoryOrder = () => {
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const historyOrderList = useSelector(({ history }) => history.historyList);
+    const isCancelLoading = useSelector(({ history }) => history.isCancelLoading);
+    const prevCancelLoading = usePrevious(isCancelLoading);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [key, setKey] = useState('');
+
+    useEffect(() => {
+        if(!isCancelLoading && prevCancelLoading) {
+            dispatch(fetchHistoryOrder(user));
+        }
+    }, [isCancelLoading])
 
     useEffect(() => {
         dispatch(fetchHistoryOrder(user));
@@ -25,7 +34,6 @@ const HistoryOrder = () => {
     const handleOk = useCallback((key) => {
         try {
             dispatch(fetchCancelOrderById(key));
-            dispatch(fetchHistoryOrder(user));
             toast.success('Hủy đơn hàng thành công')
         } catch (error) {
             console.log(error);

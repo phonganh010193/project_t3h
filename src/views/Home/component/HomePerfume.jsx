@@ -5,12 +5,13 @@ import Slider from "react-slick";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from "react-redux";
-import { useContext, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../../container/useContext";
 import { fetchAddOrderItem, fetchOrderProduct } from "../../Cart/orderSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
+import { usePrevious } from "../../../utils/hooks";
 
 const sliderSettings = {
     dots: false,
@@ -32,6 +33,14 @@ function HomePerfume(props) {
     const product2 = product.slice(3, 6);
     const product3 = product.slice(6, 9);
     const slideRef = useRef();
+    const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
+    const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
+
+    useEffect(() => {
+        if (!isLoadingAddOrderProduct && prevIsLoadingAddOrderProduct) {
+            dispatch(fetchOrderProduct(user));
+        }
+    }, [isLoadingAddOrderProduct]);
 
     const goPrev = () => {
         slideRef?.current?.slickPrev();
@@ -41,7 +50,7 @@ function HomePerfume(props) {
         slideRef?.current?.slickNext()
     };
 
-    const addOrderItem = async (item) => {
+    const addOrderItem = (item) => {
         if (item.status === System.STATUS_PRODUCT.HET) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
@@ -53,8 +62,7 @@ function HomePerfume(props) {
                     user: userCurrent,
                     orderNumber: 1
                 }
-                await dispatch(fetchAddOrderItem(params));
-                await dispatch(fetchOrderProduct(user));
+                dispatch(fetchAddOrderItem(params));
             } catch (error) {
                 toast.error('Thêm không thành công')
             }

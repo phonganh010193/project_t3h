@@ -25,7 +25,7 @@ const HomePage = () => {
         dispatch(fetchUserItem(user));
     }, [dispatch, user])
     const sliderRef = useRef();
-    const sliderrSettings = {
+    const sliderSettings = {
         dots: true,
         infinite: true,
         slidesToShow: 1,
@@ -41,7 +41,7 @@ const HomePage = () => {
     return (
         <Layout>
             <div className="homepage-container">
-                <Slider {...sliderrSettings} ref={sliderRef} >
+                <Slider {...sliderSettings} ref={sliderRef} >
                     <div className="slide-item">
                         <img src="https://th.bing.com/th/id/R.11dfb5228f92cacb30c2d13ca9347a30?rik=N1BH2SLe2Fckfg&riu=http%3a%2f%2fwww.mywishstyle.com%2fwp-content%2fuploads%2f2015%2f11%2fBurberry-Festive-Beauty-Collection-2015-1080x764.jpg&ehk=4mhkYO19%2bAzVvvrOPIfAlVQdnCn2TEMOUQMdpUriRis%3d&risl=&pid=ImgRaw&r=0" alt="" />
                     </div>

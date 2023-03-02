@@ -10,7 +10,7 @@ import { usePrevious } from "../../../utils/hooks";
 import { fetchUpdateUserItem, fetchUser, fetchUserItem } from "../../../container/userSlice";
 import { toast } from "react-toastify";
 import { System } from "../../../constants/system.constants";
-import { push, ref, update } from "firebase/database";
+import { ref, update } from "firebase/database";
 import { database } from "../../../firebase";
 
 

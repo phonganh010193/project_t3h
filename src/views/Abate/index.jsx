@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useParams } from "react-router-dom";
-import { fetchAbateById, fetchAbateList, fetchRemoveAbatebyId } from "./abateSlice";
+import { fetchAbateById, fetchRemoveAbateById } from "./abateSlice";
 import "../../utils/styles/abate.css";
 import { System } from "../../constants/system.constants";
 import IMAGE from "../../contact";
@@ -137,11 +137,9 @@ const Abate = () => {
         }
     };
 
-    const removeAbateById = async (orderId) => {
+    const removeAbateById = (orderId) => {
         try {
-            await dispatch(fetchRemoveAbatebyId(orderId));
-            await dispatch(fetchAbateById(orderId));
-            await dispatch(fetchAbateList());
+            dispatch(fetchRemoveAbateById(orderId));
         } catch (error) {
             toast.error('Xóa không thành công')
         }

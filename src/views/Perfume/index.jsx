@@ -30,7 +30,15 @@ const Perfume = () => {
     const [productData, setProductData] = useState([]);
     const [listDataProduct, setListDataProduct] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
+    const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
+
+    useEffect(() => {
+        if (!isLoadingAddOrderProduct && prevIsLoadingAddOrderProduct) {
+            dispatch(fetchOrderProduct(user));
+        }
+    }, [isLoadingAddOrderProduct]);
     useEffect(() => {
         dispatch(fetchProduct());
         dispatch(fetchCategory());
@@ -38,13 +46,6 @@ const Perfume = () => {
         dispatch(fetchUserItem(user))
     }, [dispatch, user]);
 
-    useEffect(() => {
-        if (productLoading === true) {
-            setLoading(true)
-        } else {
-            setLoading(false)
-        }
-    }, [productLoading])
     const showListProduct = () => {
         if (categoryId === "1") {
             return product?.filter(el => el.gender === "1")
@@ -125,7 +126,7 @@ const Perfume = () => {
         return data;
     }
 
-    const addOrderItem = async (item) => {
+    const addOrderItem = (item) => {
         if (item.status === System.STATUS_PRODUCT.HET) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
@@ -137,8 +138,7 @@ const Perfume = () => {
                     user: userCurrent,
                     orderNumber: 1
                 }
-                await dispatch(fetchAddOrderItem(params));
-                await dispatch(fetchOrderProduct(user));
+                dispatch(fetchAddOrderItem(params));
             } catch (error) {
                 toast.error('Thêm không thành công')
             }
@@ -148,7 +148,7 @@ const Perfume = () => {
     }
     return (
         <Layout>
-            {loading ?
+            {productLoading ?
                 <div style={{ textAlign: "center", width: "100%" }}>
                     <p style={{ fontSize: "20px" }}>Loading ... </p>
                 </div>

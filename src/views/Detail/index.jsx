@@ -14,6 +14,7 @@ import { fetchUserItem } from "../../container/userSlice";
 import PerfumeEvaluate from "./component/perfumeEvaluate";
 import GuideShopping from "./component/guideShopping";
 import { System } from "../../constants/system.constants";
+import { usePrevious } from "../../utils/hooks";
 
 
 const Detail = () => {
@@ -26,6 +27,14 @@ const Detail = () => {
     const commentList = useSelector(({ detail }) => detail.commentList);
     const [number, setNumber] = useState("");
     const [image, setImage] = useState('')
+    const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
+    const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
+
+    useEffect(() => {
+        if (!isLoadingAddOrderProduct && prevIsLoadingAddOrderProduct) {
+            dispatch(fetchOrderProduct(user));
+        }
+    }, [isLoadingAddOrderProduct]);
 
 
     useEffect(() => {
@@ -45,7 +54,7 @@ const Detail = () => {
         setNumber(1)
     }, []);
 
-    const addOrderItem = async (item) => {
+    const addOrderItem = (item) => {
         if (item.status === System.STATUS_PRODUCT.HET) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
@@ -57,8 +66,7 @@ const Detail = () => {
                     user: userCurrent,
                     orderNumber: number
                 }
-                await dispatch(fetchAddOrderItem(params));
-                await dispatch(fetchOrderProduct(user));
+                dispatch(fetchAddOrderItem(params));
             } catch (error) {
                 toast.error('Thêm không thành công')
             }

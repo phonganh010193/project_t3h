@@ -43,7 +43,7 @@ export const fetchAbateList = createAsyncThunk(
   }
 );
 
-export const fetchRemoveAbatebyId = createAsyncThunk(
+export const fetchRemoveAbateById = createAsyncThunk(
   'abate/fetchAbateById',
   async (abateId, thunkAPI) => {
     return await remove(ref(database, "/Abate/" + abateId))

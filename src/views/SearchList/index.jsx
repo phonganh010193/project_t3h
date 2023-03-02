@@ -10,22 +10,34 @@ import { fetchSearchProduct } from "./searchSlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchUserItem } from "../../container/userSlice";
 import { System } from "../../constants/system.constants";
+import { usePrevious } from "../../utils/hooks";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(33))
+    const values = (window.location.href.slice(29))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const dispatch = useDispatch();
     const listSearch = useSelector(({ search }) => search.searchList)
     const isLoading = useSelector(({ search }) => search.isLoading)
+
+    const addOrderProductReducer = useSelector(({ order }) => order.addOrderProduct)
+    const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
+    const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
+
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         dispatch(fetchSearchProduct(searchName));
         dispatch(fetchOrderProduct(user));
         dispatch(fetchUserItem(user));
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!isLoadingAddOrderProduct && prevIsLoadingAddOrderProduct) {
+            dispatch(fetchOrderProduct(user));
+        }
+    }, [isLoadingAddOrderProduct]);
 
     useEffect(() => {
         if (isLoading === true) {
@@ -53,7 +65,7 @@ const SearchList = () => {
     }, [values]);
 
 
-    const addOrderItem = async (item) => {
+    const addOrderItem = (item) => {
         if (item.status === System.STATUS_PRODUCT.HET) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
@@ -65,8 +77,8 @@ const SearchList = () => {
                     user: userCurrent,
                     orderNumber: 1
                 }
-                await dispatch(fetchAddOrderItem(params));
-                await dispatch(fetchOrderProduct(user));
+                dispatch(fetchAddOrderItem(params));
+                // dispatch(fetchOrderProduct(user));
             } catch (error) {
                 toast.error('Thêm không thành công')
             }
@@ -93,7 +105,7 @@ const SearchList = () => {
                         searchProduct(searchName)
                     }}>Search</button>
                 </div>
-                {loading ?
+                {isLoading ?
                     <div style={{ textAlign: "center", width: "100%" }}>
                         <p style={{ fontSize: "20px" }}>Loading ... </p>
                     </div>

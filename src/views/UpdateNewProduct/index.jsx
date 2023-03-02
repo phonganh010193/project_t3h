@@ -16,7 +16,7 @@ import { fetchProduct, fetchProductById } from "../Perfume/perfumeInfoSlice";
 
 const UpdateNewProduct = () => {
     const url = window.location.href;
-    const productId = (url.slice(47));
+    const productId = (url.slice(43));
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);

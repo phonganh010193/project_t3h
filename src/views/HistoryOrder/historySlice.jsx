@@ -52,9 +52,11 @@ export const fetchCancelOrderById = createAsyncThunk(
 const initialState = {
     isLoading: false,
     historyList: [],
+    historyCancelItem: null,
+    isCancelLoading: false
 }
 
-export const historyOrdertSlice = createSlice({
+export const historyOrderSlice = createSlice({
     name: 'history',
     initialState,
     reducers: {
@@ -71,9 +73,19 @@ export const historyOrdertSlice = createSlice({
         builder.addCase(fetchHistoryOrder.rejected, (state, action) => {
             state.isLoading = false;
         })
+        builder.addCase(fetchCancelOrderById.pending, (state, action) => {
+            state.isCancelLoading = true;
+        })
+        builder.addCase(fetchCancelOrderById.fulfilled, (state, action) => {
+            state.historyCancelItem = action.payload;
+            state.isCancelLoading = false;
+        })
+        builder.addCase(fetchCancelOrderById.rejected, (state, action) => {
+            state.isCancelLoading = false;
+        })
     },
 })
 
-export const { } = historyOrdertSlice.actions
+export const { } = historyOrderSlice.actions
 
-export default historyOrdertSlice.reducer;
+export default historyOrderSlice.reducer;
