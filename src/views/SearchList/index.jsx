@@ -22,11 +22,9 @@ const SearchList = () => {
     const listSearch = useSelector(({ search }) => search.searchList)
     const isLoading = useSelector(({ search }) => search.isLoading)
 
-    const addOrderProductReducer = useSelector(({ order }) => order.addOrderProduct)
     const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
     const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
 
-    const [loading, setLoading] = useState(false);
     useEffect(() => {
         dispatch(fetchSearchProduct(searchName));
         dispatch(fetchOrderProduct(user));
@@ -39,13 +37,7 @@ const SearchList = () => {
         }
     }, [isLoadingAddOrderProduct]);
 
-    useEffect(() => {
-        if (isLoading === true) {
-            setLoading(true)
-        } else {
-            setLoading(false)
-        }
-    }, [isLoading])
+   
 
     const searchProduct = async (value) => {
         if (!value) {
