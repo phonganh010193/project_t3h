@@ -14,7 +14,7 @@ import { usePrevious } from "../../utils/hooks";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(29))
+    const values = (window.location.href.slice(33))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)

@@ -56,10 +56,10 @@ const
                 <td><p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p></td>
                 <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
                 <td>
-                    <input style={{ width: "50px" }} type="number" value={number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
+                    <input style={{ width: "50px" }} type="number" value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
                         setNumber(text.target.value);
                         if (Number(text.target.value) >= product.find(el => el.id === item.id).quantity) {
-                            toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${text.target.value}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
+                            toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${itemChangeNumberOrder(item)}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
                         }
                         const value = {
                             item: {
