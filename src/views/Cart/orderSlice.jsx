@@ -31,7 +31,7 @@ export const fetchOrderProduct = createAsyncThunk(
         return keys.map(key => {
           return {
             ...response[key],
-            key,
+            keyProduct: key,
           }
         })
       } else {
@@ -80,22 +80,24 @@ export const fetchAddOrderItem = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    
+
     const findItem = orderList?.find(el => params.id === el.productId && params.user.email === el.user.email)
 
     if (findItem) {
-      await update(ref(database, "/Cart/" + findItem.key), {
-        orderNumber: parseFloat(findItem.orderNumber) + parseFloat(params.orderNumber),
-        productId: findItem.productId,
-        user: findItem.user,
-        isCheckBox: false,
-      })
-        .then(() => {
-          toast.success('Thêm vào giỏ hàng thành công!')
-        })
-        .catch(() => {
-          toast.error('Thêm vào giỏ hàng thất bại!')
-        })
+      // await update(ref(database, "/Cart/" + findItem.key), {
+      //   orderNumber: parseFloat(findItem.orderNumber) + parseFloat(params.orderNumber),
+      //   productId: findItem.productId,
+      //   user: findItem.user,
+      //   isCheckBox: false,
+      // })
+      //   .then(() => {
+      //     toast.success('Thêm vào giỏ hàng thành công!')
+      //   })
+      //   .catch(() => {
+      //     toast.error('Thêm vào giỏ hàng thất bại!')
+      //   })
+      toast.warning('Sản phẩm này đã có trong giỏ hàng!')
+
     } else {
       const ob = {
         user: params.user,

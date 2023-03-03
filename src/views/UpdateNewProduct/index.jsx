@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
+import { Button, DatePicker, Form, Input, InputNumber, Modal, Select } from "antd";
 import dayjs from "dayjs";
 import { push, ref, update } from "firebase/database";
 import moment from "moment";
@@ -26,7 +26,7 @@ const UpdateNewProduct = () => {
     const isLoading = useSelector(({ product }) => product.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const isLoadingUser = useSelector(({ user }) => user.isLoading);
-    const prevIsLoadingUser = usePrevious(isLoadingUser);
+    // const prevIsLoadingUser = usePrevious(isLoadingUser);
     const [count, setCount] = useState(0);
     const [fields, setFields] = useState([]);
     const { user } = useContext(UserContext);
@@ -91,47 +91,11 @@ const UpdateNewProduct = () => {
                     value: "",
                 },
                 {
-                    name: ['product', 'title_1'],
+                    name: ['product', 'description'],
                     value: "",
                 },
                 {
-                    name: ['product', 'title_2'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_3'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_4'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_5'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_6'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_7'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_8'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'title_9'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'image_detail_1'],
-                    value: "",
-                },
-                {
-                    name: ['product', 'image_detail_2'],
+                    name: ['product', 'quantity'],
                     value: "",
                 }
 
@@ -196,49 +160,14 @@ const UpdateNewProduct = () => {
                     value: productUpdate?.imageShow[2]?.image,
                 },
                 {
-                    name: ['product', 'title_1'],
-                    value: productUpdate?.detail_product?.title_1,
+                    name: ['product', 'description'],
+                    value: productUpdate?.description,
                 },
                 {
-                    name: ['product', 'title_2'],
-                    value: productUpdate?.detail_product?.title_2,
-                },
-                {
-                    name: ['product', 'title_3'],
-                    value: productUpdate?.title_3,
-                },
-                {
-                    name: ['product', 'title_4'],
-                    value: productUpdate?.detail_product?.title_4,
-                },
-                {
-                    name: ['product', 'title_5'],
-                    value: productUpdate?.detail_product?.title_5,
-                },
-                {
-                    name: ['product', 'title_6'],
-                    value: productUpdate?.detail_product?.title_6,
-                },
-                {
-                    name: ['product', 'title_7'],
-                    value: productUpdate?.detail_product?.title_7,
-                },
-                {
-                    name: ['product', 'title_8'],
-                    value: productUpdate?.detail_product?.title_8,
-                },
-                {
-                    name: ['product', 'title_9'],
-                    value: productUpdate?.detail_product?.title_9,
-                },
-                {
-                    name: ['product', 'image_detail_1'],
-                    value: productUpdate?.detail_product?.image_detail_1,
-                },
-                {
-                    name: ['product', 'image_detail_2'],
-                    value: productUpdate?.detail_product?.image_detail_2,
+                    name: ['product', 'quantity'],
+                    value: productUpdate?.quantity,
                 }
+
 
             ]);
         }
@@ -268,7 +197,6 @@ const UpdateNewProduct = () => {
             categoryName: productInfoReview?.categoryName,
             id: !productUpdate ? String(count) : productUpdate?.id,
             gender: productInfoReview?.gender,
-            status: productInfoReview?.status,
             dateAdd: productInfoReview?.dateAdd?.$d ? moment(productInfoReview?.dateAdd?.$d).format("YYYY-MM-DD") : "",
             bestsellers: productInfoReview?.bestsellers ? productInfoReview?.bestsellers : "",
             productName: productInfoReview?.productName,
@@ -282,19 +210,8 @@ const UpdateNewProduct = () => {
             sale_price: productInfoReview?.sale_price,
             categoryId: productInfoReview?.categoryId,
             capacity: productInfoReview?.capacity,
-            detail_product: {
-                title_1: productInfoReview?.title_1 ? productInfoReview?.title_1 : "",
-                image_detail_1: productInfoReview?.image_detail_1 ? productInfoReview?.image_detail_1 : "",
-                title_2: productInfoReview?.title_2 ? productInfoReview?.title_2 : "",
-                title_3: productInfoReview?.title_3 ? productInfoReview?.title_3 : "",
-                title_4: productInfoReview?.title_4 ? productInfoReview?.title_4 : "",
-                title_5: productInfoReview?.title_5 ? productInfoReview?.title_5 : "",
-                title_6: productInfoReview?.title_6 ? productInfoReview?.title_6 : "",
-                title_7: productInfoReview?.title_7 ? productInfoReview?.title_7 : "",
-                image_detail_2: productInfoReview?.image_detail_2 ? productInfoReview?.image_detail_2 : "",
-                title_8: productInfoReview?.title_8 ? productInfoReview?.title_8 : "",
-                title_9: productInfoReview?.title_9 ? productInfoReview?.title_9 : ""
-            }
+            description: productInfoReview?.description ? productInfoReview?.description : "",
+            quantity: productInfoReview?.quantity ? productInfoReview?.quantity : "",
         };
         if (!productUpdate) {
             await push(ref(database, "Product"), value)
@@ -414,6 +331,9 @@ const UpdateNewProduct = () => {
                                 <Select.Option value="2">Không</Select.Option>
                             </Select>
                         </Form.Item>
+
+                    </div>
+                    <div className="detail-product-info">
                         <div className="image-show">
                             <Form.Item name={['product', 'image_1']} label="Image1Url" rules={[{ required: true }]}>
                                 <Input />
@@ -425,50 +345,13 @@ const UpdateNewProduct = () => {
                                 <Input />
                             </Form.Item>
                         </div>
-                    </div>
-                    <div className="detail-product-info">
-                        <Form.Item name={['product', 'status']} label="Status" rules={[{ required: true }]}>
-                            <Select>
-                                <Select.Option value="1">Còn hàng</Select.Option>
-                                <Select.Option value="2">Sắp hết hàng</Select.Option>
-                                <Select.Option value="3">Hết hàng</Select.Option>
-                            </Select>
+                        <Form.Item name={['product', 'quantity']} label="Quantity" rules={[{ required: true }]}>
+                            <InputNumber min={1} />
                         </Form.Item>
-                        <Form.Item name={['product', 'title_1']} label="Title_1">
-                            <Input />
+                        <Form.Item name={['product', 'description']} label="Depscription">
+                            <Input.TextArea rows={10} />
                         </Form.Item>
-                        <Form.Item name={['product', 'title_2']} label="Title_2">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_3']} label="Title_3">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_4']} label="Title_4">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_5']} label="Title_5">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_6']} label="Title_6">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_7']} label="Title_7">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_8']} label="Title_8">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item name={['product', 'title_9']} label="Title_9">
-                            <Input />
-                        </Form.Item>
-                        <div className="detail-image-new-info">
-                            <Form.Item name={['product', 'image_detail_1']} label="Image Detail 1">
-                                <Input />
-                            </Form.Item>
-                            <Form.Item name={['product', 'image_detail_2']} label="Image Detail 2">
-                                <Input />
-                            </Form.Item>
-                        </div>
+
                         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                             <Button type="primary" htmlType="submit">
                                 Review Product
@@ -501,11 +384,11 @@ const UpdateNewProduct = () => {
                         <p>{productInfoReview?.productName}</p>
                         <p>{Number(productInfoReview?.price.split(" ").join('')).toLocaleString()} VND</p>
                         <p style={{ textDecoration: "line-through", color: "gray" }}>{Number(productInfoReview?.sale_price.split(" ").join('')).toLocaleString()} VND</p>
-                        {productInfoReview?.status === System.STATUS_PRODUCT.CON ?
+                        {productInfoReview?.quantity >= 10 ?
                             <p><img className="icon-status" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" /><span>Còn hàng</span></p>
-                            : productInfoReview?.status === System.STATUS_PRODUCT.SAP ?
+                            : productInfoReview?.quantity >= 1 && productInfoReview?.quantity <= 5 ?
                                 <p><img className="icon-status" src="https://cdn3d.iconscout.com/3d/premium/thumb/checkmark-2997167-2516205.png" /><span>Sắp hết hàng</span></p>
-                                : productInfoReview?.status === System.STATUS_PRODUCT.HET ?
+                                : productInfoReview?.quantity === 0 ?
                                     <p><img className="icon-status" src="https://www.citypng.com/public/uploads/preview/png-red-round-close-x-icon-31631915146jpppmdzihs.png" /><span>Hết hàng</span></p>
                                     : null
                         }
@@ -514,21 +397,7 @@ const UpdateNewProduct = () => {
                         <h5>Thông tin sản phẩm</h5>
                         <div className="info-children">
                             <p>
-                                {productInfoReview?.title_1}
-                            </p>
-                            <img style={{ width: "300px" }} src={productInfoReview?.image_detail_1} alt="" />
-                            <p>
-                                {productInfoReview?.title_2}
-                                {productInfoReview?.title_3}
-                                {productInfoReview?.title_4}
-                            </p>
-                            <img style={{ width: "300px" }} src={productInfoReview?.image_detail_2} alt="" />
-                            <p>
-                                {productInfoReview?.title_5}
-                                {productInfoReview?.title_6}
-                                {productInfoReview?.title_7}
-                                {productInfoReview?.title_8}
-                                {productInfoReview?.title_9}
+                                {productInfoReview?.description}
                             </p>
                         </div>
 

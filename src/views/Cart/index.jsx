@@ -16,6 +16,7 @@ import { Modal } from "antd";
 import { fetchUserItem } from "../../container/userSlice";
 import { useContext } from "react";
 import { UserContext } from "../../container/useContext";
+import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 
 
 const take = 5
@@ -24,6 +25,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const listCart = useSelector(({ order }) => order.orderProduct);
+    const product = useSelector(({ product }) => product.productList);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const abateList = useSelector(({ abate }) => abate.abateList);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
@@ -38,7 +40,7 @@ const Cart = () => {
     const prevDeleteLoading = usePrevious(isLoadingDelete);
 
     useEffect(() => {
-        if(!isLoadingDelete && prevDeleteLoading) {
+        if (!isLoadingDelete && prevDeleteLoading) {
             dispatch(fetchOrderProduct(user))
         }
     }, [isLoadingDelete])
@@ -65,7 +67,8 @@ const Cart = () => {
     useEffect(() => {
         dispatch(fetchOrderProduct(user));
         dispatch(fetchAbateList());
-        dispatch(fetchUserItem(user))
+        dispatch(fetchUserItem(user));
+        dispatch(fetchProduct());
     }, [dispatch, user]);
 
     useEffect(() => {
@@ -76,7 +79,7 @@ const Cart = () => {
         await dispatch(updateListCart(value));
     }
 
-    const deleteListCart =() => {
+    const deleteListCart = () => {
         if (user) {
             try {
                 dispatch(fetchDeleteOrderItem(user))
@@ -247,7 +250,12 @@ const Cart = () => {
                             <tbody className="body-cart-info">
                                 {listDataOrder ? listDataOrder?.map((item, index) => {
                                     return (
-                                        <TRtable key={item.id} item={item} updateOrder={updateOrder} user={user} />
+                                        <TRtable
+                                            key={item.id}
+                                            item={item}
+                                            updateOrder={updateOrder}
+                                            user={user} product={product}
+                                        />
                                     )
                                 }) : null}
                                 <tr>

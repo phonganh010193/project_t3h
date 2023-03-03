@@ -51,7 +51,7 @@ function HomePerfume(props) {
     };
 
     const addOrderItem = (item) => {
-        if (item.status === System.STATUS_PRODUCT.HET) {
+        if (item.quantity === 0) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
         }
@@ -69,7 +69,7 @@ function HomePerfume(props) {
         } else {
             navigate('/signin');
         }
-    }
+    };
     return (
         <div style={{ marginBottom: "30px" }}>
             <div className="seling-home-perfume">
@@ -106,7 +106,7 @@ function HomePerfume(props) {
                                         <p>{Number(el.price.split(" ").join('')).toLocaleString()} VND</p>
                                         <p>{Number(el.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                     </div>
-                                    {el.status === System.STATUS_PRODUCT.HET ?
+                                    {el.quantity === 0 ?
                                         <p style={{ color: "red", margin: "0", textAlign: "center" }}>Đã hết hàng</p>
                                         : null
                                     }
@@ -126,6 +126,7 @@ function HomePerfume(props) {
                                                     addOrderItem(el)
                                                 }}>Mua sản phẩm</button>
                                                 <button><Link to={`/perfume-detail/${el.id}`}>Xem chi tiết</Link></button>
+                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${el.id}`}>Cập nhật</Link></button> : null}
                                             </div>
                                         </div>
                                     </div>
@@ -154,6 +155,7 @@ function HomePerfume(props) {
                                                     addOrderItem(el)
                                                 }}>Mua sản phẩm</button>
                                                 <button><Link to={`/perfume-detail/${el.id}`}>Xem chi tiết</Link></button>
+                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${el.id}`}>Cập nhật</Link></button> : null}
                                             </div>
                                         </div>
                                     </div>

@@ -1,17 +1,16 @@
-import { ref, update } from "firebase/database";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { database } from "../../firebase";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useParams } from "react-router-dom";
-import { fetchAbateById, fetchRemoveAbateById } from "./abateSlice";
+import { fetchAbateById, fetchRemoveAbateById, fetchUpdateAbateById } from "./abateSlice";
 import "../../utils/styles/abate.css";
 import { System } from "../../constants/system.constants";
 import IMAGE from "../../contact";
 import { usePrevious } from "../../utils/hooks";
 import { useState } from "react";
+import { fetchProduct, updateQuantityProductByBuy } from "../Perfume/perfumeInfoSlice";
 
 const validateMessages = {
     required: '${label} is required!',
@@ -40,7 +39,17 @@ const Abate = () => {
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
+    const isLoadingUpdate = useSelector(({ abate }) => abate.isLoadingUpdate);
+    const prevIsLoadingUpdate = usePrevious(isLoadingUpdate);
     const [fields, setFields] = useState([]);
+
+    useEffect(() => {
+        if (!isLoadingUpdate && prevIsLoadingUpdate) {
+            dispatch(updateQuantityProductByBuy(orderId))
+        }
+    }, [isLoadingUpdate])
+
+
 
     useEffect(() => {
         if (!isLoading && prevIsLoading && abateDetail.status === System.STATUS.ORDERING) {
@@ -105,6 +114,7 @@ const Abate = () => {
 
     useEffect(() => {
         dispatch(fetchAbateById(orderId));
+        dispatch(fetchProduct())
     }, [dispatch, orderId]);
 
     useEffect(() => {
@@ -114,7 +124,18 @@ const Abate = () => {
 
     const onFinish = async (values) => {
         try {
-            await update(ref(database, "/Abate/" + orderId), {
+            // await update(ref(database, "/Abate/" + orderId), {
+            //     name: values.user.name,
+            //     email: values.user.email,
+            //     address: values.user.address,
+            //     phone: values.user.phone,
+            //     note: values.user.note,
+            //     pay_dilivery: values.user.pay_dilivery,
+            //     products: abateDetail?.products,
+            //     status: System.STATUS.ORDERED,
+            //     dateOrder: new Date()
+            // })
+            const value = {
                 name: values.user.name,
                 email: values.user.email,
                 address: values.user.address,
@@ -124,7 +145,8 @@ const Abate = () => {
                 products: abateDetail?.products,
                 status: System.STATUS.ORDERED,
                 dateOrder: new Date()
-            })
+            }
+            dispatch(fetchUpdateAbateById({ orderId, value }))
                 .then(() => {
                     toast.success('Order thành công!')
                     dispatch(fetchAbateById(orderId));

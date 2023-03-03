@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref, remove } from 'firebase/database';
+import { get, ref, remove, update } from 'firebase/database';
+import { toast } from 'react-toastify';
 import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
 
@@ -40,12 +41,17 @@ export const fetchHistoryOrder = createAsyncThunk(
 
 export const fetchCancelOrderById = createAsyncThunk(
     'history/fetchCancelOrderById',
-    async (orderId, thunkAPI) => {
-        return await remove(ref(database, "/Abate/" + orderId)).then((snapshot) => {
-            return snapshot;
-        }).catch((error) => {
-            console.error(error);
-        });
+    async (params, thunkAPI) => {
+        return await remove(ref(database, "/Abate/" + params.key))
+            .then((snapshot) => {
+                if (snapshot) {
+                    return snapshot.val();
+                } else {
+                    console.log("No data available");
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
     }
 );
 

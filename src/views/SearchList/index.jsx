@@ -37,7 +37,7 @@ const SearchList = () => {
         }
     }, [isLoadingAddOrderProduct]);
 
-   
+
 
     const searchProduct = async (value) => {
         if (!value) {
@@ -58,7 +58,7 @@ const SearchList = () => {
 
 
     const addOrderItem = (item) => {
-        if (item.status === System.STATUS_PRODUCT.HET) {
+        if (item.quantity === 0) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
         }
@@ -124,7 +124,7 @@ const SearchList = () => {
                                             <p>{Number(item.price.split(" ").join('')).toLocaleString()} VND</p>
                                             <p>{Number(item.sale_price.split(" ").join('')).toLocaleString()} VND</p>
                                         </div>
-                                        {item.status === System.STATUS_PRODUCT.HET ?
+                                        {item.quantity === 0 ?
                                             <p style={{ color: "red", margin: "0" }}>Đã hết hàng</p>
                                             : null
                                         }

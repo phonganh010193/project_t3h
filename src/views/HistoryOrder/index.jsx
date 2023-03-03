@@ -11,6 +11,8 @@ import { Modal } from "antd";
 import { useCallback } from "react";
 import { UserContext } from "../../container/useContext";
 import { usePrevious } from "../../utils/hooks";
+import { updateQuantityProductByCancel } from "../Perfume/perfumeInfoSlice";
+import { fetchOrderProduct } from "../Cart/orderSlice";
 
 const HistoryOrder = () => {
     const dispatch = useDispatch();
@@ -20,21 +22,25 @@ const HistoryOrder = () => {
     const prevCancelLoading = usePrevious(isCancelLoading);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [key, setKey] = useState('');
-
+    const [itemCancel, setitemCancel] = useState(null);
     useEffect(() => {
-        if(!isCancelLoading && prevCancelLoading) {
+        if (!isCancelLoading && prevCancelLoading) {
             dispatch(fetchHistoryOrder(user));
+            dispatch(updateQuantityProductByCancel(itemCancel))
         }
     }, [isCancelLoading])
 
     useEffect(() => {
         dispatch(fetchHistoryOrder(user));
-    }, [dispatch])
+        dispatch(fetchOrderProduct(user));
+    }, [dispatch, user])
 
-    const handleOk = useCallback((key) => {
+    const handleOk = useCallback((item) => {
+        console.log("item", item)
         try {
-            dispatch(fetchCancelOrderById(key));
-            toast.success('Hủy đơn hàng thành công')
+            dispatch(fetchCancelOrderById(item));
+            toast.success('Hủy đơn hàng thành công');
+            setitemCancel(item)
         } catch (error) {
             console.log(error);
             toast.error('Hủy không thành công');
@@ -59,7 +65,7 @@ const HistoryOrder = () => {
                                         <button
                                             className="btn-show-confirm-cancel"
                                             onClick={() => {
-                                                setKey(item.key)
+                                                setKey(item)
                                                 setIsModalOpen(true)
                                             }}
                                         >Huỷ đơn hàng</button>

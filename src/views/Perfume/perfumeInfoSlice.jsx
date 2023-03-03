@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { get, ref, update } from 'firebase/database';
 import { toast } from 'react-toastify';
+import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
 
 
@@ -75,6 +76,81 @@ export const fetchProductById = createAsyncThunk(
   }
 );
 
+export const updateQuantityProductByBuy = createAsyncThunk(
+  'product/updateQuantityProduct',
+  async (abateId, thunkAPI) => {
+    const abateList = await get(ref(database, "Abate")).then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val()[abateId];
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    const product = await get(dataProductRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    if (abateList && product) {
+      product?.forEach(el => {
+        abateList?.products?.forEach(item => {
+          if (el.id === item.id) {
+            update(ref(database, "/Product/" + item.keyProduct), {
+              ...el,
+              quantity: el.quantity - item.orderNumber
+            })
+              .then((res) => {
+                return res;
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          }
+        })
+      })
+    }
+  }
+);
+export const updateQuantityProductByCancel = createAsyncThunk(
+  'product/updateQuantityProductByCancel',
+  async (params, thunkAPI) => {
+    const product = await get(dataProductRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    if (params && product) {
+      product?.forEach(el => {
+        params?.products?.forEach(item => {
+          if (el.id === item.id) {
+            update(ref(database, "/Product/" + item.keyProduct), {
+              ...el,
+              quantity: el.quantity + Number(item.orderNumber)
+            })
+              .then((res) => {
+                // return res;
+                toast.success('cong thanh cong')
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          }
+        })
+      })
+    }
+  }
+);
+
 export const fetchUpdateProductById = createAsyncThunk(
   'product/fetchUpdateProductById',
   async (params, thunkAPI) => {
@@ -92,7 +168,9 @@ const initialState = {
   productList: [],
   productUpdate: null,
   newAdd: [],
-  bestSellers: []
+  bestSellers: [],
+  productAfterUpdate: null,
+  isLoadingAfterUpdate: false
 }
 
 export const productSlice = createSlice({
@@ -140,6 +218,16 @@ export const productSlice = createSlice({
     })
     builder.addCase(fetchBestSellersProduct.rejected, (state, action) => {
       state.isLoading = false;
+    })
+    builder.addCase(updateQuantityProductByBuy.pending, (state, action) => {
+      state.isLoadingAfterUpdate = true;
+    })
+    builder.addCase(updateQuantityProductByBuy.fulfilled, (state, action) => {
+      state.productAfterUpdate = action.payload;
+      state.isLoadingAfterUpdate = false;
+    })
+    builder.addCase(updateQuantityProductByBuy.rejected, (state, action) => {
+      state.isLoadingAfterUpdate = false;
     })
   },
 })

@@ -15,6 +15,7 @@ import PerfumeEvaluate from "./component/perfumeEvaluate";
 import GuideShopping from "./component/guideShopping";
 import { System } from "../../constants/system.constants";
 import { usePrevious } from "../../utils/hooks";
+import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 
 
 const Detail = () => {
@@ -22,7 +23,8 @@ const Detail = () => {
     const navigate = useNavigate();
     const { productId } = useParams();
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({ user }) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent);
+    const product = useSelector(({ product }) => product.productList);
     const detailList = useSelector(({ detail }) => detail.productListDetail);
     const commentList = useSelector(({ detail }) => detail.commentList);
     const [number, setNumber] = useState("");
@@ -43,6 +45,7 @@ const Detail = () => {
     useEffect(() => {
         dispatch(fetchProductDetail(productId));
         dispatch(fetchOrderProduct(user));
+        dispatch(fetchProduct());
         dispatch(fetchUserItem(user));
         dispatch(fetchCommentListByUser(productId));
     }, [dispatch, productId]);
@@ -55,7 +58,7 @@ const Detail = () => {
     }, []);
 
     const addOrderItem = (item) => {
-        if (item.status === System.STATUS_PRODUCT.HET) {
+        if (item.quantity === 0) {
             toast.error('Sản phẩm đã hết. Vui lòng quay lại sau!')
             return;
         }
@@ -112,7 +115,12 @@ const Detail = () => {
         },
     ];
 
-
+    const itemChangeNumberOrder = (item) => {
+        const finfItem = product.find(el => el.id === item.id);
+        if (finfItem) {
+            return finfItem?.quantity;
+        }
+    }
 
     return (
         <LayoutCart>
@@ -152,19 +160,22 @@ const Detail = () => {
                                 <p>{detailList?.capacity}</p>
                                 <p>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
                             </div>
-                            {detailList?.status === System.STATUS_PRODUCT.CON ?
+                            {detailList?.quantity >= 10 ?
                                 <p><img className="icon-status" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" /><span>Còn hàng</span></p>
-                                : detailList?.status === System.STATUS_PRODUCT.SAP ?
+                                : detailList?.quantity >= 1 && detailList?.quantity <= 5 ?
                                     <p><img className="icon-status" src="https://cdn3d.iconscout.com/3d/premium/thumb/checkmark-2997167-2516205.png" /><span>Sắp hết hàng</span></p>
-                                    : detailList?.status === System.STATUS_PRODUCT.HET ?
+                                    : detailList?.quantity === 0 ?
                                         <p><img className="icon-status" src="https://www.citypng.com/public/uploads/preview/png-red-round-close-x-icon-31631915146jpppmdzihs.png" /><span>Hết hàng</span></p>
                                         : null
                             }
                             <div className="amount">
                                 <h6>Số Lượng</h6>
                                 <div className="amount-form">
-                                    <input type="number" value={number} className="text-center" min="1" max="1000" onChange={(event) => {
+                                    <input type="number" value={number} className="text-center" min="1" max={itemChangeNumberOrder(detailList)} onChange={(event) => {
                                         setNumber(event.target.value);
+                                        if (Number(event.target.value) >= product.find(el => el.id === detailList.id).quantity) {
+                                            toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${event.target.value}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
+                                        }
                                     }} />
                                     <button className="cart-shop" onClick={() => {
                                         addOrderItem(detailList);
