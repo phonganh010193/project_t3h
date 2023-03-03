@@ -160,6 +160,7 @@ const Detail = () => {
                                 <p>{detailList?.capacity}</p>
                                 <p>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
                             </div>
+                            <p>{detailList?.quantity !== 0 && <span>Số lượng còn lại: {detailList?.quantity}</span>}</p>
                             {detailList?.quantity >= 10 ?
                                 <p><img className="icon-status" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" /><span>Còn hàng</span></p>
                                 : detailList?.quantity >= 1 && detailList?.quantity <= 5 ?
@@ -173,7 +174,7 @@ const Detail = () => {
                                 <div className="amount-form">
                                     <input type="number" value={number >= itemChangeNumberOrder(detailList) ? itemChangeNumberOrder(detailList) : number} className="text-center" min="1" max={itemChangeNumberOrder(detailList)} onChange={(event) => {
                                         setNumber(event.target.value);
-                                        if (Number(event.target.value) >= product.find(el => el.id === detailList.id).quantity) {
+                                        if (Number(event.target.value) > product.find(el => el.id === detailList.id).quantity) {
                                             toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${itemChangeNumberOrder(detailList)}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
                                         }
                                     }} />
