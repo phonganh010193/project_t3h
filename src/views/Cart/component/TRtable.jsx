@@ -72,7 +72,7 @@ const
                         updateOrder(value);
                     }} />
                 </td>
-                <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(item.orderNumber)).toLocaleString()} VND</td>
+                <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(Number(number) > product.find(el => el.id === item.id).quantity ? product.find(el => el.id === item.id).quantity : item.orderNumber)).toLocaleString()} VND</td>
                 <td>
                     <img
                         className="image-delete"

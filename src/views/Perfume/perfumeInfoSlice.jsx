@@ -138,8 +138,7 @@ export const updateQuantityProductByCancel = createAsyncThunk(
               quantity: el.quantity + Number(item.orderNumber)
             })
               .then((res) => {
-                // return res;
-                toast.success('cong thanh cong')
+                return res;
               })
               .catch((error) => {
                 console.log(error)
