@@ -58,13 +58,13 @@ const
                 <td>
                     <input style={{ width: "50px" }} type="number" value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
                         setNumber(text.target.value);
-                        if (Number(text.target.value) > product.find(el => el.id === item.id).quantity) {
+                        if (Number(text.target.value) >= itemChangeNumberOrder(item)) {
                             toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${itemChangeNumberOrder(item)}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
                         }
                         const value = {
                             item: {
                                 ...item,
-                                orderNumber: text.target.value,
+                                orderNumber: Number(text.target.value) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : text.target.value,
                                 isChanged: true,
                                 isCheckBox: isCheckBox
                             },
@@ -72,7 +72,7 @@ const
                         updateOrder(value);
                     }} />
                 </td>
-                <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(Number(number) > product.find(el => el.id === item.id).quantity ? product.find(el => el.id === item.id).quantity : item.orderNumber)).toLocaleString()} VND</td>
+                <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(Number(number) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : item.orderNumber)).toLocaleString()} VND</td>
                 <td>
                     <img
                         className="image-delete"
