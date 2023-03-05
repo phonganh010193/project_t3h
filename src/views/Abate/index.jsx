@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +11,8 @@ import IMAGE from "../../contact";
 import { usePrevious } from "../../utils/hooks";
 import { useState } from "react";
 import { fetchProduct, updateQuantityProductByBuy } from "../Perfume/perfumeInfoSlice";
+import { fetchOrderProduct } from "../Cart/orderSlice";
+import { UserContext } from "../../container/useContext";
 
 const validateMessages = {
     required: '${label} is required!',
@@ -114,7 +116,7 @@ const Abate = () => {
 
     useEffect(() => {
         dispatch(fetchAbateById(orderId));
-        dispatch(fetchProduct())
+        dispatch(fetchProduct());
     }, [dispatch, orderId]);
 
     useEffect(() => {

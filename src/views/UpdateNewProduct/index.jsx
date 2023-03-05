@@ -16,7 +16,7 @@ import { fetchProduct, fetchProductById } from "../Perfume/perfumeInfoSlice";
 
 const UpdateNewProduct = () => {
     const url = window.location.href;
-    const productId = (url.slice(47));
+    const productId = (url.slice(43));
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,8 +25,6 @@ const UpdateNewProduct = () => {
     const productUpdate = useSelector(({ product }) => product.productUpdate);
     const isLoading = useSelector(({ product }) => product.isLoading);
     const prevIsLoading = usePrevious(isLoading);
-    const isLoadingUser = useSelector(({ user }) => user.isLoading);
-    // const prevIsLoadingUser = usePrevious(isLoadingUser);
     const [count, setCount] = useState(0);
     const [fields, setFields] = useState([]);
     const { user } = useContext(UserContext);

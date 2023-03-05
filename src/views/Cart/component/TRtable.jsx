@@ -34,8 +34,6 @@ const
                 return finfItem?.quantity;
             }
         }
-
-
         return (
             <tr key={item.id}>
                 <td><input type="checkbox" checked={isCheckBox} onChange={() => {
@@ -56,7 +54,7 @@ const
                 <td><p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p></td>
                 <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
                 <td>
-                    <input style={{ width: "50px" }} type="number" value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
+                    <input disabled={itemChangeNumberOrder(item) === 0 ? true : false} style={{ width: "50px" }} type="number" value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
                         setNumber(text.target.value);
                         if (Number(text.target.value) >= itemChangeNumberOrder(item)) {
                             toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${itemChangeNumberOrder(item)}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
@@ -71,6 +69,7 @@ const
                         };
                         updateOrder(value);
                     }} />
+                    <p style={{color: "red", fontSize: "13px"}}>{itemChangeNumberOrder(item) === 0 ? "Hết hàng" : null}</p>
                 </td>
                 <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(Number(number) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : item.orderNumber)).toLocaleString()} VND</td>
                 <td>

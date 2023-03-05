@@ -98,7 +98,7 @@ const Cart = () => {
 
     const BuyListAbate = async () => {
         const products = listCart.filter(el => {
-            return el.isCheckBox;
+            return el.isCheckBox && el.quantity !==0;
         });
         const object = {
             name: "",
@@ -304,7 +304,7 @@ const Cart = () => {
                         <table className="table table-bordered" style={{ width: "40%", marginTop: "10px" }}>
                             <tbody>
                                 <td>Tổng tiền thanh toán</td>
-                                <td>{listCart.filter(el => el.isCheckBox).reduce(
+                                <td>{listCart.filter(el => el.isCheckBox && el.quantity !== 0).reduce(
                                     (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
                                     0
                                 ).toLocaleString()} VND</td>
