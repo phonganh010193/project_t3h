@@ -216,19 +216,19 @@ const UpdateNewProduct = () => {
         if (!productUpdate) {
             await push(ref(database, "Product"), value)
                 .then((res) => {
-                    toast.success('Thêm sản phẩm thành công')
+                    toast.success('Thêm sản phẩm thành công');
                 })
                 .catch((error) => {
-                    toast.error('Thêm sản phẩm thất bại')
+                    toast.error('Thêm sản phẩm thất bại');
                 })
             await setIsModalOpen(false);
         } else {
             await update(ref(database, "/Product/" + productUpdate.key), value)
                 .then((res) => {
-                    toast.success('Cập nhật thành công')
+                    toast.success('Cập nhật thành công');
                 })
                 .catch((error) => {
-                    toast.error('Cập nhật không thành công')
+                    toast.error('Cập nhật không thành công');
                 })
             await setIsModalOpen(false);
         }
@@ -236,7 +236,7 @@ const UpdateNewProduct = () => {
     };
 
     const handleCancel = () => {
-        setCount(count - 1)
+        setCount(count - 1);
         setIsModalOpen(false);
     };
     const validateMessages = {

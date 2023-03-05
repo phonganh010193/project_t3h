@@ -164,6 +164,7 @@ const HeaderRegister = () => {
                 }}>Cập nhật sản phẩm mới</li>
                 : null
             }
+            
             <li onClick={() => {
                 navigate('/abate')
             }}>Lịch sử mua hàng</li>
@@ -301,14 +302,14 @@ const HeaderRegister = () => {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
-            ...getColumnSearchProps('address'),
+            ...getColumnSearchProps('email'),
         },
         {
             title: 'Vai Trò',
             dataIndex: 'roles',
             key: 'roles',
             width: '20%',
-            ...getColumnSearchProps('age'),
+            // ...getColumnSearchProps('roles'),
         },
     ];
 

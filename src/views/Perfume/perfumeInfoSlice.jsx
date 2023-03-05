@@ -11,7 +11,15 @@ export const fetchProduct = createAsyncThunk(
   async (userId, thunkAPI) => {
     return get(dataProductRef).then((snapshot) => {
       if (snapshot.exists()) {
-        return Object.values(snapshot.val());
+        // return Object.values(snapshot.val());
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        });
       } else {
         console.log("No data available");
       }
