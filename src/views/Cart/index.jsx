@@ -25,6 +25,9 @@ const Cart = () => {
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const listCart = useSelector(({ order }) => order.orderProduct);
+    const isLoadingCarlList = useSelector(({ order }) => order.isLoading);
+    const prevIsLoadingCartList = usePrevious(isLoadingCarlList);
+    console.log('listcart', listCart);
     const product = useSelector(({ product }) => product.productList);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const abateList = useSelector(({ abate }) => abate.abateList);
@@ -39,6 +42,20 @@ const Cart = () => {
     const isLoadingDelete = useSelector(({ order }) => order.isLoadingDelete);
     const prevDeleteLoading = usePrevious(isLoadingDelete);
 
+    useEffect(() => {
+        if(!isLoadingCarlList && prevIsLoadingCartList) {
+            listCart.forEach(el => {
+                if( el.quantity === 0) {
+                    update(ref(database, "/Cart/" + el.key), {
+                        user: el.user,
+                        productId: el.productId,
+                        orderNumber: el.orderNumber,
+                        isCheckBox: false
+                    })
+                }
+            })
+        }
+    }, [isLoadingCarlList])
     useEffect(() => {
         if (!isLoadingDelete && prevDeleteLoading) {
             dispatch(fetchOrderProduct(user))
