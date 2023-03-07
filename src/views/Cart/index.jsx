@@ -43,9 +43,9 @@ const Cart = () => {
     const prevDeleteLoading = usePrevious(isLoadingDelete);
 
     useEffect(() => {
-        if(!isLoadingCarlList && prevIsLoadingCartList) {
+        if (!isLoadingCarlList && prevIsLoadingCartList) {
             listCart.forEach(el => {
-                if( el.quantity === 0) {
+                if (el.quantity === 0) {
                     update(ref(database, "/Cart/" + el.key), {
                         user: el.user,
                         productId: el.productId,
@@ -115,7 +115,7 @@ const Cart = () => {
 
     const BuyListAbate = async () => {
         const products = listCart.filter(el => {
-            return el.isCheckBox && el.quantity !==0;
+            return el.isCheckBox && el.quantity !== 0;
         });
         const object = {
             name: "",

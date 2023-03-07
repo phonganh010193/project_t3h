@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { System } from "../../../constants/system.constants";
 import { ref, update } from "firebase/database";
 import { database } from "../../../firebase";
+import { fetchRenraku } from "../../Renraku/renrakuSlice";
 
 
 const layout = {
@@ -39,17 +40,28 @@ const HeaderRegister = () => {
     const { user, fetchSignOut } = useContext(UserContext);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const userCurrent = useSelector(({ user }) => user.userCurrent)
-    const userList = useSelector(({ user }) => user.userList)
+    const userCurrent = useSelector(({ user }) => user.userCurrent);
+    const listRenraku = useSelector(({ renraku }) => renraku.renrakuList);
+    const isLoadingRenraku = useSelector(({ renraku }) => renraku.isLoading);
+    const prevIsLoadingRenraku = usePrevious(isLoadingRenraku);
+
+    const userList = useSelector(({ user }) => user.userList);
     const isLoading = useSelector(({ user }) => user.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const [open, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [fields, setFields] = useState(null)
-    const [isModalOpenByRoles, setIsModalOpenByRoles] = useState(false)
+    const [fields, setFields] = useState(null);
+    const [isModalOpenByRoles, setIsModalOpenByRoles] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+    const [numberRenraku, setNumberRenraku] = useState(null);
+
+    useEffect(() => {
+        if (!isLoadingRenraku && prevIsLoadingRenraku) {
+            setNumberRenraku(listRenraku?.filter(el => el.status !== "complete")?.length)
+        }
+    }, [isLoadingRenraku, listRenraku])
 
     const handleOk = () => {
         setIsModalOpen(false);
@@ -95,10 +107,13 @@ const HeaderRegister = () => {
                             values: event.target.value
                         })
                     }}
+                    defaultValue={item.roles === System.ROLESUSER.MEMBER ? "B" :
+                        item.roles === System.ROLESUSER.USER ? "C" : "A"
+                    }
                 >
                     <option value="A">Admin</option>
-                    <option value="B" selected={item.roles === System.ROLESUSER.MEMBER ? true : false}>Member</option>
-                    <option value="C" selected={item.roles === System.ROLESUSER.USER ? true : false}>User</option>
+                    <option value="B">Member</option>
+                    <option value="C">User</option>
                 </select>,
             email: item.email,
         }
@@ -135,9 +150,12 @@ const HeaderRegister = () => {
     useEffect(() => {
         if (user) {
             dispatch(fetchUserItem(user))
-            dispatch(fetchUser())
+            dispatch(fetchUser());
         }
     }, [user, dispatch])
+    useEffect(() => {
+        dispatch(fetchRenraku());
+    }, [dispatch])
 
 
     const onVisibleChange = (newOpen) => {
@@ -152,8 +170,8 @@ const HeaderRegister = () => {
             }}>My Account</li>
             {userCurrent?.roles === System.ROLESUSER.ADMIN ?
                 <li onClick={() => {
-                    setIsModalOpenByRoles(true)
-                    setOpen(false)
+                    setIsModalOpenByRoles(true);
+                    setOpen(false);
                 }}>Vai Trò</li>
                 : null
             }
@@ -164,7 +182,15 @@ const HeaderRegister = () => {
                 }}>Cập nhật sản phẩm mới</li>
                 : null
             }
-            
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                userCurrent?.roles === System.ROLESUSER.MEMBER ?
+                <li onClick={() => {
+                    navigate('/renraku-by-user');
+                    setOpen(false);
+                }}>Liên hệ {numberRenraku ? <span style={{ color: "red" }}>({numberRenraku})</span> : null}</li>
+                : null
+            }
+
             <li onClick={() => {
                 navigate('/abate')
             }}>Lịch sử mua hàng</li>
@@ -313,6 +339,8 @@ const HeaderRegister = () => {
         },
     ];
 
+
+
     return (
         <div className="header-register">
             <div className="container header-user-cont">
@@ -329,7 +357,10 @@ const HeaderRegister = () => {
                                 <span className="gx-avatar-name" style={{ marginLeft: "5px", fontWeight: "bold" }}>
                                     {userCurrent?.email === user?.email ? userCurrent?.name : user.email}
                                     <i className="icon icon-chevron-down gx-fs-xxs gx-ml-2" />
+
                                 </span>
+                                {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                                    userCurrent?.roles === System.ROLESUSER.MEMBER ? <div>{numberRenraku ? <span className="renraku-number-icon">!</span> : null}</div> : null}
                             </Popover>
                         </>
                         :
@@ -430,7 +461,13 @@ const HeaderRegister = () => {
                 footer={false}
                 width={1000}
             >
-                <Table columns={columns} dataSource={data} />;
+                <Table
+                    columns={columns}
+                    dataSource={data}
+                    pagination={{
+                        pageSize: 10,
+                    }}
+                />;
             </Modal>
 
         </div>

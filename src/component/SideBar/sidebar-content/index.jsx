@@ -6,6 +6,8 @@ import { useRef } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { System } from "../../../constants/system.constants";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const sliderSettings = {
     dots: false,
@@ -20,9 +22,16 @@ const sliderSettings = {
 function SidebarContent(props) {
     const { listShowProduct, checkShow } = props;
     const navigate = useNavigate();
-    const listShowProduct_1 = listShowProduct.slice(0, 4);
-    const listShowProduct_2 = listShowProduct.slice(4, 8);
-    const listShowProduct_3 = listShowProduct.slice(8, 12);
+    const [listShowProduct_1, setListShowProduct_1] = useState(null)
+    const [listShowProduct_2, setListShowProduct_2] = useState(null)
+    const [listShowProduct_3, setListShowProduct_3] = useState(null)
+    useEffect(() => {
+        if (listShowProduct) {
+            setListShowProduct_1(listShowProduct?.slice(0, 4));
+            setListShowProduct_2(listShowProduct?.slice(4, 8));
+            setListShowProduct_3(listShowProduct?.slice(8, 12));
+        }
+    }, [listShowProduct])
     const slideRef = useRef();
 
     const goPrev = () => {

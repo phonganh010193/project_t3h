@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import Layout from "../../component/Layout"
-import { fetchProduct } from "../Perfume/perfumeInfoSlice";
+import { fetchProductMen, fetchProductWommen } from "../Perfume/perfumeInfoSlice";
 import HomeImageInfo from "./component/HomeImageInfo";
 import HomePerfume from "./component/HomePerfume";
 import "../../utils/styles/homepage.css";
@@ -14,13 +14,14 @@ import { fetchUserItem } from "../../container/userSlice";
 
 const HomePage = () => {
     const dispatch = useDispatch();
-    const product = useSelector(({ product }) => product.productList)
+    const productMen = useSelector(({ product }) => product.productMen);
+    const productWomen = useSelector(({ product }) => product.productWommen);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const { user } = useContext(UserContext);
-    const productMen = product.filter(el => el.gender === "1");
-    const productWomen = product.filter(el => el.gender === "2");
+
     useEffect(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProductMen());
+        dispatch(fetchProductWommen());
         dispatch(fetchOrderProduct(user))
         dispatch(fetchUserItem(user));
     }, [dispatch, user])

@@ -34,7 +34,7 @@ const Renraku = () => {
         console.log('values', values);
         await push(ref(database, "Renraku"), {
             ...values,
-            user: user.email
+            status: "new"
         })
             .then(() => {
                 toast.success('Gửi liên hệ thành công')
@@ -50,6 +50,10 @@ const Renraku = () => {
             },
             {
                 name: ['renraku', 'email'],
+                value: ''
+            },
+            {
+                name: ['renraku', 'phone'],
                 value: ''
             },
             {
@@ -126,6 +130,17 @@ const Renraku = () => {
                                 rules={[
                                     {
                                         type: 'email',
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                name={['renraku', 'phone']}
+                                label="PhoneNumber"
+                                rules={[
+                                    {
+                                        required: true
                                     },
                                 ]}
                             >

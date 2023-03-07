@@ -8,6 +8,19 @@
     list-style: none;
 }
 
+.renraku-number-icon {
+    background-color: red;
+    width: 14px !important;
+    height: 14px;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 10px;
+}
+
 .gx-user-popover li:hover {
     background-color: #2d8356;
 }

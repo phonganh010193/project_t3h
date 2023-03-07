@@ -18,7 +18,7 @@ import { Modal } from "antd";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(33))
+    const values = (window.location.href.slice(29))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
@@ -32,12 +32,12 @@ const SearchList = () => {
     const [deleteItem, setDeleteItem] = useState(null);
     const handleOk = () => {
         remove(ref(database, "/Product/" + deleteItem.key))
-        .then(() => {
-            toast.success('Xóa sản phẩm thành công!')
-        })
-        .catch((error) => {
-            toast.error('Xóa sản phẩm thất bại!')
-        })
+            .then(() => {
+                toast.success('Xóa sản phẩm thành công!')
+            })
+            .catch((error) => {
+                toast.error('Xóa sản phẩm thất bại!')
+            })
         dispatch(fetchProduct());
         setIsModalOpen(false);
     };
@@ -135,7 +135,7 @@ const SearchList = () => {
                                                     }}>Mua sản phẩm</button>
                                                     <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
                                                     {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${item.id}`}>Cập nhật</Link></button> : null}
-                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button  onClick={() => {
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button onClick={() => {
                                                         setIsModalOpen(true);
                                                         setDeleteItem(item);
                                                     }}>Xóa sản phẩm</button> : null}
@@ -160,10 +160,10 @@ const SearchList = () => {
                     </div>
                 }
             </div>
-            <Modal 
-                title={<h5 style={{color: "red"}}>Bạn có chắc chắn muốn xóa sản phẩm này?</h5>}
-                open={isModalOpen} 
-                onOk={handleOk} 
+            <Modal
+                title={<h5 style={{ color: "red" }}>Bạn có chắc chắn muốn xóa sản phẩm này?</h5>}
+                open={isModalOpen}
+                onOk={handleOk}
                 onCancel={handleCancel}
                 width={800}
                 okText="Xóa sản phẩm"

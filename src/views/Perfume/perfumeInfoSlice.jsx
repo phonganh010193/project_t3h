@@ -28,6 +28,52 @@ export const fetchProduct = createAsyncThunk(
     });
   }
 );
+export const fetchProductMen = createAsyncThunk(
+  'product/fetchProductMen',
+  async (userId, thunkAPI) => {
+    const product = await get(dataProductRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        // return Object.values(snapshot.val());
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        });
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    return product.filter(el => el.gender === "1");
+  }
+);
+export const fetchProductWommen = createAsyncThunk(
+  'product/fetchProductWommen',
+  async (userId, thunkAPI) => {
+    const product = await get(dataProductRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        // return Object.values(snapshot.val());
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        });
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    return product.filter(el => el.gender === "2");
+  }
+);
 export const fetchNewAddProduct = createAsyncThunk(
   'product/fetchNewAddProduct',
   async (userId, thunkAPI) => {
@@ -57,7 +103,9 @@ export const fetchBestSellersProduct = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
-    return product.filter(el => el.bestsellers === "1");
+    return product.sort(function (a, b) {
+      return b.bestsellers - a.bestsellers;
+    });
   }
 )
 export const fetchProductById = createAsyncThunk(
@@ -111,7 +159,8 @@ export const updateQuantityProductByBuy = createAsyncThunk(
           if (el.id === item.id) {
             update(ref(database, "/Product/" + item.keyProduct), {
               ...el,
-              quantity: el.quantity - item.orderNumber
+              quantity: el.quantity - item.orderNumber,
+              bestsellers: el.bestsellers + 1
             })
               .then((res) => {
                 return res;
@@ -143,7 +192,8 @@ export const updateQuantityProductByCancel = createAsyncThunk(
           if (el.id === item.id) {
             update(ref(database, "/Product/" + item.keyProduct), {
               ...el,
-              quantity: el.quantity + Number(item.orderNumber)
+              quantity: el.quantity + Number(item.orderNumber),
+              bestsellers: el.bestsellers - 1
             })
               .then((res) => {
                 return res;
@@ -174,6 +224,10 @@ const initialState = {
   isLoading: false,
   productList: [],
   productUpdate: null,
+  productMen: null,
+  isLoadingMen: false,
+  productWommen: null,
+  isLoadingWommen: false,
   newAdd: [],
   bestSellers: [],
   productAfterUpdate: null,
@@ -195,6 +249,26 @@ export const productSlice = createSlice({
     })
     builder.addCase(fetchProduct.rejected, (state, action) => {
       state.isLoading = false;
+    })
+    builder.addCase(fetchProductMen.pending, (state, action) => {
+      state.isLoadingMen = true;
+    })
+    builder.addCase(fetchProductMen.fulfilled, (state, action) => {
+      state.productMen = action.payload;
+      state.isLoadingMen = false;
+    })
+    builder.addCase(fetchProductMen.rejected, (state, action) => {
+      state.isLoadingMen = false;
+    })
+    builder.addCase(fetchProductWommen.pending, (state, action) => {
+      state.isLoadingWommen = true;
+    })
+    builder.addCase(fetchProductWommen.fulfilled, (state, action) => {
+      state.productWommen = action.payload;
+      state.isLoadingWommen = false;
+    })
+    builder.addCase(fetchProductWommen.rejected, (state, action) => {
+      state.isLoadingWommen = false;
     })
     builder.addCase(fetchProductById.pending, (state, action) => {
       state.isLoading = true;

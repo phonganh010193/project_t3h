@@ -33,23 +33,30 @@ function HomePerfume(props) {
     const { product, gender, userCurrent } = props;
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
-
-    const product1 = product.slice(0, 3);
-    const product2 = product.slice(3, 6);
-    const product3 = product.slice(6, 9);
+    const [product1, setProduct1] = useState(null);
+    const [product2, setProduct2] = useState(null);
+    const [product3, setProduct3] = useState(null);
     const slideRef = useRef();
     const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
     const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [deleteItem, setDeleteItem] = useState(null);
+
+    useEffect(() => {
+        if (product) {
+            setProduct1(product?.slice(0, 3));
+            setProduct2(product?.slice(3, 6));
+            setProduct3(product?.slice(6, 9))
+        }
+    }, [product])
     const handleOk = () => {
         remove(ref(database, "/Product/" + deleteItem.key))
-        .then(() => {
-            toast.success('Xóa sản phẩm thành công!')
-        })
-        .catch((error) => {
-            toast.error('Xóa sản phẩm thất bại!')
-        })
+            .then(() => {
+                toast.success('Xóa sản phẩm thành công!')
+            })
+            .catch((error) => {
+                toast.error('Xóa sản phẩm thất bại!')
+            })
         dispatch(fetchProduct());
         setIsModalOpen(false);
     };
@@ -118,7 +125,7 @@ function HomePerfume(props) {
                                                 }}>Mua sản phẩm</button>
                                                 <button><Link to={`/perfume-detail/${el.id}`}>Xem chi tiết</Link></button>
                                                 {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${el.id}`}>Cập nhật</Link></button> : null}
-                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button  onClick={() => {
+                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button onClick={() => {
                                                     setIsModalOpen(true);
                                                     setDeleteItem(el);
                                                 }}>Xóa sản phẩm</button> : null}
@@ -151,7 +158,7 @@ function HomePerfume(props) {
                                                 }}>Mua sản phẩm</button>
                                                 <button><Link to={`/perfume-detail/${el.id}`}>Xem chi tiết</Link></button>
                                                 {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${el.id}`}>Cập nhật</Link></button> : null}
-                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button  onClick={() => {
+                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button onClick={() => {
                                                     setIsModalOpen(true);
                                                     setDeleteItem(el);
                                                 }}>Xóa sản phẩm</button> : null}
@@ -184,7 +191,7 @@ function HomePerfume(props) {
                                                 }}>Mua sản phẩm</button>
                                                 <button><Link to={`/perfume-detail/${el.id}`}>Xem chi tiết</Link></button>
                                                 {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${el.id}`}>Cập nhật</Link></button> : null}
-                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button  onClick={() => {
+                                                {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button onClick={() => {
                                                     setIsModalOpen(true);
                                                     setDeleteItem(el);
                                                 }}>Xóa sản phẩm</button> : null}
@@ -210,10 +217,10 @@ function HomePerfume(props) {
             <div className="btn-see-all">
                 <button className="btn-see-all"><Link to={`perfume/${gender === System.GENDER.WOMMEN ? 2 : 1}`}>Xem Tất Cả</Link></button>
             </div>
-            <Modal 
-                title={<h5 style={{color: "red"}}>Bạn có chắc chắn muốn xóa sản phẩm này?</h5>}
-                open={isModalOpen} 
-                onOk={handleOk} 
+            <Modal
+                title={<h5 style={{ color: "red" }}>Bạn có chắc chắn muốn xóa sản phẩm này?</h5>}
+                open={isModalOpen}
+                onOk={handleOk}
                 onCancel={handleCancel}
                 width={800}
                 okText="Xóa sản phẩm"
