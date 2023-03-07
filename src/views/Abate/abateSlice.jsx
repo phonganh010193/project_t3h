@@ -24,12 +24,9 @@ export const fetchUpdateAbateById = createAsyncThunk(
   'abate/fetchUpdateAbateById',
   async (params, thunkAPI) => {
     return await update(ref(database, "/Abate/" + params.orderId), params.value).then((snapshot) => {
-      if (snapshot) {
-        return snapshot.val()[params.orderId];
-      } else {
-        console.log("No data available");
-      }
+      toast.success('Order thành công!');
     }).catch((error) => {
+      toast.error('order không thành công')
       console.error(error);
     });
   }

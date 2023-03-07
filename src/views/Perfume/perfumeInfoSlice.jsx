@@ -157,17 +157,26 @@ export const updateQuantityProductByBuy = createAsyncThunk(
       product?.forEach(el => {
         abateList?.products?.forEach(item => {
           if (el.id === item.id) {
+            const nextQuantity = el.quantity - item.orderNumber;
             update(ref(database, "/Product/" + item.keyProduct), {
               ...el,
-              quantity: el.quantity - item.orderNumber,
+              quantity: nextQuantity,
               bestsellers: el.bestsellers + 1
             })
-              .then((res) => {
-                return res;
-              })
-              .catch((error) => {
-                console.log(error)
-              })
+            .then((res) => {
+              return res;
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+            if(nextQuantity === 0) {
+              update(ref(database, "/Cart/" + item.key), {
+                user: item.user,
+                productId: item.productId,
+                orderNumber: item.orderNumber,
+                isCheckBox: false
+            })
+            }
           }
         })
       })

@@ -27,7 +27,6 @@ const Cart = () => {
     const listCart = useSelector(({ order }) => order.orderProduct);
     const isLoadingCarlList = useSelector(({ order }) => order.isLoading);
     const prevIsLoadingCartList = usePrevious(isLoadingCarlList);
-    console.log('listcart', listCart);
     const product = useSelector(({ product }) => product.productList);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const abateList = useSelector(({ abate }) => abate.abateList);
@@ -117,6 +116,11 @@ const Cart = () => {
         const products = listCart.filter(el => {
             return el.isCheckBox && el.quantity !== 0;
         });
+        console.log('products', products);
+        if(products.length <= 0) {
+            toast.warning('Sản phẩm đã hết. Vui lòng chọn sản phẩm khác');
+            return;
+        }
         const object = {
             name: "",
             email: userCurrent.email,

@@ -149,13 +149,7 @@ const Abate = () => {
                 dateOrder: new Date()
             }
             dispatch(fetchUpdateAbateById({ orderId, value }))
-                .then(() => {
-                    toast.success('Order thành công!')
-                    dispatch(fetchAbateById(orderId));
-                })
-                .catch((error) => {
-                    toast.error('order không thành công')
-                })
+            dispatch(fetchAbateById(orderId));
         } catch (error) {
             toast.error('Xin kiểm tra lại thông tin thanh toán')
         }
