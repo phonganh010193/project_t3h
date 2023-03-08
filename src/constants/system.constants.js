@@ -2,6 +2,7 @@ export const System = {
     STATUS: {
         ORDERING: 'Ordering',
         ORDERED: 'Ordered',
+        PROCESSING: "Processing",
         TRANSFERRING: 'Transferring',
         RECEIVED: 'Received',
     },

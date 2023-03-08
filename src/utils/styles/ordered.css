@@ -1,0 +1,33 @@
+.action-ordered button {
+    margin-left: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+.view-ordered {
+    width: 100px;
+    border: none;
+    background-color: green;
+}
+
+.delete-ordered {
+    width: 60px;
+    border: none;
+    background-color: red;
+}
+
+.info-ordered-user {
+    width: 55%;
+}
+
+.ordered-product {
+    width: 40%;
+    border: 1px solid black;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.ordered-product-children img {
+    width: 80px;
+    margin: auto 10px ;
+}

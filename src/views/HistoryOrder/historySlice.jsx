@@ -39,6 +39,59 @@ export const fetchHistoryOrder = createAsyncThunk(
     }
 );
 
+export const fetchUpdateStatusOrdered = createAsyncThunk(
+    'history/fetchUpdateStatusOrdered',
+    async (params, thunkAPI) => {
+        console.log('params', params);
+        const updateStatusList = [];
+        params.listOrdered.forEach(el => {
+            if (el.key === params.value.item.key) {
+                updateStatusList.push(el)
+                update(ref(database, "/Abate/" + el.key), {
+                    ...el,
+                    status: params.value.values
+                })
+            }
+        })
+        return updateStatusList;
+
+    }
+);
+
+export const fetchOrdered = createAsyncThunk(
+    'history/fetchOrdered',
+    async (params, thunkAPI) => {
+        const listAbate = await get(ref(database, "Abate")).then((snapshot) => {
+            if (snapshot.exists()) {
+                const response = snapshot.val();
+                const keys = Object.keys(response);
+                return keys.map(key => {
+                    return {
+                        ...response[key],
+                        key,
+                    }
+                })
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+        const listOrdered = [];
+        if (listAbate) {
+            listAbate.forEach(item => {
+                if (item.status !== System.STATUS.ORDERING) {
+                    listOrdered.push(
+                        {
+                            ...item,
+                        }
+                    );
+                }
+            })
+        }
+        return listOrdered;
+    }
+);
 export const fetchCancelOrderById = createAsyncThunk(
     'history/fetchCancelOrderById',
     async (params, thunkAPI) => {
@@ -59,7 +112,11 @@ const initialState = {
     isLoading: false,
     historyList: [],
     historyCancelItem: null,
-    isCancelLoading: false
+    isCancelLoading: false,
+    listOrdered: null,
+    isLoadingOrdered: false,
+    updateStatusList: null,
+    isLoadingUpdateStatus: false
 }
 
 export const historyOrderSlice = createSlice({
@@ -88,6 +145,26 @@ export const historyOrderSlice = createSlice({
         })
         builder.addCase(fetchCancelOrderById.rejected, (state, action) => {
             state.isCancelLoading = false;
+        })
+        builder.addCase(fetchOrdered.pending, (state, action) => {
+            state.isLoadingOrdered = true;
+        })
+        builder.addCase(fetchOrdered.fulfilled, (state, action) => {
+            state.listOrdered = action.payload;
+            state.isLoadingOrdered = false;
+        })
+        builder.addCase(fetchOrdered.rejected, (state, action) => {
+            state.isLoadingOrdered = false;
+        })
+        builder.addCase(fetchUpdateStatusOrdered.pending, (state, action) => {
+            state.isLoadingUpdateStatus = true;
+        })
+        builder.addCase(fetchUpdateStatusOrdered.fulfilled, (state, action) => {
+            state.updateStatusList = action.payload;
+            state.isLoadingUpdateStatus = false;
+        })
+        builder.addCase(fetchUpdateStatusOrdered.rejected, (state, action) => {
+            state.isLoadingUpdateStatus = false;
         })
     },
 })

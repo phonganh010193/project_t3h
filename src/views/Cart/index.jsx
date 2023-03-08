@@ -117,7 +117,7 @@ const Cart = () => {
             return el.isCheckBox && el.quantity !== 0;
         });
         console.log('products', products);
-        if(products.length <= 0) {
+        if (products.length <= 0) {
             toast.warning('Sản phẩm đã hết. Vui lòng chọn sản phẩm khác');
             return;
         }
@@ -130,7 +130,7 @@ const Cart = () => {
             pay_dilivery: true,
             products,
             status: System.STATUS.ORDERING,
-            dateOrder: ""
+            dateOrder: "",
         }
         const newAbate = await push(ref(database, 'Abate'), object)
             .then((data) => {

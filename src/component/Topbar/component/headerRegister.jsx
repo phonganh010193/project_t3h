@@ -179,17 +179,26 @@ const HeaderRegister = () => {
                 userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <li onClick={() => {
                     navigate(`/admin/update/product/${0}`)
-                }}>Cập nhật sản phẩm mới</li>
+                }}>Thêm sản phẩm mới</li>
                 : null
             }
             {userCurrent?.roles === System.ROLESUSER.ADMIN ||
                 userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <li onClick={() => {
-                    navigate('/renraku-by-user');
+                    navigate('/admin/renraku-by-user');
                     setOpen(false);
                 }}>Liên hệ {numberRenraku ? <span style={{ color: "red" }}>({numberRenraku})</span> : null}</li>
                 : null
             }
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                userCurrent?.roles === System.ROLESUSER.MEMBER ?
+                <li onClick={() => {
+                    navigate('/admin/order');
+                    setOpen(false);
+                }}>Đơn hàng</li>
+                : null
+            }
+
 
             <li onClick={() => {
                 navigate('/abate')

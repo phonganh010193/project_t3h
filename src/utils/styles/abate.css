@@ -7,6 +7,36 @@
   margin-top: 50px;
 }
 
+.use-case-trnasfer {
+  width: 600px;
+  margin: 0 auto;
+}
+.info-transfer-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.info-transfer-status p {
+  text-align: center;
+}
+
+.transports {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.transports img {
+  width: 30px;
+}
+
 .m-billing-info h2 {
   font-family: "Poppins";
   font-style: normal;

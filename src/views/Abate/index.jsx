@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Modal } from "antd";
 import { Link, useParams } from "react-router-dom";
 import { fetchAbateById, fetchRemoveAbateById, fetchUpdateAbateById } from "./abateSlice";
 import "../../utils/styles/abate.css";
@@ -39,12 +39,20 @@ const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
+    console.log('abaateDetail', abateDetail);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const isLoadingUpdate = useSelector(({ abate }) => abate.isLoadingUpdate);
     const prevIsLoadingUpdate = usePrevious(isLoadingUpdate);
     const [fields, setFields] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
 
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     useEffect(() => {
         if (!isLoadingUpdate && prevIsLoadingUpdate) {
             dispatch(updateQuantityProductByBuy(orderId))
@@ -146,7 +154,7 @@ const Abate = () => {
                 pay_dilivery: values.user.pay_dilivery,
                 products: abateDetail?.products,
                 status: System.STATUS.ORDERED,
-                dateOrder: new Date()
+                dateOrder: new Date(),
             }
             dispatch(fetchUpdateAbateById({ orderId, value }))
             dispatch(fetchAbateById(orderId));
@@ -334,9 +342,64 @@ const Abate = () => {
                                 removeAbateById(orderId)
                             }}>Quay về Giỏ hàng</Link>
                         }
+                        {abateDetail?.status !== System.STATUS.ORDERING ?
+                            <button
+                                style={{
+                                    marginLeft: "20px",
+                                    borderRadius: "5px",
+                                    backgroundColor: "green",
+                                    color: "white",
+                                    width: "190px",
+                                    border: "none"
+                                }}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    dispatch(fetchAbateById(orderId));
+                                    setIsModalOpen(true);
+                                }}
+                            >Kiểm tra tình trạng giao hàng</button>
+                            :
+                            null
+                        }
                     </div>
+                    <Modal
+                        title="Đơn hàng mã : "
+                        open={isModalOpen}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        width={800}
+                    >
+                        <div className="transfer-content">
+                            <p>Tình trạng vận chuyển</p>
+                            <div className="use-case-trnasfer d-flex flex-row align-items-center justify-content-center">
+                                <div className="transports " style={{ border: "1px solid green" }}>
+                                    <img src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-14/place-order-1.png" alt="" />
+                                </div>
+                                <div style={{ height: "2px", width: "100px", border: "1px solid black" }}></div>
+                                <div className="transports" style={{ border: "1px solid green" }}>
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdE7I635Hdl8CMzDPeGly_qDzfqU9mMhdZYUNYGTI0LZRoHikj1mtdbGsOjdf0cpAOp2I&usqp=CAU" alt="" />
+                                </div>
+                                <div style={{ height: "2px", width: "100px", border: "1px solid black" }}></div>
+                                <div className="transports" style={{ border: "1px solid green" }}>
+                                    <img src="https://cdn0.iconfinder.com/data/icons/seo6-filled-outline/128/SEO_-_6_-_Filled_Outline_-_44-10-512.png" alt="" />
+                                </div>
+                                <div style={{ height: "2px", width: "100px", border: "1px solid black" }}></div>
+                                <div className="transports" style={{ border: "1px solid green" }}>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/1950/1950269.png" alt="" />
+                                </div>
+                            </div>
+                            <div className="info-transfer-status mt-4">
+                                <p>Đặt hàng <br />thành công</p>
+                                <p>Đang xử lý <br />đơn hàng</p>
+                                <p style={{ marginLeft: "15px" }}>Đang <br />giao hàng</p>
+                                <p>Đã giao hàng</p>
+                            </div>
+                        </div>
+
+                    </Modal>
                 </div>
             </Form>
+
         </div>
     )
 }
