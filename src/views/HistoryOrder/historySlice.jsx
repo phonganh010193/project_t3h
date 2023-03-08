@@ -26,7 +26,7 @@ export const fetchHistoryOrder = createAsyncThunk(
         const listHistoryOrder = [];
         if (listAbate) {
             listAbate.forEach(item => {
-                if (item.status === System.STATUS.ORDERED && item.products[0].user.email === params.email) {
+                if (item.status !== System.STATUS.ORDERING && item.products[0].user.email === params.email) {
                     listHistoryOrder.push(
                         {
                             ...item,

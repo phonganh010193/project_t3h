@@ -3,9 +3,9 @@
   margin-bottom: 50px;
 }
 
-.abate-container {
+/* .abate-container {
   margin-top: 50px;
-}
+} */
 
 .use-case-trnasfer {
   width: 600px;
@@ -14,7 +14,7 @@
 .info-transfer-status {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 600px;
   margin: 0 auto;

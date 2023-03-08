@@ -13,13 +13,11 @@ import "../../utils/styles/ordered.css";
 
 const Ordered = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const listOrdered = useSelector(({ history }) => history.listOrdered);
     const isLoadingOrdered = useSelector(({ history }) => history.isLoadingOrdered);
     const isLoadingUpdateStatus = useSelector(({ history }) => history.isLoadingUpdateStatus);
     const prevIsLoadingOrdered = usePrevious(isLoadingOrdered);
     const prevIsLoadingUpdateStatus = usePrevious(isLoadingUpdateStatus);
-    console.log('listoerdered', listOrdered);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
