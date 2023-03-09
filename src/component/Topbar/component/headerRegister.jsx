@@ -194,8 +194,16 @@ const HeaderRegister = () => {
                 userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <li onClick={() => {
                     navigate('/admin/order');
-                    setOpen(false);
+                    // setOpen(false);
                 }}>Đơn hàng</li>
+                : null
+            }
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                userCurrent?.roles === System.ROLESUSER.MEMBER ?
+                <li onClick={() => {
+                    navigate('/admin/product');
+                    // setOpen(false);
+                }}>Kho hàng</li>
                 : null
             }
 

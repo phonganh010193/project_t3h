@@ -29,7 +29,7 @@ export const fetchDeleteRenrakuByKey = createAsyncThunk(
     async (key, thunkAPI) => {
         return await remove(ref(database, "/Renraku/" + key))
             .then((snapshot) => {
-                return snapshot
+                return snapshot;
             }).catch((error) => {
                 console.error(error);
             });

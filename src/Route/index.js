@@ -21,6 +21,7 @@ import Security from "../component/Security";
 import UpdateNewProduct from "../views/UpdateNewProduct";
 import RenrakuByUser from "../component/Renraku/Admin/renrakubyuser";
 import Ordered from "../views/Ordered";
+import Product from "../views/Product";
 
 const routerName = createBrowserRouter([
   { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
@@ -45,6 +46,7 @@ const routerName = createBrowserRouter([
   { path: "/admin/update/product/:id", element: <UpdateNewProduct />, errorElement: <ErrorPage /> },
   { path: "/admin/renraku-by-user", element: <RenrakuByUser />, errorElement: <ErrorPage /> },
   { path: "/admin/order", element: <Ordered />, errorElement: <ErrorPage /> },
+  { path: "/admin/product", element: <Product />, errorElement: <ErrorPage /> },
 ]);
 
 export default routerName;

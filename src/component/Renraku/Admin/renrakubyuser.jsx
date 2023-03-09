@@ -15,13 +15,13 @@ const RenrakuByUser = () => {
     const renrakuList = useSelector(({ renraku }) => renraku.renrakuList);
     const isLoadingDelete = useSelector(({ renraku }) => renraku.isLoadingDelete);
     const prevIsLoadingDelete = usePrevious(isLoadingDelete);
-    console.log('renrakuList', renrakuList);
 
     useEffect(() => {
-        if (!isLoadingDelete, prevIsLoadingDelete) {
+        if (!isLoadingDelete && prevIsLoadingDelete) {
+            console.log('renraku list', renrakuList)
             dispatch(fetchRenraku());
         }
-    }, [dispatch, isLoadingDelete]);
+    }, [dispatch, isLoadingDelete, prevIsLoadingDelete]);
 
     useEffect(() => {
         dispatch(fetchRenraku());
@@ -53,9 +53,9 @@ const RenrakuByUser = () => {
     const deleteRenrakuByKey = (key) => {
         try {
             dispatch(fetchDeleteRenrakuByKey(key));
-            toast.success('Xóa thành công')
+            toast.success('Xóa thành công');
         } catch (error) {
-            toast.error('Xóa thất bại')
+            toast.error('Xóa thất bại');
         }
     }
 
@@ -69,7 +69,7 @@ const RenrakuByUser = () => {
                     <ul className="ml-5">
                         {renrakuList ? renrakuList.map((item, index) => {
                             return (
-                                <li style={{ listStyleType: "decimal", marginBottom: "10px" }} key={index}>
+                                <li style={{ listStyleType: "decimal", marginBottom: "10px" }} key={item.key}>
                                     <div className="d-flex flex-row justify-content-between">
                                         <div>
                                             <p style={{ fontWeight: "bold" }}>{item.renraku.name}</p>
@@ -109,10 +109,11 @@ const RenrakuByUser = () => {
                                         >
                                             <option value="new">Mới</option>
                                             <option value="processing" >Đang hỗ trợ</option>
-                                            <option value="complete" >Hoàn thành</option>
+                                            <option value="complete">Hoàn thành</option>
                                         </select>
                                         {item.status === "complete" ?
-                                            <button style={{ width: "80px", borderRadius: "5px", marginLeft: "10px" }} onClick={() => {
+                                            <button style={{ width: "80px", borderRadius: "5px", marginLeft: "10px" }} onClick={(event) => {
+                                                event.preventDefault();
                                                 deleteRenrakuByKey(item.key)
                                             }}>Xóa</button>
                                             : null

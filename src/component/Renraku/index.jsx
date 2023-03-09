@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import { useContext } from "react";
 import { UserContext } from "../../container/useContext";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchRenraku } from "./renrakuSlice";
 const layout = {
 
     labelCol: { span: 16 },
@@ -28,8 +30,8 @@ const validateMessages = {
     },
 };
 const Renraku = () => {
-    const { user } = useContext(UserContext)
-    const [fields, setFields] = useState([])
+    const [fields, setFields] = useState([]);
+    const dispatch = useDispatch();
     const onFinish = async (values) => {
         console.log('values', values);
         await push(ref(database, "Renraku"), {
@@ -38,6 +40,7 @@ const Renraku = () => {
         })
             .then(() => {
                 toast.success('Gửi liên hệ thành công')
+                dispatch(fetchRenraku());
             })
             .catch((error) => {
                 console.log(error)

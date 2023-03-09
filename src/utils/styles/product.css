@@ -1,0 +1,16 @@
+.action-product button:first-child {
+    width: 70px;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin-right: 10px;
+}
+
+.action-product button:last-child {
+    width: 60px;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
