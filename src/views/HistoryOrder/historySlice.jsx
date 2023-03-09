@@ -26,7 +26,7 @@ export const fetchHistoryOrder = createAsyncThunk(
         const listHistoryOrder = [];
         if (listAbate) {
             listAbate.forEach(item => {
-                if (item.status !== System.STATUS.ORDERING && item.products[0].user.email === params.email) {
+                if (item.status !== System.STATUS.ORDERING && item.status !== System.STATUS.CANCELED && item.products[0].user.email === params.email) {
                     listHistoryOrder.push(
                         {
                             ...item,
@@ -95,7 +95,10 @@ export const fetchOrdered = createAsyncThunk(
 export const fetchCancelOrderById = createAsyncThunk(
     'history/fetchCancelOrderById',
     async (params, thunkAPI) => {
-        return await remove(ref(database, "/Abate/" + params.key))
+        return await update(ref(database, "/Abate/" + params.key), {
+            ...params,
+            status: "Canceled"
+        })
             .then((snapshot) => {
                 if (snapshot) {
                     return snapshot.val();
@@ -110,7 +113,7 @@ export const fetchCancelOrderById = createAsyncThunk(
 
 const initialState = {
     isLoading: false,
-    historyList: [],
+    historyList: null,
     historyCancelItem: null,
     isCancelLoading: false,
     listOrdered: null,

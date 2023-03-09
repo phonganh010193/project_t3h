@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import LayoutCart from "../../component/LayoutCart";
 import "../../utils/styles/historyorder.css";
-import { fetchCancelOrderById, fetchHistoryOrder } from "./historySlice";
+import { fetchCancelOrderById, fetchHistoryOrder, fetchUpdateStatusOrdered } from "./historySlice";
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from "antd";
 import { useCallback } from "react";
@@ -37,8 +37,10 @@ const HistoryOrder = () => {
 
     const handleOk = useCallback((item) => {
         console.log("item", item)
+
         try {
             dispatch(fetchCancelOrderById(item));
+
             toast.success('Hủy đơn hàng thành công');
             setitemCancel(item)
         } catch (error) {
@@ -55,7 +57,7 @@ const HistoryOrder = () => {
             <div className="history-container">
                 <p className="history-header">Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>Lịch sử Mua hàng</span></p>
                 <div className="history-info">
-                    {historyOrderList && historyOrderList.map((item, index) => {
+                    {historyOrderList?.length > 0 ? historyOrderList.map((item, index) => {
                         return (
                             <div className="history-item" key={index}>
                                 <p>
@@ -89,8 +91,12 @@ const HistoryOrder = () => {
                                 </div>
                             </div>
                         )
-                    })}
-
+                    }) :
+                        <div style={{ marginBottom: "70px" }}>
+                            <p>Chưa có dữ liệu!</p>
+                            <a href="/">Tiếp tục mua hàng</a>
+                        </div>
+                    }
                 </div>
             </div>
             <Modal

@@ -56,24 +56,44 @@ export const fetchAbateList = createAsyncThunk(
 );
 
 
+// export const fetchRemoveAbateById = createAsyncThunk(
+//   'abate/fetchAbateById',
+//   async (abateId, thunkAPI) => {
+//     return await remove(ref(database, "/Abate/" + abateId))
+//       .then((data) => {
+//         return data;
+//       }).catch((error) => {
+//         console.error(error);
+//       });
+//   }
+// );
 export const fetchRemoveAbateById = createAsyncThunk(
-  'abate/fetchAbateById',
-  async (abateId, thunkAPI) => {
-    return await remove(ref(database, "/Abate/" + abateId))
-      .then((data) => {
-        return data;
+  'history/fetchCancelOrderById',
+  async (params, thunkAPI) => {
+    return await remove(ref(database, "/Abate/" + params))
+      .then((snapshot) => {
+        if (snapshot) {
+          return snapshot.val();
+        } else {
+          console.log("No data available");
+        }
       }).catch((error) => {
         console.error(error);
       });
   }
 );
 
+
+
 const initialState = {
   isLoading: false,
   abateDetail: null,
   abateList: null,
   abateUpdate: null,
-  isLoadingUpdate: false
+  isLoadingUpdate: false,
+  deleteAbateByKey: null,
+  isLoadingDeleteAbateByKey: false,
+
 }
 
 export const abateListSlice = createSlice({
@@ -111,6 +131,16 @@ export const abateListSlice = createSlice({
     })
     builder.addCase(fetchUpdateAbateById.rejected, (state, action) => {
       state.isLoadingUpdate = false;
+    })
+    builder.addCase(fetchRemoveAbateById.pending, (state, action) => {
+      state.isLoadingDeleteAbateByKey = true;
+    })
+    builder.addCase(fetchRemoveAbateById.fulfilled, (state, action) => {
+      state.deleteAbateByKey = action.payload;
+      state.isLoadingDeleteAbateByKey = false;
+    })
+    builder.addCase(fetchRemoveAbateById.rejected, (state, action) => {
+      state.isLoadingDeleteAbateByKey = false;
     })
   },
 })

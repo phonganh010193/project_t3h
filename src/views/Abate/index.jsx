@@ -41,16 +41,12 @@ const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
-    console.log('abaateDetail', abateDetail);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const isLoadingUpdate = useSelector(({ abate }) => abate.isLoadingUpdate);
     const prevIsLoadingUpdate = usePrevious(isLoadingUpdate);
     const [fields, setFields] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
 
     const handleCancel = () => {
         setIsModalOpen(false);
@@ -133,20 +129,93 @@ const Abate = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
 
+    const todokuyoyaku = (date) => {
+        console.log('date', moment(date).format("MM"), date);
+        if (moment(date).format("MM") === "01" ||
+            moment(date).format("MM") === "03" ||
+            moment(date).format("MM") === "05" ||
+            moment(date).format("MM") === "07" ||
+            moment(date).format("MM") === "08" ||
+            moment(date).format("MM") === "10" ||
+            moment(date).format("MM") === "12"
+        ) {
+            if (Number(moment(date).format("DD")) + 5 <= 31) {
+                console.log((Number(moment(date).format("DD")) + 5).toString() + "/" + moment(date).format("MM"))
+                return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
+            }
+            if (Number(moment(date).format("DD")) + 5 > 31 &&
+                Number(moment(date).format("DD")) + 3 <= 31) {
+                return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 31).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+            }
+            if (
+                Number(moment(date).format("DD")) + 3 > 31 &&
+                Number(moment(date).format("DD")) + 3 <= 34) {
+                return ((Number(moment(date).format("DD")) + 3) - 31).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 31).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+            }
+        }
+        if (moment(date).format("MM") === "04" ||
+            moment(date).format("MM") === "06" ||
+            moment(date).format("MM") === "09" ||
+            moment(date).format("MM") === "11"
+        ) {
+            if (Number(moment(date).format("DD")) + 5 <= 30) {
+                console.log((Number(moment(date).format("DD")) + 5).toString() + "/" + moment(date).format("MM"))
+                return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
+            }
+            if (Number(moment(date).format("DD")) + 5 > 30 &&
+                Number(moment(date).format("DD")) + 3 <= 30) {
+                return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 30).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+            }
+            if (
+                Number(moment(date).format("DD")) + 3 > 30 &&
+                Number(moment(date).format("DD")) + 3 <= 33) {
+                return ((Number(moment(date).format("DD")) + 3) - 30).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 30).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+            }
+        } else {
+            if (Number(moment(date).format("DD")) <= 28) {
+                console.log('288888')
+                if (Number(moment(date).format("DD")) + 5 <= 28) {
+                    console.log('1111111111')
+                    console.log((Number(moment(date).format("DD")) + 5).toString() + "/" + moment(date).format("MM"))
+                    return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
+                }
+                if (Number(moment(date).format("DD")) + 5 > 28 &&
+                    Number(moment(date).format("DD")) + 3 <= 28) {
+                    console.log('222222222')
+
+                    return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 28).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+                }
+                if (
+                    Number(moment(date).format("DD")) + 3 > 28 &&
+                    Number(moment(date).format("DD")) + 3 <= 31) {
+                    console.log('3333333')
+
+                    return ((Number(moment(date).format("DD")) + 3) - 28).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 28).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+                }
+            }
+            else {
+                console.log('2999')
+                if (Number(moment(date).format("DD")) + 5 <= 29) {
+                    return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
+                }
+                if (Number(moment(date).format("DD")) + 5 > 29 &&
+                    Number(moment(date).format("DD")) + 3 <= 29) {
+                    return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 29).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+                }
+                if (
+                    Number(moment(date).format("DD")) + 3 > 29 &&
+                    Number(moment(date).format("DD")) + 3 <= 32) {
+                    return ((Number(moment(date).format("DD")) + 3) - 29).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 29).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
+                }
+            }
+
+
+        }
+    }
+
 
     const onFinish = async (values) => {
         try {
-            // await update(ref(database, "/Abate/" + orderId), {
-            //     name: values.user.name,
-            //     email: values.user.email,
-            //     address: values.user.address,
-            //     phone: values.user.phone,
-            //     note: values.user.note,
-            //     pay_dilivery: values.user.pay_dilivery,
-            //     products: abateDetail?.products,
-            //     status: System.STATUS.ORDERED,
-            //     dateOrder: new Date()
-            // })
             const value = {
                 name: values.user.name,
                 email: values.user.email,
@@ -356,133 +425,134 @@ const Abate = () => {
                                 null
                             }
                         </div>
-                        <Modal
-                            title={`Đơn hàng mã: ${abateDetail?.key}`}
-                            open={isModalOpen}
-                            onOk={handleOk}
-                            onCancel={handleCancel}
-                            width={800}
-                        >
-                            <div className="transfer-content">
-                                <p>Tình trạng vận chuyển</p>
-                                <div className="use-case-trnasfer d-flex flex-row align-items-center justify-content-center">
-                                    <div 
-                                        className="transports " 
-                                        style={{
-                                            border: abateDetail?.status === System.STATUS.ORDERED ? "1px solid green" : 
-                                            abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" :
-                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
-                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.ORDERED ? "green" : 
-                                            abateDetail?.status === System.STATUS.PROCESSING ? "green" :
-                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
-                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
-                                        }}
-                                    >
-                                        <img src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-14/place-order-1.png" alt="" />
-                                    </div>
-                                    <div 
-                                        style={{ 
-                                            height: "2px", 
-                                            width: "100px", 
-                                            border: abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" : 
-                                                abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
-                                                abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
-                                                abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.PROCESSING ? "green" : 
-                                                abateDetail?.status === System.STATUS.ORDERED ? "" :
-                                                abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
-                                                abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
-                                        }}
-                                    ></div>
-                                    <div 
-                                        className="transports" 
-                                        style={{ 
-                                            border: abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" : 
-                                            abateDetail?.status === System.STATUS.ORDERED ? "1px solid green" :
-                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
-                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.PROCESSING ? "green" : 
-                                            abateDetail?.status === System.STATUS.ORDERED ? "" :
-                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
-                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null 
-                                        }}
-                                    >
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdE7I635Hdl8CMzDPeGly_qDzfqU9mMhdZYUNYGTI0LZRoHikj1mtdbGsOjdf0cpAOp2I&usqp=CAU" alt="" />
-                                    </div>
-                                    <div
-                                        style={{ 
-                                            height: "2px", 
-                                            width: "100px", 
-                                            border: abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" : 
-                                                abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
-                                                abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
-                                                abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.TRANSFERRING ? "green" : 
-                                                abateDetail?.status === System.STATUS.ORDERED ? "" :
-                                                abateDetail?.status === System.STATUS.PROCESSING ? "" :
-                                                abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
-                                        }}
-                                    ></div>
-                                    <div 
-                                        className="transports" 
-                                        style={{ 
-                                            border: abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" : 
-                                            abateDetail?.status === System.STATUS.ORDERED ? "1px solid green" :
-                                            abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" :
-                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.TRANSFERRING ? "green" : 
-                                            abateDetail?.status === System.STATUS.ORDERED ? "" :
-                                            abateDetail?.status === System.STATUS.PROCESSING ? "" :
-                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null 
-                                        }}
-                                    >
-                                        <img src="https://cdn0.iconfinder.com/data/icons/seo6-filled-outline/128/SEO_-_6_-_Filled_Outline_-_44-10-512.png" alt="" />
-                                    </div>
-                                    <div 
-                                        style={{ 
-                                            height: "2px", 
-                                            width: "100px", 
-                                            border: abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : 
-                                                abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
-                                                abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
-                                                abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid gray" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.RECEIVED ? "green" : 
-                                                abateDetail?.status === System.STATUS.ORDERED ? "" :
-                                                abateDetail?.status === System.STATUS.PROCESSING ? "" :
-                                                abateDetail?.status === System.STATUS.TRANSFERRING ? "" : null
-                                        }}
-                                    ></div>
-                                    <div 
-                                        className="transports" 
-                                        style={{ 
-                                            border: abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : 
-                                            abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
-                                            abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
-                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid gray" : null, 
-                                            backgroundColor: abateDetail?.status === System.STATUS.RECEIVED ? "green" : 
-                                            abateDetail?.status === System.STATUS.ORDERED ? "" :
-                                            abateDetail?.status === System.STATUS.PROCESSING ? "" :
-                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "" : null 
-                                        }}
-                                    >
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1950/1950269.png" alt="" />
-                                    </div>
-                                </div>
-                                <div className="info-transfer-status mt-4">
-                                    <p>Đặt hàng <br />thành công</p>
-                                    <p>Đang xử lý <br />đơn hàng</p>
-                                    <p style={{ marginLeft: "15px" }}>Đang <br />giao hàng</p>
-                                    <p>Đã giao hàng</p>
-                                </div>
-                                <p>Dự kiến giao hàng : 10/3- 12/3</p>
-                            </div>
 
-                        </Modal>
                     </div>
                 </Form>
-            </div>    
 
+            </div>
+            <Modal
+                title={`Đơn hàng mã: ${abateDetail?.key}`}
+                open={isModalOpen}
+                onCancel={handleCancel}
+                width={800}
+                footer={false}
+            >
+                <div className="transfer-content">
+                    <p>Tình trạng vận chuyển</p>
+                    <div className="use-case-trnasfer d-flex flex-row align-items-center justify-content-center">
+                        <div
+                            className="transports "
+                            style={{
+                                border: abateDetail?.status === System.STATUS.ORDERED ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" :
+                                        abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.ORDERED ? "green" :
+                                    abateDetail?.status === System.STATUS.PROCESSING ? "green" :
+                                        abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
+                            }}
+                        >
+                            <img src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-14/place-order-1.png" alt="" />
+                        </div>
+                        <div
+                            style={{
+                                height: "2px",
+                                width: "100px",
+                                border: abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
+                                        abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.PROCESSING ? "green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "" :
+                                        abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
+                            }}
+                        ></div>
+                        <div
+                            className="transports"
+                            style={{
+                                border: abateDetail?.status === System.STATUS.PROCESSING ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
+                                        abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.PROCESSING ? "green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "" :
+                                        abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
+                            }}
+                        >
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdE7I635Hdl8CMzDPeGly_qDzfqU9mMhdZYUNYGTI0LZRoHikj1mtdbGsOjdf0cpAOp2I&usqp=CAU" alt="" />
+                        </div>
+                        <div
+                            style={{
+                                height: "2px",
+                                width: "100px",
+                                border: abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
+                            }}
+                        ></div>
+                        <div
+                            className="transports"
+                            style={{
+                                border: abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.TRANSFERRING ? "green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "" :
+                                            abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
+                            }}
+                        >
+                            <img src="https://cdn0.iconfinder.com/data/icons/seo6-filled-outline/128/SEO_-_6_-_Filled_Outline_-_44-10-512.png" alt="" />
+                        </div>
+                        <div
+                            style={{
+                                height: "2px",
+                                width: "100px",
+                                border: abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
+                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid gray" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.RECEIVED ? "green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "" :
+                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "" : null
+                            }}
+                        ></div>
+                        <div
+                            className="transports"
+                            style={{
+                                border: abateDetail?.status === System.STATUS.RECEIVED ? "1px solid green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "1px solid gray" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "1px solid gray" :
+                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "1px solid gray" : null,
+                                backgroundColor: abateDetail?.status === System.STATUS.RECEIVED ? "green" :
+                                    abateDetail?.status === System.STATUS.ORDERED ? "" :
+                                        abateDetail?.status === System.STATUS.PROCESSING ? "" :
+                                            abateDetail?.status === System.STATUS.TRANSFERRING ? "" : null
+                            }}
+                        >
+                            <img src="https://cdn-icons-png.flaticon.com/512/1950/1950269.png" alt="" />
+                        </div>
+                    </div>
+                    <div className="info-transfer-status mt-4">
+                        <p>Đặt hàng <br />thành công</p>
+                        <p>Đang xử lý <br />đơn hàng</p>
+                        <p style={{ marginLeft: "15px" }}>Đang <br />giao hàng</p>
+                        <p>Đã giao hàng</p>
+                    </div>
+                    <p>Dự kiến giao hàng : {todokuyoyaku(abateDetail?.dateOrder)}</p>
+                </div>
+
+            </Modal>
         </div>
     )
 }

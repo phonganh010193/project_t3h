@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "../../component/Footer";
 import HeaderRegister from "../../component/Topbar/component/headerRegister";
 import { System } from "../../constants/system.constants";
 import { UserContext } from "../../container/useContext";
@@ -249,7 +248,7 @@ const UpdateNewProduct = () => {
         navigate('/');
     }
     return (
-        <div class="container-fluid m-0 p-0">
+        <div className="container-fluid m-0 p-0">
             <HeaderRegister />
             <div className="container">
                 <h4 className="mt-5 mb-5">Thông tin sản phẩm</h4>

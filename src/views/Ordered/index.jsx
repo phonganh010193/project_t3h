@@ -10,12 +10,15 @@ import { System } from '../../constants/system.constants';
 import { usePrevious } from '../../utils/hooks';
 import { fetchOrdered, fetchUpdateStatusOrdered } from '../HistoryOrder/historySlice';
 import "../../utils/styles/ordered.css";
+import { fetchDeleteListCheck, fetchRemoveAbateById } from '../Abate/abateSlice';
 
 const Ordered = () => {
     const dispatch = useDispatch();
     const listOrdered = useSelector(({ history }) => history.listOrdered);
     const isLoadingOrdered = useSelector(({ history }) => history.isLoadingOrdered);
     const isLoadingUpdateStatus = useSelector(({ history }) => history.isLoadingUpdateStatus);
+    const isLoadingDeleteAbateByKey = useSelector(({ abate }) => abate.isLoadingDeleteAbateByKey);
+    const prevIsLoadingDeleteAbateByKey = usePrevious(isLoadingDeleteAbateByKey);
     const prevIsLoadingOrdered = usePrevious(isLoadingOrdered);
     const prevIsLoadingUpdateStatus = usePrevious(isLoadingUpdateStatus);
     const [searchText, setSearchText] = useState('');
@@ -23,42 +26,59 @@ const Ordered = () => {
     const searchInput = useRef(null);
     const [data, setData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [orderedContent, setOrderedContent] = useState(null)
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+    const [isModalDeleteListCheckOpen, setIisModalDeleteListCheckOpen] = useState(false);
+    const [orderedContent, setOrderedContent] = useState(null);
+    const [listCheck, setListCheck] = useState(null);
+    console.log('listcheck', listCheck);
+    const [keyDelete, setKeyDelete] = useState(null);
+
+    useEffect(() => {
+        if (!isLoadingDeleteAbateByKey && prevIsLoadingDeleteAbateByKey) {
+            dispatch(fetchOrdered());
+            setListCheck(null);
+        }
+    }, [dispatch, isLoadingDeleteAbateByKey]);
+
+
     useEffect(() => {
         if (!isLoadingUpdateStatus && prevIsLoadingUpdateStatus) {
             dispatch(fetchOrdered())
         }
-    }, [isLoadingUpdateStatus])
+    }, [dispatch, isLoadingUpdateStatus])
     const handleChange = (value) => {
         dispatch(fetchUpdateStatusOrdered({ listOrdered, value }))
     }
 
     useEffect(() => {
-        if (!isLoadingOrdered && prevIsLoadingOrdered) {
+        if (!isLoadingOrdered && prevIsLoadingOrdered && listOrdered) {
             setData(listOrdered?.map((item, index) => {
                 return {
-                    key: index,
+                    key: item.key,
                     stt: index + 1,
                     date: moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss"),
                     keyOrder: item.key,
-                    status: <select
-                        id="status-ordered"
-                        onChange={(event) => {
-                            handleChange({
-                                item: item,
-                                values: event.target.value
-                            })
-                        }}
-                        defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
-                            item.status === System.STATUS.PROCESSING ? "Processing" :
-                                item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
-                        }
-                    >
-                        <option value="Ordered">Mới</option>
-                        <option value="Processing">Đang xử lý</option>
-                        <option value="Transferring">Đang gửi hàng</option>
-                        <option value="Received">Hoàn thành</option>
-                    </select>,
+                    status: item.status === System.STATUS.CANCELED ?
+                        <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><p style={{ color: "red", fontSize: "20px", margin: "0" }}>Canceled</p></div>
+                        :
+                        <select
+                            id="status-ordered"
+                            onChange={(event) => {
+                                handleChange({
+                                    item: item,
+                                    values: event.target.value
+                                })
+                            }}
+                            defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
+                                item.status === System.STATUS.PROCESSING ? "Processing" :
+                                    item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                            }
+                        >
+                            <option value="Ordered">Mới</option>
+                            <option value="Processing">Đang xử lý</option>
+                            <option value="Transferring">Đang gửi hàng</option>
+                            <option value="Received">Hoàn thành</option>
+                        </select>,
                     action:
                         <div className='action-ordered'>
                             {item.status !== System.STATUS.ORDERED ?
@@ -68,15 +88,19 @@ const Ordered = () => {
                                 }}>Xem đơn hàng</button>
                                 : null
                             }
-                            {item.status === System.STATUS.RECEIVED ?
-                                <button className='delete-ordered'>Xóa</button>
+                            {item.status === System.STATUS.RECEIVED || item.status === System.STATUS.CANCELED ?
+                                <button className='delete-ordered' onClick={(event) => {
+                                    event.preventDefault();
+                                    setIsModalDeleteOpen(true);
+                                    setKeyDelete(item.key);
+                                }}>Xóa</button>
                                 : null
                             }
                         </div>
                 }
             }))
         }
-    }, [isLoadingOrdered])
+    }, [dispatch, isLoadingOrdered, listOrdered])
 
     useEffect(() => {
         dispatch(fetchOrdered());
@@ -228,13 +252,74 @@ const Ordered = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
+    const handleDeleteOk = () => {
+        dispatch(fetchRemoveAbateById(keyDelete));
+        setIsModalDeleteOpen(false);
+    };
+
+    const handleDeleteCancel = () => {
+        setIsModalDeleteOpen(false);
+    };
+    const handleDeleteListCheckOk = () => {
+        if (listCheck) {
+            listCheck?.forEach(item => {
+                dispatch(fetchRemoveAbateById(item.key));
+            });
+        }
+        setIisModalDeleteListCheckOpen(false);
+    };
+
+    const handleDeleteListCheckCancel = () => {
+        setIisModalDeleteListCheckOpen(false);
+    };
+
+
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+            console.log('selectedRows: ', selectedRows);
+            setListCheck(selectedRows.length > 0 ? selectedRows : null);
+        },
+        getCheckboxProps: (record) => ({
+            disabled: record.status.props.defaultValue !== System.STATUS.RECEIVED,
+            status: record.status,
+        }),
+    };
     return (
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
             <div className="container mt-4">
                 <h4>Đơn hàng</h4>
                 <div className="order-content">
-                    <Table columns={columns} dataSource={data} />
+                    <Table
+                        rowSelection={{
+                            ...rowSelection,
+                        }}
+                        columns={columns}
+                        dataSource={data}
+                        pagination={{
+                            pageSize: 15,
+                        }}
+                    />
+                    {listCheck ?
+                        <button
+                            style={{
+                                borderRadius: "5px",
+                                backgroundColor: "red",
+                                color: "white",
+                                width: "120px",
+                                height: "40px",
+                                border: "none"
+                            }}
+
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setIisModalDeleteListCheckOpen(true)
+
+                            }}
+                        >Xóa Đơn hàng
+                        </button>
+                        : null
+                    }
                 </div>
                 <a href='/'>Quay lại trang chủ</a>
 
@@ -279,6 +364,20 @@ const Ordered = () => {
                     )?.toLocaleString()} VND</h4>
                 </div>
             </Modal>
+            <Modal
+                title="Bạn chắc chắn muốn xóa sản phẩm ?"
+                open={isModalDeleteOpen}
+                onOk={handleDeleteOk}
+                onCancel={handleDeleteCancel}
+                width={800}
+            ></Modal>
+            <Modal
+                title="Bạn chắc chắn muốn xóa sản phẩm ?"
+                open={isModalDeleteListCheckOpen}
+                onOk={handleDeleteListCheckOk}
+                onCancel={handleDeleteListCheckCancel}
+                width={800}
+            ></Modal>
         </div>
     );
 }

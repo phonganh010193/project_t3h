@@ -5,6 +5,7 @@ export const System = {
         PROCESSING: "Processing",
         TRANSFERRING: 'Transferring',
         RECEIVED: 'Received',
+        CANCELED: "Canceled"
     },
     GENDER: {
         MEN: "1",
