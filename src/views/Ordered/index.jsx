@@ -30,7 +30,6 @@ const Ordered = () => {
     const [isModalDeleteListCheckOpen, setIisModalDeleteListCheckOpen] = useState(false);
     const [orderedContent, setOrderedContent] = useState(null);
     const [listCheck, setListCheck] = useState(null);
-    console.log('listcheck', listCheck);
     const [keyDelete, setKeyDelete] = useState(null);
 
     useEffect(() => {
