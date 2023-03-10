@@ -26,31 +26,25 @@ class RunMockData {
     }
 
     static async runMockCart(user) {
-        console.log('===================1===========')
         let colRef = ref(database, "/Cart");
         if (!user) {
             await remove(colRef);
         }
         const orderListRef = ref(database, 'Cart');
-        console.log('===================2===========')
         OrderData.forEach(el => {
             const newOrderRef = push(orderListRef);
             set(newOrderRef, el);
         });
-        console.log('===================3===========')
     }
 
     static async runMockUser() {
-        console.log('===================4===========')
         // let colRef = ref(database, "/Cart");
         // await remove(colRef);
         const userListRef = ref(database, 'User');
-        console.log('===================5===========')
         UserData.forEach(el => {
             const newUserRef = push(userListRef);
             set(newUserRef, el);
         });
-        console.log('===================6===========')
     }
 
 

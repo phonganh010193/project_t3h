@@ -10,7 +10,7 @@ import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
 import "../../utils/styles/cart.container.css";
 import { System } from "../../constants/system.constants";
-import { fetchAbateList, fetchRemoveAbateById, } from "../Abate/abateSlice";
+import { fetchAbateList, fetchAddAbate, fetchRemoveAbateById, } from "../Abate/abateSlice";
 import { usePrevious } from "../../utils/hooks";
 import { Modal } from "antd";
 import { fetchUserItem } from "../../container/userSlice";
@@ -31,7 +31,10 @@ const Cart = () => {
     const userCurrent = useSelector(({ user }) => user.userCurrent)
     const abateList = useSelector(({ abate }) => abate.abateList);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
+    const keyAddAbate = useSelector(({ abate }) => abate.keyAddAbate);
+    const isLoadingAddAbate = useSelector(({ abate }) => abate.isLoadingAddAbate);
     const prevIsLoading = usePrevious(isLoading);
+    const prevIsLoadingAddAbate = usePrevious(isLoadingAddAbate);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [listDataOrder, setListDataOrder] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
@@ -41,6 +44,12 @@ const Cart = () => {
     const isLoadingDelete = useSelector(({ order }) => order.isLoadingDelete);
     const prevDeleteLoading = usePrevious(isLoadingDelete);
 
+    useEffect(() => {
+        if (!isLoadingAddAbate && prevIsLoadingAddAbate && keyAddAbate) {
+            updateCartOnline();
+            navigate(`/abate/${keyAddAbate}`);
+        }
+    }, [isLoadingAddAbate, prevIsLoadingAddAbate, keyAddAbate])
     useEffect(() => {
         if (!isLoadingCarlList && prevIsLoadingCartList) {
             listCart.forEach(el => {
@@ -116,31 +125,26 @@ const Cart = () => {
         const products = listCart.filter(el => {
             return el.isCheckBox && el.quantity !== 0;
         });
-        console.log('products', products);
         if (products.length <= 0) {
             toast.warning('Sản phẩm đã hết. Vui lòng chọn sản phẩm khác');
             return;
         }
-        const object = {
-            name: "",
-            email: userCurrent.email,
-            address: "",
-            phone: "",
-            note: "",
-            pay_dilivery: true,
-            products,
-            status: System.STATUS.ORDERING,
-            dateOrder: "",
+        const find = products.find(el => Number(el.orderNumber) === 0)
+        if (find) {
+            toast.warning('Xin hãy chọn số lượng sản phẩm muốn mua!')
+        } else {
+            dispatch(fetchAddAbate({
+                name: "",
+                email: userCurrent.email,
+                address: "",
+                phone: "",
+                note: "",
+                pay_dilivery: true,
+                products,
+                status: System.STATUS.ORDERING,
+                dateOrder: "",
+            }))
         }
-        const newAbate = await push(ref(database, 'Abate'), object)
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        updateCartOnline();
-        navigate(`/abate/${newAbate.key}`);
 
     }
 

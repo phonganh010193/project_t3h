@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref, remove, update } from 'firebase/database';
+import { get, push, ref, remove, update } from 'firebase/database';
 import { toast } from 'react-toastify';
 import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
@@ -17,6 +17,19 @@ export const fetchAbateById = createAsyncThunk(
     }).catch((error) => {
       console.error(error);
     });
+  }
+);
+
+export const fetchAddAbate = createAsyncThunk(
+  'abate/fetchAddAbate',
+  async (object, thunkAPI) => {
+    return await push(ref(database, 'Abate'), object)
+      .then((data) => {
+        return data.key;
+      })
+      .catch((error) => {
+        console.log(error)
+      });
   }
 );
 
@@ -93,7 +106,8 @@ const initialState = {
   isLoadingUpdate: false,
   deleteAbateByKey: null,
   isLoadingDeleteAbateByKey: false,
-
+  keyAddAbate: null,
+  isLoadingAddAbate: false
 }
 
 export const abateListSlice = createSlice({
@@ -141,6 +155,16 @@ export const abateListSlice = createSlice({
     })
     builder.addCase(fetchRemoveAbateById.rejected, (state, action) => {
       state.isLoadingDeleteAbateByKey = false;
+    })
+    builder.addCase(fetchAddAbate.pending, (state, action) => {
+      state.isLoadingAddAbate = true;
+    })
+    builder.addCase(fetchAddAbate.fulfilled, (state, action) => {
+      state.keyAddAbate = action.payload;
+      state.isLoadingAddAbate = false;
+    })
+    builder.addCase(fetchAddAbate.rejected, (state, action) => {
+      state.isLoadingAddAbate = false;
     })
   },
 })
