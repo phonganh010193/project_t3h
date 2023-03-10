@@ -68,7 +68,7 @@ const SignUp = () => {
           >
             <Form.Item
               name="name"
-              rules={[{ required: true, message: 'Please input your Name!' }]}
+              rules={[{ required: true, message: 'Please input your Name!' }, { min: 6, message: ">6" }]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Họ và tên" />
             </Form.Item>
@@ -80,19 +80,31 @@ const SignUp = () => {
             </Form.Item>
             <Form.Item
               name="phone"
-              rules={[{ required: true, message: 'Please input your Phone!' }]}
+              rules={[
+                // { required: true, message: 'Please input your Phone!' },
+                { type: "number", message: "Not number" },
+                {
+                  required: false,
+                  pattern: new RegExp("/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/"),
+                  message:
+                    'Enter a valid phone number!',
+                },
+              ]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Số điện thoại" />
             </Form.Item>
             <Form.Item
               name="username"
-              rules={[{ required: true, message: 'Please input your Username!' }]}
+              rules={[{ required: true, message: 'Please input your Email!' }, { type: "email", message: "mail" }]}
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="atbd@gmail.com" />
             </Form.Item>
             <Form.Item
               name="password"
-              rules={[{ required: true, message: 'Please input your Password!' }]}
+              rules={[
+                { required: true, message: 'Please input your Password!' },
+                { min: 6, message: ">6" }
+              ]}
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
@@ -102,7 +114,10 @@ const SignUp = () => {
             </Form.Item>
             <Form.Item
               name="confirm_password"
-              rules={[{ required: true, message: 'Please input your ConfirmPassword!' }]}
+              rules={[
+                { required: true, message: 'Please input your ConfirmPassword!' },
+                { min: 6, message: ">6" }
+              ]}
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
