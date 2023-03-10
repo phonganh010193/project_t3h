@@ -178,7 +178,7 @@ const HeaderRegister = () => {
             {userCurrent?.roles === System.ROLESUSER.ADMIN ||
                 userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <li onClick={() => {
-                    navigate(`/admin/update/product/${0}`)
+                    navigate(`/admin/product/update/${0}`)
                 }}>Thêm sản phẩm mới</li>
                 : null
             }
@@ -278,19 +278,6 @@ const HeaderRegister = () => {
                         }}
                     >
                         Reset
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            confirm({
-                                closeDropdown: false,
-                            });
-                            setSearchText(selectedKeys[0]);
-                            setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        Filter
                     </Button>
                     <Button
                         type="link"

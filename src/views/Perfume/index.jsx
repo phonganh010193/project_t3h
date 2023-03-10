@@ -15,6 +15,7 @@ import { System } from "../../constants/system.constants";
 import { Modal } from "antd";
 import { ref, remove } from "firebase/database";
 import { database } from "../../firebase";
+import DeleteProductItem from "../../component/DeleteProductItem";
 
 
 const take = 9;
@@ -39,12 +40,12 @@ const Perfume = () => {
     const [deleteItem, setDeleteItem] = useState(null);
     const handleOk = () => {
         remove(ref(database, "/Product/" + deleteItem.key))
-        .then(() => {
-            toast.success('Xóa sản phẩm thành công!')
-        })
-        .catch((error) => {
-            toast.error('Xóa sản phẩm thất bại!')
-        })
+            .then(() => {
+                toast.success('Xóa sản phẩm thành công!')
+            })
+            .catch((error) => {
+                toast.error('Xóa sản phẩm thất bại!')
+            })
         dispatch(fetchProduct());
         setIsModalOpen(false);
     };
@@ -164,7 +165,7 @@ const Perfume = () => {
         }
     };
 
-    
+
     return (
         <Layout>
             {productLoading ?
@@ -211,8 +212,8 @@ const Perfume = () => {
                                                         addOrderItem(item)
                                                     }}>Mua sản phẩm</button>
                                                     <button><Link to={`/perfume-detail/${item.id}`}>Xem chi tiết</Link></button>
-                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/update/product/${item.id}`}>Cập nhật</Link></button> : null}
-                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button  onClick={() => {
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button><Link to={`/admin/product/update/${item.id}`}>Cập nhật</Link></button> : null}
+                                                    {userCurrent?.roles === System.ROLESUSER.ADMIN || userCurrent?.roles === System.ROLESUSER.MEMBER ? <button onClick={() => {
                                                         setIsModalOpen(true);
                                                         setDeleteItem(item);
                                                     }}>Xóa sản phẩm</button> : null}
@@ -251,38 +252,7 @@ const Perfume = () => {
                     }
                 </div>
             }
-            <Modal 
-                title={<h5 style={{color: "red"}}>Bạn có chắc chắn muốn xóa sản phẩm này?</h5>}
-                open={isModalOpen} 
-                onOk={handleOk} 
-                onCancel={handleCancel}
-                width={800}
-                okText="Xóa sản phẩm"
-                cancelText="Hủy bỏ"
-            >
-                <div className="delete-item-container d-flex flex-row">
-                    <div className="men-item">
-                        <div className="men-detail">
-                            <img src={deleteItem?.image} className="men-image" alt="" />
-                        </div>
-                        <p>{deleteItem?.productName.toLowerCase()}</p>
-                        <div className="price">
-                            <p>{Number(deleteItem?.price.split(" ").join('')).toLocaleString()} VND</p>
-                            <p>{Number(deleteItem?.sale_price.split(" ").join('')).toLocaleString()} VND</p>
-                        </div>
-                        {deleteItem?.quantity === 0 ?
-                            <p style={{ color: "red", margin: "0" }}>Đã hết hàng</p>
-                            : null
-                        }
-                    </div>
-                    <div className="delete-product-info ml-5">
-                        <h6>Thông tin sản phẩm</h6>
-                        <div className="delete-info-product">
-                            <p>{deleteItem?.description}</p>
-                        </div>
-                    </div>
-                </div>
-            </Modal>
+            <DeleteProductItem isModalOpen={isModalOpen} deleteItem={deleteItem} handleOk={handleOk} handleCancel={handleCancel} />
         </Layout>
     )
 }

@@ -159,19 +159,6 @@ const Ordered = () => {
                         type="link"
                         size="small"
                         onClick={() => {
-                            confirm({
-                                closeDropdown: false,
-                            });
-                            setSearchText(selectedKeys[0]);
-                            setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        Filter
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
                             close();
                         }}
                     >
@@ -330,6 +317,7 @@ const Ordered = () => {
                 onOk={handleOk}
                 onCancel={handleCancel}
                 width={800}
+                footer={false}
             >
                 <div className='info-ordered d-flex flex-row justify-content-between'>
                     <div className='info-ordered-user'>

@@ -42,8 +42,9 @@
     margin-top: 50px;
 }
 
-.history-item > p{
+.history-item-children{
     border-bottom: 1px solid #2d8356;
+    display: flex;
 }
 
 .children img {

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,8 +11,6 @@ import IMAGE from "../../contact";
 import { usePrevious } from "../../utils/hooks";
 import { useState } from "react";
 import { fetchProduct, updateQuantityProductByBuy } from "../Perfume/perfumeInfoSlice";
-import { fetchOrderProduct } from "../Cart/orderSlice";
-import { UserContext } from "../../container/useContext";
 import HeaderRegister from "../../component/Topbar/component/headerRegister";
 import moment from "moment";
 
@@ -130,7 +128,6 @@ const Abate = () => {
     }, []);
 
     const todokuyoyaku = (date) => {
-        console.log('date', moment(date).format("MM"), date);
         if (moment(date).format("MM") === "01" ||
             moment(date).format("MM") === "03" ||
             moment(date).format("MM") === "05" ||
@@ -140,7 +137,6 @@ const Abate = () => {
             moment(date).format("MM") === "12"
         ) {
             if (Number(moment(date).format("DD")) + 5 <= 31) {
-                console.log((Number(moment(date).format("DD")) + 5).toString() + "/" + moment(date).format("MM"))
                 return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
             }
             if (Number(moment(date).format("DD")) + 5 > 31 &&
@@ -159,7 +155,6 @@ const Abate = () => {
             moment(date).format("MM") === "11"
         ) {
             if (Number(moment(date).format("DD")) + 5 <= 30) {
-                console.log((Number(moment(date).format("DD")) + 5).toString() + "/" + moment(date).format("MM"))
                 return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
             }
             if (Number(moment(date).format("DD")) + 5 > 30 &&
@@ -173,28 +168,22 @@ const Abate = () => {
             }
         } else {
             if (Number(moment(date).format("DD")) <= 28) {
-                console.log('288888')
                 if (Number(moment(date).format("DD")) + 5 <= 28) {
-                    console.log('1111111111')
-                    console.log((Number(moment(date).format("DD")) + 5).toString() + "/" + moment(date).format("MM"))
                     return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
                 }
                 if (Number(moment(date).format("DD")) + 5 > 28 &&
                     Number(moment(date).format("DD")) + 3 <= 28) {
-                    console.log('222222222')
 
                     return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 28).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
                 }
                 if (
                     Number(moment(date).format("DD")) + 3 > 28 &&
                     Number(moment(date).format("DD")) + 3 <= 31) {
-                    console.log('3333333')
 
                     return ((Number(moment(date).format("DD")) + 3) - 28).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString() + " - " + ((Number(moment(date).format("DD")) + 5) - 28).toString() + "/" + (Number(moment(date).format("MM")) + 1).toString();
                 }
             }
             else {
-                console.log('2999')
                 if (Number(moment(date).format("DD")) + 5 <= 29) {
                     return (Number(moment(date).format("DD")) + 3).toString() + "/" + Number(moment(date).format("MM")).toString() + " - " + (Number(moment(date).format("DD")) + 5).toString() + "/" + Number(moment(date).format("MM")).toString()
                 }
@@ -545,7 +534,7 @@ const Abate = () => {
                     </div>
                     <div className="info-transfer-status mt-4">
                         <p>Đặt hàng <br />thành công</p>
-                        <p>Đang xử lý <br />đơn hàng</p>
+                        <p>Chờ lấy hàng</p>
                         <p style={{ marginLeft: "15px" }}>Đang <br />giao hàng</p>
                         <p>Đã giao hàng</p>
                     </div>

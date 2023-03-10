@@ -1,6 +1,6 @@
 import HeaderRegister from "../../component/Topbar/component/headerRegister";
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Modal, Space, Table } from 'antd';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { useEffect } from "react";
@@ -8,18 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 import { usePrevious } from "../../utils/hooks";
 import "../../utils/styles/product.css";
+import { useNavigate } from "react-router-dom";
+import DeleteProductItem from "../../component/DeleteProductItem";
+import DataProduct from "../../component/DataProduct";
+import { ref, remove } from "firebase/database";
+import { toast } from "react-toastify";
+import { database } from "../../firebase";
 
 const Product = () => {
     const [searchText, setSearchText] = useState('');
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [searchedColumn, setSearchedColumn] = useState('');
     const product = useSelector(({ product }) => product.productList);
     const productLoading = useSelector(({ product }) => product.isLoading);
     const preProductLoading = usePrevious(productLoading);
-    console.log('product', product);
     const searchInput = useRef(null);
     const [data, setData] = useState(null);
-
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [deleteItem, setDeleteItem] = useState(null);
     useEffect(() => {
         dispatch(fetchProduct());
     }, [dispatch]);
@@ -30,19 +37,26 @@ const Product = () => {
                 return {
                     key: item.id,
                     stt: index + 1,
-                    avatar: <img style={{width: "35px"}} src={item.image} alt="" />,
+                    avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
                     name: item.productName,
-                    number: <div>
-                        <span>{item.quantity}</span>
+                    number: <div className="d-flex flex-row">
+                        <span style={{ marginRight: "20px" }}>{item.quantity}</span>
                         {item.quantity >= 1 && item.quantity <= 5 ?
-                            <div style={{ border: "1px solid yellow", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "yellow", fontSize: "15px", margin: "0" }}>Canceled</span></div> :
-                        item.quantity === 0 ? 
-                            <span>Hết hàng</span>: null     
-                    }
+                            <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                            item.quantity === 0 ?
+                                <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                        }
                     </div>,
                     action: <div className="action-product">
-                        <button>Cập nhật</button>
-                        <button>Xóa</button>
+                        <button onClick={(event) => {
+                            event.preventDefault();
+                            navigate(`/admin/product/update/${item.id}`)
+                        }}>Cập nhật</button>
+                        <button onClick={(event) => {
+                            event.preventDefault();
+                            setIsModalOpen(true);
+                            setDeleteItem(item);
+                        }}>Xóa</button>
                     </div>
                 }
             }))
@@ -59,97 +73,84 @@ const Product = () => {
     };
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-        <div
-            style={{
-            padding: 8,
-            }}
-            onKeyDown={(e) => e.stopPropagation()}
-        >
-            <Input
-            ref={searchInput}
-            placeholder={`Search ${dataIndex}`}
-            value={selectedKeys[0]}
-            onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-            onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            style={{
-                marginBottom: 8,
-                display: 'block',
-            }}
-            />
-            <Space>
-            <Button
-                type="primary"
-                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
-                size="small"
+            <div
                 style={{
-                width: 90,
+                    padding: 8,
                 }}
+                onKeyDown={(e) => e.stopPropagation()}
             >
-                Search
-            </Button>
-            <Button
-                onClick={() => clearFilters && handleReset(clearFilters)}
-                size="small"
-                style={{
-                width: 90,
-                }}
-            >
-                Reset
-            </Button>
-            <Button
-                type="link"
-                size="small"
-                onClick={() => {
-                confirm({
-                    closeDropdown: false,
-                });
-                setSearchText(selectedKeys[0]);
-                setSearchedColumn(dataIndex);
-                }}
-            >
-                Filter
-            </Button>
-            <Button
-                type="link"
-                size="small"
-                onClick={() => {
-                close();
-                }}
-            >
-                close
-            </Button>
-            </Space>
-        </div>
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{
+                        marginBottom: 8,
+                        display: 'block',
+                    }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => clearFilters && handleReset(clearFilters)}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}
+                    >
+                        close
+                    </Button>
+                </Space>
+            </div>
         ),
         filterIcon: (filtered) => (
-        <SearchOutlined
-            style={{
-            color: filtered ? '#1890ff' : undefined,
-            }}
-        />
+            <SearchOutlined
+                style={{
+                    color: filtered ? '#1890ff' : undefined,
+                }}
+            />
         ),
         onFilter: (value, record) =>
-        record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
         onFilterDropdownOpenChange: (visible) => {
-        if (visible) {
-            setTimeout(() => searchInput.current?.select(), 100);
-        }
+            if (visible) {
+                setTimeout(() => searchInput.current?.select(), 100);
+            }
         },
         render: (text) =>
-        searchedColumn === dataIndex ? (
-            <Highlighter
-            highlightStyle={{
-                backgroundColor: '#ffc069',
-                padding: 0,
-            }}
-            searchWords={[searchText]}
-            autoEscape
-            textToHighlight={text ? text.toString() : ''}
-            />
-        ) : (
-            text
-        ),
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={{
+                        backgroundColor: '#ffc069',
+                        padding: 0,
+                    }}
+                    searchWords={[searchText]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ''}
+                />
+            ) : (
+                text
+            ),
     });
     const columns = [
         {
@@ -183,15 +184,149 @@ const Product = () => {
             key: 'action',
         },
     ];
+
+    const handleOk = () => {
+        remove(ref(database, "/Product/" + deleteItem.key))
+            .then(() => {
+                toast.success('Xóa sản phẩm thành công!')
+            })
+            .catch((error) => {
+                toast.error('Xóa sản phẩm thất bại!')
+            })
+        dispatch(fetchProduct());
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
             <div className="container">
-                <h4 className="mt-4">Kho hàng</h4>
+                <div className="product-title-header">
+                    <h4 className="mt-4">Kho hàng</h4>
+                    <div style={{ width: "800px" }} className="d-flex flex-row justify-content-between">
+                        <span
+                            className="all-product"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setData(product?.map((item, index) => {
+                                    return {
+                                        key: item.id,
+                                        stt: index + 1,
+                                        avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
+                                        name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
+                                        number: <div className="d-flex flex-row">
+                                            <span style={{ marginRight: "20px" }}>{item.quantity}</span>
+                                            {item.quantity >= 1 && item.quantity <= 5 ?
+                                                <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                                                item.quantity === 0 ?
+                                                    <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                                            }
+                                        </div>,
+                                        action: <div className="action-product">
+                                            <button onClick={(event) => {
+                                                event.preventDefault();
+                                                navigate(`/admin/product/update/${item.id}`)
+                                            }}>Cập nhật</button>
+                                            <button onClick={(event) => {
+                                                event.preventDefault();
+                                                setIsModalOpen(true);
+                                                setDeleteItem(item);
+                                            }}>Xóa</button>
+                                        </div>
+                                    }
+                                }))
+                            }}
+                        >Tổng: {product?.length} sản phẩm</span>
+                        <span
+                            className="effeting-product"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setData(product?.filter(el => {
+                                    if (el.quantity >= 1 && el.quantity <= 5) {
+                                        return el;
+                                    }
+                                })?.map((item, index) => {
+                                    return {
+                                        key: item.id,
+                                        stt: index + 1,
+                                        avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
+                                        name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
+                                        number: <div className="d-flex flex-row">
+                                            <span style={{ marginRight: "20px" }}>{item.quantity}</span>
+                                            {item.quantity >= 1 && item.quantity <= 5 ?
+                                                <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                                                item.quantity === 0 ?
+                                                    <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                                            }
+                                        </div>,
+                                        action: <div className="action-product">
+                                            <button onClick={(event) => {
+                                                event.preventDefault();
+                                                navigate(`/admin/product/update/${item.id}`)
+                                            }}>Cập nhật</button>
+                                            <button onClick={(event) => {
+                                                event.preventDefault();
+                                                setIsModalOpen(true);
+                                                setDeleteItem(item);
+                                            }}>Xóa</button>
+                                        </div>
+                                    }
+                                }))
+                            }}
+                        >Sắp hết hàng: {product?.filter(el => {
+                            if (el.quantity >= 1 && el.quantity <= 5) {
+                                return el;
+                            }
+                        })?.length} sản phẩm</span>
+                        <span
+                            className="effeteed-product"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setData(product?.filter(el => {
+                                    if (el.quantity === 0) {
+                                        return el;
+                                    }
+                                })?.map((item, index) => {
+                                    return {
+                                        key: item.id,
+                                        stt: index + 1,
+                                        avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
+                                        name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
+                                        number: <div className="d-flex flex-row">
+                                            <span style={{ marginRight: "20px" }}>{item.quantity}</span>
+                                            {item.quantity >= 1 && item.quantity <= 5 ?
+                                                <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                                                item.quantity === 0 ?
+                                                    <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                                            }
+                                        </div>,
+                                        action: <div className="action-product">
+                                            <button onClick={(event) => {
+                                                event.preventDefault();
+                                                navigate(`/admin/product/update/${item.id}`)
+                                            }}>Cập nhật</button>
+                                            <button onClick={(event) => {
+                                                event.preventDefault();
+                                                setIsModalOpen(true);
+                                                setDeleteItem(item);
+                                            }}>Xóa</button>
+                                        </div>
+                                    }
+                                }))
+                            }}
+                        >Hết hàng: {product?.filter(el => {
+                            if (el.quantity === 0) {
+                                return el;
+                            }
+                        })?.length} sản phẩm</span>
+                    </div>
+                </div>
                 <Table columns={columns} dataSource={data} />
-                <a href="/" style={{paddingBottom: "50px"}}>Quay lại trang chủ</a>
+                <a href="/" style={{ paddingBottom: "50px" }}>Quay lại trang chủ</a>
             </div>
-            
+            <DeleteProductItem isModalOpen={isModalOpen} deleteItem={deleteItem} handleOk={handleOk} handleCancel={handleCancel} />
         </div>
     )
 }
