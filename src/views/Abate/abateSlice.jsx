@@ -78,6 +78,7 @@ export const fetchUpdateAbateById = createAsyncThunk(
         });
       } else {
         alert('Đặt hàng không thành công do só lượng sản phẩm trong kho hiện tại không đủ. Xin chọn sản phẩm khác hoặc liên hệ với shop để được tư vấn. Xin cảm ơn!')
+        return;
       }
     }
   }
