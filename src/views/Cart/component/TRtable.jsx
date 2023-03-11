@@ -2,18 +2,16 @@ import { ref, remove } from "firebase/database";
 import { useState } from "react";
 import IMAGE from "../../../contact";
 import { database } from "../../../firebase";
-import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchOrderProduct } from "../orderSlice";
 import { useEffect } from "react";
+import { Modal } from "antd";
 
 const
-    TRtable = ({ item, updateOrder, user, product }) => {
-        const dispatch = useDispatch();
+    TRtable = ({ item, updateOrder, user, product, dispatch, itemChangeNumberOrder, setIsModalBuyOpen, setMaxQuantity }) => {
         const [number, setNumber] = useState(item.orderNumber);
         const [isCheckBox, setISCheckBox] = useState(item.isCheckBox);
-
         useEffect(() => {
             setISCheckBox(item.isCheckBox);
         }, [item.isCheckBox])
@@ -27,13 +25,8 @@ const
                     toast.error('Delete Fail!')
                 })
         }
-
-        const itemChangeNumberOrder = (item) => {
-            const finfItem = product.find(el => el.id === item.id);
-            if (finfItem) {
-                return finfItem?.quantity;
-            }
-        }
+        
+       
         return (
             <tr key={item.id}>
                 <td><input type="checkbox" checked={isCheckBox} onChange={() => {
@@ -56,8 +49,10 @@ const
                 <td>
                     <input disabled={itemChangeNumberOrder(item) === 0 ? true : false} style={{ width: "50px" }} type="number" value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
                         setNumber(text.target.value);
+                        
                         if (Number(text.target.value) >= itemChangeNumberOrder(item)) {
-                            toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${itemChangeNumberOrder(item)}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
+                            setIsModalBuyOpen(true);
+                            setMaxQuantity(itemChangeNumberOrder(item))
                         }
                         const value = {
                             item: {
@@ -81,6 +76,8 @@ const
                         }}
                     />
                 </td>
+                
+
             </tr>
         );
     }

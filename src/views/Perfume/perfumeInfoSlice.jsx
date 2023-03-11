@@ -160,7 +160,7 @@ export const updateQuantityProductByBuy = createAsyncThunk(
             const nextQuantity = el.quantity - item.orderNumber;
             update(ref(database, "/Product/" + item.keyProduct), {
               ...el,
-              quantity: nextQuantity,
+              quantity: nextQuantity > 0 ? nextQuantity : 0,
               bestsellers: el.bestsellers + 1
             })
               .then((res) => {
@@ -169,14 +169,13 @@ export const updateQuantityProductByBuy = createAsyncThunk(
               .catch((error) => {
                 console.log(error)
               })
-            if (nextQuantity === 0 || nextQuantity - item.orderNumber < 0) {
               update(ref(database, "/Cart/" + item.key), {
                 user: item.user,
                 productId: item.productId,
-                orderNumber: el.quantity - item.orderNumber,
+                orderNumber: 1,
                 isCheckBox: false
               })
-            }
+            
           }
         })
       })

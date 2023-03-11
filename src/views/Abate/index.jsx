@@ -13,6 +13,9 @@ import { useState } from "react";
 import { fetchProduct, updateQuantityProductByBuy } from "../Perfume/perfumeInfoSlice";
 import HeaderRegister from "../../component/Topbar/component/headerRegister";
 import moment from "moment";
+import { fetchOrderProduct, fetchUpdateOrderItem } from "../Cart/orderSlice";
+import { useContext } from "react";
+import { UserContext } from "../../container/useContext";
 
 const validateMessages = {
     required: '${label} is required!',
@@ -38,7 +41,9 @@ const layout = {
 const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
+    const { user } =useContext(UserContext);
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
+    const listCart = useSelector(({ order }) => order.orderProduct);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const prevIsLoading = usePrevious(isLoading);
     const isLoadingUpdate = useSelector(({ abate }) => abate.isLoadingUpdate);
@@ -52,8 +57,10 @@ const Abate = () => {
     useEffect(() => {
         if (!isLoadingUpdate && prevIsLoadingUpdate) {
             dispatch(updateQuantityProductByBuy(orderId))
+            dispatch(fetchUpdateOrderItem(listCart));
+            dispatch(fetchAbateById(orderId));
         }
-    }, [isLoadingUpdate])
+    }, [dispatch, isLoadingUpdate, prevIsLoadingUpdate, orderId])
 
 
 
@@ -121,6 +128,7 @@ const Abate = () => {
     useEffect(() => {
         dispatch(fetchAbateById(orderId));
         dispatch(fetchProduct());
+        dispatch(fetchOrderProduct(user));
     }, [dispatch, orderId]);
 
     useEffect(() => {
@@ -201,6 +209,7 @@ const Abate = () => {
 
         }
     }
+  
 
 
     const onFinish = async (values) => {
@@ -216,8 +225,9 @@ const Abate = () => {
                 status: System.STATUS.ORDERED,
                 dateOrder: new Date(),
             }
+           
             dispatch(fetchUpdateAbateById({ orderId, value }))
-            dispatch(fetchAbateById(orderId));
+            
         } catch (error) {
             toast.error('Xin kiểm tra lại thông tin thanh toán')
         }

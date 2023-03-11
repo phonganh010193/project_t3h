@@ -36,12 +36,50 @@ export const fetchAddAbate = createAsyncThunk(
 export const fetchUpdateAbateById = createAsyncThunk(
   'abate/fetchUpdateAbateById',
   async (params, thunkAPI) => {
-    return await update(ref(database, "/Abate/" + params.orderId), params.value).then((snapshot) => {
-      toast.success('Order thành công!');
+    const product = await get(ref(database, "Product")).then((snapshot) => {
+      if (snapshot.exists()) {
+        // return Object.values(snapshot.val());
+        const response = snapshot.val();
+        const keys = Object.keys(response);
+        return keys.map(key => {
+          return {
+            ...response[key],
+            key,
+          }
+        });
+      } else {
+        console.log("No data available");
+      }
     }).catch((error) => {
-      toast.error('order không thành công')
       console.error(error);
     });
+    const list = [];
+    if(product) {
+      product.forEach(el => {
+        params.value.products.forEach(item => {
+          if (el.id === item.productId) {
+            list.push(
+              {
+                ...el,
+                orderNumber: item.orderNumber
+              }
+            );
+            return list
+          }
+        })
+      })
+      const confirmList = list?.filter(el => el.quantity < el.orderNumber);
+      if(confirmList.length === 0) {
+        update(ref(database, "/Abate/" + params.orderId), params.value).then((snapshot) => {
+          toast.success('Order thành công!');
+        }).catch((error) => {
+          toast.error('order không thành công')
+          console.error(error);
+        });
+      } else {
+        alert('Đặt hàng không thành công do só lượng sản phẩm trong kho hiện tại không đủ. Xin chọn sản phẩm khác hoặc liên hệ với shop để được tư vấn. Xin cảm ơn!')
+      }
+    }
   }
 );
 

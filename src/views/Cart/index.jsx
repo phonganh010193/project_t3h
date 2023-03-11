@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchDeleteOrderItem, fetchOrderProduct, updateListCart } from "./orderSlice";
+import { fetchDeleteOrderItem, fetchOrderProduct, fetchUpdateOrderItem, updateListCart } from "./orderSlice";
 import { push, ref, update } from "firebase/database";
 import { database } from '../../firebase';
 import TRtable from "./component/TRtable";
@@ -19,16 +19,14 @@ import { UserContext } from "../../container/useContext";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 
 
-const take = 5
+const take = 10
 const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
     const listCart = useSelector(({ order }) => order.orderProduct);
-    const isLoadingCarlList = useSelector(({ order }) => order.isLoading);
-    const prevIsLoadingCartList = usePrevious(isLoadingCarlList);
     const product = useSelector(({ product }) => product.productList);
-    const userCurrent = useSelector(({ user }) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent);
     const abateList = useSelector(({ abate }) => abate.abateList);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const keyAddAbate = useSelector(({ abate }) => abate.keyAddAbate);
@@ -43,27 +41,15 @@ const Cart = () => {
     const prevOrderLoading = usePrevious(orderLoading);
     const isLoadingDelete = useSelector(({ order }) => order.isLoadingDelete);
     const prevDeleteLoading = usePrevious(isLoadingDelete);
-
+    const [isModalBuyOpen, setIsModalBuyOpen] = useState(false);
+    const [maxQuantity, setMaxQuantity] = useState(null)
     useEffect(() => {
         if (!isLoadingAddAbate && prevIsLoadingAddAbate && keyAddAbate) {
             updateCartOnline();
             navigate(`/abate/${keyAddAbate}`);
         }
-    }, [isLoadingAddAbate, prevIsLoadingAddAbate, keyAddAbate])
-    useEffect(() => {
-        if (!isLoadingCarlList && prevIsLoadingCartList) {
-            listCart.forEach(el => {
-                if (el.quantity === 0) {
-                    update(ref(database, "/Cart/" + el.key), {
-                        user: el.user,
-                        productId: el.productId,
-                        orderNumber: el.orderNumber,
-                        isCheckBox: false
-                    })
-                }
-            })
-        }
-    }, [isLoadingCarlList])
+    }, [isLoadingAddAbate, prevIsLoadingAddAbate, keyAddAbate]);
+
     useEffect(() => {
         if (!isLoadingDelete && prevDeleteLoading) {
             dispatch(fetchOrderProduct(user))
@@ -88,7 +74,7 @@ const Cart = () => {
         if (!isLoading && prevIsLoading && abateList) {
             setIsModalOpen(true)
         }
-    }, [abateList])
+    }, [isLoading, prevIsLoading, abateList])
     useEffect(() => {
         dispatch(fetchOrderProduct(user));
         dispatch(fetchAbateList());
@@ -100,8 +86,8 @@ const Cart = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, [])
 
-    const updateOrder = async (value) => {
-        await dispatch(updateListCart(value));
+    const updateOrder = (value) => {
+        dispatch(updateListCart(value));
     }
 
     const deleteListCart = () => {
@@ -238,6 +224,20 @@ const Cart = () => {
         }
         return data;
     }
+    const itemChangeNumberOrder = (item) => {
+        const findItem = product.find(el => el.id === item.id);
+        if (findItem) {
+            return findItem?.quantity;
+        }
+    };
+
+    const handleBuyOk = () => {
+        setIsModalBuyOpen(false);
+    };
+    const handleBuyCancel = () => {
+        setIsModalBuyOpen(false);
+    }
+    
     return (
         <LayoutCart>
             <div className="cart-container">
@@ -279,7 +279,14 @@ const Cart = () => {
                                             key={item.id}
                                             item={item}
                                             updateOrder={updateOrder}
-                                            user={user} product={product}
+                                            user={user} 
+                                            product={product}
+                                            dispatch= {dispatch}
+                                            itemChangeNumberOrder={itemChangeNumberOrder}
+                                            setIsModalBuyOpen={setIsModalBuyOpen}
+                                            isModalBuyOpen= {isModalBuyOpen}
+                                            maxQuantity={maxQuantity}
+                                            setMaxQuantity={setMaxQuantity}
                                         />
                                     )
                                 }) : null}
@@ -366,6 +373,17 @@ const Cart = () => {
                     </div>
                 }
             />
+            <Modal
+                title={<p style={{ color: "green", width: "98%" }}>Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là {maxQuantity}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!</p>}
+                open={isModalBuyOpen}
+                onOk={handleBuyOk} 
+                onCancel={handleBuyCancel}
+                style={{
+                    marginTop: "160px"
+                }}
+                footer={false}
+            />
+            
 
         </LayoutCart>
     )

@@ -144,13 +144,38 @@ export const fetchDeleteOrderItem = createAsyncThunk(
   }
 );
 
+export const fetchUpdateOrderItem = createAsyncThunk(
+  'cart/fetchUpdateOrderItem',
+  async (listCart, thunkAPI) => {
+    const listUpdate = [];
+    if(listCart) {
+      listCart?.forEach(el => {
+        if (el.quantity === 0) {
+          listUpdate.push(el);
+          update(ref(database, "/Cart/" + el.key), {
+              user: el.user,
+              productId: el.productId,
+              orderNumber: el.orderNumber,
+              isCheckBox: false
+          })
+        }
+        return listUpdate;
+      })
+    }
+    return listUpdate;
+   
+  }
+);
+
 const initialState = {
   isLoading: false,
   orderProduct: [],
   isLoadingAdd: false,
   addOrderProduct: null,
   deleteOrderProduct: null,
-  isLoadingDelete: false
+  isLoadingDelete: false,
+  listUpdate: null,
+  isLoadingListUpdate: false,
 }
 
 export const orderProductSlice = createSlice({
@@ -196,6 +221,16 @@ export const orderProductSlice = createSlice({
     })
     builder.addCase(fetchDeleteOrderItem.rejected, (state, action) => {
       state.isLoadingDelete = false;
+    })
+    builder.addCase(fetchUpdateOrderItem.pending, (state, action) => {
+      state.isLoadingListUpdate = true;
+    })
+    builder.addCase(fetchUpdateOrderItem.fulfilled, (state, action) => {
+      state.listUpdate = action.payload;
+      state.isLoadingListUpdate = false;
+    })
+    builder.addCase(fetchUpdateOrderItem.rejected, (state, action) => {
+      state.isLoadingListUpdate = false;
     })
   },
 })
