@@ -5,6 +5,10 @@
     margin-bottom: 35px;
 }
 
+.review-detail-info{
+    width: 60%;
+}
+
 .new-product-info {
     width: 45%;
 }

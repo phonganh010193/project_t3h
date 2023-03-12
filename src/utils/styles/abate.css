@@ -204,6 +204,17 @@
   margin-bottom: 40px;
 }
 
+@media only screen and (max-width: 770px) {
+  .abate-info {
+    flex-direction: column !important;
+    gap: 50px;
+    align-items: center;
+  }
+  .cofirm-payment {
+    width: 100% !important;
+  }
+}
+
 .abate-info-left {
   width: 100%;
 }

@@ -107,21 +107,23 @@ const HistoryOrder = (props) => {
                 {historyOrderList?.length > 0 ? historyOrderList.map((item, index) => {
                     return (
                         <div className="history-item" key={index}>
-                            <div className="history-item-children">
+                            <div className="history-item-children d-flex flex-row">
                                 Ngày {moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss")}
-                                <span style={{ marginLeft: "40px" }}><Link to={`/abate/${item.key}`}>Xem đơn hàng</Link></span>
-                                <span style={{ marginLeft: "40px" }}>
-                                    {item.status !== System.STATUS.RECEIVED ?
-                                        <button
-                                            className="btn-show-confirm-cancel"
-                                            onClick={() => {
-                                                setKey(item)
-                                                setIsModalOpen(true)
-                                            }}
-                                        >Huỷ đơn hàng</button>
-                                        : <div style={{ border: "1px solid green", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "green", fontSize: "15px", margin: "0" }}>Đã nhận hàng</span></div>
-                                    }
-                                </span>
+                                <div className="history-item-btn-group d-flex flex-row">
+                                    <p style={{ marginLeft: "40px" }}><Link to={`/abate/${item.key}`}>Xem đơn hàng</Link></p>
+                                    <p style={{ marginLeft: "40px" }}>
+                                        {item.status !== System.STATUS.RECEIVED ?
+                                            <button
+                                                className="btn-show-confirm-cancel"
+                                                onClick={() => {
+                                                    setKey(item)
+                                                    setIsModalOpen(true)
+                                                }}
+                                            >Huỷ đơn hàng</button>
+                                            : <div style={{ border: "1px solid green", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "green", fontSize: "15px", margin: "0" }}>Đã nhận hàng</span></div>
+                                        }
+                                    </p>
+                                </div>
 
                             </div>
                             <div className="history-item-info mt-4">
