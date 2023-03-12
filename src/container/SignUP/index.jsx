@@ -20,29 +20,24 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const onFinish = async (values) => {
-    if (values.password === values.confirm_password) {
-      try {
-        await createUserWithEmailAndPassword(auth, values.username, values.password);
-        await RunMockData.runMockCategory();
-        await RunMockData.runMockProduct();
-        await RunMockData.runMockUser();
-        const value = {
-          name: values.name,
-          email: values.username,
-          address: values.address,
-          phone: values.phone,
-          avatar: "",
-          roles: System.ROLESUSER.USER
-        }
-        await dispatch(fetchUpdateUserItem(value))
-        navigate('/signin')
-      } catch (err) {
-        toast.error('Tên đăng nhập đã tồn tại');
+    try {
+      await createUserWithEmailAndPassword(auth, values.username, values.password);
+      await RunMockData.runMockCategory();
+      await RunMockData.runMockProduct();
+      await RunMockData.runMockUser();
+      const value = {
+        name: values.name,
+        email: values.username,
+        address: values.address,
+        phone: values.phone,
+        avatar: "",
+        roles: System.ROLESUSER.USER
       }
-    } else {
-      toast.error('Mật khẩu không trùng khớp')
+      await dispatch(fetchUpdateUserItem(value))
+      navigate('/signin')
+    } catch (err) {
+      toast.error('Tên đăng nhập đã tồn tại');
     }
-
   };
 
   useEffect(() => {
@@ -59,7 +54,7 @@ const SignUp = () => {
           <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
         </div>
         <div className='form-login'>
-          <p style={{ color: "#2d8356", textAlign: "center", fontSize: "25px" }}>꧁༒۝♥SingUp♥۝༒꧂</p>
+          <p style={{ color: "#2d8356", textAlign: "center", fontSize: "25px" }}>꧁༒۝♥Đăng Ký♥۝༒꧂</p>
           <Form
             name="normal_login"
             className="logout-form"
@@ -68,69 +63,73 @@ const SignUp = () => {
           >
             <Form.Item
               name="name"
-              rules={[{ required: true, message: 'Please input your Name!' }, { min: 6, message: ">6" }]}
+              rules={[{ required: true, message: 'Xin hãy nhập họ tên!' }]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Họ và tên" />
             </Form.Item>
             <Form.Item
               name="address"
-              rules={[{ required: true, message: 'Please input your Address!' }]}
+              rules={[{ required: true, message: 'Xin hãy nhập địa chỉ!' }]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Địa chỉ" />
             </Form.Item>
             <Form.Item
               name="phone"
               rules={[
-                // { required: true, message: 'Please input your Phone!' },
-                { type: "number", message: "Not number" },
-                {
-                  required: false,
-                  pattern: new RegExp("/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/"),
-                  message:
-                    'Enter a valid phone number!',
-                },
+                { required: true, message: 'Xin hay nhập số điện thoại!' },
+                
               ]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Số điện thoại" />
             </Form.Item>
             <Form.Item
               name="username"
-              rules={[{ required: true, message: 'Please input your Email!' }, { type: "email", message: "mail" }]}
+              rules={[{ required: true, message: 'Xin hãy nhập Email!' }, { type: "email", message: "Đây không phải email" }]}
             >
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="atbd@gmail.com" />
             </Form.Item>
             <Form.Item
               name="password"
-              rules={[
-                { required: true, message: 'Please input your Password!' },
-                { min: 6, message: ">6" }
-              ]}
+              rules={[{pattern: new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),message: "Mật khẩu tối thiểu tám ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt"},
+              {required: true,message: "Xin hãy nhập mật khẩu!",},]}
+              hasFeedback
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="Password"
+                placeholder="Mật khẩu"
               />
             </Form.Item>
             <Form.Item
               name="confirm_password"
+              dependencies={['password']}
+              hasFeedback
               rules={[
-                { required: true, message: 'Please input your ConfirmPassword!' },
-                { min: 6, message: ">6" }
+                {
+                  required: true,
+                  message: 'Xin hãy xác nhận mật khẩu',
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('Mật khẩu không trùng khớp'));
+                  },
+                }),
               ]}
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
-                placeholder="ConfirmPassword"
+                placeholder="Xác nhận mật khẩu"
               />
             </Form.Item>
-
             <Form.Item>
               <Button type="primary" htmlType="submit" className="login-form-button">
-                Sign up
+                Đăng ký
               </Button>
-              Or <a href="/signin">Login now!</a>
+              hoặc <a href="/signin">Đăng nhập ngay!</a>
             </Form.Item>
           </Form>
         </div>

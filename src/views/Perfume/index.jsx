@@ -181,21 +181,17 @@ const Perfume = () => {
                         </>
                         :
                         categories &&
+                        // eslint-disable-next-line array-callback-return
                         categories?.map((item, index) => {
-                            return (
-                                <div
-                                    key={item.id}
-                                >
-                                    {categoryId === item.id ?
-                                        <>
-                                            <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
-                                            <h4>{item.categoryName.toUpperCase()}</h4>
-                                        </>
-                                        : null
-
-                                    }
-                                </div>
-                            )
+                            if(categoryId === item.id ) {
+                                return (
+                                    <div key={item.id}>
+                                        <p style={{ borderBottom: "1px solid gray" }}>Trang chủ / <span style={{ color: "#2d8356" }}>{item.categoryName}</span></p>
+                                        <h4>{item.categoryName.toUpperCase()}</h4>
+                                    </div>
+                                )
+                            }
+                            
                         })
                     }
 

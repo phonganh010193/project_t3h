@@ -64,16 +64,16 @@ export const fetchUpdateAbateById = createAsyncThunk(
                 orderNumber: item.orderNumber
               }
             );
-            return list
+            return list;
           }
-        })
+        });
       })
       const confirmList = list?.filter(el => el.quantity < el.orderNumber);
       if(confirmList.length === 0) {
-        update(ref(database, "/Abate/" + params.orderId), params.value).then((snapshot) => {
-          toast.success('Order thành công!');
+        await update(ref(database, "/Abate/" + params.orderId), params.value).then((snapshot) => {
+          toast.success('Đặt hàng thành công!');
         }).catch((error) => {
-          toast.error('order không thành công')
+          toast.error('Đặt hàng không thành công')
           console.error(error);
         });
       } else {

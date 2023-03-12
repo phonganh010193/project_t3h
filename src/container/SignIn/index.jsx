@@ -47,7 +47,7 @@ const SignIn = () => {
               <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
             </div>
             <div className='form-login'>
-              <p style={{ color: "#2d8356", textAlign: "center", fontSize: "25px" }}>꧁༒۝♥SingIn♥۝༒꧂</p>
+              <p style={{ color: "#2d8356", textAlign: "center", fontSize: "25px" }}>꧁༒۝♥Đăng nhập♥۝༒꧂</p>
               <Form
                 name="normal_login"
                 className="login-form"
@@ -56,35 +56,40 @@ const SignIn = () => {
               >
                 <Form.Item
                   name="username"
-                  rules={[{ required: true, message: 'Please input your Username!' }]}
+                  rules={[
+                    { required: true, message: 'Xin hãy nhập Email' },
+                    {type: "email", message: 'Đây không phải là email!'}
+                  ]}
                 >
-                  <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                  <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="phongpv@gmail.com" />
                 </Form.Item>
                 <Form.Item
                   name="password"
-                  rules={[{ required: true, message: 'Please input your Password!' }]}
+                  rules={[{pattern: new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),message: "Mật khẩu tối thiểu tám ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt"},
+                  {required: true,message: "Xin hãy nhập mật khẩu!",},]}
+                  hasFeedback
                 >
                   <Input.Password
                     prefix={<LockOutlined className="site-form-item-icon" />}
                     type="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                   />
                 </Form.Item>
                 <Form.Item>
                   <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>Ghi nhớ</Checkbox>
                   </Form.Item>
 
                   <Link className="login-form-forgot" to="/forgot-password">
-                    Forgot password
+                    Quên mật khẩu
                   </Link>
                 </Form.Item>
 
                 <Form.Item>
                   <Button type="primary" htmlType="submit" className="login-form-button">
-                    Log in
+                    Đăng nhập
                   </Button>
-                  Or <a href="/signup">register now!</a>
+                  Or <a href="/signup">Đăng ký!</a>
                 </Form.Item>
 
               </Form>

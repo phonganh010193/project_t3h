@@ -58,6 +58,7 @@ const Abate = () => {
         if (!isLoadingUpdate && prevIsLoadingUpdate) {
             dispatch(updateQuantityProductByBuy(orderId))
             dispatch(fetchUpdateOrderItem(listCart));
+            dispatch(fetchOrderProduct(user));
             dispatch(fetchAbateById(orderId));
         }
     }, [dispatch, isLoadingUpdate, prevIsLoadingUpdate, orderId])

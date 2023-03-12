@@ -206,11 +206,6 @@ const HeaderRegister = () => {
                 }}>Kho hàng</li>
                 : null
             }
-
-
-            <li onClick={() => {
-                navigate('/abate')
-            }}>Lịch sử mua hàng</li>
             <li onClick={() => {
                 fetchSignOut();
             }}><a style={{ color: "black", textDecoration: "none" }} href="/signin">Logout</a></li>

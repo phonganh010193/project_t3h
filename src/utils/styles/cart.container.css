@@ -126,6 +126,29 @@
     margin-left: 5px;
 }
 
+@media only screen and (max-width: 610px) {
+    .btn-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-left button {
+        width: 150px !important;
+        height: 40px;
+        background-color: #2d8356;
+        color: aliceblue;
+        border: none;
+        margin-bottom: 5px;
+        
+    }
+    .pay-info-table {
+        width: 100% !important;
+    }
+    .btn-all-info button {
+        width:  150px !important;
+    }
+}
+
 .btn-left button:hover {
     background-color: #55a37b;
 }

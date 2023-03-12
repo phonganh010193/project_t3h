@@ -11,6 +11,7 @@ import { usePrevious } from '../../utils/hooks';
 import { fetchOrdered, fetchUpdateStatusOrdered } from '../HistoryOrder/historySlice';
 import "../../utils/styles/ordered.css";
 import { fetchDeleteListCheck, fetchRemoveAbateById } from '../Abate/abateSlice';
+import Footer from '../../component/Footer';
 
 const Ordered = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Ordered = () => {
     const [orderedContent, setOrderedContent] = useState(null);
     const [listCheck, setListCheck] = useState(null);
     const [keyDelete, setKeyDelete] = useState(null);
-
+    const [buttonDeleteOrderCancel, setButtonDeleteOrderCancel] = useState(false)
     useEffect(() => {
         if (!isLoadingDeleteAbateByKey && prevIsLoadingDeleteAbateByKey) {
             dispatch(fetchOrdered());
@@ -70,13 +71,15 @@ const Ordered = () => {
                             }}
                             defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
                                 item.status === System.STATUS.PROCESSING ? "Processing" :
-                                    item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                    item.status === System.STATUS.TRANSFERRING ? "Transferring" : 
+                                    item.status === System.STATUS.CANCELED ? "Canceled" : "Ordered"
                             }
                         >
                             <option value="Ordered">Mới</option>
                             <option value="Processing">Đang xử lý</option>
                             <option value="Transferring">Đang gửi hàng</option>
                             <option value="Received">Hoàn thành</option>
+                            <option value="Canceled">Hủy</option>
                         </select>,
                     action:
                         <div className='action-ordered'>
@@ -97,9 +100,20 @@ const Ordered = () => {
                             }
                         </div>
                 }
-            }))
+            }));
+            checkShowButtonDeleteOrderCancel();
         }
-    }, [dispatch, isLoadingOrdered, listOrdered])
+    }, [dispatch, isLoadingOrdered, listOrdered]);
+
+    const checkShowButtonDeleteOrderCancel = () => {
+        const findItemCancel = listOrdered?.find(el => el.status === System.STATUS.CANCELED);
+        if(findItemCancel) {
+            setButtonDeleteOrderCancel(true)
+        } else {
+            setButtonDeleteOrderCancel(false)
+
+        }
+    }
 
     useEffect(() => {
         dispatch(fetchOrdered());
@@ -273,7 +287,7 @@ const Ordered = () => {
     return (
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
-            <div className="container mt-4">
+            <div className="container ordered-container mt-4">
                 <h4>Đơn hàng</h4>
                 <div className="order-content">
                     <Table
@@ -283,7 +297,7 @@ const Ordered = () => {
                         columns={columns}
                         dataSource={data}
                         pagination={{
-                            pageSize: 15,
+                            pageSize: 10,
                         }}
                     />
                     {listCheck ?
@@ -306,10 +320,36 @@ const Ordered = () => {
                         </button>
                         : null
                     }
-                </div>
-                <a href='/'>Quay lại trang chủ</a>
+                    {buttonDeleteOrderCancel? 
+                        <button
+                            style={{
+                                borderRadius: "5px",
+                                backgroundColor: "red",
+                                color: "white",
+                                width: "165px",
+                                height: "40px",
+                                border: "none",
+                                marginLeft: "10px"
+                            }}
+                            onClick={(event) => {
+                                event.preventDefault();
+                                listOrdered?.forEach(el => {
+                                    if(el.status === System.STATUS.CANCELED) {
+                                        dispatch(fetchRemoveAbateById(el.key));
+                                    }
+                                })
 
+                            }}
+                        >Xóa Đơn hàng đã hủy
+                        </button>
+                        : null
+                    }
+                </div>
+                <div style={{marginTop: "20px", marginBottom: "50px"}}>
+                    <a className='mb-5' href='/'>Quay lại trang chủ</a>
+                </div>
             </div>
+            <div style={{height:"50px"}}></div>
             <Modal
                 title={`Đơn hàng mã : ${orderedContent?.key}`}
                 open={isModalOpen}
@@ -356,14 +396,14 @@ const Ordered = () => {
                 open={isModalDeleteOpen}
                 onOk={handleDeleteOk}
                 onCancel={handleDeleteCancel}
-                width={800}
+                width={400}
             ></Modal>
             <Modal
                 title="Bạn chắc chắn muốn xóa sản phẩm ?"
                 open={isModalDeleteListCheckOpen}
                 onOk={handleDeleteListCheckOk}
                 onCancel={handleDeleteListCheckCancel}
-                width={800}
+                width={400}
             ></Modal>
         </div>
     );

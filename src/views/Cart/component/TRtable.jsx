@@ -10,8 +10,13 @@ import { Modal } from "antd";
 
 const
     TRtable = ({ item, updateOrder, user, product, dispatch, itemChangeNumberOrder, setIsModalBuyOpen, setMaxQuantity }) => {
-        const [number, setNumber] = useState(item.orderNumber);
+        const [number, setNumber] = useState(null);
         const [isCheckBox, setISCheckBox] = useState(item.isCheckBox);
+        useEffect(() => {
+            if(item) {
+                setNumber(Number(item.orderNumber))
+            }
+        }, [item])
         useEffect(() => {
             setISCheckBox(item.isCheckBox);
         }, [item.isCheckBox])
@@ -47,24 +52,31 @@ const
                 <td><p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p></td>
                 <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
                 <td>
-                    <input disabled={itemChangeNumberOrder(item) === 0 ? true : false} style={{ width: "50px" }} type="number" value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} className="text-center" min="1" max={itemChangeNumberOrder(item)} onChange={(text) => {
-                        setNumber(text.target.value);
-                        
-                        if (Number(text.target.value) >= itemChangeNumberOrder(item)) {
-                            setIsModalBuyOpen(true);
-                            setMaxQuantity(itemChangeNumberOrder(item))
-                        }
-                        const value = {
-                            item: {
-                                ...item,
-                                orderNumber: Number(text.target.value) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : text.target.value,
-                                isChanged: true,
-                                isCheckBox: isCheckBox
-                            },
-                        };
-                        updateOrder(value);
-                    }} />
-                    <p style={{color: "red", fontSize: "13px"}}>{itemChangeNumberOrder(item) === 0 ? "Hết hàng" : null}</p>
+                    <input 
+                        style={{ width: "50px" }} 
+                        type="number" 
+                        value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} 
+                        className="text-center" 
+                        min="1" 
+                        max={itemChangeNumberOrder(item)} 
+                        onChange={(text) => {
+                            setNumber(text.target.value);
+                            
+                            if (Number(text.target.value) >= itemChangeNumberOrder(item)) {
+                                setIsModalBuyOpen(true);
+                                setMaxQuantity(itemChangeNumberOrder(item))
+                            }
+                            const value = {
+                                item: {
+                                    ...item,
+                                    orderNumber: Number(text.target.value) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : text.target.value,
+                                    isChanged: true,
+                                    isCheckBox: isCheckBox
+                                },
+                            };
+                            updateOrder(value);
+                        }} 
+                    />
                 </td>
                 <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(Number(number) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : item.orderNumber)).toLocaleString()} VND</td>
                 <td>

@@ -1,39 +1,43 @@
-import LayoutCart from "../../component/LayoutCart"
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { fetchDeleteOrderItem, fetchOrderProduct, fetchUpdateOrderItem, updateListCart } from "./orderSlice";
-import { push, ref, update } from "firebase/database";
-import { database } from '../../firebase';
-import TRtable from "./component/TRtable";
-import "../../utils/styles/cart.container.css";
-import { System } from "../../constants/system.constants";
-import { fetchAbateList, fetchAddAbate, fetchRemoveAbateById, } from "../Abate/abateSlice";
-import { usePrevious } from "../../utils/hooks";
-import { Modal } from "antd";
-import { fetchUserItem } from "../../container/userSlice";
+import { Tabs } from "antd";
+import { ref, update } from "firebase/database";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import LayoutCart from "../../component/LayoutCart"
+import { System } from "../../constants/system.constants";
 import { UserContext } from "../../container/useContext";
+import { fetchUserItem } from "../../container/userSlice";
+import { database } from "../../firebase";
+import { usePrevious } from "../../utils/hooks";
+import { fetchAbateList, fetchAddAbate, fetchRemoveAbateById } from "../Abate/abateSlice";
+import HistoryOrder from "../HistoryOrder";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
+import CartContent from "./CartContent";
+import { fetchDeleteOrderItem, fetchOrderProduct, updateListCart } from "./orderSlice";
+import "../../utils/styles/cart.container.css";
+import 'react-toastify/dist/ReactToastify.css';
 
-
-const take = 10
+const take = 5;
 const Cart = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { user } = useContext(UserContext);
+    const dispatch = useDispatch();
+    const userCurrent = useSelector(({ user }) => user.userCurrent);
+    const isLoadingAddOrderProduct = useSelector(({ order }) => order.isLoadingAdd)
+    const prevIsLoadingAddOrderProduct = usePrevious(isLoadingAddOrderProduct);
+
+    const navigate = useNavigate();
     const listCart = useSelector(({ order }) => order.orderProduct);
     const product = useSelector(({ product }) => product.productList);
-    const userCurrent = useSelector(({ user }) => user.userCurrent);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const abateList = useSelector(({ abate }) => abate.abateList);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
     const keyAddAbate = useSelector(({ abate }) => abate.keyAddAbate);
     const isLoadingAddAbate = useSelector(({ abate }) => abate.isLoadingAddAbate);
     const prevIsLoading = usePrevious(isLoading);
     const prevIsLoadingAddAbate = usePrevious(isLoadingAddAbate);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [listDataOrder, setListDataOrder] = useState([]);
     const [numberOfPage, setNumberOfPage] = useState(0);
     const [page, setPage] = useState(0);
@@ -43,6 +47,12 @@ const Cart = () => {
     const prevDeleteLoading = usePrevious(isLoadingDelete);
     const [isModalBuyOpen, setIsModalBuyOpen] = useState(false);
     const [maxQuantity, setMaxQuantity] = useState(null)
+
+    useEffect(() => {
+        if (!isLoadingAddOrderProduct && prevIsLoadingAddOrderProduct) {
+            dispatch(fetchOrderProduct(user));
+        }
+    }, [isLoadingAddOrderProduct]);
     useEffect(() => {
         if (!isLoadingAddAbate && prevIsLoadingAddAbate && keyAddAbate) {
             updateCartOnline();
@@ -54,7 +64,43 @@ const Cart = () => {
         if (!isLoadingDelete && prevDeleteLoading) {
             dispatch(fetchOrderProduct(user))
         }
-    }, [isLoadingDelete])
+    }, [isLoadingDelete]);
+
+    useEffect(() => {
+        if (!isLoading && prevIsLoading && abateList) {
+            setIsModalOpen(true)
+        }
+    }, [isLoading, prevIsLoading, abateList])
+    useEffect(() => {
+        dispatch(fetchOrderProduct(user));
+        dispatch(fetchAbateList());
+        dispatch(fetchUserItem(user));
+        dispatch(fetchProduct());
+    }, [dispatch, user]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, [dispatch]);
+
+    const updateCartOnline = () => {
+        const updates = listCart.filter(el => el.isChanged);
+        updates.forEach(item => {
+            update(ref(database, "/Cart/" + item.key), {
+                orderNumber: item.orderNumber,
+                productId: item.productId,
+                user: item.user,
+                isCheckBox: item.isCheckBox,
+            })
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch(() => {
+                    toast.error('Cập nhật không thành công!')
+                })
+        })
+        dispatch(fetchOrderProduct(user));
+    };
+
     const handleOk = (key) => {
         navigate(`/abate/${key}`)
         setIsModalOpen(false);
@@ -70,21 +116,7 @@ const Cart = () => {
         }
         setIsModalOpen(false);
     };
-    useEffect(() => {
-        if (!isLoading && prevIsLoading && abateList) {
-            setIsModalOpen(true)
-        }
-    }, [isLoading, prevIsLoading, abateList])
-    useEffect(() => {
-        dispatch(fetchOrderProduct(user));
-        dispatch(fetchAbateList());
-        dispatch(fetchUserItem(user));
-        dispatch(fetchProduct());
-    }, [dispatch, user]);
-
-    useEffect(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }, [])
+    
 
     const updateOrder = (value) => {
         dispatch(updateListCart(value));
@@ -107,8 +139,8 @@ const Cart = () => {
         return;
     }
 
-    const BuyListAbate = async () => {
-        const products = listCart.filter(el => {
+    const BuyListAbate = () => {
+        const products = listCart?.filter(el => {
             return el.isCheckBox && el.quantity !== 0;
         });
         if (products.length <= 0) {
@@ -132,25 +164,6 @@ const Cart = () => {
             }))
         }
 
-    }
-
-    const updateCartOnline = () => {
-        const updates = listCart.filter(el => el.isChanged);
-        updates.forEach(item => {
-            update(ref(database, "/Cart/" + item.key), {
-                orderNumber: item.orderNumber,
-                productId: item.productId,
-                user: item.user,
-                isCheckBox: item.isCheckBox,
-            })
-                .then((res) => {
-                    console.log(res)
-                })
-                .catch(() => {
-                    toast.error('Cập nhật không thành công!')
-                })
-        })
-        dispatch(fetchOrderProduct(user));
     }
 
     const isAllCheckbox = () => {
@@ -237,6 +250,52 @@ const Cart = () => {
     const handleBuyCancel = () => {
         setIsModalBuyOpen(false);
     }
+    const onChange = (key) => {
+        console.log(key);
+    };
+    const items = [
+        {
+            key: '1',
+            label: `Giỏ hàng`,
+            children: 
+                <CartContent 
+                    user={user} 
+                    dispatch={dispatch}
+                    navigate={navigate}
+                    abateList={abateList}
+                    listCart={listCart}
+                    setPage={setPage}
+                    page={page}
+                    numberOfPage={numberOfPage}
+                    product={product}
+                    setIsModalBuyOpen={setIsModalBuyOpen}
+                    listDataOrder={listDataOrder}
+                    isModalBuyOpen={isModalBuyOpen}
+                    maxQuantity={maxQuantity}
+                    setMaxQuantity={setMaxQuantity}
+                    isModalOpen={isModalOpen}
+                    updateCartOnline={updateCartOnline}
+                    isAllCheckbox={isAllCheckbox}
+                    handleOnAllCheckbox={handleOnAllCheckbox}
+                    updateOrder={updateOrder}
+                    itemChangeNumberOrder={itemChangeNumberOrder}
+                    _renderPaginate={_renderPaginate}
+                    deleteListCart={deleteListCart}
+                    ConfirmListAbate={ConfirmListAbate}
+                    BuyListAbate={BuyListAbate}
+                    handleCancel={handleCancel}
+                    handleOk={handleOk}
+                    handleBuyOk={handleBuyOk}
+                    handleBuyCancel={handleBuyCancel}
+                />,
+        },
+        {
+            key: '2',
+            label: `Lịch sử mua hàng`,
+            children: <HistoryOrder userCurrent={userCurrent} dispatch={dispatch} />,
+        }
+        
+    ];
     
     return (
         <LayoutCart>
@@ -244,146 +303,10 @@ const Cart = () => {
                 <div className="header-cart">
                     <p>Trang chủ/ <span style={{ color: "rgb(45, 131, 86)" }}>Giỏ hàng</span></p>
                 </div>
-                <div className="cart-table-info">
-                    <div className="table-scroll">
-                        <table className="table table-bordered text-center ">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <label className="btn-checkbox-all">
-                                            <input
-                                                id="toggle-all"
-                                                className="toggle-all"
-                                                type="checkbox"
-                                                checked={isAllCheckbox() || false}
-                                                data-reactid=".0.1.0"
-                                                onChange={() => {
-                                                    handleOnAllCheckbox()
-                                                }}
-                                            />
-                                            <span className="checkmark"></span>
-                                        </label>
-                                    </th>
-                                    <th className="image-column" scope="col">Hình ảnh</th>
-                                    <th scope="col">Tên Sản Phẩm</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Số Lượng</th>
-                                    <th scope="col">Thành tiền</th>
-                                    <th scope="col">Xóa</th>
-                                </tr>
-                            </thead>
-                            <tbody className="body-cart-info">
-                                {listDataOrder ? listDataOrder?.map((item, index) => {
-                                    return (
-                                        <TRtable
-                                            key={item.id}
-                                            item={item}
-                                            updateOrder={updateOrder}
-                                            user={user} 
-                                            product={product}
-                                            dispatch= {dispatch}
-                                            itemChangeNumberOrder={itemChangeNumberOrder}
-                                            setIsModalBuyOpen={setIsModalBuyOpen}
-                                            isModalBuyOpen= {isModalBuyOpen}
-                                            maxQuantity={maxQuantity}
-                                            setMaxQuantity={setMaxQuantity}
-                                        />
-                                    )
-                                }) : null}
-                                <tr>
-                                    <td colSpan="7" style={{ padding: "0" }}>
-                                        {listDataOrder?.length > 0 ?
-                                            <ul className="pagination-cart">
-                                                <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
-                                                    if (page > 0) {
-                                                        setPage(page - 1);
-                                                    }
-                                                }}><i className='fas fa-angle-double-left' style={{ color: "#2d8356" }}></i></Link></li>
-                                                {_renderPaginate()}
-                                                <li className="page-item-cart"><Link className="page-link" to="#" onClick={() => {
-                                                    if (page < (numberOfPage - 1)) {
-                                                        setPage(page + 1);
-                                                    }
-                                                }}><i className='fas fa-angle-double-right' style={{ color: "#2d8356" }}></i></Link></li>
-                                            </ul>
-                                            : null
-                                        }
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                    <div className="btn-all-info">
-                        <button onClick={() => {
-                            navigate("/");
-                        }}>Tiếp tục mua sắm</button>
-                        <div className="btn-left">
-                            <button onClick={() => {
-                                try {
-                                    updateCartOnline()
-                                    toast.success('Cập nhật giỏ hàng thành công')
-                                } catch (error) {
-                                    toast.error('Cập nhật giỏ hàng không thành công!')
-                                }
-                            }}>Cập nhật giỏ hàng</button>
-                            <button onClick={() => {
-                                deleteListCart();
-                            }}>Xóa giỏ hàng</button>
-                        </div>
-                    </div>
-                    <div className="all-price">
-                        <table className="table table-bordered" style={{ width: "40%", marginTop: "10px" }}>
-                            <tbody>
-                                <td>Tổng tiền thanh toán</td>
-                                <td>{listCart.filter(el => el.isCheckBox && el.quantity !== 0).reduce(
-                                    (accumulator, currentValue) => accumulator + Number(Number(currentValue.price.split(" ").join('')) * Number(currentValue.orderNumber)),
-                                    0
-                                ).toLocaleString()} VND</td>
-                            </tbody>
-                        </table>
-                        <button onClick={() => {
-                            const findItem = listCart?.find(el => el.isCheckBox)
-                            if (!findItem) {
-                                ConfirmListAbate();
-                            } else {
-                                BuyListAbate();
-                            }
-                        }}>Thanh toán</button>
-                    </div>
+                <div className="detail-indo">
+                    <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
                 </div>
-            </div>
-            <Modal
-                title={<p style={{ color: "green" }}>Đơn hàng của bạn chưa hoàn thành. Bạn có muốn tiếp tục?</p>}
-                open={isModalOpen}
-                onCancel={false}
-                closable={false}
-                cancelText="Hủy đơn hàng"
-                style={{
-                    marginTop: "180px"
-                }}
-                footer={
-                    <div className="btn-confirm-order">
-                        <button onClick={() => {
-                            handleCancel(abateList?.key)
-                        }}>Hủy đơn hàng</button>
-                        <button onClick={() => {
-                            handleOk(abateList?.key)
-                        }}>Tiếp tục</button>
-                    </div>
-                }
-            />
-            <Modal
-                title={<p style={{ color: "green", width: "98%" }}>Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là {maxQuantity}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!</p>}
-                open={isModalBuyOpen}
-                onOk={handleBuyOk} 
-                onCancel={handleBuyCancel}
-                style={{
-                    marginTop: "160px"
-                }}
-                footer={false}
-            />
-            
+            </div>  
 
         </LayoutCart>
     )

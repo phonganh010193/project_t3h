@@ -17,7 +17,6 @@ const ForgotPassword = () => {
   }, [])
 
   const onFinish = (values) => {
-    console.log('value forgot password', values);
     sendPasswordResetEmail(auth, values.username)
     .then(() => {
       toast.success('Đã gửi Email reset mất khẩu')
@@ -40,7 +39,7 @@ const ForgotPassword = () => {
           <img src='https://topbrands.vn/wp-content/uploads/2021/08/thuong-hieu-nuoc-hoa-noi-tieng-2.jpg' alt='' />
         </div>
         <div className='form-login'>
-          <p className='forgot-password' style={{color: "#2d8356", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥ForgotPassword♥۝༒꧂</p>
+          <p className='forgot-password' style={{color: "#2d8356", textAlign: "center", fontSize: "25px"}}>꧁༒۝♥Quên mật khẩu♥۝༒꧂</p>
           <Form
             name="normal_login"
             className="login-form"
@@ -49,15 +48,15 @@ const ForgotPassword = () => {
           >
             <Form.Item
               name="username"
-              rules={[{ required: true, message: 'Please input your Username!' }]}
+              rules={[{ required: true, message: 'Xin hãy nhập email!' }, {type: "email", message: "Đây không phải email!"}]}
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="phongpv@gmail.com" />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Gửi Email
               </Button>
-              Or <Link style={{marginLeft: "5px"}} to="/signin">now login!</Link>
+              hoặc<Link style={{marginLeft: "5px"}} to="/signin">Đăng nhập ngay!</Link>
             </Form.Item>
 
           </Form>

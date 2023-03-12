@@ -173,9 +173,10 @@ const Detail = () => {
                                 <h6>Số Lượng</h6>
                                 <div className="amount-form">
                                     <input type="number" value={number >= itemChangeNumberOrder(detailList) ? itemChangeNumberOrder(detailList) : number} className="text-center" min="1" max={itemChangeNumberOrder(detailList)} onChange={(event) => {
-                                        setNumber(event.target.value);
+                                        setNumber(event.target.value >= itemChangeNumberOrder(detailList) ? itemChangeNumberOrder(detailList) : event.target.value);
                                         if (Number(event.target.value) >= itemChangeNumberOrder(detailList)) {
                                             toast.warning(`Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là ${itemChangeNumberOrder(detailList)}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!`);
+                                            return;
                                         }
                                     }} />
                                     <button className="cart-shop" onClick={() => {

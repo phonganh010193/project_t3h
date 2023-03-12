@@ -58,7 +58,8 @@ export const fetchAddCommentDetail = createAsyncThunk(
 const initialState = {
   isLoading: false,
   productListDetail: {},
-  commentList: null
+  commentList: null,
+  isLoadingComment: false
 }
 
 export const productDetailSlice = createSlice({
@@ -78,14 +79,14 @@ export const productDetailSlice = createSlice({
       state.isLoading = false;
     })
     builder.addCase(fetchCommentListByUser.pending, (state, action) => {
-      state.isLoading = true;
+      state.isLoadingComment = true;
     })
     builder.addCase(fetchCommentListByUser.fulfilled, (state, action) => {
       state.commentList = action.payload;
-      state.isLoading = false;
+      state.isLoadingComment = false;
     })
     builder.addCase(fetchCommentListByUser.rejected, (state, action) => {
-      state.isLoading = false;
+      state.isLoadingComment = false;
     })
   },
 })

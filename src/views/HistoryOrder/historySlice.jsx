@@ -42,7 +42,6 @@ export const fetchHistoryOrder = createAsyncThunk(
 export const fetchUpdateStatusOrdered = createAsyncThunk(
     'history/fetchUpdateStatusOrdered',
     async (params, thunkAPI) => {
-        console.log('params', params);
         const updateStatusList = [];
         params.listOrdered.forEach(el => {
             if (el.key === params.value.item.key) {

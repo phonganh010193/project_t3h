@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref, update } from 'firebase/database';
+import { get, ref, remove, update } from 'firebase/database';
 import { toast } from 'react-toastify';
 import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
@@ -169,13 +169,7 @@ export const updateQuantityProductByBuy = createAsyncThunk(
               .catch((error) => {
                 console.log(error)
               })
-              update(ref(database, "/Cart/" + item.key), {
-                user: item.user,
-                productId: item.productId,
-                orderNumber: 1,
-                isCheckBox: false
-              })
-            
+              remove(ref(database, "/Cart/" + item.key))
           }
         })
       })
