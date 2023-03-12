@@ -29,7 +29,7 @@ const UpdateNewProduct = () => {
     const [count, setCount] = useState(0);
     const [fields, setFields] = useState([]);
     const { user } = useContext(UserContext);
-    const userCurrent = useSelector(({ user }) => user.userCurrent)
+    const userCurrent = useSelector(({ user }) => user.userCurrent);
     useEffect(() => {
         if (!productUpdate) {
             setFields([

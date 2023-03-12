@@ -4,17 +4,20 @@ import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import HeaderRegister from '../../component/Topbar/component/headerRegister';
 import { System } from '../../constants/system.constants';
 import { usePrevious } from '../../utils/hooks';
 import { fetchOrdered, fetchUpdateStatusOrdered } from '../HistoryOrder/historySlice';
 import "../../utils/styles/ordered.css";
-import { fetchDeleteListCheck, fetchRemoveAbateById } from '../Abate/abateSlice';
-import Footer from '../../component/Footer';
+import { fetchRemoveAbateById } from '../Abate/abateSlice';
+import { useContext } from 'react';
+import { UserContext } from '../../container/useContext';
+import { fetchUserItem } from '../../container/userSlice';
 
 const Ordered = () => {
     const dispatch = useDispatch();
+    const { user } = useContext(UserContext);
+    const userCurrent = useSelector(({ user }) => user.userCurrent);
     const listOrdered = useSelector(({ history }) => history.listOrdered);
     const isLoadingOrdered = useSelector(({ history }) => history.isLoadingOrdered);
     const isLoadingUpdateStatus = useSelector(({ history }) => history.isLoadingUpdateStatus);
@@ -117,7 +120,8 @@ const Ordered = () => {
 
     useEffect(() => {
         dispatch(fetchOrdered());
-    }, [dispatch]);
+        dispatch(fetchUserItem(user));
+    }, [dispatch, user]);
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -289,62 +293,66 @@ const Ordered = () => {
             <HeaderRegister />
             <div className="container ordered-container mt-4">
                 <h4>Đơn hàng</h4>
-                <div className="order-content">
-                    <Table
-                        rowSelection={{
-                            ...rowSelection,
-                        }}
-                        columns={columns}
-                        dataSource={data}
-                        pagination={{
-                            pageSize: 10,
-                        }}
-                    />
-                    {listCheck ?
-                        <button
-                            style={{
-                                borderRadius: "5px",
-                                backgroundColor: "red",
-                                color: "white",
-                                width: "120px",
-                                height: "40px",
-                                border: "none"
+                {userCurrent.roles === System.ROLESUSER.ADMIN ||
+                    userCurrent.roles === System.ROLESUSER.MEMBER ?
+                    <div className="order-content">
+                        <Table
+                            rowSelection={{
+                                ...rowSelection,
                             }}
+                            columns={columns}
+                            dataSource={data}
+                            pagination={{
+                                pageSize: 10,
+                            }}
+                        />
+                        {listCheck ?
+                            <button
+                                style={{
+                                    borderRadius: "5px",
+                                    backgroundColor: "red",
+                                    color: "white",
+                                    width: "120px",
+                                    height: "40px",
+                                    border: "none"
+                                }}
 
-                            onClick={(event) => {
-                                event.preventDefault();
-                                setIisModalDeleteListCheckOpen(true)
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setIisModalDeleteListCheckOpen(true)
 
-                            }}
-                        >Xóa Đơn hàng
-                        </button>
-                        : null
-                    }
-                    {buttonDeleteOrderCancel? 
-                        <button
-                            style={{
-                                borderRadius: "5px",
-                                backgroundColor: "red",
-                                color: "white",
-                                width: "165px",
-                                height: "40px",
-                                border: "none",
-                                marginLeft: "10px"
-                            }}
-                            onClick={(event) => {
-                                event.preventDefault();
-                                listOrdered?.forEach(el => {
-                                    if(el.status === System.STATUS.CANCELED) {
-                                        dispatch(fetchRemoveAbateById(el.key));
-                                    }
-                                })
+                                }}
+                            >Xóa Đơn hàng
+                            </button>
+                            : null
+                        }
+                        {buttonDeleteOrderCancel? 
+                            <button
+                                style={{
+                                    borderRadius: "5px",
+                                    backgroundColor: "red",
+                                    color: "white",
+                                    width: "165px",
+                                    height: "40px",
+                                    border: "none",
+                                    marginLeft: "10px"
+                                }}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    listOrdered?.forEach(el => {
+                                        if(el.status === System.STATUS.CANCELED) {
+                                            dispatch(fetchRemoveAbateById(el.key));
+                                        }
+                                    })
 
-                            }}
-                        >Xóa Đơn hàng đã hủy
-                        </button>
-                        : null
-                    }
-                </div>
+                                }}
+                            >Xóa Đơn hàng đã hủy
+                            </button>
+                            : null
+                        }
+                    </div>
+                : <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
+                }
                 <div style={{marginTop: "20px", marginBottom: "50px"}}>
                     <a className='mb-5' href='/'>Quay lại trang chủ</a>
                 </div>
