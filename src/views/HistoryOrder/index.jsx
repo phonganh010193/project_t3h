@@ -16,7 +16,7 @@ import { System } from "../../constants/system.constants";
 import { fetchProductDetail } from "../Detail/perfumeDetailSlice";
 
 const HistoryOrder = (props) => {
-    const {userCurrent, dispatch} = props;
+    const { userCurrent, dispatch } = props;
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
     const historyOrderList = useSelector(({ history }) => history.historyList);
@@ -31,7 +31,7 @@ const HistoryOrder = (props) => {
     const [itemCancel, setitemCancel] = useState(null);
 
     useEffect(() => {
-        if(!isLoadingDetail && prevIsLoadingDetail) {
+        if (!isLoadingDetail && prevIsLoadingDetail) {
             addOrderItem(addItem);
         }
     }, [isLoadingDetail])
@@ -130,7 +130,7 @@ const HistoryOrder = (props) => {
                                 {item.products.map((el, index) => {
                                     return (
                                         <div className="children" key={el.id}>
-                                            <img src={el.image} alt="" />
+                                            <Link to={`/perfume-detail/${el.id}`}><img src={el.image} alt="" /></Link>
                                             <div className="d-flex flex-column">
                                                 <div className="children-info">
                                                     <p style={{ textTransform: "capitalize" }}>{el.productName.toLowerCase()}</p>
@@ -139,7 +139,8 @@ const HistoryOrder = (props) => {
                                                     <p>Thành tiền: {(Number(el.price.split(" ").join('')) * el.orderNumber).toLocaleString()} VND</p>
                                                 </div>
                                                 <div className="children-info-buy">
-                                                    <button onClick={() => {
+                                                    <button onClick={(event) => {
+                                                        event.preventDefault();
                                                         getBuyMoreItem(el)
                                                     }}>Mua lại</button>
                                                 </div>
