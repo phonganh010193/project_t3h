@@ -136,22 +136,22 @@ export const fetchUpdateOrderItem = createAsyncThunk(
   'cart/fetchUpdateOrderItem',
   async (listCart, thunkAPI) => {
     const listUpdate = [];
-    if(listCart) {
+    if (listCart) {
       listCart?.forEach(el => {
         if (el.quantity === 0) {
           listUpdate.push(el);
           update(ref(database, "/Cart/" + el.key), {
-              user: el.user,
-              productId: el.productId,
-              orderNumber: el.orderNumber,
-              isCheckBox: false
+            user: el.user,
+            productId: el.productId,
+            orderNumber: el.orderNumber,
+            isCheckBox: false
           })
         }
         return listUpdate;
       })
     }
     return listUpdate;
-   
+
   }
 );
 

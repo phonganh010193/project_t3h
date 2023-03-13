@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { get, ref, remove, update } from 'firebase/database';
-import { toast } from 'react-toastify';
+import { get, ref, update } from 'firebase/database';
 import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
 

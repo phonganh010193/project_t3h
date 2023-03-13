@@ -6,20 +6,15 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchOrderProduct } from "../orderSlice";
 import { useEffect } from "react";
-import { Modal } from "antd";
 
 const
-    TRtable = ({ item, updateOrder, user, product, dispatch, itemChangeNumberOrder, setIsModalBuyOpen, setMaxQuantity }) => {
-        const [number, setNumber] = useState(null);
-        const [isCheckBox, setISCheckBox] = useState(item.isCheckBox);
-        useEffect(() => {
-            if(item) {
-                setNumber(Number(item.orderNumber))
-            }
-        }, [item])
+    TRtable = ({ item, updateOrder, user, dispatch, itemChangeNumberOrder, setIsModalBuyOpen, setMaxQuantity }) => {
+        const [number, setNumber] = useState(1);
+        const [isCheckBox, setISCheckBox] = useState(false);
         useEffect(() => {
             setISCheckBox(item.isCheckBox);
-        }, [item.isCheckBox])
+            setNumber(Number(item.orderNumber))
+        }, [item.isCheckBox, item.orderNumber])
         const deleItemOrder = (item) => {
             remove(ref(database, 'Cart/' + item.key))
                 .then(() => {
@@ -30,8 +25,6 @@ const
                     toast.error('Delete Fail!')
                 })
         }
-        
-       
         return (
             <tr key={item.id}>
                 <td><input type="checkbox" checked={isCheckBox} onChange={() => {
@@ -52,16 +45,16 @@ const
                 <td><p style={{ textAlign: "center", textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p></td>
                 <td>{(Number(item.price.split(" ").join(''))).toLocaleString()} VND</td>
                 <td>
-                    <input 
-                        style={{ width: "50px" }} 
-                        type="number" 
-                        value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number} 
-                        className="text-center" 
-                        min="1" 
-                        max={itemChangeNumberOrder(item)} 
+                    <input
+                        style={{ width: "50px" }}
+                        type="number"
+                        value={number >= itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : number}
+                        className="text-center"
+                        min="1"
+                        max={itemChangeNumberOrder(item)}
                         onChange={(text) => {
                             setNumber(text.target.value);
-                            
+
                             if (Number(text.target.value) >= itemChangeNumberOrder(item)) {
                                 setIsModalBuyOpen(true);
                                 setMaxQuantity(itemChangeNumberOrder(item))
@@ -75,7 +68,7 @@ const
                                 },
                             };
                             updateOrder(value);
-                        }} 
+                        }}
                     />
                 </td>
                 <td style={{ width: "250px" }}>{(Number(item.price.split(" ").join('')) * Number(Number(number) > itemChangeNumberOrder(item) ? itemChangeNumberOrder(item) : item.orderNumber)).toLocaleString()} VND</td>
@@ -88,7 +81,7 @@ const
                         }}
                     />
                 </td>
-                
+
 
             </tr>
         );

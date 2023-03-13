@@ -41,7 +41,7 @@ const layout = {
 const Abate = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams();
-    const { user } =useContext(UserContext);
+    const { user } = useContext(UserContext);
     const abateDetail = useSelector(({ abate }) => abate.abateDetail);
     const listCart = useSelector(({ order }) => order.orderProduct);
     const isLoading = useSelector(({ abate }) => abate.isLoading);
@@ -210,7 +210,7 @@ const Abate = () => {
 
         }
     }
-  
+
 
 
     const onFinish = async (values) => {
@@ -226,9 +226,9 @@ const Abate = () => {
                 status: System.STATUS.ORDERED,
                 dateOrder: new Date(),
             }
-           
+
             dispatch(fetchUpdateAbateById({ orderId, value }))
-            
+
         } catch (error) {
             toast.error('Xin kiểm tra lại thông tin thanh toán')
         }
@@ -431,7 +431,7 @@ const Abate = () => {
 
             </div>
             <Modal
-                title={`Đơn hàng mã: ${abateDetail?.key}`}
+                title={<p>Dự kiến giao hàng : {todokuyoyaku(abateDetail?.dateOrder)}</p>}
                 open={isModalOpen}
                 onCancel={handleCancel}
                 width={800}
@@ -549,7 +549,7 @@ const Abate = () => {
                         <p style={{ marginLeft: "15px" }}>Đang <br />giao hàng</p>
                         <p>Đã giao hàng</p>
                     </div>
-                    <p>Dự kiến giao hàng : {todokuyoyaku(abateDetail?.dateOrder)}</p>
+
                 </div>
 
             </Modal>
