@@ -230,7 +230,7 @@ const Cart = () => {
         const data = [];
         for (let index = 0; index < numberOfPage; index++) {
             data.push(
-                <li className="page-item-cart"><Link className={`page-link ${page === index ? 'active' : 'normal'}`} to="#" onClick={() => {
+                <li key={index} className="page-item-cart"><Link className={`page-link ${page === index ? 'active' : 'normal'}`} to="#" onClick={() => {
                     setPage(index);
                 }}>{index + 1}</Link></li>
             )

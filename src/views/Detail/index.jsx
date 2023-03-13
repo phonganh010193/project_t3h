@@ -13,7 +13,6 @@ import "../../utils/styles/perfume.detail.css";
 import { fetchUserItem } from "../../container/userSlice";
 import PerfumeEvaluate from "./component/perfumeEvaluate";
 import GuideShopping from "./component/guideShopping";
-import { System } from "../../constants/system.constants";
 import { usePrevious } from "../../utils/hooks";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
 

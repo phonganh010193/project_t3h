@@ -16,8 +16,6 @@ export const fetchRenraku = createAsyncThunk(
                         key,
                     }
                 })
-            } else {
-                console.log("No data available");
             }
         }).catch((error) => {
             console.error(error);

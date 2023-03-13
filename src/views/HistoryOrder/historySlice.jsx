@@ -16,11 +16,9 @@ export const fetchHistoryOrder = createAsyncThunk(
                         key,
                     }
                 })
-            } else {
-                console.log("No data available");
             }
         }).catch((error) => {
-            console.error(error);
+            console.log(error);
         });
         const listHistoryOrder = [];
         if (listAbate) {
@@ -69,11 +67,9 @@ export const fetchOrdered = createAsyncThunk(
                         key,
                     }
                 })
-            } else {
-                console.log("No data available");
             }
         }).catch((error) => {
-            console.error(error);
+            console.log(error);
         });
         const listOrdered = [];
         if (listAbate) {
@@ -100,8 +96,6 @@ export const fetchCancelOrderById = createAsyncThunk(
             .then((snapshot) => {
                 if (snapshot) {
                     return snapshot.val();
-                } else {
-                    console.log("No data available");
                 }
             }).catch((error) => {
                 console.error(error);

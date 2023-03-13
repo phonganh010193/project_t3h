@@ -19,8 +19,6 @@ export const fetchProduct = createAsyncThunk(
             key,
           }
         });
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -41,8 +39,6 @@ export const fetchProductMen = createAsyncThunk(
             key,
           }
         });
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -64,8 +60,6 @@ export const fetchProductWommen = createAsyncThunk(
             key,
           }
         });
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -79,8 +73,6 @@ export const fetchNewAddProduct = createAsyncThunk(
     const product = await get(dataProductRef).then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -96,8 +88,6 @@ export const fetchBestSellersProduct = createAsyncThunk(
     const product = await get(dataProductRef).then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -120,9 +110,6 @@ export const fetchProductById = createAsyncThunk(
             key,
           }
         })
-
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -137,8 +124,6 @@ export const updateQuantityProductByBuy = createAsyncThunk(
     const abateList = await get(ref(database, "Abate")).then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val()[abateId];
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -146,8 +131,6 @@ export const updateQuantityProductByBuy = createAsyncThunk(
     const product = await get(dataProductRef).then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -181,8 +164,6 @@ export const updateQuantityProductByCancel = createAsyncThunk(
     const product = await get(dataProductRef).then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);

@@ -11,8 +11,6 @@ export const fetchAbateById = createAsyncThunk(
     return await get(ref(database, "Abate")).then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val()[abateId];
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -47,8 +45,6 @@ export const fetchUpdateAbateById = createAsyncThunk(
             key,
           }
         });
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -97,8 +93,6 @@ export const fetchAbateList = createAsyncThunk(
             key,
           }
         })
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -126,8 +120,6 @@ export const fetchRemoveAbateById = createAsyncThunk(
       .then((snapshot) => {
         if (snapshot) {
           return snapshot.val();
-        } else {
-          console.log("No data available");
         }
       }).catch((error) => {
         console.error(error);

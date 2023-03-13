@@ -136,7 +136,7 @@ const Perfume = () => {
         const data = [];
         for (let index = 0; index < numberOfPage; index++) {
             data.push(
-                <li className="page-item"><Link className={`page-link ${page === index ? 'active' : ''}`} to="#" onClick={() => {
+                <li key={index} className="page-item"><Link className={`page-link ${page === index ? 'active' : ''}`} to="#" onClick={() => {
                     setPage(index);
                 }}>{index + 1}</Link></li>
             )

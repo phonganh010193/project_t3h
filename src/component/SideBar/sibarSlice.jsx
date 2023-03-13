@@ -10,8 +10,6 @@ export const fetchCategory = createAsyncThunk(
     return get(dataCategoryRef).then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);

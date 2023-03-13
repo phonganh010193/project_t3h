@@ -18,8 +18,6 @@ export const fetchOrderProduct = createAsyncThunk(
             key,
           }
         })
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -34,8 +32,6 @@ export const fetchOrderProduct = createAsyncThunk(
             keyProduct: key,
           }
         })
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);
@@ -74,8 +70,6 @@ export const fetchAddOrderItem = createAsyncThunk(
             key,
           }
         })
-      } else {
-        console.log("No data available");
       }
     }).catch((error) => {
       console.error(error);

@@ -16,8 +16,6 @@ export const fetchUser = createAsyncThunk(
                         key,
                     }
                 })
-            } else {
-                console.log("No data available");
             }
         }).catch((error) => {
             console.error(error);
@@ -37,8 +35,6 @@ export const fetchUserItem = createAsyncThunk(
                         key,
                     }
                 })
-            } else {
-                console.log("No data available");
             }
         }).catch((error) => {
             console.error(error);
@@ -61,8 +57,6 @@ export const fetchUpdateUserItem = createAsyncThunk(
                         key,
                     }
                 })
-            } else {
-                console.log("No data available");
             }
         }).catch((error) => {
             console.error(error);
