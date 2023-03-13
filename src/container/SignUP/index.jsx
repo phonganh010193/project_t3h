@@ -5,7 +5,7 @@ import '../../../node_modules/antd/dist/reset.css';
 import '../../utils/styles/signin.css';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchUpdateUserItem } from '../userSlice';
 import { useDispatch } from 'react-redux';
 import RunMockData from '../../mock/runMockData';
@@ -129,7 +129,7 @@ const SignUp = () => {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Đăng ký
               </Button>
-              hoặc <a href="/signin">Đăng nhập ngay!</a>
+              hoặc <Link to="/signin">Đăng nhập ngay!</Link>
             </Form.Item>
           </Form>
         </div>

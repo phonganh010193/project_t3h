@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const onFinish = (values) => {
     sendPasswordResetEmail(auth, values.username)
     .then(() => {
-      toast.success('Đã gửi Email reset mất khẩu')
+      toast.success('Đã gửi Email cập nhật mật khẩu')
     })
     .catch((error) => {
       toast.error('Không thê gửi email!. Xin kiểm tra lại email!')

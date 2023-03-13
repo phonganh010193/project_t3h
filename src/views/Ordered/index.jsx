@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import HeaderRegister from '../../component/Topbar/component/headerRegister';
 import { System } from '../../constants/system.constants';
 import { usePrevious } from '../../utils/hooks';
-import { fetchOrdered, fetchUpdateStatusOrdered } from '../HistoryOrder/historySlice';
+import { fetchOrdered, fetchUpdateStatusCancelOrdered, fetchUpdateStatusOrdered } from '../HistoryOrder/historySlice';
 import "../../utils/styles/ordered.css";
 import { fetchRemoveAbateById } from '../Abate/abateSlice';
 import { useContext } from 'react';
 import { UserContext } from '../../container/useContext';
 import { fetchUserItem } from '../../container/userSlice';
+import { ref, update } from 'firebase/database';
+import { database } from '../../firebase';
 
 const Ordered = () => {
     const dispatch = useDispatch();
@@ -22,6 +24,8 @@ const Ordered = () => {
     const isLoadingOrdered = useSelector(({ history }) => history.isLoadingOrdered);
     const isLoadingUpdateStatus = useSelector(({ history }) => history.isLoadingUpdateStatus);
     const isLoadingDeleteAbateByKey = useSelector(({ abate }) => abate.isLoadingDeleteAbateByKey);
+    const isLoadingCancelOrderByKey = useSelector(({ history }) => history.isLoadingCancelOrderByKey);
+    const prevIsLoadingCancelOrderByKey = usePrevious(isLoadingCancelOrderByKey);
     const prevIsLoadingDeleteAbateByKey = usePrevious(isLoadingDeleteAbateByKey);
     const prevIsLoadingOrdered = usePrevious(isLoadingOrdered);
     const prevIsLoadingUpdateStatus = usePrevious(isLoadingUpdateStatus);
@@ -35,7 +39,14 @@ const Ordered = () => {
     const [orderedContent, setOrderedContent] = useState(null);
     const [listCheck, setListCheck] = useState(null);
     const [keyDelete, setKeyDelete] = useState(null);
-    const [buttonDeleteOrderCancel, setButtonDeleteOrderCancel] = useState(false)
+    const [buttonDeleteOrderCancel, setButtonDeleteOrderCancel] = useState(false);
+    const [cancelKeyOrder, setCancelKeyOrder] = useState('');
+
+    useEffect(() => {
+        if(!isLoadingCancelOrderByKey && prevIsLoadingCancelOrderByKey) {
+            dispatch(fetchOrdered());
+        }
+    }, [dispatch, isLoadingCancelOrderByKey])
     useEffect(() => {
         if (!isLoadingDeleteAbateByKey && prevIsLoadingDeleteAbateByKey) {
             dispatch(fetchOrdered());
@@ -50,7 +61,7 @@ const Ordered = () => {
         }
     }, [dispatch, isLoadingUpdateStatus])
     const handleChange = (value) => {
-        dispatch(fetchUpdateStatusOrdered({ listOrdered, value }))
+        dispatch(fetchUpdateStatusOrdered({ listOrdered, value }));
     }
 
     useEffect(() => {
@@ -74,15 +85,13 @@ const Ordered = () => {
                             }}
                             defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
                                 item.status === System.STATUS.PROCESSING ? "Processing" :
-                                    item.status === System.STATUS.TRANSFERRING ? "Transferring" : 
-                                    item.status === System.STATUS.CANCELED ? "Canceled" : "Ordered"
+                                item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
                             }
                         >
                             <option value="Ordered">Mới</option>
                             <option value="Processing">Đang xử lý</option>
                             <option value="Transferring">Đang gửi hàng</option>
                             <option value="Received">Hoàn thành</option>
-                            <option value="Canceled">Hủy</option>
                         </select>,
                     action:
                         <div className='action-ordered'>
@@ -306,6 +315,7 @@ const Ordered = () => {
                                 pageSize: 10,
                             }}
                         />
+                        <div className='d-flex flex-row align-items-center'>
                         {listCheck ?
                             <button
                                 style={{
@@ -350,6 +360,16 @@ const Ordered = () => {
                             </button>
                             : null
                         }
+                        <div className='cancel-ordered'>
+                            <input type="text" placeholder='Mã đơn hàng' value={cancelKeyOrder} onChange={(event) => {
+                                setCancelKeyOrder(event.target.value);
+                            }} />
+                            <button onClick={(event) => {
+                                event.preventDefault();
+                                dispatch(fetchUpdateStatusCancelOrdered({listOrdered, cancelKeyOrder}))
+                            }}>Hủy đơn hàng</button>
+                        </div>
+                        </div>
                     </div>
                 : <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
                 }

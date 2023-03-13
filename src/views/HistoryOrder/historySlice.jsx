@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { get, ref, update } from 'firebase/database';
+import { toast } from 'react-toastify';
 import { System } from '../../constants/system.constants';
 import { database } from '../../firebase';
 
@@ -50,6 +51,29 @@ export const fetchUpdateStatusOrdered = createAsyncThunk(
             }
         })
         return updateStatusList;
+
+    }
+);
+
+export const fetchUpdateStatusCancelOrdered = createAsyncThunk(
+    'history/fetchUpdateStatusCancelOrdered',
+    async (params, thunkAPI) => {
+        const findItem = params.listOrdered?.find(el => el.key === params.cancelKeyOrder);
+        if(findItem) {
+            await update(ref(database, "/Abate/" + params.cancelKeyOrder), {
+                ...findItem,
+                status: System.STATUS.CANCELED
+            })
+            .then(() => {
+                toast.success("Hủy đơn hàng thành công!");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        } else {
+            toast.error('Hủy đơn hàng không thành công!')
+        }
+        return findItem;
 
     }
 );
@@ -111,7 +135,9 @@ const initialState = {
     listOrdered: null,
     isLoadingOrdered: false,
     updateStatusList: null,
-    isLoadingUpdateStatus: false
+    isLoadingUpdateStatus: false,
+    cancelOrderedByKey: null,
+    isLoadingCancelOrderByKey: false,
 }
 
 export const historyOrderSlice = createSlice({
@@ -160,6 +186,16 @@ export const historyOrderSlice = createSlice({
         })
         builder.addCase(fetchUpdateStatusOrdered.rejected, (state, action) => {
             state.isLoadingUpdateStatus = false;
+        })
+        builder.addCase(fetchUpdateStatusCancelOrdered.pending, (state, action) => {
+            state.isLoadingCancelOrderByKey = true;
+        })
+        builder.addCase(fetchUpdateStatusCancelOrdered.fulfilled, (state, action) => {
+            state.cancelOrderedByKey = action.payload;
+            state.isLoadingCancelOrderByKey = false;
+        })
+        builder.addCase(fetchUpdateStatusCancelOrdered.rejected, (state, action) => {
+            state.isLoadingCancelOrderByKey = false;
         })
     },
 })

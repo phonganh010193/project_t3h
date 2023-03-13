@@ -13,7 +13,7 @@ import Loading from '../../component/Loading';
 const SignIn = () => {
   const navigate = useNavigate();
   const { user, fetchUser, isLoadingUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const onFinish = async (values) => {
     await RunMockData.runMockCategory();
     await RunMockData.runMockProduct();
@@ -22,14 +22,11 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (!user && isLoadingUser === true) {
-      setLoading(true)
-    } else if (user) {
-      setLoading(false)
+    if (user) {
       RunMockData.runMockCart(user);
       navigate('/');
     }
-  }, [user, isLoadingUser]);
+  }, [user, navigate]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -37,7 +34,7 @@ const SignIn = () => {
 
   return (
     <>
-      {loading === false ?
+      {isLoadingUser === false ?
         <div className='container-fluid login-container'>
           <div className='login-header'>
             <p>Apo Đăng Nhập</p>
@@ -89,7 +86,7 @@ const SignIn = () => {
                   <Button type="primary" htmlType="submit" className="login-form-button">
                     Đăng nhập
                   </Button>
-                  Or <a href="/signup">Đăng ký!</a>
+                  Or <Link to="/signup">Đăng ký!</Link>
                 </Form.Item>
 
               </Form>

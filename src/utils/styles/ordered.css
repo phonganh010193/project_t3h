@@ -10,6 +10,25 @@
     background-color: green;
 }
 
+.cancel-ordered {
+    margin-left: 20px;
+}
+
+.cancel-ordered input{
+    border-radius: 5px;
+    margin-right: 5px;
+    height: 40px;
+}
+
+.cancel-ordered button {
+    background-color: red;
+    color: white;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+}
+
 
 .delete-ordered {
     width: 60px;

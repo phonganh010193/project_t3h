@@ -92,7 +92,7 @@ const Cart = () => {
                 isCheckBox: item.isCheckBox,
             })
                 .then((res) => {
-                    console.log(res)
+                    return res;
                 })
                 .catch(() => {
                     toast.error('Cập nhật không thành công!')
