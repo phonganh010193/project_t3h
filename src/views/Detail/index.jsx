@@ -90,7 +90,7 @@ const Detail = () => {
 
 
     const onChange = (key) => {
-        console.log(key);
+        return key;
     };
     const items = [
         {
@@ -157,10 +157,10 @@ const Detail = () => {
                         <div className="capacity">
                             <h6>Dung Tích</h6>
                             <div className="capacity-info">
-                                <p><img style={{color: "red", width: "15px"}} src="https://www.shareicon.net/data/256x256/2016/06/10/585973_checkbox_512x512.png" /> {detailList?.capacity}</p>
-                                <p style={{fontSize: "13px", fontWeight: "600"}}>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
+                                <p><img style={{ color: "red", width: "15px" }} src="https://www.shareicon.net/data/256x256/2016/06/10/585973_checkbox_512x512.png" /> {detailList?.capacity}</p>
+                                <p style={{ fontSize: "13px", fontWeight: "600" }}>{Number(detailList?.price?.split(" ").join('')).toLocaleString()} VND{"  "}<span className="sale-disable">{Number(detailList?.sale_price?.split(" ").join('')).toLocaleString()} VND</span></p>
                             </div>
-                            <p style={{fontSize: "13px"}}>{detailList?.quantity !== 0 && <span>Số lượng còn lại: {detailList?.quantity}</span>}</p>
+                            <p style={{ fontSize: "13px" }}>{detailList?.quantity !== 0 && <span>Số lượng còn lại: {detailList?.quantity}</span>}</p>
                             {detailList?.quantity >= 10 ?
                                 <p>Tình trạng: <img className="icon-status" src="https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/523/posts/32694/final_image/tutorial-preview-large.png" /><span>Còn hàng</span></p>
                                 : detailList?.quantity >= 1 && detailList?.quantity <= 5 ?

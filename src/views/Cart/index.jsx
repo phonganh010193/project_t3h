@@ -116,7 +116,7 @@ const Cart = () => {
         }
         setIsModalOpen(false);
     };
-    
+
 
     const updateOrder = (value) => {
         dispatch(updateListCart(value));
@@ -251,15 +251,15 @@ const Cart = () => {
         setIsModalBuyOpen(false);
     }
     const onChange = (key) => {
-        console.log(key);
+        return key;
     };
     const items = [
         {
             key: '1',
             label: `Giỏ hàng`,
-            children: 
-                <CartContent 
-                    user={user} 
+            children:
+                <CartContent
+                    user={user}
                     dispatch={dispatch}
                     navigate={navigate}
                     abateList={abateList}
@@ -294,9 +294,9 @@ const Cart = () => {
             label: `Lịch sử mua hàng`,
             children: <HistoryOrder userCurrent={userCurrent} dispatch={dispatch} />,
         }
-        
+
     ];
-    
+
     return (
         <LayoutCart>
             <div className="cart-container">
@@ -306,7 +306,7 @@ const Cart = () => {
                 <div className="detail-indo">
                     <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
                 </div>
-            </div>  
+            </div>
 
         </LayoutCart>
     )

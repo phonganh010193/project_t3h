@@ -4,10 +4,10 @@ import TRtable from "./component/TRtable";
 import { Modal } from 'antd';
 import { toast } from "react-toastify";
 
-const CartContent = (props) => {
-    const { 
-        user, 
-        dispatch, 
+const CartContent = (
+    {
+        user,
+        dispatch,
         navigate,
         abateList,
         listCart,
@@ -33,11 +33,9 @@ const CartContent = (props) => {
         handleCancel,
         handleOk,
         handleBuyOk,
-        handleBuyCancel,
-     } = props;
-    
-    
-    
+        handleBuyCancel
+    }) => {
+
     return (
         <div className="cart-table-info">
             <div className="table-scroll">
@@ -74,12 +72,12 @@ const CartContent = (props) => {
                                     key={item.id}
                                     item={item}
                                     updateOrder={updateOrder}
-                                    user={user} 
+                                    user={user}
                                     product={product}
-                                    dispatch= {dispatch}
+                                    dispatch={dispatch}
                                     itemChangeNumberOrder={itemChangeNumberOrder}
                                     setIsModalBuyOpen={setIsModalBuyOpen}
-                                    isModalBuyOpen= {isModalBuyOpen}
+                                    isModalBuyOpen={isModalBuyOpen}
                                     maxQuantity={maxQuantity}
                                     setMaxQuantity={setMaxQuantity}
                                 />
@@ -171,14 +169,14 @@ const CartContent = (props) => {
             <Modal
                 title={<p style={{ color: "green", width: "98%" }}>Hiện tại số sản phẩm tối đa bạn có thể mua cho sản phẩm này là {maxQuantity}. Nếu muốn mua số lượng lớn vui lòng liên hệ trực tiếp shop. Xin cảm ơn!</p>}
                 open={isModalBuyOpen}
-                onOk={handleBuyOk} 
+                onOk={handleBuyOk}
                 onCancel={handleBuyCancel}
                 style={{
                     marginTop: "160px"
                 }}
                 footer={false}
             />
-    
+
         </div>
     )
 }
