@@ -302,8 +302,8 @@ const Ordered = () => {
             <HeaderRegister />
             <div className="container ordered-container mt-4">
                 <h4>Đơn hàng</h4>
-                {userCurrent.roles === System.ROLESUSER.ADMIN ||
-                    userCurrent.roles === System.ROLESUSER.MEMBER ?
+                {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                    userCurrent?.roles === System.ROLESUSER.MEMBER ?
                     <div className="order-content">
                         <div style={{ width: "100%" }} className="d-flex flex-row justify-content-between">
                             <span
@@ -664,7 +664,8 @@ const Ordered = () => {
                                         dispatch(fetchUpdateStatusCancelOrdered({ listOrdered, cancelKeyOrder }))
                                     }}>Hủy đơn hàng</button>
                                 </div>
-                                : null}
+                                : null
+                            }
                         </div>
                     </div>
                     : <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>

@@ -252,8 +252,8 @@ const UpdateNewProduct = () => {
             <HeaderRegister />
             <div className="container">
                 <h4 className="mt-5 mb-5">Thông tin sản phẩm</h4>
-                {userCurrent.roles === System.ROLESUSER.ADMIN ||
-                    userCurrent.roles === System.ROLESUSER.MEMBER ?
+                {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                    userCurrent?.roles === System.ROLESUSER.MEMBER ?
                     <Form
                         {...layout}
                         name="nest-messages"

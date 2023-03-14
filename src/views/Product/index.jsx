@@ -210,135 +210,135 @@ const Product = () => {
     return (
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
-            {userCurrent.roles === System.ROLESUSER.ADMIN ||
-                userCurrent.roles === System.ROLESUSER.MEMBER ?
+            {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <div className="container">
                     <div className="product-title-header">
                         <h4 className="mt-4">Kho hàng</h4>
-                        
-                            <div style={{ width: "800px" }} className="d-flex flex-row justify-content-between">
-                                <span
-                                    className="all-product"
-                                    onClick={(event) => {
-                                        event.preventDefault();
-                                        setData(product?.map((item, index) => {
-                                            return {
-                                                key: item.id,
-                                                stt: index + 1,
-                                                avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
-                                                name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
-                                                number: <div className="d-flex flex-row">
-                                                    <span style={{ marginRight: "20px" }}>{item.quantity}</span>
-                                                    {item.quantity >= 1 && item.quantity <= 5 ?
-                                                        <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
-                                                        item.quantity === 0 ?
-                                                            <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
-                                                    }
-                                                </div>,
-                                                action: <div className="action-product">
-                                                    <button onClick={(event) => {
-                                                        event.preventDefault();
-                                                        navigate(`/admin/product/update/${item.id}`)
-                                                    }}>Cập nhật</button>
-                                                    <button onClick={(event) => {
-                                                        event.preventDefault();
-                                                        setIsModalOpen(true);
-                                                        setDeleteItem(item);
-                                                    }}>Xóa</button>
-                                                </div>
-                                            }
-                                        }))
-                                    }}
-                                >Tổng: {product?.length} sản phẩm</span>
-                                <span
-                                    className="effeting-product"
-                                    onClick={(event) => {
-                                        event.preventDefault();
-                                        setData(product?.filter(el => {
-                                            if (el.quantity >= 1 && el.quantity <= 5) {
-                                                return el;
-                                            }
-                                        })?.map((item, index) => {
-                                            return {
-                                                key: item.id,
-                                                stt: index + 1,
-                                                avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
-                                                name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
-                                                number: <div className="d-flex flex-row">
-                                                    <span style={{ marginRight: "20px" }}>{item.quantity}</span>
-                                                    {item.quantity >= 1 && item.quantity <= 5 ?
-                                                        <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
-                                                        item.quantity === 0 ?
-                                                            <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
-                                                    }
-                                                </div>,
-                                                action: <div className="action-product">
-                                                    <button onClick={(event) => {
-                                                        event.preventDefault();
-                                                        navigate(`/admin/product/update/${item.id}`)
-                                                    }}>Cập nhật</button>
-                                                    <button onClick={(event) => {
-                                                        event.preventDefault();
-                                                        setIsModalOpen(true);
-                                                        setDeleteItem(item);
-                                                    }}>Xóa</button>
-                                                </div>
-                                            }
-                                        }))
-                                    }}
-                                >Sắp hết hàng: {product?.filter(el => {
-                                    if (el.quantity >= 1 && el.quantity <= 5) {
-                                        return el;
-                                    }
-                                })?.length} sản phẩm</span>
-                                <span
-                                    className="effeteed-product"
-                                    onClick={(event) => {
-                                        event.preventDefault();
-                                        setData(product?.filter(el => {
-                                            if (el.quantity === 0) {
-                                                return el;
-                                            }
-                                        })?.map((item, index) => {
-                                            return {
-                                                key: item.id,
-                                                stt: index + 1,
-                                                avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
-                                                name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
-                                                number: <div className="d-flex flex-row">
-                                                    <span style={{ marginRight: "20px" }}>{item.quantity}</span>
-                                                    {item.quantity >= 1 && item.quantity <= 5 ?
-                                                        <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
-                                                        item.quantity === 0 ?
-                                                            <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
-                                                    }
-                                                </div>,
-                                                action: <div className="action-product">
-                                                    <button onClick={(event) => {
-                                                        event.preventDefault();
-                                                        navigate(`/admin/product/update/${item.id}`)
-                                                    }}>Cập nhật</button>
-                                                    <button onClick={(event) => {
-                                                        event.preventDefault();
-                                                        setIsModalOpen(true);
-                                                        setDeleteItem(item);
-                                                    }}>Xóa</button>
-                                                </div>
-                                            }
-                                        }))
-                                    }}
-                                >Hết hàng: {product?.filter(el => {
-                                    if (el.quantity === 0) {
-                                        return el;
-                                    }
-                                })?.length} sản phẩm</span>
-                            </div>
-                        
+
+                        <div style={{ width: "800px" }} className="d-flex flex-row justify-content-between">
+                            <span
+                                className="all-product"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(product?.map((item, index) => {
+                                        return {
+                                            key: item.id,
+                                            stt: index + 1,
+                                            avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
+                                            name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
+                                            number: <div className="d-flex flex-row">
+                                                <span style={{ marginRight: "20px" }}>{item.quantity}</span>
+                                                {item.quantity >= 1 && item.quantity <= 5 ?
+                                                    <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                                                    item.quantity === 0 ?
+                                                        <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                                                }
+                                            </div>,
+                                            action: <div className="action-product">
+                                                <button onClick={(event) => {
+                                                    event.preventDefault();
+                                                    navigate(`/admin/product/update/${item.id}`)
+                                                }}>Cập nhật</button>
+                                                <button onClick={(event) => {
+                                                    event.preventDefault();
+                                                    setIsModalOpen(true);
+                                                    setDeleteItem(item);
+                                                }}>Xóa</button>
+                                            </div>
+                                        }
+                                    }))
+                                }}
+                            >Tổng: {product?.length} sản phẩm</span>
+                            <span
+                                className="effeting-product"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(product?.filter(el => {
+                                        if (el.quantity >= 1 && el.quantity <= 5) {
+                                            return el;
+                                        }
+                                    })?.map((item, index) => {
+                                        return {
+                                            key: item.id,
+                                            stt: index + 1,
+                                            avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
+                                            name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
+                                            number: <div className="d-flex flex-row">
+                                                <span style={{ marginRight: "20px" }}>{item.quantity}</span>
+                                                {item.quantity >= 1 && item.quantity <= 5 ?
+                                                    <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                                                    item.quantity === 0 ?
+                                                        <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                                                }
+                                            </div>,
+                                            action: <div className="action-product">
+                                                <button onClick={(event) => {
+                                                    event.preventDefault();
+                                                    navigate(`/admin/product/update/${item.id}`)
+                                                }}>Cập nhật</button>
+                                                <button onClick={(event) => {
+                                                    event.preventDefault();
+                                                    setIsModalOpen(true);
+                                                    setDeleteItem(item);
+                                                }}>Xóa</button>
+                                            </div>
+                                        }
+                                    }))
+                                }}
+                            >Sắp hết hàng: {product?.filter(el => {
+                                if (el.quantity >= 1 && el.quantity <= 5) {
+                                    return el;
+                                }
+                            })?.length} sản phẩm</span>
+                            <span
+                                className="effeteed-product"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(product?.filter(el => {
+                                        if (el.quantity === 0) {
+                                            return el;
+                                        }
+                                    })?.map((item, index) => {
+                                        return {
+                                            key: item.id,
+                                            stt: index + 1,
+                                            avatar: <img style={{ width: "35px" }} src={item.image} alt="" />,
+                                            name: <p style={{ textTransform: "capitalize" }}>{item.productName.toLowerCase()}</p>,
+                                            number: <div className="d-flex flex-row">
+                                                <span style={{ marginRight: "20px" }}>{item.quantity}</span>
+                                                {item.quantity >= 1 && item.quantity <= 5 ?
+                                                    <div style={{ border: "1px solid #ffc107", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "#ffc107", fontSize: "15px", margin: "0" }}>Sắp hết hàng</span></div> :
+                                                    item.quantity === 0 ?
+                                                        <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><span style={{ color: "red", fontSize: "15px", margin: "0" }}>Hết hàng</span></div> : null
+                                                }
+                                            </div>,
+                                            action: <div className="action-product">
+                                                <button onClick={(event) => {
+                                                    event.preventDefault();
+                                                    navigate(`/admin/product/update/${item.id}`)
+                                                }}>Cập nhật</button>
+                                                <button onClick={(event) => {
+                                                    event.preventDefault();
+                                                    setIsModalOpen(true);
+                                                    setDeleteItem(item);
+                                                }}>Xóa</button>
+                                            </div>
+                                        }
+                                    }))
+                                }}
+                            >Hết hàng: {product?.filter(el => {
+                                if (el.quantity === 0) {
+                                    return el;
+                                }
+                            })?.length} sản phẩm</span>
+                        </div>
+
                     </div>
                     <Table columns={columns} dataSource={data} />
                     <a href="/" style={{ paddingBottom: "50px" }}>Quay lại trang chủ</a>
                 </div>
-            :   <div className="container">
+                : <div className="container">
                     <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
                 </div>
             }
