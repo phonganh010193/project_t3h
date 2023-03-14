@@ -343,7 +343,7 @@ const Abate = () => {
                     </div>
 
                     <div className="cofirm-payment">
-                        <h2>Đơn hàng</h2>
+                        <h2>Mã đơn hàng : {orderId}</h2>
                         <div className="product-cofirm-payment">
                             {(abateDetail?.products || [])?.map((item, index) => {
                                 return (
