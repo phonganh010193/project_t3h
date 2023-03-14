@@ -46,13 +46,13 @@ const PerfumeEvaluate = (props) => {
                 />
             </div>
             <div className="evaluate-content">
-                <div className="evaluate-item" id = "content">
+                <div className="evaluate-item" id="content">
                     {commentList && commentList.map((item, index) => {
                         return (
                             <div className="user-comment" key={index}>
-                                <img src={item.user?.avatar} alt="" />
+                                <img src={item.user?.avatar ? item.user?.avatar : "https://cdn-icons-png.flaticon.com/512/1077/1077114.png"} alt="" />
                                 <div className="comment-info">
-                                    <p>{item.user?.name}</p>
+                                    <p>{item.user?.name ? item.user?.name : "Khách"}</p>
                                     <p>
                                         {item.comment}
                                     </p>
