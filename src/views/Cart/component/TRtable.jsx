@@ -18,11 +18,11 @@ const
         const deleItemOrder = (item) => {
             remove(ref(database, 'Cart/' + item.key))
                 .then(() => {
-                    toast.success('Delete success!')
+                    toast.success('Xóa thành công!')
                     dispatch(fetchOrderProduct(user));
                 })
                 .catch((error) => {
-                    toast.error('Delete Fail!')
+                    toast.error('Xóa không thành công!')
                 })
         }
         return (
