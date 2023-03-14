@@ -132,6 +132,7 @@ const RenrakuByUser = () => {
                     <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
                 }
                 <Link to='/'>Quay về Trang chủ</Link>
+                <div style={{ height: "100px" }}></div>
             </div>
         </div >
     )
