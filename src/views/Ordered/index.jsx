@@ -43,8 +43,9 @@ const Ordered = () => {
     const [cancelKeyOrder, setCancelKeyOrder] = useState('');
 
     useEffect(() => {
-        if(!isLoadingCancelOrderByKey && prevIsLoadingCancelOrderByKey) {
+        if (!isLoadingCancelOrderByKey && prevIsLoadingCancelOrderByKey) {
             dispatch(fetchOrdered());
+            setCancelKeyOrder('');
         }
     }, [dispatch, isLoadingCancelOrderByKey])
     useEffect(() => {
@@ -85,7 +86,7 @@ const Ordered = () => {
                             }}
                             defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
                                 item.status === System.STATUS.PROCESSING ? "Processing" :
-                                item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                    item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
                             }
                         >
                             <option value="Ordered">Mới</option>
@@ -119,7 +120,7 @@ const Ordered = () => {
 
     const checkShowButtonDeleteOrderCancel = () => {
         const findItemCancel = listOrdered?.find(el => el.status === System.STATUS.CANCELED);
-        if(findItemCancel) {
+        if (findItemCancel) {
             setButtonDeleteOrderCancel(true)
         } else {
             setButtonDeleteOrderCancel(false)
@@ -316,68 +317,70 @@ const Ordered = () => {
                             }}
                         />
                         <div className='d-flex flex-row align-items-center'>
-                        {listCheck ?
-                            <button
-                                style={{
-                                    borderRadius: "5px",
-                                    backgroundColor: "red",
-                                    color: "white",
-                                    width: "120px",
-                                    height: "40px",
-                                    border: "none"
-                                }}
+                            {listCheck ?
+                                <button
+                                    style={{
+                                        borderRadius: "5px",
+                                        backgroundColor: "red",
+                                        color: "white",
+                                        width: "120px",
+                                        height: "40px",
+                                        border: "none"
+                                    }}
 
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    setIisModalDeleteListCheckOpen(true)
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        setIisModalDeleteListCheckOpen(true)
 
-                                }}
-                            >Xóa Đơn hàng
-                            </button>
-                            : null
-                        }
-                        {buttonDeleteOrderCancel? 
-                            <button
-                                style={{
-                                    borderRadius: "5px",
-                                    backgroundColor: "red",
-                                    color: "white",
-                                    width: "165px",
-                                    height: "40px",
-                                    border: "none",
-                                    marginLeft: "10px"
-                                }}
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    listOrdered?.forEach(el => {
-                                        if(el.status === System.STATUS.CANCELED) {
-                                            dispatch(fetchRemoveAbateById(el.key));
-                                        }
-                                    })
+                                    }}
+                                >Xóa Đơn hàng
+                                </button>
+                                : null
+                            }
+                            {buttonDeleteOrderCancel ?
+                                <button
+                                    style={{
+                                        borderRadius: "5px",
+                                        backgroundColor: "red",
+                                        color: "white",
+                                        width: "165px",
+                                        height: "40px",
+                                        border: "none",
+                                        marginLeft: "10px"
+                                    }}
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        listOrdered?.forEach(el => {
+                                            if (el.status === System.STATUS.CANCELED) {
+                                                dispatch(fetchRemoveAbateById(el.key));
+                                            }
+                                        })
 
-                                }}
-                            >Xóa Đơn hàng đã hủy
-                            </button>
-                            : null
-                        }
-                        <div className='cancel-ordered'>
-                            <input type="text" placeholder='Mã đơn hàng' value={cancelKeyOrder} onChange={(event) => {
-                                setCancelKeyOrder(event.target.value);
-                            }} />
-                            <button onClick={(event) => {
-                                event.preventDefault();
-                                dispatch(fetchUpdateStatusCancelOrdered({listOrdered, cancelKeyOrder}))
-                            }}>Hủy đơn hàng</button>
-                        </div>
+                                    }}
+                                >Xóa Đơn hàng đã hủy
+                                </button>
+                                : null
+                            }
+                            {listOrdered?.length !== 0 ?
+                                <div className='cancel-ordered'>
+                                    <input type="text" placeholder='Mã đơn hàng' value={cancelKeyOrder} onChange={(event) => {
+                                        setCancelKeyOrder(event.target.value);
+                                    }} />
+                                    <button onClick={(event) => {
+                                        event.preventDefault();
+                                        dispatch(fetchUpdateStatusCancelOrdered({ listOrdered, cancelKeyOrder }))
+                                    }}>Hủy đơn hàng</button>
+                                </div>
+                                : null}
                         </div>
                     </div>
-                : <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
+                    : <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
                 }
-                <div style={{marginTop: "20px", marginBottom: "50px"}}>
+                <div style={{ marginTop: "20px", marginBottom: "50px" }}>
                     <a className='mb-5' href='/'>Quay lại trang chủ</a>
                 </div>
             </div>
-            <div style={{height:"50px"}}></div>
+            <div style={{ height: "50px" }}></div>
             <Modal
                 title={`Đơn hàng mã : ${orderedContent?.key}`}
                 open={isModalOpen}

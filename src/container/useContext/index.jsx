@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { auth } from '../../firebase';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router";
 
 export const UserContext = createContext();
 

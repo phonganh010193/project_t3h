@@ -66,7 +66,7 @@ const Abate = () => {
 
 
     useEffect(() => {
-        if (!isLoading && prevIsLoading && abateDetail.status === System.STATUS.ORDERING) {
+        if (!isLoading && prevIsLoading && abateDetail?.status === System.STATUS.ORDERING) {
             setFields([
                 {
                     name: ['user', 'name'],
@@ -308,7 +308,7 @@ const Abate = () => {
 
                             <Form.Item
                                 name={['user', 'phone']}
-                                label="Phone number"
+                                label="Số điện thoại"
                                 rules={[
                                     {
                                         required: true,
@@ -482,7 +482,7 @@ const Abate = () => {
                                             abateDetail?.status === System.STATUS.RECEIVED ? "green" : null
                             }}
                         >
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdE7I635Hdl8CMzDPeGly_qDzfqU9mMhdZYUNYGTI0LZRoHikj1mtdbGsOjdf0cpAOp2I&usqp=CAU" alt="" />
+                            <img src="https://e7.pngegg.com/pngimages/759/310/png-clipart-computer-icons-delivery-others-text-logo-thumbnail.png" alt="" />
                         </div>
                         <div
                             style={{

@@ -1,6 +1,5 @@
 import { ref, update } from "firebase/database"
 import { useContext, useEffect } from "react"
-import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -9,7 +8,6 @@ import { UserContext } from "../../../container/useContext"
 import { fetchUserItem } from "../../../container/userSlice"
 import { database } from "../../../firebase"
 import { usePrevious } from "../../../utils/hooks"
-import Footer from "../../Footer"
 import HeaderRegister from "../../Topbar/component/headerRegister"
 import { fetchDeleteRenrakuByKey, fetchRenraku } from "../renrakuSlice"
 
@@ -23,7 +21,6 @@ const RenrakuByUser = () => {
 
     useEffect(() => {
         if (!isLoadingDelete && prevIsLoadingDelete) {
-            console.log('renraku list', renrakuList)
             dispatch(fetchRenraku());
         }
     }, [dispatch, isLoadingDelete, prevIsLoadingDelete]);
@@ -33,7 +30,6 @@ const RenrakuByUser = () => {
         dispatch(fetchUserItem(user));
     }, [dispatch, user]);
     const handleChangeStatus = (value) => {
-        console.log('value', value)
         renrakuList?.forEach(el => {
             if (el.key === value.item.key) {
                 update(ref(database, "/Renraku/" + el.key), {
@@ -46,7 +42,7 @@ const RenrakuByUser = () => {
                     status: value.values
                 })
                     .then((res) => {
-                        return res
+                        return res;
                     })
                     .catch((error) => {
                         console.log(error)
@@ -131,8 +127,8 @@ const RenrakuByUser = () => {
                                 )
                             }) : <p>Chưa có thông tin!</p>}
                         </ul>
-                    </div> 
-                :
+                    </div>
+                    :
                     <p style={{ color: "red" }}>Bạn không được quyền truy cập chức năng này</p>
                 }
                 <Link to='/'>Quay về Trang chủ</Link>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, PhoneOutlined, AimOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import '../../../node_modules/antd/dist/reset.css';
 import '../../utils/styles/signin.css';
@@ -71,16 +71,16 @@ const SignUp = () => {
               name="address"
               rules={[{ required: true, message: 'Xin hãy nhập địa chỉ!' }]}
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Địa chỉ" />
+              <Input prefix={<AimOutlined className="site-form-item-icon" />} placeholder="Địa chỉ" />
             </Form.Item>
             <Form.Item
               name="phone"
               rules={[
                 { required: true, message: 'Xin hay nhập số điện thoại!' },
-                
+
               ]}
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Số điện thoại" />
+              <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Số điện thoại" />
             </Form.Item>
             <Form.Item
               name="username"
@@ -90,8 +90,8 @@ const SignUp = () => {
             </Form.Item>
             <Form.Item
               name="password"
-              rules={[{pattern: new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),message: "Mật khẩu tối thiểu tám ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt"},
-              {required: true,message: "Xin hãy nhập mật khẩu!",},]}
+              rules={[{ pattern: new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/), message: "Mật khẩu tối thiểu tám ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt" },
+              { required: true, message: "Xin hãy nhập mật khẩu!", },]}
               hasFeedback
             >
               <Input.Password

@@ -10,13 +10,14 @@
 }
 
 .product-item:hover {
-    background-color: rgb(212, 212, 211);
+    background-color: rgb(247, 247, 247);
     cursor: pointer;
 }
 
 .product-item img {
     width: 90px;
     margin-right: 20px;
+    height: 96px;
 }
 
 .produc-price p {

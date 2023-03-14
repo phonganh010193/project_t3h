@@ -7,13 +7,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../useContext';
 import RunMockData from '../../mock/runMockData';
 import Footer from '../../component/Footer';
-import { useState } from 'react';
 import Loading from '../../component/Loading';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const { user, fetchUser, isLoadingUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
   const onFinish = async (values) => {
     await RunMockData.runMockCategory();
     await RunMockData.runMockProduct();
@@ -55,15 +53,15 @@ const SignIn = () => {
                   name="username"
                   rules={[
                     { required: true, message: 'Xin hãy nhập Email' },
-                    {type: "email", message: 'Đây không phải là email!'}
+                    { type: "email", message: 'Đây không phải là email!' }
                   ]}
                 >
                   <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="phongpv@gmail.com" />
                 </Form.Item>
                 <Form.Item
                   name="password"
-                  rules={[{pattern: new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),message: "Mật khẩu tối thiểu tám ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt"},
-                  {required: true,message: "Xin hãy nhập mật khẩu!",},]}
+                  rules={[{ pattern: new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/), message: "Mật khẩu tối thiểu tám ký tự, ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt" },
+                  { required: true, message: "Xin hãy nhập mật khẩu!", },]}
                   hasFeedback
                 >
                   <Input.Password
