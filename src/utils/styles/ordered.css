@@ -54,3 +54,25 @@
     width: 80px;
     margin: auto 10px ;
 }
+
+.all-ordered:hover{
+    color: green;
+    cursor: pointer;
+}
+
+.process-not-ordered:hover {
+    cursor: pointer;
+    color: gray;
+}
+.processing-ordered:hover {
+    color: #ffc107;
+    cursor: pointer;
+}
+.transferring-ordered:hover {
+    color: #b15702;
+    cursor: pointer;
+}
+.received-ordered:hover {
+    color: red;
+    cursor: pointer;
+}

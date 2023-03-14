@@ -290,7 +290,6 @@ const Ordered = () => {
 
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
-            console.log('selectedRows: ', selectedRows);
             setListCheck(selectedRows.length > 0 ? selectedRows : null);
         },
         getCheckboxProps: (record) => ({
@@ -306,6 +305,300 @@ const Ordered = () => {
                 {userCurrent.roles === System.ROLESUSER.ADMIN ||
                     userCurrent.roles === System.ROLESUSER.MEMBER ?
                     <div className="order-content">
+                        <div style={{ width: "100%" }} className="d-flex flex-row justify-content-between">
+                            <span
+                                className='all-ordered'
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(listOrdered?.map((item, index) => {
+                                        return {
+                                            key: item.key,
+                                            stt: index + 1,
+                                            date: moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss"),
+                                            keyOrder: item.key,
+                                            status: item.status === System.STATUS.CANCELED ?
+                                                <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><p style={{ color: "red", fontSize: "20px", margin: "0" }}>Canceled</p></div>
+                                                :
+                                                <select
+                                                    id="status-ordered"
+                                                    onChange={(event) => {
+                                                        handleChange({
+                                                            item: item,
+                                                            values: event.target.value
+                                                        })
+                                                    }}
+                                                    defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
+                                                        item.status === System.STATUS.PROCESSING ? "Processing" :
+                                                            item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                                    }
+                                                >
+                                                    <option value="Ordered">Mới</option>
+                                                    <option value="Processing">Đang xử lý</option>
+                                                    <option value="Transferring">Đang gửi hàng</option>
+                                                    <option value="Received">Hoàn thành</option>
+                                                </select>,
+                                            action:
+                                                <div className='action-ordered'>
+                                                    {item.status !== System.STATUS.ORDERED ?
+                                                        <button className='view-ordered' onClick={() => {
+                                                            setIsModalOpen(true)
+                                                            setOrderedContent(item)
+                                                        }}>Xem đơn hàng</button>
+                                                        : null
+                                                    }
+                                                    {item.status === System.STATUS.RECEIVED || item.status === System.STATUS.CANCELED ?
+                                                        <button className='delete-ordered' onClick={(event) => {
+                                                            event.preventDefault();
+                                                            setIsModalDeleteOpen(true);
+                                                            setKeyDelete(item.key);
+                                                        }}>Xóa</button>
+                                                        : null
+                                                    }
+                                                </div>
+                                        }
+                                    }));
+                                }}>Tổng: {listOrdered?.length} đơn hàng </span>
+                            <span
+                                className='process-not-ordered'
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(listOrdered?.filter(el => {
+                                        if (el.status === System.STATUS.ORDERED) {
+                                            return el;
+                                        }
+                                    })?.map((item, index) => {
+                                        return {
+                                            key: item.key,
+                                            stt: index + 1,
+                                            date: moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss"),
+                                            keyOrder: item.key,
+                                            status: item.status === System.STATUS.CANCELED ?
+                                                <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><p style={{ color: "red", fontSize: "20px", margin: "0" }}>Canceled</p></div>
+                                                :
+                                                <select
+                                                    id="status-ordered"
+                                                    onChange={(event) => {
+                                                        handleChange({
+                                                            item: item,
+                                                            values: event.target.value
+                                                        })
+                                                    }}
+                                                    defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
+                                                        item.status === System.STATUS.PROCESSING ? "Processing" :
+                                                            item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                                    }
+                                                >
+                                                    <option value="Ordered">Mới</option>
+                                                    <option value="Processing">Đang xử lý</option>
+                                                    <option value="Transferring">Đang gửi hàng</option>
+                                                    <option value="Received">Hoàn thành</option>
+                                                </select>,
+                                            action:
+                                                <div className='action-ordered'>
+                                                    {item.status !== System.STATUS.ORDERED ?
+                                                        <button className='view-ordered' onClick={() => {
+                                                            setIsModalOpen(true)
+                                                            setOrderedContent(item)
+                                                        }}>Xem đơn hàng</button>
+                                                        : null
+                                                    }
+                                                    {item.status === System.STATUS.RECEIVED || item.status === System.STATUS.CANCELED ?
+                                                        <button className='delete-ordered' onClick={(event) => {
+                                                            event.preventDefault();
+                                                            setIsModalDeleteOpen(true);
+                                                            setKeyDelete(item.key);
+                                                        }}>Xóa</button>
+                                                        : null
+                                                    }
+                                                </div>
+                                        }
+                                    }));
+                                }}>Chưa xử lý: {listOrdered?.filter(el => {
+                                    if (el.status === System.STATUS.ORDERED) {
+                                        return el;
+                                    }
+                                })?.length} đơn hàng</span>
+                            <span
+                                className='processing-ordered'
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(listOrdered?.filter(el => {
+                                        if (el.status === System.STATUS.PROCESSING) {
+                                            return el;
+                                        }
+                                    })?.map((item, index) => {
+                                        return {
+                                            key: item.key,
+                                            stt: index + 1,
+                                            date: moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss"),
+                                            keyOrder: item.key,
+                                            status: item.status === System.STATUS.CANCELED ?
+                                                <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><p style={{ color: "red", fontSize: "20px", margin: "0" }}>Canceled</p></div>
+                                                :
+                                                <select
+                                                    id="status-ordered"
+                                                    onChange={(event) => {
+                                                        handleChange({
+                                                            item: item,
+                                                            values: event.target.value
+                                                        })
+                                                    }}
+                                                    defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
+                                                        item.status === System.STATUS.PROCESSING ? "Processing" :
+                                                            item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                                    }
+                                                >
+                                                    <option value="Ordered">Mới</option>
+                                                    <option value="Processing">Đang xử lý</option>
+                                                    <option value="Transferring">Đang gửi hàng</option>
+                                                    <option value="Received">Hoàn thành</option>
+                                                </select>,
+                                            action:
+                                                <div className='action-ordered'>
+                                                    {item.status !== System.STATUS.ORDERED ?
+                                                        <button className='view-ordered' onClick={() => {
+                                                            setIsModalOpen(true)
+                                                            setOrderedContent(item)
+                                                        }}>Xem đơn hàng</button>
+                                                        : null
+                                                    }
+                                                    {item.status === System.STATUS.RECEIVED || item.status === System.STATUS.CANCELED ?
+                                                        <button className='delete-ordered' onClick={(event) => {
+                                                            event.preventDefault();
+                                                            setIsModalDeleteOpen(true);
+                                                            setKeyDelete(item.key);
+                                                        }}>Xóa</button>
+                                                        : null
+                                                    }
+                                                </div>
+                                        }
+                                    }));
+                                }}>Đang xử lý: {listOrdered?.filter(el => {
+                                    if (el.status === System.STATUS.PROCESSING) {
+                                        return el;
+                                    }
+                                })?.length} đơn hàng</span>
+                            <span
+                                className='transferring-ordered'
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(listOrdered?.filter(el => {
+                                        if (el.status === System.STATUS.TRANSFERRING) {
+                                            return el;
+                                        }
+                                    })?.map((item, index) => {
+                                        return {
+                                            key: item.key,
+                                            stt: index + 1,
+                                            date: moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss"),
+                                            keyOrder: item.key,
+                                            status: item.status === System.STATUS.CANCELED ?
+                                                <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><p style={{ color: "red", fontSize: "20px", margin: "0" }}>Canceled</p></div>
+                                                :
+                                                <select
+                                                    id="status-ordered"
+                                                    onChange={(event) => {
+                                                        handleChange({
+                                                            item: item,
+                                                            values: event.target.value
+                                                        })
+                                                    }}
+                                                    defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
+                                                        item.status === System.STATUS.PROCESSING ? "Processing" :
+                                                            item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                                    }
+                                                >
+                                                    <option value="Ordered">Mới</option>
+                                                    <option value="Processing">Đang xử lý</option>
+                                                    <option value="Transferring">Đang gửi hàng</option>
+                                                    <option value="Received">Hoàn thành</option>
+                                                </select>,
+                                            action:
+                                                <div className='action-ordered'>
+                                                    {item.status !== System.STATUS.ORDERED ?
+                                                        <button className='view-ordered' onClick={() => {
+                                                            setIsModalOpen(true)
+                                                            setOrderedContent(item)
+                                                        }}>Xem đơn hàng</button>
+                                                        : null
+                                                    }
+                                                    {item.status === System.STATUS.RECEIVED || item.status === System.STATUS.CANCELED ?
+                                                        <button className='delete-ordered' onClick={(event) => {
+                                                            event.preventDefault();
+                                                            setIsModalDeleteOpen(true);
+                                                            setKeyDelete(item.key);
+                                                        }}>Xóa</button>
+                                                        : null
+                                                    }
+                                                </div>
+                                        }
+                                    }));
+                                }}>Đang vận chuyển: {listOrdered?.filter(el => {
+                                    if (el.status === System.STATUS.TRANSFERRING) {
+                                        return el;
+                                    }
+                                })?.length} đơn hàng</span>
+                            <span
+                                className='received-ordered'
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setData(listOrdered?.filter(el => {
+                                        if (el.status === System.STATUS.RECEIVED) {
+                                            return el;
+                                        }
+                                    })?.map((item, index) => {
+                                        return {
+                                            key: item.key,
+                                            stt: index + 1,
+                                            date: moment(item.dateOrder).format("DD-MM-YYYY HH:mm:ss"),
+                                            keyOrder: item.key,
+                                            status: item.status === System.STATUS.CANCELED ?
+                                                <div style={{ border: "1px solid red", width: "100px", textAlign: "center", borderRadius: "5px" }}><p style={{ color: "red", fontSize: "20px", margin: "0" }}>Canceled</p></div>
+                                                :
+                                                <select
+                                                    id="status-ordered"
+                                                    onChange={(event) => {
+                                                        handleChange({
+                                                            item: item,
+                                                            values: event.target.value
+                                                        })
+                                                    }}
+                                                    defaultValue={item.status === System.STATUS.RECEIVED ? "Received" :
+                                                        item.status === System.STATUS.PROCESSING ? "Processing" :
+                                                            item.status === System.STATUS.TRANSFERRING ? "Transferring" : "Ordered"
+                                                    }
+                                                >
+                                                    <option value="Ordered">Mới</option>
+                                                    <option value="Processing">Đang xử lý</option>
+                                                    <option value="Transferring">Đang gửi hàng</option>
+                                                    <option value="Received">Hoàn thành</option>
+                                                </select>,
+                                            action:
+                                                <div className='action-ordered'>
+                                                    {item.status !== System.STATUS.ORDERED ?
+                                                        <button className='view-ordered' onClick={() => {
+                                                            setIsModalOpen(true)
+                                                            setOrderedContent(item)
+                                                        }}>Xem đơn hàng</button>
+                                                        : null
+                                                    }
+                                                    {item.status === System.STATUS.RECEIVED || item.status === System.STATUS.CANCELED ?
+                                                        <button className='delete-ordered' onClick={(event) => {
+                                                            event.preventDefault();
+                                                            setIsModalDeleteOpen(true);
+                                                            setKeyDelete(item.key);
+                                                        }}>Xóa</button>
+                                                        : null
+                                                    }
+                                                </div>
+                                        }
+                                    }));
+                                }}>Đã hoàn thành: {listOrdered?.filter(el => {
+                                    if (el.status === System.STATUS.RECEIVED) {
+                                        return el;
+                                    }
+                                })?.length} đơn hàng</span>
+                        </div>
                         <Table
                             rowSelection={{
                                 ...rowSelection,

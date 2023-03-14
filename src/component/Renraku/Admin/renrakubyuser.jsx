@@ -67,11 +67,11 @@ const RenrakuByUser = () => {
             <HeaderRegister />
             <div className="container mt-3 mb-5">
                 <h4>Thông tin liên hệ từ khách hàng</h4>
-                {userCurrent.roles === System.ROLESUSER.ADMIN ||
-                    userCurrent.roles === System.ROLESUSER.MEMBER ?
+                {userCurrent?.roles === System.ROLESUSER.ADMIN ||
+                    userCurrent?.roles === System.ROLESUSER.MEMBER ?
                     <div className="renrakubyuser-info">
                         <ul className="ml-5">
-                            {renrakuList ? renrakuList.map((item, index) => {
+                            {renrakuList ? renrakuList?.map((item, index) => {
                                 return (
                                     <li style={{ listStyleType: "decimal", marginBottom: "10px" }} key={item.key}>
                                         <div className="d-flex flex-row justify-content-between">
@@ -116,10 +116,20 @@ const RenrakuByUser = () => {
                                                 <option value="complete">Hoàn thành</option>
                                             </select>
                                             {item.status === "complete" ?
-                                                <button style={{ width: "80px", borderRadius: "5px", marginLeft: "10px" }} onClick={(event) => {
-                                                    event.preventDefault();
-                                                    deleteRenrakuByKey(item.key)
-                                                }}>Xóa</button>
+                                                <button
+                                                    style={{
+                                                        width: "80px",
+                                                        borderRadius: "5px",
+                                                        marginLeft: "10px",
+                                                        backgroundColor: "red",
+                                                        color: "white",
+                                                        border: "none"
+                                                    }}
+                                                    onClick={(event) => {
+                                                        event.preventDefault();
+                                                        deleteRenrakuByKey(item.key);
+                                                    }}
+                                                >Xóa</button>
                                                 : null
                                             }
                                         </div>

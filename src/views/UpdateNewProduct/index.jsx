@@ -297,10 +297,9 @@ const UpdateNewProduct = () => {
                                 <Select>
                                     <Select.Option value="1">Men</Select.Option>
                                     <Select.Option value="2">Wommen</Select.Option>
-                                    <Select.Option value="3">ALL</Select.Option>
                                 </Select>
                             </Form.Item>
-                            <Form.Item name={['product', 'dateAdd']} label="DateAdd">
+                            <Form.Item name={['product', 'dateAdd']} label="DateAdd" rules={[{ required: true }]}>
                                 <DatePicker />
                             </Form.Item>
                             <Form.Item name={['product', 'productName']} label="Product Name" rules={[{ required: true }]}>
