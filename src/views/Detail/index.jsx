@@ -1,4 +1,3 @@
-import LayoutCart from "../../component/LayoutCart";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +14,7 @@ import PerfumeEvaluate from "./component/perfumeEvaluate";
 import GuideShopping from "./component/guideShopping";
 import { usePrevious } from "../../utils/hooks";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
+import Layout from "../../component/Layout";
 
 
 const Detail = () => {
@@ -122,7 +122,7 @@ const Detail = () => {
     }
 
     return (
-        <LayoutCart>
+        <Layout>
             <div className="container perfume-detail">
                 <div className="header-detail">
                     <p>Nhóm sản phẩm/<span style={{ color: "#2d8356" }}>{detailList?.productName}</span></p>
@@ -192,7 +192,7 @@ const Detail = () => {
                     <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
                 </div>
             </div>
-        </LayoutCart>
+        </Layout>
     )
 }
 

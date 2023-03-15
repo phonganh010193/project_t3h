@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import LayoutCart from "../../component/LayoutCart";
 import { UserContext } from "../../container/useContext";
 import "../../utils/styles/search.css";
 import { fetchAddOrderItem, fetchOrderProduct } from "../Cart/orderSlice";
@@ -14,8 +13,8 @@ import { usePrevious } from "../../utils/hooks";
 import { ref, remove } from "firebase/database";
 import { database } from "../../firebase";
 import { fetchProduct } from "../Perfume/perfumeInfoSlice";
-import { Modal } from "antd";
 import DeleteProductItem from "../../component/DeleteProductItem";
+import Layout from "../../component/Layout";
 
 const SearchList = () => {
     const navigate = useNavigate();
@@ -99,7 +98,7 @@ const SearchList = () => {
         }
     }
     return (
-        <LayoutCart>
+        <Layout>
             <div className="search-container">
                 <div className="input-search">
                     <div className="input-item">
@@ -162,7 +161,7 @@ const SearchList = () => {
                 }
             </div>
             <DeleteProductItem isModalOpen={isModalOpen} deleteItem={deleteItem} handleOk={handleOk} handleCancel={handleCancel} />
-        </LayoutCart>
+        </Layout>
     )
 }
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import LayoutCart from "../component/LayoutCart";
+import Layout from "../component/Layout";
 import IMAGE from "../contact";
 import "../utils/styles/transport.css";
 
@@ -10,7 +10,7 @@ const Transport = () => {
     }, []);
 
     return (
-        <LayoutCart>
+        <Layout>
             <div className="transport-container">
                 <div className="transport-header">
                     <p>Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>Vận chuyển</span></p>
@@ -29,7 +29,7 @@ const Transport = () => {
                     </div>
                 </div>
             </div>
-        </LayoutCart>
+        </Layout>
     )
 }
 

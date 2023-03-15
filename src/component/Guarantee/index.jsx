@@ -1,8 +1,8 @@
 
 import { useEffect } from "react";
 import IMAGE from "../../contact";
-import LayoutCart from "../LayoutCart";
 import "../../utils/styles/guerantee.css";
+import Layout from "../Layout";
 
 const Guerantee = () => {
 
@@ -11,7 +11,7 @@ const Guerantee = () => {
     }, []);
 
     return (
-        <LayoutCart>
+        <Layout>
             <div className="guerantee-container">
                 <div className="guerantee-header">
                     <p>Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>Bảo hành</span></p>
@@ -28,7 +28,7 @@ const Guerantee = () => {
                     </div>
                 </div>
             </div>
-        </LayoutCart>
+        </Layout>
     )
 }
 

@@ -1,17 +1,14 @@
 import IMAGE from "../../contact";
-import LayoutCart from "../LayoutCart";
 import React from 'react'
 import { Button, Form, Input } from 'antd';
 import "../../utils/styles/renraku.css";
 import { push, ref } from "@firebase/database";
-import { async } from "q";
 import { database } from "../../firebase";
 import { toast } from "react-toastify";
-import { useContext } from "react";
-import { UserContext } from "../../container/useContext";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchRenraku } from "./renrakuSlice";
+import Layout from "../Layout";
 const layout = {
 
     labelCol: { span: 16 },
@@ -33,7 +30,6 @@ const Renraku = () => {
     const [fields, setFields] = useState([]);
     const dispatch = useDispatch();
     const onFinish = async (values) => {
-        console.log('values', values);
         await push(ref(database, "Renraku"), {
             ...values,
             status: "new"
@@ -66,7 +62,7 @@ const Renraku = () => {
         ])
     };
     return (
-        <LayoutCart>
+        <Layout>
             <div className="renraku-container" style={{ width: "100%" }}>
                 <p style={{ borderBottom: "1px solid gray" }}>Trang chủ/<span style={{ color: "#2d8356" }}>Liên hệ</span></p>
                 <a target="_blank" href="https://www.google.com/maps/place/43+%C4%90.+V%C4%83n+Ti%E1%BA%BFn+D%C5%A9ng,+Ph%C3%BAc+Di%E1%BB%85n,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0492864,105.7466989,17z/data=!3m1!4b1!4m5!3m4!1s0x313454efb22ead83:0xb31d1b2467c5d9dc!8m2!3d21.0492814!4d105.7488876?hl=vi-VN"><img style={{ width: "100%" }} src={IMAGE.renraku} alt="" /></a>
@@ -168,7 +164,7 @@ const Renraku = () => {
 
             </div>
 
-        </LayoutCart>
+        </Layout>
     )
 }
 

@@ -1,9 +1,9 @@
-import LayoutCart from "../../component/LayoutCart";
+import Layout from "../../component/Layout";
 import "../../utils/styles/introduce.css";
 
 const Introduce = () => {
     return (
-        <LayoutCart>
+        <Layout>
             <div className="introduce-container">
                 <div className="introduce-header">
                     <p>Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>SHOP NƯỚC HOA Phong Anh - CHUYÊN CUNG CẤP NƯỚC HOA CHÍNH HÃNG GIÁ TỐT</span>.</p>
@@ -45,7 +45,7 @@ const Introduce = () => {
                 </div>
             </div>
 
-        </LayoutCart>
+        </Layout>
     )
 }
 

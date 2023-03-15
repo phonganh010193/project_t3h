@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import IMAGE from "../../contact";
-import LayoutCart from "../LayoutCart";
 import "../../utils/styles/security.css";
+import Layout from "../Layout";
 
 const Security = () => {
 
@@ -10,7 +10,7 @@ const Security = () => {
     }, []);
 
     return (
-        <LayoutCart>
+        <Layout>
             <div className="security-container">
                 <div className="security-header">
                     <p>Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>Bảo mật</span></p>
@@ -56,7 +56,7 @@ const Security = () => {
                     </div>
                 </div>
             </div>
-        </LayoutCart>
+        </Layout>
     )
 }
 

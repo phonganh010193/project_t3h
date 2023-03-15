@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import LayoutCart from "../../component/LayoutCart"
+import Layout from "../../component/Layout"
 import { System } from "../../constants/system.constants";
 import { UserContext } from "../../container/useContext";
 import { fetchUserItem } from "../../container/userSlice";
@@ -298,7 +298,7 @@ const Cart = () => {
     ];
 
     return (
-        <LayoutCart>
+        <Layout>
             <div className="cart-container">
                 <div className="header-cart">
                     <p>Trang chủ/ <span style={{ color: "rgb(45, 131, 86)" }}>Giỏ hàng</span></p>
@@ -308,7 +308,7 @@ const Cart = () => {
                 </div>
             </div>
 
-        </LayoutCart>
+        </Layout>
     )
 }
 

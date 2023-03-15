@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import IMAGE from "../../contact";
-import LayoutCart from "../LayoutCart";
 import "../../utils/styles/return.css";
+import Layout from "../Layout";
 
 const ReturnProduct = () => {
 
@@ -10,7 +10,7 @@ const ReturnProduct = () => {
     }, []);
 
     return (
-        <LayoutCart>
+        <Layout>
             <div className="return-container">
                 <div className="return-header">
                     <p>Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>Đổi trả</span></p>
@@ -36,7 +36,7 @@ const ReturnProduct = () => {
                     </div>
                 </div>
             </div>
-        </LayoutCart>
+        </Layout>
     )
 }
 

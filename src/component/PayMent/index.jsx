@@ -1,7 +1,7 @@
-import LayoutCart from "../LayoutCart";
 import "../../utils/styles/payment.css";
 import IMAGE from "../../contact";
 import { useEffect } from "react";
+import Layout from "../Layout";
 
 const PayMent = () => {
 
@@ -9,7 +9,7 @@ const PayMent = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, [])
     return (
-        <LayoutCart>
+        <Layout>
             <div className="payment-container">
                 <div className="payment-header">
                     <p>Trang chủ / <span style={{ color: "rgb(45, 131, 86)" }}>Thanh toán</span></p>
@@ -26,7 +26,7 @@ const PayMent = () => {
                     <img className="image-thank" src={IMAGE.payment_logo} alt="" />
                 </div>
             </div>
-        </LayoutCart>
+        </Layout>
     )
 }
 
