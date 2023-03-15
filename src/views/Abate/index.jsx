@@ -370,7 +370,7 @@ const Abate = () => {
                             </div>
                             <div>
                                 <p>Chi phí vận chuyển</p>
-                                <p>-</p>
+                                <p>miễn phí</p>
                             </div>
                         </div>
                         <div className="price-payment">
