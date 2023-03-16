@@ -15,6 +15,7 @@ import { UserContext } from '../../container/useContext';
 import { fetchUserItem } from '../../container/userSlice';
 import { ref, update } from 'firebase/database';
 import { database } from '../../firebase';
+import IMAGE from '../../contact';
 
 const Ordered = () => {
     const dispatch = useDispatch();
@@ -301,7 +302,7 @@ const Ordered = () => {
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
             <div className="container ordered-container mt-4">
-                <h4>Đơn hàng</h4>
+                <h4><img style={{ width: "75px", marginRight: "10px" }} src={IMAGE.logo} alt="" />Đơn hàng</h4>
                 {userCurrent?.roles === System.ROLESUSER.ADMIN ||
                     userCurrent?.roles === System.ROLESUSER.MEMBER ?
                     <div className="order-content">

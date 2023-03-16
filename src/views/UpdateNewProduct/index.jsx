@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import HeaderRegister from "../../component/Topbar/component/headerRegister";
 import { System } from "../../constants/system.constants";
+import IMAGE from "../../contact";
 import { UserContext } from "../../container/useContext";
 import { fetchUserItem } from "../../container/userSlice";
 import { database } from "../../firebase";
@@ -251,7 +252,7 @@ const UpdateNewProduct = () => {
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
             <div className="container">
-                <h4 className="mt-5 mb-5">Thông tin sản phẩm</h4>
+                <h4 className="mt-5 mb-5"><img style={{ width: "75px", marginRight: "10px" }} src={IMAGE.logo} alt="" />Thông tin sản phẩm</h4>
                 {userCurrent?.roles === System.ROLESUSER.ADMIN ||
                     userCurrent?.roles === System.ROLESUSER.MEMBER ?
                     <Form
