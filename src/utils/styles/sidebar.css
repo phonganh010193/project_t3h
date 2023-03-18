@@ -1,5 +1,6 @@
 .sidebar {
   width: 280px;
+  margin-bottom: 20px;
 }
 .active {
   background-color: #2d8356;
