@@ -18,6 +18,7 @@ import { fetchUserItem } from "../../container/userSlice";
 import { useContext } from "react";
 import { UserContext } from "../../container/useContext";
 import { System } from "../../constants/system.constants";
+import IMAGE from "../../contact";
 
 const Product = () => {
     const [searchText, setSearchText] = useState('');
@@ -214,7 +215,7 @@ const Product = () => {
                 userCurrent?.roles === System.ROLESUSER.MEMBER ?
                 <div className="container">
                     <div className="product-title-header">
-                        <h4 className="mt-4">Kho hàng</h4>
+                        <h4 className="mt-4"><img style={{ width: "75px", marginRight: "10px" }} src={IMAGE.logo} alt="" />Kho hàng</h4>
 
                         <div style={{ width: "800px" }} className="d-flex flex-row justify-content-between">
                             <span

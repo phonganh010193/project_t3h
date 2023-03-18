@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import { System } from "../../../constants/system.constants"
+import IMAGE from "../../../contact"
 import { UserContext } from "../../../container/useContext"
 import { fetchUserItem } from "../../../container/userSlice"
 import { database } from "../../../firebase"
@@ -66,7 +67,7 @@ const RenrakuByUser = () => {
         <div className="container-fluid m-0 p-0">
             <HeaderRegister />
             <div className="container mt-3 mb-5">
-                <h4>Thông tin liên hệ từ khách hàng</h4>
+                <h4><img style={{ width: "75px", marginRight: "10px" }} src={IMAGE.logo} alt="" />Thông tin liên hệ từ khách hàng</h4>
                 {userCurrent?.roles === System.ROLESUSER.ADMIN ||
                     userCurrent?.roles === System.ROLESUSER.MEMBER ?
                     <div className="renrakubyuser-info">
