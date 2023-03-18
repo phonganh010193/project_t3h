@@ -236,6 +236,9 @@
     .search-content input {
         width: 100% !important;
     }
+    .topnav {
+        margin-bottom: 10px !important;
+    }
 }
 
 .topnav {
