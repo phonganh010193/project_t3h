@@ -129,7 +129,7 @@ const Perfume = () => {
         if (productData) {
             setListDataProduct(productData?.slice(page * take, page * take + take));
         }
-        window.scrollTo({ top: 100, left: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, [page]);
 
     const _renderPaginate = () => {
