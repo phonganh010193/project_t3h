@@ -20,7 +20,7 @@ const sliderSettings = {
     arrows: false
 };
 function SidebarContent(props) {
-    const { listShowProduct, checkShow } = props;
+    const { listShowProduct, checkShow, url } = props;
     const navigate = useNavigate();
     const [listShowProduct_1, setListShowProduct_1] = useState(null)
     const [listShowProduct_2, setListShowProduct_2] = useState(null)
@@ -43,9 +43,24 @@ function SidebarContent(props) {
     };
 
     return (
-        <div className="seling-product">
+        <div 
+            className={
+                checkShow === System.CHECKPRODUCT.BESTSELL && url?.slice(21) === "/" ? 
+                "seling-product" : 
+                checkShow === System.CHECKPRODUCT.BESTSELL && url?.includes("/perfume/") ?
+                "seling-product-perfume" :
+                checkShow === System.CHECKPRODUCT.NEWPRODUCT ?
+                "seling-product-children" :
+                "seling-product-children-1"
+            }
+        >
             <div className="product-title">
-                <h4>{checkShow === System.CHECKPRODUCT.BESTSELL ? "SẢN PHẨM BÁN CHẠY" : "SẢN PHẨM MỚI VỀ"}</h4>
+                <h4>{checkShow === System.CHECKPRODUCT.BESTSELL ? 
+                "SẢN PHẨM BÁN CHẠY" : 
+                checkShow === System.CHECKPRODUCT.NEWPRODUCT?
+                "SẢN PHẨM MỚI VỀ" : "NƯỚC HOA GIẢM GIÁ"
+            }
+            </h4>
                 <div className="btn-prev-next">
                     <button onClick={() => goPrev()}>
                         <i className="fa fa-angle-left"></i>

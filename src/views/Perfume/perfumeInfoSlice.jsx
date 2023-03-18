@@ -97,6 +97,23 @@ export const fetchBestSellersProduct = createAsyncThunk(
     });
   }
 )
+export const fetchDiscountProduct = createAsyncThunk(
+  'product/fetchDiscountProduct',
+  async (userId, thunkAPI) => {
+    const product = await get(dataProductRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    return product?.filter(el => {
+      if (Number(el.price.split(" ").join('')) < 1000000) {
+          return el
+      }
+  })
+  }
+)
 export const fetchProductById = createAsyncThunk(
   'product/fetchProductById',
   async (productId, thunkAPI) => {
@@ -211,7 +228,11 @@ const initialState = {
   productWommen: null,
   isLoadingWommen: false,
   newAdd: [],
+  isLoadingNewAdd: false,
   bestSellers: [],
+  isLoadingBestSell: false,
+  discountProduct: null,
+  isLoadingDiscount: false,
   productAfterUpdate: null,
   isLoadingAfterUpdate: false
 }
@@ -263,24 +284,34 @@ export const productSlice = createSlice({
       state.isLoading = false;
     })
     builder.addCase(fetchNewAddProduct.pending, (state, action) => {
-      state.isLoading = true;
+      state.isLoadingNewAdd = true;
     })
     builder.addCase(fetchNewAddProduct.fulfilled, (state, action) => {
       state.newAdd = action.payload;
-      state.isLoading = false;
+      state.isLoadingNewAdd = false;
     })
     builder.addCase(fetchNewAddProduct.rejected, (state, action) => {
-      state.isLoading = false;
+      state.isLoadingNewAdd = false;
     })
     builder.addCase(fetchBestSellersProduct.pending, (state, action) => {
-      state.isLoading = true;
+      state.isLoadingBestSell = true;
     })
     builder.addCase(fetchBestSellersProduct.fulfilled, (state, action) => {
       state.bestSellers = action.payload;
-      state.isLoading = false;
+      state.isLoadingBestSell = false;
     })
     builder.addCase(fetchBestSellersProduct.rejected, (state, action) => {
-      state.isLoading = false;
+      state.isLoadingBestSell = false;
+    })
+    builder.addCase(fetchDiscountProduct.pending, (state, action) => {
+      state.isLoadingDiscount = true;
+    })
+    builder.addCase(fetchDiscountProduct.fulfilled, (state, action) => {
+      state.discountProduct = action.payload;
+      state.isLoadingDiscount = false;
+    })
+    builder.addCase(fetchDiscountProduct.rejected, (state, action) => {
+      state.isLoadingDiscount = false;
     })
     builder.addCase(updateQuantityProductByBuy.pending, (state, action) => {
       state.isLoadingAfterUpdate = true;

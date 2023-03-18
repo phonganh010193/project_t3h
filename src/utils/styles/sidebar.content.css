@@ -1,8 +1,43 @@
 .seling-product {
     width: 280px;
+    margin-top: 286px;
 }
 
 .seling-product h4 {
+    height: 40px;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.seling-product-perfume {
+    width: 280px;
+    margin-top: 20px;
+}
+
+.seling-product-perfume h4 {
+    height: 40px;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.seling-product-children {
+    width: 280px;
+}
+
+.seling-product-children h4 {
+    height: 40px;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.seling-product-children-1 {
+    width: 280px;
+    margin-top: 61px;
+}
+
+.seling-product-children-1 h4 {
     height: 40px;
     line-height: 50px;
     font-size: 16px;
