@@ -18,7 +18,7 @@ import Layout from "../../component/Layout";
 
 const SearchList = () => {
     const navigate = useNavigate();
-    const values = (window.location.href.slice(33))
+    const values = (window.location.href.slice(29))
     const [searchName, setSearchName] = useState('')
     const { user } = useContext(UserContext);
     const userCurrent = useSelector(({ user }) => user.userCurrent)
@@ -108,6 +108,12 @@ const SearchList = () => {
                             placeholder="search ...."
                             onChange={(event) => {
                                 setSearchName(event.target.value)
+                            }}
+                            onKeyDown={(event) => {
+                                if(event.key === "Enter") {
+                                    event.preventDefault();
+                                    searchProduct(event.target.value);
+                                }
                             }}
                         />
                     </div>

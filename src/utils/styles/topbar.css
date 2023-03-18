@@ -272,11 +272,11 @@
   }
 
 
-  .topnav a:focus {
+  /* .topnav a:focus {
     background-color: #2d8356;
     color: black;
-  }
-  .active {
+  } */
+  .top-active {
     background-color: #2d8356;
     color: black;
   }
