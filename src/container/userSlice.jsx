@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { get, push, ref, update } from 'firebase/database';
+import { System } from '../constants/system.constants';
 import { database } from '../firebase';
 
 
 export const fetchUser = createAsyncThunk(
     'user/fetchUser',
     async (params, thunkAPI) => {
-        return await get(ref(database, "User")).then((snapshot) => {
+        const userList =  await get(ref(database, "User")).then((snapshot) => {
             if (snapshot.exists()) {
                 const response = snapshot.val();
                 const keys = Object.keys(response);
@@ -20,6 +21,9 @@ export const fetchUser = createAsyncThunk(
         }).catch((error) => {
             console.error(error);
         });
+        if(userList) {
+            return userList?.filter(el => el.roles !== System.ROLESUSER.ADMIN)
+        }
     }
 )
 export const fetchUserItem = createAsyncThunk(

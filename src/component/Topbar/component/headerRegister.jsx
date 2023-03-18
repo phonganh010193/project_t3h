@@ -107,11 +107,9 @@ const HeaderRegister = () => {
                             values: event.target.value
                         })
                     }}
-                    defaultValue={item.roles === System.ROLESUSER.MEMBER ? "B" :
-                        item.roles === System.ROLESUSER.USER ? "C" : "A"
-                    }
+                    defaultValue={item.roles === System.ROLESUSER.USER ? "C" : "B"}
                 >
-                    <option value="A">Admin</option>
+                    {/* <option value="A">Admin</option> */}
                     <option value="B">Member</option>
                     <option value="C">User</option>
                 </select>,
