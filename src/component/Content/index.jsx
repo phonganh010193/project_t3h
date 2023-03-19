@@ -5,7 +5,7 @@ import Footer from "../Footer";
 
 
 const Content = ({ children }) => {
-    const url = window.location.href.slice(21);
+    const url = window.location.href.slice(24);
     return (
         <div className="content">
             <TopBar />
