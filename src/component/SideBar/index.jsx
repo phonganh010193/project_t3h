@@ -69,7 +69,7 @@ function Sidebar() {
                     : null
                 }
             </div>
-            {url?.slice(24) === "/" ?
+            {url?.slice(21) === "/" ?
                 <div>
                     <div className="sidebar-content-item">
                         <SidebarContent
