@@ -30,6 +30,7 @@ const UserContextProvider = ({ children }) => {
         try {
             const user = await signInWithEmailAndPassword(auth, values.username, values.password);
             fetchSuccess();
+            localStorage.setItem('token', user.user.accessToken);
             setUser(user.user);
         } catch (error) {
             fetchError(error)
@@ -38,8 +39,7 @@ const UserContextProvider = ({ children }) => {
     }
     const fetchSignOut = async () => {
         signOut(auth).then(() => {
-            // Sign-out successful.
-            console.log('logout success')
+            localStorage.removeItem('token');
         }).catch((error) => {
             // An error happened.
             console.log(error)
