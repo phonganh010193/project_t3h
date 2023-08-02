@@ -11,6 +11,8 @@ import { fetchOrderProduct } from "../Cart/orderSlice";
 import { useContext } from "react";
 import { UserContext } from "../../container/useContext";
 import { fetchUserItem } from "../../container/userSlice";
+import { useState } from "react";
+import SockJsClient from 'react-stomp';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -39,8 +41,47 @@ const HomePage = () => {
         className: 'slide-content',
         dotsClass: 'slick-dots'
     };
+    const clientHref = useRef(null)
+    const [isConnected, setIsConnected] = useState(false);
+    useEffect(() => {
+        if (isConnected === false) {
+            console.log('trang thai disConect')
+            // clientHref.current.connect()
+        } else {
+            console.log('trang thai connect')
+        }
+    }, [isConnected])
     return (
         <Layout>
+            <SockJsClient
+                url='http://10.0.7.7:8082/tgal-websocket'
+                topics={['/topic/new-orders/1539']}
+                onMessage={(msg) => {
+                    alert(msg.status);
+                }}
+
+                ref={(client) => { clientHref.current = client }}
+                onConnect={() => {
+                    if (isConnected === false) {
+                        console.log('vao connect');
+                        setIsConnected(true);
+                    }
+
+                    // thông báo trạng thái connect thành công hay không
+                }}
+
+                onDisconnect={() => {
+                    console.log('vao disconnect')
+                    // kết nối nó bị mất nó sẽ vào đây.
+                    // kết nối với server
+                    setIsConnected(false);
+                }}
+                onConnectFailure={() => {
+                    console.log('co gang ket noi lai socket')
+                    clientHref.current.connect()
+                }}
+            // autoReconnect={true}
+            />
             <div className="homepage-container">
                 <Slider {...sliderSettings} ref={sliderRef} >
                     <div className="slide-item">
